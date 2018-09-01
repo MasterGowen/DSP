@@ -16,7 +16,7 @@ class DSPXBlock(XBlock):
 
     # TO-DO: delete count, and define your own fields.
     count = Integer(
-        default=0, scope=Scope.user_state,
+        default=3, scope=Scope.user_state,
         help="A simple counter, to show something happening",
     )
 
