@@ -1,0 +1,9 @@
+/* CSS for DSPXBlock */
+
+.dsp_block .count {
+    font-weight: bold;
+}
+
+.dsp_block p {
+    cursor: pointer;
+}
