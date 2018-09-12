@@ -2,7 +2,7 @@
 
 import pkg_resources
 from xblock.core import XBlock
-from xblock.fields import Integer, Scope
+from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
 
 
@@ -37,6 +37,7 @@ class DSPXBlock(XBlock):
         The primary view of the DSPXBlock, shown to students
         when viewing courses.
         """
+        self.current_lab = "lab_1"
         fragment = self.load_lab_static(self.current_lab)
         fragment.initialize_js('DSPXBlock')
         return fragment
