@@ -19,6 +19,12 @@ class DSPXBlock(XBlock):
         default=3, scope=Scope.user_state,
         help="A simple counter, to show something happening",
     )
+    current_lab = String(
+        display_name=u"ID текущей лаборатории",
+        help=u"ID текущей лаборатории",
+        default="lab_1",
+        scope=Scope.settings
+    )
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -31,11 +37,17 @@ class DSPXBlock(XBlock):
         The primary view of the DSPXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/dsp.html")
+        fragment = current_lab(self.current_lab)
+        fragment.initialize_js('DSPXBlock')
+        return fragment
+
+    def load_lab_static(self, lab_id):
+        html = self.resource_string("static/{}/html/{}.html".format(lab_id, lab_id))
         frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/{}/css/{}.css".format(lab_id, lab_id)))
         frag.add_css(self.resource_string("static/css/dsp.css"))
+        frag.add_javascript(self.resource_string("static/{}/js/src/{}.js".format(lab_id, lab_id)))
         frag.add_javascript(self.resource_string("static/js/src/dsp.js"))
-        frag.initialize_js('DSPXBlock')
         return frag
 
     # TO-DO: change this handler to perform your own actions.  You may need more
