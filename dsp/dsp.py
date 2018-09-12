@@ -43,11 +43,11 @@ class DSPXBlock(XBlock):
         return fragment
 
     def load_lab_static(self, lab_id):
-        html = self.resource_string("static/{}/html/{}.html".format(lab_id, lab_id))
+        html = self.resource_string("static/{}/{}.html".format(lab_id, lab_id))
         frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/{}/css/{}.css".format(lab_id, lab_id)))
+        frag.add_css(self.resource_string("static/{}/{}.css".format(lab_id, lab_id)))
         frag.add_css(self.resource_string("static/css/dsp.css"))
-        frag.add_javascript(self.resource_string("static/{}/js/src/{}.js".format(lab_id, lab_id)))
+        frag.add_javascript(self.resource_string("static/{}/src/{}.js".format(lab_id, lab_id)))
         frag.add_javascript(self.resource_string("static/js/src/dsp.js"))
         return frag
 
