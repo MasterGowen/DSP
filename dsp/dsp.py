@@ -8,6 +8,7 @@ from xblock.fragment import Fragment
 from .utils import (
     render_template,
     load_resources,
+    merge_two_dicts,
 )
 
 from .labs.lab_1 import get_source_data
@@ -58,10 +59,7 @@ class DSPXBlock(XBlock):
         return fragment
 
     def lab_1_context(self):
-        context = {
-            "display_name": self.display_name,
-            **get_source_data()
-         }
+        context = merge_two_dicts({"display_name": self.display_name}, get_source_data()})
 
         # context[""]
 
