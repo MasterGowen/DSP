@@ -5,6 +5,10 @@ from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
 
+from .utils import (
+    render_template,
+    load_resources,
+    )
 
 class DSPXBlock(XBlock):
     """
@@ -15,10 +19,17 @@ class DSPXBlock(XBlock):
     # self.<fieldname>.
 
     # TO-DO: delete count, and define your own fields.
+    display_name = String(
+        display_name='Display Name',
+        default="DSPxblock",
+        scope=Scope.settings
+    )
+
     count = Integer(
         default=3, scope=Scope.user_state,
         help="A simple counter, to show something happening",
     )
+
     current_lab = String(
         display_name=u"ID текущей лаборатории",
         help=u"ID текущей лаборатории",
@@ -50,6 +61,34 @@ class DSPXBlock(XBlock):
         frag.add_javascript(self.resource_string("static/{}/{}.js".format(lab_id, lab_id)))
         frag.add_javascript(self.resource_string("static/js/src/dsp.js"))
         return frag
+
+    def studio_view(self, context=None):
+        context = {
+            "display_name": self.display_name,
+            "current_lab": self.current_lab
+
+        }
+
+        fragment = Fragment()
+        fragment.add_content(
+            render_template(
+                "static/html/dsp_studio.html",
+                context
+            )
+        )
+
+        js_urls = (
+            "static/js/src/dsp_studio.js",
+        )
+
+        css_urls = (
+            "static/css/dsp_studio.css",
+        )
+
+        load_resources(js_urls, css_urls, fragment)
+
+        fragment.initialize_js('DSPXBlock')
+        return fragment
 
     # TO-DO: change this handler to perform your own actions.  You may need more
     # than one handler, or you may not need any handlers at all.

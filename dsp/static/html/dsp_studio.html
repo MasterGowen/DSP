@@ -1,0 +1,64 @@
+<div class="dsp_studio">
+<div class="wrapper-comp-settings editor-with-buttons is-active" id="settings-tab">
+
+    <ul class="list-input settings-list">
+
+  <div id="main-settings">
+
+ <div class="main-settings-content">
+
+     <!--
+    <select class="select-lab" name="lab_scenario" selected="{{lab_scenario}}">
+      {% for scenario in scenarios %}
+          <option {% if lab_scenario|slugify == scenario.number|slugify %} selected="selected" {% endif %} value="{{scenario.number}}"> {{scenario.title}} </option>
+      {% endfor %}
+    </select>
+-->
+</div>
+
+  </div>
+
+  <div id="scenario-settings" hidden="true">
+
+
+      <li class="field comp-setting-entry is-set">
+        <div class="wrapper-comp-setting">
+          <label class="label setting-label" for="display_name">Название:</label>
+          <input class="input setting-input" name="display_name" id="display_name" value="{{display_name}}" type="text" />
+        </div>
+      </li>
+
+
+
+  </div>
+
+  <div id="advanced-settings" hidden="true">
+
+  <li class="field comp-setting-entry is-set">
+        <div class="wrapper-comp-setting">
+        <label class="label setting-label" for="sequence">Здесь могут быть расширенные настройки</label>
+        </div>
+  </li>
+
+
+
+
+
+  </div>
+
+
+</ul>
+
+
+  <div class="xblock-actions">
+    <ul>
+      <li class="action-item">
+        <a href="#" class="button action-primary save-button">Save</a>
+      </li>
+      <li class="action-item">
+        <a href="#" class="button cancel-button">Cancel</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
