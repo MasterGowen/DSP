@@ -1,1 +1,7 @@
-console.log("i'm lab 2");
+
+/* Javascript for DSPXBlock. */
+function DSPXBlock(runtime, element) {
+    $(function ($) {
+        console.log("i'm lab 2");
+    });
+}
