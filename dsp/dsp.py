@@ -47,7 +47,7 @@ class DSPXBlock(XBlock):
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/{}/{}.css".format(lab_id, lab_id)))
         frag.add_css(self.resource_string("static/css/dsp.css"))
-        frag.add_javascript(self.resource_string("static/{}/src/{}.js".format(lab_id, lab_id)))
+        frag.add_javascript(self.resource_string("static/{}/{}.js".format(lab_id, lab_id)))
         frag.add_javascript(self.resource_string("static/js/src/dsp.js"))
         return frag
 
