@@ -8,7 +8,8 @@ from xblock.fragment import Fragment
 from .utils import (
     render_template,
     load_resources,
-    )
+)
+
 
 class DSPXBlock(XBlock):
     """
@@ -90,8 +91,12 @@ class DSPXBlock(XBlock):
         fragment.initialize_js('DSPXBlock')
         return fragment
 
-    # TO-DO: change this handler to perform your own actions.  You may need more
-    # than one handler, or you may not need any handlers at all.
+    @XBlock.json_handler
+    def studio_submit(self, data, suffix=''):
+        self.display_name = data.get('display_name')
+
+        return {'result': 'success'}
+
     @XBlock.json_handler
     def increment_count(self, data, suffix=''):
         """
