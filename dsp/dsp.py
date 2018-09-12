@@ -10,6 +10,8 @@ from .utils import (
     load_resources,
 )
 
+from .labs.lab_1 import get_source_data
+
 
 class DSPXBlock(XBlock):
     """
@@ -50,13 +52,30 @@ class DSPXBlock(XBlock):
         when viewing courses.
         """
         # self.current_lab
-        fragment = self.load_lab_static(self.current_lab)
+        context = self.lab_1_context()
+        fragment = self.load_lab_static(self.current_lab, context)
         fragment.initialize_js('DSPXBlock')
         return fragment
 
-    def load_lab_static(self, lab_id):
-        html = self.resource_string("static/{}/{}.html".format(lab_id, lab_id))
-        frag = Fragment(html.format(self=self))
+    def lab_1_context(self):
+        context = {
+            "display_name": self.display_name,
+            **get_source_data()
+         }
+
+        # context[""]
+
+        return context
+
+    def load_lab_static(self, lab_id, context):
+        # html = self.resource_string()
+        frag = Fragment()
+        frag.add_content(
+            render_template(
+                "static/{}/{}.html".format(lab_id, lab_id),
+                context
+            )
+        )
         frag.add_css(self.resource_string("static/{}/{}.css".format(lab_id, lab_id)))
         frag.add_css(self.resource_string("static/css/dsp.css"))
         frag.add_javascript(self.resource_string("static/{}/{}.js".format(lab_id, lab_id)))
