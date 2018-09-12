@@ -37,7 +37,7 @@ class DSPXBlock(XBlock):
     current_lab = String(
         display_name=u"ID текущей лаборатории",
         help=u"ID текущей лаборатории",
-        default="lab_2",
+        default="lab_1",
         scope=Scope.settings
     )
 
