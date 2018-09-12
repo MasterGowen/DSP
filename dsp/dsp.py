@@ -1,4 +1,4 @@
-"""TO-DO: Write a description of what this XBlock is."""
+# -*- coding: utf-8 -*-
 
 import pkg_resources
 from xblock.core import XBlock
