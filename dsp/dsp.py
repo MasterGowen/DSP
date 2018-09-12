@@ -56,7 +56,7 @@ class DSPXBlock(XBlock):
         context = merge_two_dicts({"display_name": self.display_name}, get_source_data())
         print(context)
         fragment = self.load_lab_static(self.current_lab, context)
-        fragment.initialize_js('DSPXBlock')
+        fragment.initialize_js('DSPXBlock', context)
         return fragment
 
     # def lab_1_context(self):
