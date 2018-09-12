@@ -11,7 +11,7 @@ from .utils import (
     merge_two_dicts,
 )
 
-from .labs.lab_1 import get_source_data
+from lab_1 import get_source_data
 
 
 class DSPXBlock(XBlock):
