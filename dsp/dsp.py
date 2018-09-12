@@ -59,7 +59,7 @@ class DSPXBlock(XBlock):
         return fragment
 
     def lab_1_context(self):
-        context = merge_two_dicts({"display_name": self.display_name}, get_source_data()})
+        context = merge_two_dicts({"display_name": self.display_name}, get_source_data())
 
         # context[""]
 
