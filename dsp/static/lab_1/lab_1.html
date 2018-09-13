@@ -44,6 +44,7 @@
                 if(!parse_array.signal_valid){
                     message = "Ошибка формата ввода";
                 }
+                console.log("Array is valid? :", parse_array.signal_valid);
                 $(this).parent().find( ".validation-message" ).html(message)
             });
         });
