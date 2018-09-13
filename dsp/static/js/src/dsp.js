@@ -3,7 +3,7 @@
 function parseTextSignal(signal_string) {
     var signal_array = signal_string.replace('[', '').replace(']', '').replace('(', '').replace(')', '').split(/[ ,]+/);
     var cleaned_array = signal_array.filter(function (item) {
-        return item != ""
+        return item != "";
     });
     signal_valid = cleaned_array.every((item) => !isNaN(parseFloat(item)));
     if (signal_valid) {
