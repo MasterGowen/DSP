@@ -35,7 +35,7 @@ function DSPXBlock(runtime, element) {
         };
         student_data.student_signal = parseTextSignal($("#input_student_signal").val()).signal;
         student_data.student_filter = parseTextSignal($("#input_student_filter").val()).signal;
-        student_data.a = $("#input_student_a").val()
+        student_data.a = $("#input_student_a").val();
         student_data.student_window = $('input[name=input_student_window]:checked').val();
         return student_data;
     }
