@@ -123,7 +123,7 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def get_graphics(self, data, suffix=''):
 
-        student_data = json.loads(data)
+        student_data = json.loads(str(data))
         log.info("!!!!!!!!!!!!!!!!!!!!!!!")
         log.info(str(student_data))
 

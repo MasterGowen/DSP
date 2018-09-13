@@ -21,7 +21,8 @@ function DSPXBlock(runtime, element) {
             type: "POST",
             url: get_graphics,
             data: JSON.stringify(generateAnswer()),
-            success: updateCount
+            success: updateCount,
+            contentType: 'application/json; charset=utf-8'})
         });
     });
 
