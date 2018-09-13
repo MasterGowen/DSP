@@ -22,8 +22,7 @@
     <p><strong>{{filter_type.title}} {{Ns}} отсчётов</strong></p>
     <div>
         <p>Введите фильтр:</p>
-        <textarea id="student_filter" class="filter-input array-input" rows="3" cols="24" wrap="hard">
-        </textarea>
+        <textarea id="student_filter" class="filter-input array-input" rows="3" cols="24" wrap="hard"></textarea>
     </div>
 </div>
 шаблон первой лаборатории
@@ -38,12 +37,33 @@
             });
             $(this).after(validation_array_message);
 
-            this.change(function () {
-               console.log(this);
+            $(this).change(function () {
+                console.log(this);
+                parse_array = parseTextSignal(this.value);
+                var message="";
+                if(!parse_array.signal_valid){
+                    message = "Ошибка формата ввода";
+                }
+                $(this).parent().find( ".validation-message" ).html(message)
             });
         });
 
-
+        function parseTextSignal(signal_string) {
+            var signal_array = signal_string.replace('[', '').replace(']', '').replace('(', '').replace(')', '').split(/[ ,]+/);
+            var cleaned_array = signal_array.filter(function (item) {
+                return item != ""
+            });
+            signal_valid = cleaned_array.every((item) => !isNaN(parseFloat(item)));
+            if (signal_valid) {
+                signal = cleaned_array.map(function (item) {
+                    return parseFloat(item)
+                });
+                return {"signal": signal, "signal_valid": signal_valid};
+            }
+            else {
+                return {"signal": [], "signal_valid": signal_valid};
+            }
+        }
     });
 
     var input_message = document.createElement("div")
