@@ -20,7 +20,7 @@ function DSPXBlock(runtime, element) {
         $.ajax({
             type: "POST",
             url: get_graphics,
-            data: JSON.stringify(generateAnswer()),
+            data: JSON.stringify({"student_data": generateAnswer()}),
             success: updateCount
         });
     });

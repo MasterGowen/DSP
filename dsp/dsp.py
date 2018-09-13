@@ -121,17 +121,11 @@ class DSPXBlock(XBlock):
 
     @XBlock.handler
     def get_graphics(self, request, suffix=''):
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!", str(request))
-        log.error(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
+        student_data = request.get('student_data')
         log.info("!!!!!!!!!!!!!!!!!!!!!!!")
-        log.info(str(request))
-        # upload = request.params['studentFile']
-        # self.student_xlsx_name = upload.file.name
-        # self.student_xlsx_uid = uuid.uuid4().hex
-        # path = self._students_storage_path(self.student_xlsx_uid, self.student_xlsx_name)
-        # if not default_storage.exists(path):
-        #     default_storage.save(path, File(upload.file))
-        # obj = path
+        log.info(str(student_data))
+
         return Response(json_body={})
 
     @XBlock.json_handler
