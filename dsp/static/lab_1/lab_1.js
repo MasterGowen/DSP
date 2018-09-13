@@ -1,38 +1,45 @@
 function DSPXBlock(runtime, element) {
 
     function updateCount(result) {
-    $('.count', element).text(result.count);
+        $('.count', element).text(result.count);
     }
 
-    var student_data = {
-        "student_signal": [],
-        "student_filter": [],
-        "a": "",
-        "student_window": ""
-
-    };
+    // var student_data = {
+    //     "student_signal": [],
+    //     "student_filter": [],
+    //     "a": "",
+    //     "student_window": ""
+    // };
 
     var handlerUrl = runtime.handlerUrl(element, 'increment_count');
 
     var get_graphics = runtime.handlerUrl(element, 'get_graphics');
 
-    $('p', element).click(function(eventObject) {
-    $.ajax({
-        type: "POST",
-        url: get_graphics,
-        data: JSON.stringify({"hello": "world"}),
-        success: updateCount
-    });
+    $('p', element).click(function (eventObject) {
+        $.ajax({
+            type: "POST",
+            url: get_graphics,
+            data: JSON.stringify({"hello": "world"}),
+            success: updateCount
+        });
     });
 
-    function generateAnswer(){
-       student_data.student_signal =  parseTextSignal($("#input_student_signal").val()).signal;
-       student_data.student_filter =  parseTextSignal($("#input_student_filter").val()).signal;
-       student_data.a = $("#input_student_a").val()
+    function generateAnswer() {
+        var student_data = {
+            "student_signal": [],
+            "student_filter": [],
+            "a": "",
+            "student_window": ""
+        };
+        student_data.student_signal = parseTextSignal($("#input_student_signal").val()).signal;
+        student_data.student_filter = parseTextSignal($("#input_student_filter").val()).signal;
+        student_data.a = $("#input_student_a").val()
+        student_data.student_window = $('input[name=input_student_window]:checked').val();
+        return student_data;
     }
 
     $(function ($) {
-        $("textarea.array-input").each(function(i) {
+        $("textarea.array-input").each(function (i) {
             var validation_array_message = $('<div/>', {
                 class: 'validation-message'
             });
@@ -49,6 +56,7 @@ function DSPXBlock(runtime, element) {
                 }
                 console.log("Array is valid? :", parse_array.signal_valid);
                 console.log("Validation result:", parse_array);
+                console.log(generateAnswer());
                 $(this).parent().find(".validation-message").html(message)
             });
         });
