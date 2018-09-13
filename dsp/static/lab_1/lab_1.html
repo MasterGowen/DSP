@@ -25,13 +25,27 @@
     </div>
     <div>
         <p>Введите ... (a):</p>
-        <input id="input_a" type=number step=any />
+        <input id="input_a" type=number step=any/>
+    </div>
+    <div>
+        <fieldset>
+            <legend>Выбор окна:</legend>
+            <input type="radio" id="rectangular" name="input_window" checked>
+            <label for="rectangular">прямоугольное окно</label>
+
+            <input type="radio" id="hamming" name="input_window">
+            <label for="hamming">окно Хэмминга</label><br/>
+
+            <input type="radio" id="blackman" name="input_window">
+            <label for="blackman">окно Блэкмана</label><br/>
+        </fieldset>
     </div>
 </div>
 <div class="dsp_block">
     шаблон первой лаборатории
-{{filter_window.title}}
+    {{filter_window.title}}
 </div>
+
 
 <script type="text/javascript">
     $(function () {
@@ -47,7 +61,7 @@
                 parse_array = parseTextSignal(this.value);
                 var message = "";
                 if (parse_array.signal_valid) {
-                    message = "Введенный сигнал: [" + parse_array.signal.join(" ")+"]";
+                    message = "Введенный сигнал: [" + parse_array.signal.join(" ") + "]";
                 }
                 else {
                     message = "Ошибка формата ввода";
