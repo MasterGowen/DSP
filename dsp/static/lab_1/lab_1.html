@@ -12,8 +12,7 @@
     <p><strong>{{signal_type.title}} длиной {{N0}} отсчётов</strong></p>
     <div>
         <p>Введите сигнал:</p>
-        <textarea id="student_signal" class="signal-input array-input" rows="3" cols="24" wrap="hard">
-        </textarea>
+        <textarea id="input_student_signal" class="signal-input array-input" rows="3" cols="24" wrap="hard"></textarea>
     </div>
 </div>
 <div class="dsp_block">
@@ -21,12 +20,19 @@
     <p>Сформировать модель КИХ-фильтров I порядка:</p>
     <p><strong>{{filter_type.title}} {{Ns}} отсчётов</strong></p>
     <div>
-        <p>Введите фильтр:</p>
-        <textarea id="student_filter" class="filter-input array-input" rows="3" cols="24" wrap="hard"></textarea>
+        <p>Введите фильтр (b):</p>
+        <textarea id="input_student_filter" class="filter-input array-input" rows="3" cols="24" wrap="hard"></textarea>
+    </div>
+    <div>
+        <p>Введите ... (a):</p>
+        <input id="input_a" type=number step=any />
     </div>
 </div>
-шаблон первой лаборатории
+<div class="dsp_block">
+    шаблон первой лаборатории
 {{filter_window.title}}
+</div>
+
 <script type="text/javascript">
     $(function () {
 
