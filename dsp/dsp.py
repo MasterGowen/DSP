@@ -2,7 +2,7 @@
 
 import pkg_resources
 from xblock.core import XBlock
-from xblock.fields import Integer, Scope, String
+from xblock.fields import Integer, Scope, String, JSONField
 from xblock.fragment import Fragment
 
 from .utils import (
@@ -40,6 +40,11 @@ class DSPXBlock(XBlock):
         default="lab_1",
         scope=Scope.settings
     )
+    lab_source_data = JSONField(
+         default={},
+         scope=Scope.user_state,
+         help='Начальные данные лабораторной для студента',
+        )
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -60,7 +65,9 @@ class DSPXBlock(XBlock):
         return fragment
 
     def lab_1_context(self):
-        context = merge_two_dicts({"display_name": self.display_name}, get_source_data())
+        if not self.lab_source_data:
+            self.lab_source_data = get_source_data()
+        context = merge_two_dicts({"display_name": self.display_name}, self.lab_source_data)
         print(context)
         # context[""]
 
