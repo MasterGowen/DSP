@@ -25,18 +25,18 @@
     </div>
     <div>
         <p>Введите ... (a):</p>
-        <input id="input_a" type=number step=any/>
+        <input id="input_student_a" type=number step=any/>
     </div>
     <div>
         <fieldset>
             <legend>Выбор окна:</legend>
-            <input type="radio" id="rectangular" name="input_window" checked>
-            <label for="rectangular">прямоугольное окно</label>
+            <input type="radio" id="rectangular" name="input_student_window" value="rectangular" checked>
+            <label for="rectangular">прямоугольное окно</label><br/>
 
-            <input type="radio" id="hamming" name="input_window">
+            <input type="radio" id="hamming" name="input_student_window" value="hamming">
             <label for="hamming">окно Хэмминга</label><br/>
 
-            <input type="radio" id="blackman" name="input_window">
+            <input type="radio" id="blackman" name="input_student_window" value="blackman">
             <label for="blackman">окно Блэкмана</label><br/>
         </fieldset>
     </div>
@@ -48,35 +48,14 @@
 
 
 <script type="text/javascript">
-    $(function () {
-
-        $("textarea.array-input").each(function (i) {
-
-            var validation_array_message = $('<div/>', {
-                class: 'validation-message'
-            });
-            $(this).after(validation_array_message);
-
-            $(this).change(function () {
-                parse_array = parseTextSignal(this.value);
-                var message = "";
-                if (parse_array.signal_valid) {
-                    message = "Введенный сигнал: [" + parse_array.signal.join(" ") + "]";
-                }
-                else {
-                    message = "Ошибка формата ввода";
-
-                }
-                console.log("Array is valid? :", parse_array.signal_valid);
-                console.log("Validation result:", parse_array);
-                $(this).parent().find(".validation-message").html(message)
-            });
-        });
+    // $(function () {
+    //
+    //
+    //
+    //
+    // });
 
 
-    });
-
-    var input_message = document.createElement("div")
 </script>
 </body>
 </html>
