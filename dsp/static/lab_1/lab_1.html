@@ -12,7 +12,7 @@
     <p><strong>{{signal_type.title}} длиной {{N0}} отсчётов</strong></p>
     <div>
         <p>Введите сигнал:</p>
-         <textarea id="student_signal" class="signal-input array_input" rows="3" cols="24" wrap="hard">
+        <textarea id="student_signal" class="signal-input array-input" rows="3" cols="24" wrap="hard">
         </textarea>
     </div>
 </div>
@@ -22,11 +22,31 @@
     <p><strong>{{filter_type.title}} {{Ns}} отсчётов</strong></p>
     <div>
         <p>Введите фильтр:</p>
-         <textarea id="student_filter" class="filter-input array_input" rows="3" cols="24" wrap="hard">
+        <textarea id="student_filter" class="filter-input array-input" rows="3" cols="24" wrap="hard">
         </textarea>
     </div>
 </div>
 шаблон первой лаборатории
 {{filter_window.title}}
+<script type="text/javascript">
+    $(function () {
+
+        $("textarea.array-input").each(function (i) {
+
+            var validation_array_message = $('<div/>', {
+                class: 'validation-message'
+            });
+            $(this).after(validation_array_message);
+
+            this.change(function () {
+               console.log(this);
+            });
+        });
+
+
+    });
+
+    var input_message = document.createElement("div")
+</script>
 </body>
 </html>
