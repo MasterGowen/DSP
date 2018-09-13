@@ -4,6 +4,7 @@ import pkg_resources
 from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String, JSONField
 from xblock.fragment import Fragment
+from webob.response import Response
 
 from .utils import (
     render_template,
