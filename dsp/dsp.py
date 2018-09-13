@@ -121,8 +121,8 @@ class DSPXBlock(XBlock):
 
     @XBlock.handler
     def get_graphics(self, request, suffix=''):
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!", request)
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!", request)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!", str(request))
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!", str(request))
         # upload = request.params['studentFile']
         # self.student_xlsx_name = upload.file.name
         # self.student_xlsx_uid = uuid.uuid4().hex
