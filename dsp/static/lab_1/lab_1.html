@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2 class="problem-header">{{display_name}}</h2>
-<div>
+<div class="dsp_block">
     <h3>Блок формирования сигналов</h3>
     <p>Вам необходимо сформировать следующий сигнал:</p>
     <p><strong>{{signal_type.title}} длиной {{N0}} отсчётов</strong></p>
@@ -16,7 +16,7 @@
         </textarea>
     </div>
 </div>
-<div>
+<div class="dsp_block">
     <h3>Блок формирования фильтров</h3>
     <p>Сформировать модель КИХ-фильтров I порядка:</p>
     <p><strong>{{filter_type.title}} {{Ns}} отсчётов</strong></p>
@@ -41,7 +41,7 @@
                 parse_array = parseTextSignal(this.value);
                 var message = "";
                 if (parse_array.signal_valid) {
-                    message = "Введенный сигнал: " + parse_array.signal.join(" ");
+                    message = "Введенный сигнал: [" + parse_array.signal.join(" ")+"]";
                 }
                 else {
                     message = "Ошибка формата ввода";

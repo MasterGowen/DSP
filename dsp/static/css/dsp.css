@@ -5,5 +5,10 @@
 }
 
 .dsp_block p {
-    cursor: pointer;
+    margin: 6px 0px !important;
 }
+
+.dsp_block h3 {
+    margin-bottom: 16px;
+}
+
