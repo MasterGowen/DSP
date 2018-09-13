@@ -1,7 +1,8 @@
 function DSPXBlock(runtime, element) {
 
     function updateCount(result) {
-        $('.count', element).text(result.count);
+        console.log(result)
+        //$('.count', element).text(result.count);
     }
 
     // var student_data = {
@@ -15,11 +16,11 @@ function DSPXBlock(runtime, element) {
 
     var get_graphics = runtime.handlerUrl(element, 'get_graphics');
 
-    $('p', element).click(function (eventObject) {
+    $('#calculate_graphics', element).click(function (event) {
         $.ajax({
             type: "POST",
             url: get_graphics,
-            data: JSON.stringify({"hello": "world"}),
+            data: JSON.stringify(generateAnswer()),
             success: updateCount
         });
     });
