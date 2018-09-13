@@ -22,7 +22,7 @@ function DSPXBlock(runtime, element) {
             url: get_graphics,
             data: JSON.stringify(generateAnswer()),
             success: updateCount,
-            contentType: 'application/json; charset=utf-8'})
+            contentType: 'application/json; charset=utf-8'
         });
     });
 
