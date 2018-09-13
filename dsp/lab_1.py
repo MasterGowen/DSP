@@ -12,14 +12,14 @@ def get_source_data():
     a = 1
     signal_type = random.choice([
         {
-            "name": "signal_type_name_example",
-            "title": "signal_type_title_example"
+            "name": "signal type name example",
+            "title": "signal type title example"
         }
     ])
     filter_type = random.choice([
         {
-            "name": "filter_type_name_example",
-            "title": "filter_type_title_example"
+            "name": "filter type name example",
+            "title": "filter type title example"
         }
     ])
     filter_window = random.choice([
