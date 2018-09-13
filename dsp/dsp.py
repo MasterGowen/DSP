@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+import json
 
 import pkg_resources
 from xblock.core import XBlock
@@ -119,10 +120,10 @@ class DSPXBlock(XBlock):
         fragment.initialize_js('DSPXBlock')
         return fragment
 
-    @XBlock.handler
-    def get_graphics(self, request, suffix=''):
+    @XBlock.json_handler
+    def get_graphics(self, data, suffix=''):
 
-        student_data = request.get('student_data')
+        student_data = json.loads(data['student_answer'])
         log.info("!!!!!!!!!!!!!!!!!!!!!!!")
         log.info(str(student_data))
 
