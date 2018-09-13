@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import logging
 
 import pkg_resources
 from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String, JSONField
 from xblock.fragment import Fragment
 from webob.response import Response
+
 
 from .utils import (
     render_template,
@@ -13,6 +15,7 @@ from .utils import (
 )
 
 from lab_1 import get_source_data
+log = logging.getLogger(__name__)
 
 
 class DSPXBlock(XBlock):
@@ -119,6 +122,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def get_graphics(self, request, suffix=''):
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!", request)
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!", request)
         # upload = request.params['studentFile']
         # self.student_xlsx_name = upload.file.name
         # self.student_xlsx_uid = uuid.uuid4().hex
