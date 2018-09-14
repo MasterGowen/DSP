@@ -15,7 +15,7 @@ from .utils import (
     merge_two_dicts,
 )
 
-from lab_1 import get_source_data
+from lab_1 import get_source_data, get_graphics
 log = logging.getLogger(__name__)
 
 
@@ -126,8 +126,10 @@ class DSPXBlock(XBlock):
         student_data = data
         log.info("!!!!!!!!!!!!!!!!!!!!!!!")
         log.info(str(student_data))
+        graphics = []
+        graphics.append(get_graphics())
 
-        return Response(json_body={})
+        return Response(json_body={"graphics": graphics})
 
     @XBlock.json_handler
     def studio_submit(self, data, suffix=''):
@@ -135,16 +137,6 @@ class DSPXBlock(XBlock):
 
         return {'result': 'success'}
 
-    @XBlock.json_handler
-    def increment_count(self, data, suffix=''):
-        """
-        An example handler, which increments the data.
-        """
-        # Just to show data coming in...
-        assert data['hello'] == 'world'
-
-        self.count += 1
-        return {"count": self.count}
 
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
