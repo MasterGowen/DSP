@@ -1,4 +1,3 @@
-
 function example_data() {
     var signal = "[1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]"
     var filter = "[1. 1. 1. 1. 1. 1. 1. 1. 1.]";
@@ -8,17 +7,10 @@ function example_data() {
     $("textarea#input_student_signal").val(signal);
     $("textarea#input_student_filter").val(filter);
     $("#input_student_a").val(a);
-    $('input:radio[name="input_student_window"]').filter('[value="'+window+'"]').attr('checked', true);
+    $('input:radio[name="input_student_window"]').filter('[value="' + window + '"]').attr('checked', true);
 }
 
-function DSPXBlock(runtime, element) {
-
-    function updateCount(result) {
-        console.log(result);
-        $("#graphic_1").html(result["graphics"][0]["html"]);
-        $("#graphic_2").html(result["graphics"][1]["html"]);
-        //$('.count', element).text(result.count);
-    }
+function DSPXBlock(runtime, element, data) {
 
     // var student_data = {
     //     "student_signal": [],
@@ -27,36 +19,57 @@ function DSPXBlock(runtime, element) {
     //     "student_window": ""
     // };
 
-    var handlerUrl = runtime.handlerUrl(element, 'increment_count');
+    // var handlerUrl = runtime.handlerUrl(element, 'increment_count');
 
     var get_graphics = runtime.handlerUrl(element, 'get_graphics');
 
-    $('#calculate_graphics', element).click(function (event) {
+    function build_graphics() {
         $.ajax({
             type: "POST",
             url: get_graphics,
             data: JSON.stringify(generateAnswer()),
-            success: updateCount,
+            success: function () {
+                $("#graphic_1", element).html(result["graphics"][0]["html"]);
+                $("#graphic_2", element).html(result["graphics"][1]["html"]);
+            },
             contentType: 'application/json; charset=utf-8'
         });
+    }
+
+    $('#calculate_graphics', element).click(function (event) {
+        build_graphics();
     });
 
     function generateAnswer() {
         var student_data = {
             "student_signal": [],
             "student_filter": [],
-            "a": "",
-            "student_window": ""
+            "student_a": "",
+            "student_window": "rectangular"
         };
-        student_data.student_signal = parseTextSignal($("#input_student_signal").val()).signal;
-        student_data.student_filter = parseTextSignal($("#input_student_filter").val()).signal;
-        student_data.a = $("#input_student_a").val();
-        student_data.student_window = $('input[name=input_student_window]:checked').val();
+        student_data.student_signal = parseTextSignal($("#input_student_signal", element).val()).signal;
+        student_data.student_filter = parseTextSignal($("#input_student_filter", element).val()).signal;
+        student_data.student_a = $("#input_student_a", element).val();
+        student_data.student_window = $('input[name=input_student_window]:checked', element).val();
         return student_data;
     }
 
+    function build_lab_state(data) {
+        $("textarea#input_student_signal", element).val(data.student_signal);
+        $("textarea#input_student_filter", element).val(data.student_filter);
+        $("#input_student_a", element).val(data.student_a);
+        $('input:radio[name="input_student_window"]', element).filter('[value="' + data.student_window + '"]').attr('checked', true);
+        build_graphics();
+    }
+
     $(function ($) {
-        $("textarea.array-input").each(function (i) {
+        console.log(data);
+        if (!Object.keys(data["student_answer"]).length == false){
+            build_lab_state(data["student_answer"]);
+        }
+
+
+        $("textarea.array-input", element).each(function (i) {
             var validation_array_message = $('<div/>', {
                 class: 'validation-message'
             });

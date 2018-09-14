@@ -62,7 +62,7 @@ def get_graphics(student_data, source_data):
     Ns = len(student_data["student_filter"])
     b = student_data["student_filter"]
 
-    a = float(student_data["a"])
+    a = float(student_data["student_a"])
     z = signal.lfilter(b, a, d)
     # fz = np.abs(np.fft.fft(z))
 
