@@ -66,7 +66,7 @@ def get_graphics(student_data, source_data):
     z = signal.lfilter(b, a, d)
     # fz = np.abs(np.fft.fft(z))
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(4, 4))
 
     ax.stem(np.arange(N0), z)
     ax.plot(np.arange(N0), np.full((N0, 1), 0.707 * max(z)), 'r')
@@ -90,7 +90,7 @@ def get_graphics(student_data, source_data):
     fz = np.abs(np.fft.fft(z))
     # mz = max(fz)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(4, 4))
     ax.semilogy(fz)
 
     html = mpld3.fig_to_d3(fig)
