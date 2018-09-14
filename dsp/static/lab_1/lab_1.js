@@ -46,11 +46,15 @@ function DSPXBlock(runtime, element, data) {
             "student_filter": [],
             "student_a": "",
             "student_window": "rectangular"
+            "student_ubl": "",
+            "student_p": ""
         };
         student_data.student_signal = parseTextSignal($("#input_student_signal", element).val()).signal;
         student_data.student_filter = parseTextSignal($("#input_student_filter", element).val()).signal;
         student_data.student_a = $("#input_student_a", element).val();
         student_data.student_window = $('input[name=input_student_window]:checked', element).val();
+        student_data.student_a = $("#input_student_ubl", element).val();
+        student_data.student_a = $("#input_student_p", element).val();
         return student_data;
     }
 
@@ -59,6 +63,8 @@ function DSPXBlock(runtime, element, data) {
         $("textarea#input_student_filter", element).val(data.student_filter);
         $("#input_student_a", element).val(data.student_a);
         $('input:radio[name="input_student_window"]', element).filter('[value="' + data.student_window + '"]').attr('checked', true);
+        $("#input_student_ubl", element).val(data.student_ubl);
+        $("#input_student_p", element).val(data.student_p);
         build_graphics();
     }
 

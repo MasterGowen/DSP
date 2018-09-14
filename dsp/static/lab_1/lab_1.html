@@ -44,14 +44,20 @@
     <button id="calculate_graphics">Построить графики</button>
 </div>
 <div class="dsp_block">
+    <p>K = {{K}}}</p>
     <div style="display: flex;">
-    <div id="graphic_1" style="flex: 50%;padding: 10px;"></div>
-    <div id="graphic_2" style="flex: 50%;padding: 10px;"></div>
+    <div id="graphic_1" class="graphic-container"></div>
+    <div id="graphic_2" class="graphic-container"></div>
     </div>
     шаблон первой лаборатории
     {{filter_window.title}}
 </div>
-
+<div class="dsp_block">
+            <p>Введите максимум боковых лепестков:</p>
+        <input id="input_student_ubl" type=number step=any/>
+                <p>Введите ширину спектра:</p>
+        <input id="input_student_p" type=number step=any/>
+</div>
 
 <script type="text/javascript">
     // $(function () {

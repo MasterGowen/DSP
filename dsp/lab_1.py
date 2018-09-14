@@ -41,10 +41,12 @@ def get_source_data():
             "title": "прямоугольное окно"
         }
     ])
+    K = 12.5
     context = dict()
     context["N0"] = N0
     context["Ns"] = Ns
     context["a"] = a
+    context["K"] = K
     context["signal_type"] = signal_type
     context["filter_type"] = filter_type
     context["filter_window"] = filter_window
