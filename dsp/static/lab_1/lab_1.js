@@ -24,8 +24,8 @@ function DSPXBlock(runtime, element, data) {
     var get_graphics = runtime.handlerUrl(element, 'get_graphics');
 
     function build_graphics() {
-        $("#graphic_1", element).html("<div style='background: #f3f3f2;width: 100%;height: 330px;'><div class='spinner'></div></div>");
-        $("#graphic_2", element).html("<div style='background: #f3f3f2;width: 100%;height: 330px;'><div class='spinner'></div></div>");
+        $("#graphic_1", element).html("<div style='background: #f3f3f2;width: 100%;height:330px;'><div class='lds-ripple'><div></div><div></div></div></div>");
+        $("#graphic_2", element).html("<div style='background: #f3f3f2;width: 100%;height:330px;'><div class='lds-ripple'><div></div><div></div></div></div>");
         $.ajax({
             type: "POST",
             url: get_graphics,
