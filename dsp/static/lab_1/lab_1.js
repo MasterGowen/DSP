@@ -1,3 +1,16 @@
+
+function example_data() {
+    var signal = "[1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]"
+    var filter = "[1. 1. 1. 1. 1. 1. 1. 1. 1.]";
+    var a = "1";
+    var window = "hamming";
+
+    $("textarea#input_student_signal").val(signal);
+    $("textarea#input_student_filter").val(filter);
+    $("#input_student_a").val(a);
+    $('input:radio[name="input_student_window"]').filter('[value="'+window+'"]').attr('checked', true);
+}
+
 function DSPXBlock(runtime, element) {
 
     function updateCount(result) {
