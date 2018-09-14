@@ -55,14 +55,14 @@ def get_source_data():
 def get_graphics(student_data, source_data):
     graphics = []
     log.info("!!!!!!!!!!!!!!!!!!!!!!!")
-    log.info(student_data.student_filter)
-    N0 = len(student_data.student_signal)
-    d = student_data.student_signal  # сигнал, вводимый студентом
+    log.info(student_data["student_filter"])
+    N0 = len(student_data["student_signal"])
+    d = student_data["student_signal"]  # сигнал, вводимый студентом
 
-    Ns = len(student_data.student_filter)
-    b = student_data.student_filter
+    Ns = len(student_data["student_filter"])
+    b = student_data["student_filter"]
 
-    a = float(student_data.a)
+    a = float(student_data["a"])
     z = signal.lfilter(b, a, d)
     # fz = np.abs(np.fft.fft(z))
 
