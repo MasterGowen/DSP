@@ -50,6 +50,11 @@ class DSPXBlock(XBlock):
          scope=Scope.user_state,
          help='Начальные данные лабораторной для студента',
         )
+    student_answer = JSONField(
+         default={},
+         scope=Scope.user_state,
+         help='Ответ студента',
+        )
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -73,10 +78,11 @@ class DSPXBlock(XBlock):
         if not self.lab_source_data:
             self.lab_source_data = get_source_data()
         context = merge_two_dicts({"display_name": self.display_name}, self.lab_source_data)
+        context1 = merge_two_dicts({"student_answer": self.student_answer}, context)
         print(context)
         # context[""]
 
-        return context
+        return context1
 
     def load_lab_static(self, lab_id, context):
         frag = Fragment()
@@ -125,6 +131,7 @@ class DSPXBlock(XBlock):
 
         student_data = data
 
+        self.student_answer = data
 
         graphics = get_graphics(data, self.lab_source_data)
 
