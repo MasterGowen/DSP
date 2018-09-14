@@ -45,7 +45,7 @@ function DSPXBlock(runtime, element, data) {
             "student_signal": [],
             "student_filter": [],
             "student_a": "",
-            "student_window": "rectangular"
+            "student_window": "rectangular",
             "student_ubl": "",
             "student_p": ""
         };
