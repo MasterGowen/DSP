@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+import matplotlib
+matplotlib.use('Agg')
 import numpy as np
 from scipy import signal
 import matplotlib.pyplot as plt
