@@ -53,8 +53,8 @@ function DSPXBlock(runtime, element, data) {
         student_data.student_filter = parseTextSignal($("#input_student_filter", element).val()).signal;
         student_data.student_a = $("#input_student_a", element).val();
         student_data.student_window = $('input[name=input_student_window]:checked', element).val();
-        student_data.student_a = $("#input_student_ubl", element).val();
-        student_data.student_a = $("#input_student_p", element).val();
+        student_data.student_ubl = $("#input_student_ubl", element).val();
+        student_data.student_p = $("#input_student_p", element).val();
         return student_data;
     }
 
