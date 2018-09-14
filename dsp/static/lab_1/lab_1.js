@@ -2,7 +2,8 @@ function DSPXBlock(runtime, element) {
 
     function updateCount(result) {
         console.log(result);
-        $("#graphic_1").html(result["graphics"][0]["html"])
+        $("#graphic_1").html(result["graphics"][0]["html"]);
+        $("#graphic_2").html(result["graphics"][1]["html"]);
         //$('.count', element).text(result.count);
     }
 

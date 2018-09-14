@@ -124,10 +124,9 @@ class DSPXBlock(XBlock):
     def get_graphics(self, data, suffix=''):
 
         student_data = data
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!")
-        log.info(str(student_data))
-        graphics = []
-        graphics.append(get_graphics())
+
+
+        graphics = get_graphics(data, self.lab_source_data)
 
         return Response(json_body={"graphics": graphics})
 
