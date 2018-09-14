@@ -28,7 +28,7 @@ function DSPXBlock(runtime, element, data) {
             type: "POST",
             url: get_graphics,
             data: JSON.stringify(generateAnswer()),
-            success: function () {
+            success: function (result) {
                 $("#graphic_1", element).html(result["graphics"][0]["html"]);
                 $("#graphic_2", element).html(result["graphics"][1]["html"]);
             },
