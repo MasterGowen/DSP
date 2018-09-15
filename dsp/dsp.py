@@ -15,7 +15,7 @@ from .utils import (
     merge_two_dicts,
 )
 
-from lab_1 import get_source_data, get_graphics
+from lab_1 import get_source_data, get_graphics, check_answer
 log = logging.getLogger(__name__)
 
 
@@ -99,6 +99,28 @@ class DSPXBlock(XBlock):
         fragment.initialize_js('DSPXBlock', context)
         return fragment
 
+    @XBlock.json_handler
+    def student_submit(self, data, suffix=''):
+
+        # TO-DO: проверка возможности ответа
+
+        self.student_answer = data
+
+        result = check_answer(data, self.lab_source_data)
+
+        return Response(json_body=result)
+
+    @XBlock.json_handler
+    def get_graphics(self, data, suffix=''):
+        # student_data = data
+
+        self.student_answer = data
+
+        graphics = get_graphics(data, self.lab_source_data)
+
+        return Response(json_body={"graphics": graphics})
+
+
     def lab_1_context(self):
         if not self.lab_source_data:
             self.lab_source_data = get_source_data()
@@ -151,16 +173,6 @@ class DSPXBlock(XBlock):
         fragment.initialize_js('DSPXBlock')
         return fragment
 
-    @XBlock.json_handler
-    def get_graphics(self, data, suffix=''):
-
-        # student_data = data
-
-        self.student_answer = data
-
-        graphics = get_graphics(data, self.lab_source_data)
-
-        return Response(json_body={"graphics": graphics})
 
     @XBlock.json_handler
     def studio_submit(self, data, suffix=''):

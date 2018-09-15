@@ -1,26 +1,6 @@
-function example_data() {
-    var signal = "[1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]"
-    var filter = "[1. 1. 1. 1. 1. 1. 1. 1. 1.]";
-    var a = "1";
-    var window = "hamming";
-
-    $("textarea#input_student_signal").val(signal);
-    $("textarea#input_student_filter").val(filter);
-    $("#input_student_a").val(a);
-    $('input:radio[name="input_student_window"]').filter('[value="' + window + '"]').attr('checked', true);
-}
-
 function DSPXBlock(runtime, element, data) {
 
-    // var student_data = {
-    //     "student_signal": [],
-    //     "student_filter": [],
-    //     "a": "",
-    //     "student_window": ""
-    // };
-
-    // var handlerUrl = runtime.handlerUrl(element, 'increment_count');
-
+    var student_submit = runtime.handlerUrl(element, 'student_submit');
     var get_graphics = runtime.handlerUrl(element, 'get_graphics');
 
     function build_graphics() {
@@ -37,6 +17,18 @@ function DSPXBlock(runtime, element, data) {
             contentType: 'application/json; charset=utf-8'
         });
     }
+
+    $('#check_answer', element).click(function (event) {
+        $.ajax({
+            type: "POST",
+            url: student_submit,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                console.log(result);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    });
 
     $('#calculate_graphics', element).click(function (event) {
         build_graphics();

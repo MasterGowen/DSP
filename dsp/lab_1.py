@@ -56,6 +56,12 @@ def get_source_data():
     return context
 
 
+def check_answer(student_data, source_data):
+    result = dict()
+    result["success"] = True
+    return result
+
+
 def get_graphics(student_data, source_data):
     graphics = []
     # log.info("!!!!!!!!!!!!!!!!!!!!!!!")
