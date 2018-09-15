@@ -13,5 +13,30 @@
 }
 
 .dsp_block {
-    margin: 20px;
+    background: #f3f3f2a1;
+    padding: 10px;
+    margin: 10px;
+}
+
+.input-array-container {
+    display: flex;
+}
+
+.array-input {
+    flex: 50%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 100px;
+
+    margin: 2px;
+}
+
+.validation-message {
+    flex: 50%;
+
+    margin: 2px;
+}
+
+.error-text {
+    color: #a90000;
 }

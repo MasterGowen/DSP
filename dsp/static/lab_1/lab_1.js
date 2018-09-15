@@ -86,10 +86,10 @@ function DSPXBlock(runtime, element, data) {
                 parse_array = parseTextSignal(this.value);
                 var message = "";
                 if (parse_array.signal_valid) {
-                    message = "Введенный сигнал: [" + parse_array.signal.join(" ") + "]";
+                    message = "<span>Введенный сигнал:</span> <br /> [" + parse_array.signal.join(" ") + "]";
                 }
                 else {
-                    message = "Ошибка формата ввода";
+                    message = "<span class='error-text'>Ошибка формата ввода</span>";
 
                 }
                 console.log("Array is valid? :", parse_array.signal_valid);
