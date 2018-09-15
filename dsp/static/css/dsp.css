@@ -58,8 +58,9 @@
 }
 
 .numeric-input-container {
-padding: 6px 0px;
+    padding: 6px 0px;
 }
+
 .numeric-input-container label {
     display: inline-block;
     vertical-align: middle;
@@ -68,4 +69,10 @@ padding: 6px 0px;
 .numeric-input-container input {
     display: inline-block;
     vertical-align: middle;
+}
+
+. signal-highlight {
+    color: #000086;
+    background: white;
+    padding: 2px;
 }
