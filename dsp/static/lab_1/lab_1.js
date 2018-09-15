@@ -70,6 +70,22 @@ function DSPXBlock(runtime, element, data) {
         build_graphics();
     }
 
+    function process_array_input(input){
+                parse_array = parseTextSignal(input.value);
+                var message = "";
+                if (parse_array.signal_valid) {
+                    message = "<span>Введенный "+$(input).data('arrayType')+":</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
+                }
+                else {
+                    message = "<span class='error-text'>Ошибка формата ввода "+$(input).data('arrayType')+"а!</span>";
+
+                }
+                console.log("Array is valid? :", parse_array.signal_valid);
+                console.log("Validation result:", parse_array);
+                console.log(generateAnswer());
+                $(input).parent().find(".validation-message").html(message)
+    }
+
     $(function ($) {
         console.log(data);
         if (!Object.keys(data["student_answer"]).length == false){
@@ -78,24 +94,12 @@ function DSPXBlock(runtime, element, data) {
 
 
         $("textarea.array-input", element).each(function (i) {
-            var validation_array_message = $('<div/>', {
-                class: 'validation-message'
-            });
-            $(this).after(validation_array_message);
+            // var validation_array_message = $('<div/>', {
+            //     class: 'validation-message'
+            // });
+            // $(this).after(validation_array_message);
             $(this).change(function () {
-                parse_array = parseTextSignal(this.value);
-                var message = "";
-                if (parse_array.signal_valid) {
-                    message = "<span>Введенный "+$(this).data('arrayType')+":</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
-                }
-                else {
-                    message = "<span class='error-text'>Ошибка формата ввода "+$(this).data('arrayType')+"а!</span>";
-
-                }
-                console.log("Array is valid? :", parse_array.signal_valid);
-                console.log("Validation result:", parse_array);
-                console.log(generateAnswer());
-                $(this).parent().find(".validation-message").html(message)
+                process_array_input(this);
             });
         });
 
