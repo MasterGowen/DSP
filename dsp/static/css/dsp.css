@@ -43,8 +43,6 @@
 
 .dsp_block input[type="number"], textarea.array-input {
     box-sizing: border-box;
-    /* background-color: #f2f2f2; */
-    /* background-image: -webkit-linear-gradient(#f2f2f2,#fff); */
     background-image: linear-gradient(#f2f2f2, #fff);
     padding: 6px 8px 8px;
     width: 140px;

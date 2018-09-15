@@ -126,9 +126,6 @@ class DSPXBlock(XBlock):
             self.lab_source_data = get_source_data()
         context = merge_two_dicts({"display_name": self.display_name}, self.lab_source_data)
         context1 = merge_two_dicts({"student_answer": self.student_answer}, context)
-        print(context)
-        # context[""]
-
         return context1
 
     def load_lab_static(self, lab_id, context):
