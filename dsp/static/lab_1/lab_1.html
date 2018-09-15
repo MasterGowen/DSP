@@ -22,7 +22,9 @@
 <div class="dsp_block">
     <h3>Блок формирования фильтров</h3>
     <p>Сформировать модель КИХ-фильтра I порядка:</p>
-    <p><strong>{{filter_type.title}} с окном: {{filter_type.window.title}}</strong></p>
+        <ul>
+        <li><strong>{{filter_type.title}} с окном: {{filter_type.window.title}}</strong></li>
+    </ul>
 
     <p>Введите фильтр:</p>
     <div class="array-input-container">
@@ -51,6 +53,7 @@
     <button id="calculate_graphics">Построить графики</button>
 </div>
 <div class="dsp_block">
+    <h3>Блок построения графиков</h3>
     <p>K = {{K}}</p>
     <div style="display: flex;">
         <div id="graphic_1" class="graphic-container">

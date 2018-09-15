@@ -38,7 +38,7 @@ def get_source_data():
     filter_type = random.choice([
         {
             "name": "filter_sum_hamming",
-            "title": " Фильтр-сумматор длиной {} отсчётов".format(Ns),
+            "title": "фильтр-сумматор длиной {} отсчётов".format(Ns),
             "window": [x for x in filter_windows if x["name"] == "hamming"][0]
         }
     ])
