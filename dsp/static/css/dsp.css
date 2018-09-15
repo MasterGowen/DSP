@@ -58,6 +58,9 @@
 }
 
 .numeric-input-container label {
+padding: 6px 0px;
+}
+.numeric-input-container label {
     display: inline-block;
     vertical-align: middle;
 }
