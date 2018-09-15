@@ -70,33 +70,36 @@ function DSPXBlock(runtime, element, data) {
         build_graphics();
     }
 
-    function process_array_input(input){
-                parse_array = parseTextSignal(input.value);
-                var message = "";
-                if (parse_array.signal_valid) {
-                    if (parse_array.signal.length > 0) {
-                        message = "<span>Введенный " + $(input).data('arrayType') + " ("+parse_array.signal.length+" отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
-                    }
-                    else{
-                        message = "<span>Введите сигнал!</span>";
-                    }
-                }
-                else {
-                    message = "<span class='error-text'>Ошибка формата ввода "+$(input).data('arrayType')+"а!</span>";
+    function process_array_input(input) {
+        parse_array = parseTextSignal(input.value);
+        var message = "";
+        if (parse_array.signal_valid) {
+            if (parse_array.signal.length > 0) {
+                message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
+            }
+            else {
+                message = "<span>Введите сигнал!</span>";
+            }
+        }
+        else {
+            message = "<span class='error-text'>Ошибка формата ввода " + $(input).data('arrayType') + "а!</span>";
 
-                }
-                console.log("Array is valid? :", parse_array.signal_valid);
-                console.log("Validation result:", parse_array);
-                console.log(generateAnswer());
-                $(input).parent().find(".validation-message").html(message)
+        }
+        console.log("Array is valid? :", parse_array.signal_valid);
+        console.log("Validation result:", parse_array);
+        console.log(generateAnswer());
+        $(input).parent().find(".validation-message").html(message)
     }
 
     $(function ($) {
         console.log(data);
-        if (!Object.keys(data["student_answer"]).length == false){
+        if (!Object.keys(data["student_answer"]).length == false) {
             build_lab_state(data["student_answer"]);
-        }
+            $("textarea.array-input", element).each(function (i) {
+                process_array_input($(this));
+            });
 
+        }
 
         $("textarea.array-input", element).each(function (i) {
             // var validation_array_message = $('<div/>', {
