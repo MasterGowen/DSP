@@ -14,7 +14,7 @@ log = logging.getLogger(__name__)
 def get_source_data():
     N0 = random.randint(10, 200)
     Ns = random.randint(5, 12)
-    a = 1
+    #a = 1
     signal_type = random.choice([
         {
             "name": "delta_func",
@@ -48,11 +48,11 @@ def get_source_data():
     context = dict()
     context["N0"] = N0
     context["Ns"] = Ns
-    context["a"] = a
+   # context["a"] = a
     context["K"] = K
     context["signal_type"] = signal_type
     context["filter_type"] = filter_type
-    context["filter_window"] = filter_window
+    #context["filter_window"] = filter_window
 
     return context
 
