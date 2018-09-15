@@ -56,8 +56,8 @@ def get_source_data():
 
 def get_graphics(student_data, source_data):
     graphics = []
-    log.info("!!!!!!!!!!!!!!!!!!!!!!!")
-    log.info(student_data["student_filter"])
+    # log.info("!!!!!!!!!!!!!!!!!!!!!!!")
+    # log.info(student_data["student_filter"])
     N0 = len(student_data["student_signal"])
     d = student_data["student_signal"]  # сигнал, вводимый студентом
 
@@ -68,7 +68,7 @@ def get_graphics(student_data, source_data):
     z = signal.lfilter(b, a, d)
     # fz = np.abs(np.fft.fft(z))
 
-    fig, ax = plt.subplots(figsize=(4, 4))
+    fig, ax = plt.subplots(1, 2, figsize=(4, 4))
 
     ax.stem(np.arange(N0), z)
     ax.plot(np.arange(N0), np.full((N0, 1), 0.707 * max(z)), 'r')

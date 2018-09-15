@@ -34,9 +34,32 @@ class DSPXBlock(XBlock):
         scope=Scope.settings
     )
 
-    count = Integer(
-        default=3, scope=Scope.user_state,
-        help="A simple counter, to show something happening",
+    weight = Integer(
+        display_name=u"Максимальное количество баллов",
+        help=(u"Максимальное количество баллов",
+              u"которое может получить студент."),
+        default=10,
+        scope=Scope.settings
+    )
+
+    max_attempts = Integer(
+        display_name=u"Максимальное количество попыток",
+        help=u"",
+        default=10,
+        scope=Scope.settings
+    )
+
+    attempts = Integer(
+        display_name=u"Количество использованных попыток",
+        help=u"",
+        default=0,
+        scope=Scope.user_state
+    )
+
+    points = Integer(
+        display_name=u"Текущее количество баллов студента",
+        default=None,
+        scope=Scope.user_state
     )
 
     current_lab = String(
@@ -45,11 +68,13 @@ class DSPXBlock(XBlock):
         default="lab_1",
         scope=Scope.settings
     )
+
     lab_source_data = JSONField(
          default={},
          scope=Scope.user_state,
          help='Начальные данные лабораторной для студента',
         )
+
     student_answer = JSONField(
          default={},
          scope=Scope.user_state,
@@ -129,7 +154,7 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def get_graphics(self, data, suffix=''):
 
-        student_data = data
+        # student_data = data
 
         self.student_answer = data
 
