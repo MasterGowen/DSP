@@ -12,16 +12,17 @@
     <p><strong>{{signal_type.title}} длиной {{N0}} отсчётов</strong></p>
             <p>Введите сигнал:</p>
     <div class="input-array-container">
-        <textarea id="input_student_signal" class="signal-input array-input" rows="3" cols="24" wrap="hard"></textarea>
+        <textarea id="input_student_signal" data-array-type="сигнал" class="signal-input array-input" rows="3" cols="24" wrap="hard"></textarea>
     </div>
 </div>
 <div class="dsp_block">
     <h3>Блок формирования фильтров</h3>
     <p>Сформировать модель КИХ-фильтров I порядка:</p>
     <p><strong>{{filter_type.title}} {{Ns}} отсчётов</strong></p>
-    <div>
+
         <p>Введите фильтр (b):</p>
-        <textarea id="input_student_filter" class="filter-input array-input" rows="3" cols="24" wrap="hard"></textarea>
+    <div class="input-array-container">
+        <textarea id="input_student_filter" data-array-type="фильтр" class="filter-input array-input" rows="3" cols="24" wrap="hard"></textarea>
     </div>
     <div>
         <p>Введите ... (a):</p>
