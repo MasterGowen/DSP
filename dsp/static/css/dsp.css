@@ -28,15 +28,31 @@
     margin-bottom: 0px;
     height: 100px;
 
-    margin: 2px;
+    margin: 4px;
 }
 
 .validation-message {
     flex: 50%;
 
-    margin: 2px;
+    margin: 4px;
 }
 
 .error-text {
     color: #a90000;
+}
+
+.dsp_block input[type="number"], textarea.array-input {
+    box-sizing: border-box;
+    /* background-color: #f2f2f2; */
+    /* background-image: -webkit-linear-gradient(#f2f2f2,#fff); */
+    background-image: linear-gradient(#f2f2f2, #fff);
+    padding: 6px 8px 8px;
+    width: 140px;
+    border: 1px solid #b2b2b2;
+    border-radius: 2px;
+    background-color: #f2f2f2;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-family: 'Open Sans', sans-serif;
+    color: #4c4c4c;
+    outline: 0;
 }

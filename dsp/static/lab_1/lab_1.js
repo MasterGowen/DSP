@@ -89,7 +89,7 @@ function DSPXBlock(runtime, element, data) {
                     message = "<span>Введенный "+$(this).data('arrayType')+":</span> <br /> " + parse_array.signal.join(" ") + "";
                 }
                 else {
-                    message = "<span class='error-text'>Ошибка формата ввода "+$(this).data('arrayType')+"а</span>";
+                    message = "<span class='error-text'>Ошибка формата ввода "+$(this).data('arrayType')+"а!</span>";
 
                 }
                 console.log("Array is valid? :", parse_array.signal_valid);
