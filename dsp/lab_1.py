@@ -21,7 +21,6 @@ def get_source_data():
             "title": "дискретная дельта-функция длиной {} отсчётов".format(N0)
         }
     ])
-
     filter_windows = [
         {
             "name": "hamming",

@@ -56,3 +56,13 @@
     color: #4c4c4c;
     outline: 0;
 }
+
+.numeric-input-container label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.numeric-input-container input {
+    display: inline-block;
+    vertical-align: middle;
+}
