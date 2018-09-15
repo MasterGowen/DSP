@@ -74,7 +74,12 @@ function DSPXBlock(runtime, element, data) {
                 parse_array = parseTextSignal(input.value);
                 var message = "";
                 if (parse_array.signal_valid) {
-                    message = "<span>Введенный "+$(input).data('arrayType')+":</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
+                    if (parse_array.signal.length > 0) {
+                        message = "<span>Введенный " + $(input).data('arrayType') + " ("+parse_array.signal.length+" отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
+                    }
+                    else{
+                        message = "<span>Введите сигнал!</span>";
+                    }
                 }
                 else {
                     message = "<span class='error-text'>Ошибка формата ввода "+$(input).data('arrayType')+"а!</span>";

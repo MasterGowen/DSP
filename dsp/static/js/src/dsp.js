@@ -6,7 +6,7 @@ function parseTextSignal(signal_string) {
         return item != "";
     });
     signal_valid = cleaned_array.every((item) => !isNaN(parseFloat(item)));
-    if (signal_valid && cleaned_array.length > 0) {
+    if (signal_valid) {
         signal = cleaned_array.map(function (item) {
             return parseFloat(item)
         });
