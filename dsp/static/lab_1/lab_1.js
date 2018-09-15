@@ -96,7 +96,7 @@ function DSPXBlock(runtime, element, data) {
         if (!Object.keys(data["student_answer"]).length == false) {
             build_lab_state(data["student_answer"]);
             $("textarea.array-input", element).each(function (i) {
-                process_array_input($(this));
+                console.log(this);
             });
 
         }
@@ -107,6 +107,7 @@ function DSPXBlock(runtime, element, data) {
             // });
             // $(this).after(validation_array_message);
             $(this).change(function () {
+                console.log(this);
                 process_array_input(this);
             });
         });
