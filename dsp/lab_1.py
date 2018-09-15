@@ -17,30 +17,33 @@ def get_source_data():
     a = 1
     signal_type = random.choice([
         {
-            "name": "signal type name example",
-            "title": "signal type title example"
+            "name": "delta_func",
+            "title": "дискретная дельта-функция длиной {} отсчётов".format(N0)
         }
     ])
-    filter_type = random.choice([
-        {
-            "name": "filter type name example",
-            "title": "filter type title example"
-        }
-    ])
-    filter_window = random.choice([
+
+    filter_windows = [
         {
             "name": "hamming",
-            "title": "окно Хэмминга"
+            "title": "Хэмминга"
         },
         {
             "name": "blackman",
-            "title": "окно Блэкмана"
+            "title": "Блэкмана"
         },
         {
             "name": "rectangular",
-            "title": "прямоугольное окно"
+            "title": "прямоугольное"
+        }
+    ]
+    filter_type = random.choice([
+        {
+            "name": "filter_sum_hamming",
+            "title": " Фильтр-сумматор длиной {} отсчётов".format(Ns),
+            "window": [x for x in filter_windows if x["name"] == "hamming"][0]
         }
     ])
+
     K = 12.5
     context = dict()
     context["N0"] = N0

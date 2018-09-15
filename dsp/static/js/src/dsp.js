@@ -6,13 +6,14 @@ function parseTextSignal(signal_string) {
         return item != "";
     });
     signal_valid = cleaned_array.every((item) => !isNaN(parseFloat(item)));
-    if (signal_valid) {
+    if (signal_valid && cleaned_array.length > 0) {
         signal = cleaned_array.map(function (item) {
             return parseFloat(item)
         });
         return {"signal": signal, "signal_valid": signal_valid};
     }
     else {
+        signal_valid = false;
         return {"signal": [], "signal_valid": signal_valid};
     }
 }
