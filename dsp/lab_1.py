@@ -108,17 +108,17 @@ def check_answer(student_data, source_data):
     else:
         result["filter_correctness"] = False
 
-    if a_et == student_a:
+    if numbers_is_equal(a_et, student_a, tol=0.1):
         result["a_correctness"] = True
     else:
         result["a_correctness"] = False
 
-    if ubl_et == student_ubl:
+    if numbers_is_equal(ubl_et, student_ubl, tol=0.1):
         result["a_correctness"] = True
     else:
         result["a_correctness"] = False
 
-    if p_et == student_p:
+    if numbers_is_equal(p_et, student_p, tol=0.1):
         result["a_correctness"] = True
     else:
         result["a_correctness"] = False
