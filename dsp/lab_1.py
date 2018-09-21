@@ -98,6 +98,13 @@ def check_answer(student_data, source_data):
 
     p_et = i - 1
 
+    correct_answer = dict()
+    correct_answer["d_et"] = d_et
+    correct_answer["b_et"] = b_et
+    correct_answer["a_et"] = a_et
+    correct_answer["ubl_et"] = ubl_et
+    correct_answer["p_et"] = p_et
+
     if arrays_is_equal(d_et, student_d):
         result["signal_correctness"] = True
     else:
@@ -124,6 +131,7 @@ def check_answer(student_data, source_data):
         result["a_correctness"] = False
 
     result["success"] = True
+    result["answer"] = correct_answer
     return result
 
 
