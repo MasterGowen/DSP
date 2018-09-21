@@ -99,8 +99,8 @@ def check_answer(student_data, source_data):
     p_et = i - 1
 
     correct_answer = dict()
-    correct_answer["d_et"] = d_et
-    correct_answer["b_et"] = b_et
+    correct_answer["d_et"] = d_et.tolist()
+    correct_answer["b_et"] = b_et.tolist()
     correct_answer["a_et"] = a_et
     correct_answer["ubl_et"] = ubl_et
     correct_answer["p_et"] = p_et
