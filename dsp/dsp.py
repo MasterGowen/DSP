@@ -112,7 +112,7 @@ class DSPXBlock(XBlock):
         # log.info("!!!!!!!!!!!!!!!!!!!!!!!")
         # log.info()
 
-        self.score = self.maximum_score * result["score"]
+        self.score = round(self.maximum_score * result["score"])
         result["score"] = self.score
         result["maximum_score"] = self.maximum_score
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
