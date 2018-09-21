@@ -1,13 +1,15 @@
-
-     <div class="problem-progress">
-        {% if score == 0 or score %}
-            <me-span class="weight"> Набрано баллов: <me-span class="points">{{score}} из {{maximum_score}}</me-span></me-span>
-        {% else %}
-            <me-span class="weight">(Максимальное кoличество баллов: {{maximum_score}})</me-span>
-        {% endif %}
-    </div>
-
 <h2 class="problem-header">{{display_name}}</h2>
+<div class="problem-progress">
+    {% if score == 0 or score %}
+    <me-span class="weight"> Набрано баллов:
+        <me-span class="points">{{score}} из {{maximum_score}}</me-span>
+    </me-span>
+    {% else %}
+    <me-span class="weight">(Максимальное кoличество баллов: {{maximum_score}})</me-span>
+    {% endif %}
+</div>
+
+
 <div class="dsp_block">
     <h3>Блок формирования сигналов</h3>
     <p>Вам необходимо сформировать следующий сигнал:</p>
@@ -77,4 +79,4 @@
     </div>
 
 </div>
-<button type="button" class="submit btn-brand" id="check_answer">Проверить</button>
+<button type="button" class="submit btn-brand" id="check_answer"><span class="submit-label">Проверить</span></button>
