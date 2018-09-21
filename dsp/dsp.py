@@ -124,13 +124,24 @@ class DSPXBlock(XBlock):
 
         return Response(json_body={"graphics": graphics})
 
+    @XBlock.json_handler
+    def get_general_context(self):
+
+        general_context = {
+            "display_name": self.display_name,
+            "maximum_score": self.maximum_score,
+            "score": self.score,
+            "max_attempts": self.max_attempts,
+            "attempts": self.attempts,
+            "student_answer": self.student_answer
+        }
+        return general_context
 
     def lab_1_context(self):
         if not self.lab_source_data:
             self.lab_source_data = get_source_data()
-        context = merge_two_dicts({"display_name": self.display_name}, self.lab_source_data)
-        context1 = merge_two_dicts({"student_answer": self.student_answer}, context)
-        return context1
+        context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
+        return context
 
     def load_lab_static(self, lab_id, context):
         frag = Fragment()
