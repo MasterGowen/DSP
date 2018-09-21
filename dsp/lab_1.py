@@ -69,10 +69,10 @@ def check_answer(student_data, source_data):
     filter_type = source_data["filter_type"]
 
     student_d = student_data["student_signal"]
-    student_a = float(student_data["student_a"])
     student_b = student_data["student_filter"]
-    student_ubl = student_data["student_ubl"]
-    student_p = student_data["student_p"]
+    student_a = float(student_data["student_a"])
+    student_ubl = float(student_data["student_ubl"])
+    student_p = float(student_data["student_p"])
 
     d_et = np.append(np.ones(Q), np.zeros(N0 - Q))
     b_et = np.ones(Ns)
