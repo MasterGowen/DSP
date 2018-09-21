@@ -105,7 +105,7 @@ def check_answer(student_data, source_data):
     correct_answer["ubl_et"] = ubl_et
     correct_answer["p_et"] = p_et
 
-    max_score = 7
+    max_score = 5
     score = 0
     if arrays_is_equal(d_et, student_d):
         result["signal_correctness"] = True
@@ -138,7 +138,7 @@ def check_answer(student_data, source_data):
         result["p_correctness"] = False
 
     result["success"] = True
-    result["score"] = score/max_score
+    result["score"] = float(score)/float(max_score)
     result["answer"] = correct_answer
     return result
 
