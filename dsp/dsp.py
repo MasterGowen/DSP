@@ -12,8 +12,9 @@ from webob.response import Response
 from .utils import (
     render_template,
     load_resources,
-    merge_two_dicts,
 )
+
+from .calc_utils import merge_two_dicts
 
 from lab_1 import get_source_data, get_graphics, check_answer
 log = logging.getLogger(__name__)

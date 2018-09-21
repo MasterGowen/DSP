@@ -2,6 +2,7 @@
 import matplotlib
 import logging
 import json
+
 matplotlib.use('Agg')
 import numpy as np
 from scipy import signal
@@ -9,10 +10,14 @@ import matplotlib.pyplot as plt
 import mpld3
 import random
 
+from .calc_utils import arrays_is_equal, numbers_is_equal
+
 log = logging.getLogger(__name__)
+
 
 def get_source_data():
     N0 = random.randint(10, 200)
+    Q = 2
     Ns = random.randint(5, 12)
     signal_type = random.choice([
         {
@@ -47,6 +52,7 @@ def get_source_data():
     context["N0"] = N0
     context["Ns"] = Ns
     context["K"] = K
+    context["Q"] = Q
     context["signal_type"] = signal_type
     context["filter_type"] = filter_type
     return context
@@ -54,6 +60,30 @@ def get_source_data():
 
 def check_answer(student_data, source_data):
     result = dict()
+
+    N0 = source_data["N0"]
+    Ns = source_data["Ns"]
+    K = source_data["K"]
+    Q = source_data["Q"]
+    signal_type = source_data["signal_type"]
+    filter_type = source_data["filter_type"]
+
+    d_et = np.append(np.ones(Q), np.zeros(N0 - Q))
+
+    if (arrays_is_equal(d_et, student_data["student_signal"])):
+        result["signal_correctness"] = True
+    else:
+        result["signal_correctness"] = False
+
+    b_et = np.ones(Ns)
+    if (arrays_is_equal(b_et, student_data["student_filter"])):
+        result["filter_correctness"] = True
+    else:
+        result["filter_correctness"] = False
+
+    a = 1
+
+
     result["success"] = True
     return result
 
@@ -70,10 +100,10 @@ def get_graphics(student_data, source_data):
     z = signal.lfilter(b, a, d)
     fig, ax = plt.subplots(figsize=(4, 4))
     ax.stem(np.arange(N0), z)
-    ax.plot(np.arange(N0), np.full((N0, 1), 0.707 * max(z)), 'r')
+    ax.plot(np.arange(N0), np.ones((N0, 1))*(0.707 * max(z)), 'r')
     w = np.hamming(Ns)
     z = signal.lfilter(w, a, d)
-    ax.plot(np.arange(N0), np.full((N0, 1), 0.707 * max(z)), 'r')
+    ax.plot(np.arange(N0), np.ones((N0, 1))*(0.707 * max(z)), 'r')
     html = mpld3.fig_to_d3(fig)
     graphics.append(
         {
