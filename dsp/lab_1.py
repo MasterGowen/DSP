@@ -121,14 +121,14 @@ def check_answer(student_data, source_data):
         result["a_correctness"] = False
 
     if numbers_is_equal(float(ubl_et), student_ubl, tol=0.1):
-        result["a_correctness"] = True
+        result["ubl_correctness"] = True
     else:
-        result["a_correctness"] = False
+        result["ubl_correctness"] = False
 
     if numbers_is_equal(float(p_et), student_p, tol=0.1):
-        result["a_correctness"] = True
+        result["p_correctness"] = True
     else:
-        result["a_correctness"] = False
+        result["p_correctness"] = False
 
     result["success"] = True
     result["answer"] = correct_answer
