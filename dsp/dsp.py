@@ -115,7 +115,7 @@ class DSPXBlock(XBlock):
         self.score = self.maximum_score * result["score"]
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
 
-        return Response(json_body=merge_two_dicts(self.get_general_context(), result))
+        return Response(json_body=result)
 
     @XBlock.json_handler
     def get_graphics(self, data, suffix=''):
