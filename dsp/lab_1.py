@@ -115,17 +115,17 @@ def check_answer(student_data, source_data):
     else:
         result["filter_correctness"] = False
 
-    if numbers_is_equal(a_et, student_a, tol=0.1):
+    if numbers_is_equal(float(a_et), student_a, tol=0.1):
         result["a_correctness"] = True
     else:
         result["a_correctness"] = False
 
-    if numbers_is_equal(ubl_et, student_ubl, tol=0.1):
+    if numbers_is_equal(float(ubl_et), student_ubl, tol=0.1):
         result["a_correctness"] = True
     else:
         result["a_correctness"] = False
 
-    if numbers_is_equal(p_et, student_p, tol=0.1):
+    if numbers_is_equal(float(p_et), student_p, tol=0.1):
         result["a_correctness"] = True
     else:
         result["a_correctness"] = False
