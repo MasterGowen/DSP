@@ -1,5 +1,8 @@
+import numpy as np
+
+
 def arrays_is_equal(x, y):
-    return x == y
+    return np.array_equal(x, y)
 
 
 def numbers_is_equal(x, y, tol=0.5, rel=0.00005):
