@@ -4,7 +4,7 @@ import json
 
 import pkg_resources
 from xblock.core import XBlock
-from xblock.fields import Integer, Scope, String, JSONField
+from xblock.fields import Integer, Scope, String, JSONField, Float
 from xblock.fragment import Fragment
 from webob.response import Response
 
@@ -35,14 +35,6 @@ class DSPXBlock(XBlock):
         scope=Scope.settings
     )
 
-    weight = Integer(
-        display_name=u"Максимальное количество баллов",
-        help=(u"Максимальное количество баллов",
-              u"которое может получить студент."),
-        default=10,
-        scope=Scope.settings
-    )
-
     max_attempts = Integer(
         display_name=u"Максимальное количество попыток",
         help=u"",
@@ -57,7 +49,15 @@ class DSPXBlock(XBlock):
         scope=Scope.user_state
     )
 
-    points = Integer(
+    maximum_score = Float(
+        display_name=u"Максимальное количество баллов",
+        help=(u"Максимальное количество баллов",
+              u"которое может получить студент."),
+        default=10,
+        scope=Scope.settings
+    )
+
+    score = Float(
         display_name=u"Текущее количество баллов студента",
         default=None,
         scope=Scope.user_state
@@ -108,6 +108,9 @@ class DSPXBlock(XBlock):
         self.student_answer = data
 
         result = check_answer(data, self.lab_source_data)
+
+        self.score = self.maximum_score * result["score"]
+        self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
 
         return Response(json_body=result)
 

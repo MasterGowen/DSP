@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+
+     <div class="problem-progress">
+        {% if score == 0 or score %}
+            <me-span class="weight"> Набрано баллов: <me-span class="points">{{score}} из {{maximum_score}}</me-span></me-span>
+        {% else %}
+            <me-span class="weight">(Максимальное кoличество баллов: {{maximum_score}})</me-span>
+        {% endif %}
+    </div>
+
 <h2 class="problem-header">{{display_name}}</h2>
 <div class="dsp_block">
     <h3>Блок формирования сигналов</h3>
@@ -74,13 +76,5 @@
         <input id="input_student_p" type=number step=any/>
     </div>
 
-    <button id="check_answer">Проверить</button>
-
 </div>
-
-<script type="text/javascript">
-
-
-</script>
-</body>
-</html>
+<button type="button" class="submit btn-brand" id="check_answer">Проверить</button>

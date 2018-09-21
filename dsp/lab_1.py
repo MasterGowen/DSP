@@ -105,32 +105,40 @@ def check_answer(student_data, source_data):
     correct_answer["ubl_et"] = ubl_et
     correct_answer["p_et"] = p_et
 
+    max_score = 7
+    score = 0
     if arrays_is_equal(d_et, student_d):
         result["signal_correctness"] = True
+        score += 1
     else:
         result["signal_correctness"] = False
 
     if arrays_is_equal(b_et, student_b):
         result["filter_correctness"] = True
+        score += 1
     else:
         result["filter_correctness"] = False
 
     if numbers_is_equal(float(a_et), student_a, tol=0.1):
         result["a_correctness"] = True
+        score += 1
     else:
         result["a_correctness"] = False
 
     if numbers_is_equal(float(ubl_et), student_ubl, tol=0.1):
         result["ubl_correctness"] = True
+        score += 1
     else:
         result["ubl_correctness"] = False
 
     if numbers_is_equal(float(p_et), student_p, tol=0.1):
         result["p_correctness"] = True
+        score += 1
     else:
         result["p_correctness"] = False
 
     result["success"] = True
+    result["score"] = max_score/score
     result["answer"] = correct_answer
     return result
 

@@ -24,7 +24,8 @@ function DSPXBlock(runtime, element, data) {
             url: student_submit,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
-                console.log(result);
+                $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
+                $('.points', element).text(result.points + ' из ' + result.weight);
             },
             contentType: 'application/json; charset=utf-8'
         });
