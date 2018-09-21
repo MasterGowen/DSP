@@ -109,10 +109,12 @@ class DSPXBlock(XBlock):
 
         result = check_answer(data, self.lab_source_data)
 
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!")
-        log.info(result["score"])
+        # log.info("!!!!!!!!!!!!!!!!!!!!!!!")
+        # log.info()
 
         self.score = self.maximum_score * result["score"]
+        result["score"] = self.score
+        result["maximum_score"] = self.maximum_score
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
 
         return Response(json_body=result)
