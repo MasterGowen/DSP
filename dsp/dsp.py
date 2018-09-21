@@ -124,7 +124,7 @@ class DSPXBlock(XBlock):
 
         return Response(json_body={"graphics": graphics})
 
-    @XBlock.json_handler
+
     def get_general_context(self):
 
         general_context = {
