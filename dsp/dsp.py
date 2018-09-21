@@ -109,6 +109,9 @@ class DSPXBlock(XBlock):
 
         result = check_answer(data, self.lab_source_data)
 
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!")
+        log.info(result["score"])
+
         self.score = self.maximum_score * result["score"]
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
 
@@ -134,6 +137,7 @@ class DSPXBlock(XBlock):
             "attempts": self.attempts,
             "student_answer": self.student_answer
         }
+
         return general_context
 
     def lab_1_context(self):
