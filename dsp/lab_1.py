@@ -16,9 +16,9 @@ log = logging.getLogger(__name__)
 
 
 def get_source_data():
-    N0 = random.randint(10, 200)
+    N0 = 100 #random.randint(10, 200)
     Q = 2
-    Ns = random.randint(5, 12)
+    Ns = 5 #random.randint(5, 12)
     signal_type = random.choice([
         {
             "name": "delta_func",
@@ -68,21 +68,60 @@ def check_answer(student_data, source_data):
     signal_type = source_data["signal_type"]
     filter_type = source_data["filter_type"]
 
-    d_et = np.append(np.ones(Q), np.zeros(N0 - Q))
+    student_d = student_data["student_signal"]
+    student_a = float(student_data["student_a"])
+    student_b = student_data["student_filter"]
+    student_ubl = student_data["student_ubl"]
+    student_p = student_data["student_p"]
 
-    if (arrays_is_equal(d_et, student_data["student_signal"])):
+    d_et = np.append(np.ones(Q), np.zeros(N0 - Q))
+    b_et = np.ones(Ns)
+    a_et = 1
+    w_et = np.hamming(Ns)
+    z_et = signal.lfilter(w_et, 1, d_et)
+    fz_et = np.abs(np.fft.fft(z_et))
+    mz = max(fz_et)
+    dz = np.diff(fz_et)
+
+    dz_temp = np.multiply(dz[:-1], dz[1:])
+    dz0 = [0 if d > 0 else 1 for d in dz_temp]
+    mz1 = max(fz_et * np.append(dz0, np.zeros(len(fz_et) - len(dz0))))
+
+    ubl_et = 20 * np.log10(mz1 / mz)
+    i = 2
+    kf = N0 / 2
+    while kf > N0 / K:
+        f_et = np.abs(np.fft.fft(signal.lfilter(np.ones((i)), 1, d_et)))
+        z0 = [1 if d / max(f_et) < 0.707 else 0 for d in f_et]
+        kf = len(np.where(np.array(z0[:int(np.floor(len(z0) / 2))]) < 1)[0]) + 1
+        i = i + 1
+
+    p_et = i - 1
+
+    if arrays_is_equal(d_et, student_d):
         result["signal_correctness"] = True
     else:
         result["signal_correctness"] = False
 
-    b_et = np.ones(Ns)
-    if (arrays_is_equal(b_et, student_data["student_filter"])):
+    if arrays_is_equal(b_et, student_b):
         result["filter_correctness"] = True
     else:
         result["filter_correctness"] = False
 
-    a = 1
+    if a_et == student_a:
+        result["a_correctness"] = True
+    else:
+        result["a_correctness"] = False
 
+    if ubl_et == student_ubl:
+        result["a_correctness"] = True
+    else:
+        result["a_correctness"] = False
+
+    if p_et == student_p:
+        result["a_correctness"] = True
+    else:
+        result["a_correctness"] = False
 
     result["success"] = True
     return result
