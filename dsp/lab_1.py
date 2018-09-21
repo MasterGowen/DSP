@@ -138,7 +138,7 @@ def check_answer(student_data, source_data):
         result["p_correctness"] = False
 
     result["success"] = True
-    result["score"] = max_score/score
+    result["score"] = score/max_score
     result["answer"] = correct_answer
     return result
 
