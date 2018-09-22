@@ -105,14 +105,14 @@ function DSPXBlock(runtime, element, data) {
 
     $(function ($) {
         console.log(data);
-        if (!Object.keys(data["student_state"]["answer"]).length == false) {
+        if (data.student_state.answer) {
             build_lab_state(data["student_state"]);
             $("textarea.array-input", element).each(function (i) {
                 process_array_input(this);
             });
-            if(!Object.keys(data["student_state"]["correctness"]).length == false){
-                highlight_correctness(data["student_state"]["correctness"]);
-            }
+            // if(!Object.keys(data["student_state"]["correctness"]).length == false){
+            //     highlight_correctness(data["student_state"]["correctness"]);
+            // }
 
         }
 
