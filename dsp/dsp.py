@@ -76,7 +76,7 @@ class DSPXBlock(XBlock):
          help='Начальные данные лабораторной для студента',
         )
 
-    student_answer = JSONField(
+    student_state = JSONField(
          default={},
          scope=Scope.user_state,
          help='Ответ студента',
@@ -105,7 +105,7 @@ class DSPXBlock(XBlock):
 
         # TO-DO: проверка возможности ответа
 
-        self.student_answer = data
+        self.student_state = data
 
         result = check_answer(data, self.lab_source_data)
 
@@ -113,17 +113,19 @@ class DSPXBlock(XBlock):
         # log.info()
 
         self.score = round(self.maximum_score * result["score"])
-        result["score"] = self.score
-        result["maximum_score"] = self.maximum_score
+        self.student_state["score"] = self.score
+        self.student_state["correctness"] = result["correctness"]
+        self.student_state["answer"] = result["answer"]
+        # result["maximum_score"] = self.maximum_score
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
 
-        return Response(json_body=result)
+        return Response(json_body=self.student_state)
 
     @XBlock.json_handler
     def get_graphics(self, data, suffix=''):
         # student_data = data
 
-        self.student_answer = data
+        self.student_state = data
 
         graphics = get_graphics(data, self.lab_source_data)
 
@@ -137,7 +139,7 @@ class DSPXBlock(XBlock):
             "score": self.score,
             "max_attempts": self.max_attempts,
             "attempts": self.attempts,
-            "student_answer": self.student_answer
+            "student_state": self.student_state
         }
 
         return general_context

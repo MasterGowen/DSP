@@ -18,14 +18,28 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
+    $(document).on('input', ".answer-input", function () {
+    console.log($(this).val())
+    });
+
     $('#check_answer', element).click(function (event) {
         $.ajax({
             type: "POST",
             url: student_submit,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
-                $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
-                $('me-span.points', element).text(result.score + ' из ' + result.maximum_score);
+                $(element).find('me-span.points').html(result.score);
+                // $('me-span.points', element).text(result.score + ' из ' + result.maximum_score);
+                
+                Object.keys(result.correctness).forEach(function (item) {
+                    if (result.correctness[item]){
+                        $("#input_student_"+item.split("_")[0]).addClass("dsp-correct-input");
+                    }
+                    else {
+                        $("#input_student_" + item.split("_")[0]).addClass("dsp-incorrect-input");
+                    }
+                })
+                
             },
             contentType: 'application/json; charset=utf-8'
         });
@@ -86,8 +100,8 @@ function DSPXBlock(runtime, element, data) {
 
     $(function ($) {
         console.log(data);
-        if (!Object.keys(data["student_answer"]).length == false) {
-            build_lab_state(data["student_answer"]);
+        if (!Object.keys(data["student_state"]).length == false) {
+            build_lab_state(data["student_state"]);
             $("textarea.array-input", element).each(function (i) {
                 process_array_input(this);
             });
