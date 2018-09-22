@@ -30,8 +30,9 @@ function DSPXBlock(runtime, element, data) {
             success: function (result) {
                 $(element).find('me-span.points').html(result.score);
                 // $('me-span.points', element).text(result.score + ' из ' + result.maximum_score);
-                
+                console.log(result.correctness);
                 Object.keys(result.correctness).forEach(function (item) {
+                    console.log(item);
                     if (result.correctness[item]){
                         $("#input_student_"+item.split("_")[0]).addClass("dsp-correct-input");
                     }

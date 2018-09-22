@@ -125,7 +125,7 @@ class DSPXBlock(XBlock):
     def get_graphics(self, data, suffix=''):
         # student_data = data
 
-        self.student_state = data
+        self.student_state["graphics"] = data
 
         graphics = get_graphics(data, self.lab_source_data)
 
