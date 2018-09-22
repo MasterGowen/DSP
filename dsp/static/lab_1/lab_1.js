@@ -111,7 +111,7 @@ function DSPXBlock(runtime, element, data) {
                 process_array_input(this);
             });
             if(!Object.keys(data["student_state"]["correctness"]).length == false){
-                highlight_correctness((data["student_state"]["correctness"]);
+                highlight_correctness(data["student_state"]["correctness"]);
             }
 
         }
