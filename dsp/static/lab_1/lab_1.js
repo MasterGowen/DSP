@@ -2,6 +2,7 @@ function DSPXBlock(runtime, element, data) {
 
     var student_submit = runtime.handlerUrl(element, 'student_submit');
     var get_graphics = runtime.handlerUrl(element, 'get_graphics');
+    var highlight_correct = false;
 
     function build_graphics() {
         $("#graphic_1", element).html("<div style='background: #f3f3f2;width: 100%;height:330px;'></div>");
@@ -18,23 +19,6 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
-    $(document).on('input', ".answer-input", function () {
-        $(this).removeClass("dsp-incorrect-input");
-        $(this).removeClass("dsp-correct-input");
-    });
-
-    function highlight_correctness(state) {
-        Object.keys(state).forEach(function (item) {
-            console.log(item);
-            if (state[item]) {
-                $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
-            }
-            else {
-                $("#input_student_" + item.split("_")[0]).addClass("dsp-incorrect-input");
-            }
-        })
-    }
-
     $('#check_answer', element).click(function (event) {
         $.ajax({
             type: "POST",
@@ -44,8 +28,6 @@ function DSPXBlock(runtime, element, data) {
                 $(element).find('me-span.points').html(result.score);
                 $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
                 $('.points', element).text(result.score + ' из ' + data.maximum_score);
-                // $('me-span.points', element).text(result.score + ' из ' + result.maximum_score);
-                // console.log(result.correctness);
                 highlight_correctness(result.correctness)
             },
             contentType: 'application/json; charset=utf-8'
@@ -84,27 +66,6 @@ function DSPXBlock(runtime, element, data) {
         build_graphics();
     }
 
-    function process_array_input(input) {
-        parse_array = parseTextSignal(input.value);
-        var message = "";
-        if (parse_array.signal_valid) {
-            if (parse_array.signal.length > 0) {
-                message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
-            }
-            else {
-                message = "<span>Введите сигнал!</span>";
-            }
-        }
-        else {
-            message = "<span class='error-text'>Ошибка формата ввода " + $(input).data('arrayType') + "а!</span>";
-
-        }
-        console.log("Array is valid? :", parse_array.signal_valid);
-        console.log("Validation result:", parse_array);
-        console.log(generateAnswer());
-        $(input).parent().find(".validation-message").html(message)
-    }
-
     $(function ($) {
         console.log(data);
         if (data.student_state.answer) {
@@ -112,10 +73,15 @@ function DSPXBlock(runtime, element, data) {
             $("textarea.array-input", element).each(function (i) {
                 process_array_input(this);
             });
-            if (data.student_state.correctness) {
+            if (data.student_state.correctness && highlight_correct) {
                 highlight_correctness(data["student_state"]["correctness"]);
             }
-
+        }
+        if (highlight_correct) {
+            $(document).on('input', ".answer-input", function () {
+                $(this).removeClass("dsp-incorrect-input");
+                $(this).removeClass("dsp-correct-input");
+            });
         }
 
         $("textarea.array-input", element).each(function (i) {

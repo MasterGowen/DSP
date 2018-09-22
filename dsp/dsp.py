@@ -116,19 +116,14 @@ class DSPXBlock(XBlock):
 
         self.student_state["score"] = self.score
         self.student_state["correctness"] = result["correctness"]
-        # result["maximum_score"] = self.maximum_score
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
 
         return Response(json_body=self.student_state)
 
     @XBlock.json_handler
     def get_graphics(self, data, suffix=''):
-        # student_data = data
-
         self.student_state["answer"] = data
-
         graphics = get_graphics(data, self.lab_source_data)
-
         return Response(json_body={"graphics": graphics})
 
 

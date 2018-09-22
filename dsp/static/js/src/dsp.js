@@ -18,7 +18,36 @@ function parseTextSignal(signal_string) {
     }
 }
 
-function example_data() {
+function process_array_input(input) {
+    parse_array = parseTextSignal(input.value);
+    var message = "";
+    if (parse_array.signal_valid) {
+        if (parse_array.signal.length > 0) {
+            message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
+        }
+        else {
+            message = "<span>Введите сигнал!</span>";
+        }
+    }
+    else {
+        message = "<span class='error-text'>Ошибка формата ввода " + $(input).data('arrayType') + "а!</span>";
+
+    }
+    $(input).parent().find(".validation-message").html(message)
+}
+
+function highlight_correctness(state) {
+    Object.keys(state).forEach(function (item) {
+        if (state[item]) {
+            $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
+        }
+        else {
+            $("#input_student_" + item.split("_")[0]).addClass("dsp-incorrect-input");
+        }
+    })
+}
+
+function example_data_lab_1() {
     var signal = "[1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]"
     var filter = "[1. 1. 1. 1. 1. 1. 1. 1. 1.]";
     var a = "1";
@@ -29,27 +58,3 @@ function example_data() {
     $("#input_student_a").val(a);
     $('input:radio[name="input_student_window"]').filter('[value="' + window + '"]').attr('checked', true);
 }
-
-/*
-function DSPXBlock(runtime, element) {
-
-function updateCount(result) {
-$('.count', element).text(result.count);
-}
-
-var handlerUrl = runtime.handlerUrl(element, 'increment_count');
-
-$('p', element).click(function(eventObject) {
-$.ajax({
-    type: "POST",
-    url: handlerUrl,
-    data: JSON.stringify({"hello": "world"}),
-    success: updateCount
-});
-});
-
-$(function ($) {
-
-});
-}
-*/
