@@ -28,7 +28,7 @@ function DSPXBlock(runtime, element, data) {
                 $(element).find('me-span.points').html(result.score);
                 $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
                 $('.points', element).text(result.score + ' из ' + data.maximum_score);
-                highlight_correctness(result.correctness)
+                if (highlight_correct) highlight_correctness(result.correctness);
             },
             contentType: 'application/json; charset=utf-8'
         });
