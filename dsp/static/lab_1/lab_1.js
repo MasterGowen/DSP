@@ -73,12 +73,12 @@ function DSPXBlock(runtime, element, data) {
     }
 
     function build_lab_state(data) {
-        $("textarea#input_student_signal", element).val(data.student_signal);
-        $("textarea#input_student_filter", element).val(data.student_filter);
-        $("#input_student_a", element).val(data.student_a);
-        $('input:radio[name="input_student_window"]', element).filter('[value="' + data.student_window + '"]').attr('checked', true);
-        $("#input_student_ubl", element).val(data.student_ubl);
-        $("#input_student_p", element).val(data.student_p);
+        $("textarea#input_student_signal", element).val(data.answer.student_signal);
+        $("textarea#input_student_filter", element).val(data.answer.student_filter);
+        $("#input_student_a", element).val(data.answer.student_a);
+        $('input:radio[name="input_student_window"]', element).filter('[value="' + data.answer.student_window + '"]').attr('checked', true);
+        $("#input_student_ubl", element).val(data.answer.student_ubl);
+        $("#input_student_p", element).val(data.answer.student_p);
         build_graphics();
     }
 
@@ -105,22 +105,18 @@ function DSPXBlock(runtime, element, data) {
 
     $(function ($) {
         console.log(data);
-        if (!Object.keys(data["student_state"]).length == false) {
+        if (!Object.keys(data["student_state"]["answer"]).length == false) {
             build_lab_state(data["student_state"]);
             $("textarea.array-input", element).each(function (i) {
                 process_array_input(this);
             });
             if(!Object.keys(data["student_state"]["correctness"]).length == false){
-                highlight_correctness(result.correctness);
+                highlight_correctness((data["student_state"]["correctness"]);
             }
 
         }
 
         $("textarea.array-input", element).each(function (i) {
-            // var validation_array_message = $('<div/>', {
-            //     class: 'validation-message'
-            // });
-            // $(this).after(validation_array_message);
             $(this).change(function () {
                 console.log(this);
                 process_array_input(this);

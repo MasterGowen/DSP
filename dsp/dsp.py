@@ -105,7 +105,7 @@ class DSPXBlock(XBlock):
 
         # TO-DO: проверка возможности ответа
 
-        self.student_state = data
+        self.student_state["answer"] = data
 
         result = check_answer(data, self.lab_source_data)
 
@@ -113,9 +113,9 @@ class DSPXBlock(XBlock):
         # log.info()
 
         self.score = round(self.maximum_score * result["score"])
+
         self.student_state["score"] = self.score
         self.student_state["correctness"] = result["correctness"]
-        self.student_state["answer"] = result["answer"]
         # result["maximum_score"] = self.maximum_score
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
 
@@ -125,7 +125,7 @@ class DSPXBlock(XBlock):
     def get_graphics(self, data, suffix=''):
         # student_data = data
 
-        self.student_state["graphics"] = data
+        self.student_state["answer"] = data
 
         graphics = get_graphics(data, self.lab_source_data)
 
