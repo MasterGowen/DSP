@@ -19,7 +19,8 @@ function DSPXBlock(runtime, element, data) {
     }
 
     $(document).on('input', ".answer-input", function () {
-    console.log($(this).val())
+        $(this).removeClass("dsp-incorrect-input");
+        $(this).removeClass("dsp-correct-input");
     });
 
     $('#check_answer', element).click(function (event) {
@@ -33,14 +34,14 @@ function DSPXBlock(runtime, element, data) {
                 console.log(result.correctness);
                 Object.keys(result.correctness).forEach(function (item) {
                     console.log(item);
-                    if (result.correctness[item]){
-                        $("#input_student_"+item.split("_")[0]).addClass("dsp-correct-input");
+                    if (result.correctness[item]) {
+                        $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
                     }
                     else {
                         $("#input_student_" + item.split("_")[0]).addClass("dsp-incorrect-input");
                     }
                 })
-                
+
             },
             contentType: 'application/json; charset=utf-8'
         });
