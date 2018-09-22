@@ -110,9 +110,9 @@ function DSPXBlock(runtime, element, data) {
             $("textarea.array-input", element).each(function (i) {
                 process_array_input(this);
             });
-            // if(!Object.keys(data["student_state"]["correctness"]).length == false){
-            //     highlight_correctness(data["student_state"]["correctness"]);
-            // }
+            if(data.student_state.correctness){
+                highlight_correctness(data["student_state"]["correctness"]);
+            }
 
         }
 
