@@ -42,6 +42,8 @@ function DSPXBlock(runtime, element, data) {
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $(element).find('me-span.points').html(result.score);
+                $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
+                $('.points', element).text(result.score + ' из ' + data.maximum_score);
                 // $('me-span.points', element).text(result.score + ' из ' + result.maximum_score);
                 // console.log(result.correctness);
                 highlight_correctness(result.correctness)
@@ -110,7 +112,7 @@ function DSPXBlock(runtime, element, data) {
             $("textarea.array-input", element).each(function (i) {
                 process_array_input(this);
             });
-            if(data.student_state.correctness){
+            if (data.student_state.correctness) {
                 highlight_correctness(data["student_state"]["correctness"]);
             }
 

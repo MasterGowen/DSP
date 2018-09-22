@@ -2,7 +2,7 @@
 <div class="problem-progress">
     {% if score == 0 or score %}
     <me-span class="weight"> Набрано баллов:
-        <me-span class="points">{{score|floatformat:"0" }}</me-span> из {{maximum_score|floatformat:"0" }}
+        <me-span class="points">{{score|floatformat:"0" }} из {{maximum_score|floatformat:"0" }}</me-span>
     </me-span>
     {% else %}
     <me-span class="weight">(Максимальное кoличество баллов: {{maximum_score|floatformat:"0" }})</me-span>
@@ -18,7 +18,8 @@
     </ul>
     <p>Введите сигнал:</p>
     <div class="array-input-container">
-        <textarea id="input_student_signal" data-array-type="сигнал" class="signal-input array-input answer-input" rows="3" cols="24"
+        <textarea id="input_student_signal" data-array-type="сигнал" class="signal-input array-input answer-input"
+                  rows="3" cols="24"
                   wrap="hard"></textarea>
         <div class="validation-message"></div>
     </div>
@@ -32,7 +33,8 @@
 
     <p>Введите фильтр:</p>
     <div class="array-input-container">
-        <textarea id="input_student_filter" data-array-type="фильтр" class="filter-input array-input answer-input" rows="3" cols="24"
+        <textarea id="input_student_filter" data-array-type="фильтр" class="filter-input array-input answer-input"
+                  rows="3" cols="24"
                   wrap="hard"></textarea>
         <div class="validation-message"></div>
     </div>
