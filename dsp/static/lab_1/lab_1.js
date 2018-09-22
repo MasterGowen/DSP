@@ -23,6 +23,18 @@ function DSPXBlock(runtime, element, data) {
         $(this).removeClass("dsp-correct-input");
     });
 
+    function highlight_correctness(state) {
+        Object.keys(state).forEach(function (item) {
+            console.log(item);
+            if (state[item]) {
+                $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
+            }
+            else {
+                $("#input_student_" + item.split("_")[0]).addClass("dsp-incorrect-input");
+            }
+        })
+    }
+
     $('#check_answer', element).click(function (event) {
         $.ajax({
             type: "POST",
@@ -31,17 +43,8 @@ function DSPXBlock(runtime, element, data) {
             success: function (result) {
                 $(element).find('me-span.points').html(result.score);
                 // $('me-span.points', element).text(result.score + ' из ' + result.maximum_score);
-                console.log(result.correctness);
-                Object.keys(result.correctness).forEach(function (item) {
-                    console.log(item);
-                    if (result.correctness[item]) {
-                        $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
-                    }
-                    else {
-                        $("#input_student_" + item.split("_")[0]).addClass("dsp-incorrect-input");
-                    }
-                })
-
+                // console.log(result.correctness);
+                highlight_correctness(result.correctness)
             },
             contentType: 'application/json; charset=utf-8'
         });
@@ -107,6 +110,9 @@ function DSPXBlock(runtime, element, data) {
             $("textarea.array-input", element).each(function (i) {
                 process_array_input(this);
             });
+            if(!Object.keys(data["student_state"]["correctness"]).length == false){
+                highlight_correctness(result.correctness);
+            }
 
         }
 
