@@ -59,8 +59,6 @@ def get_source_data():
 
 
 def check_answer(student_data, source_data):
-    result = dict()
-
     N0 = source_data["N0"]
     Ns = source_data["Ns"]
     K = source_data["K"]
@@ -107,35 +105,37 @@ def check_answer(student_data, source_data):
 
     max_score = 5
     score = 0
+    result = dict()
+    result["correctness"] = dict()
     if arrays_is_equal(d_et, student_d):
-        result["signal_correctness"] = True
+        result["correctness"]["signal_correctness"] = True
         score += 1
     else:
-        result["signal_correctness"] = False
+        result["correctness"]["signal_correctness"] = False
 
     if arrays_is_equal(b_et, student_b):
-        result["filter_correctness"] = True
+        result["correctness"]["filter_correctness"] = True
         score += 1
     else:
-        result["filter_correctness"] = False
+        result["correctness"]["filter_correctness"] = False
 
     if numbers_is_equal(float(a_et), student_a, tol=0.1):
-        result["a_correctness"] = True
+        result["correctness"]["a_correctness"] = True
         score += 1
     else:
-        result["a_correctness"] = False
+        result["correctness"]["a_correctness"] = False
 
     if numbers_is_equal(float(ubl_et), student_ubl, tol=0.1):
-        result["ubl_correctness"] = True
+        result["correctness"]["ubl_correctness"] = True
         score += 1
     else:
-        result["ubl_correctness"] = False
+        result["correctness"]["ubl_correctness"] = False
 
     if numbers_is_equal(float(p_et), student_p, tol=0.1):
-        result["p_correctness"] = True
+        result["correctness"]["p_correctness"] = True
         score += 1
     else:
-        result["p_correctness"] = False
+        result["correctness"]["p_correctness"] = False
 
     result["success"] = True
     result["score"] = float(score)/float(max_score)
