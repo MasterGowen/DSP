@@ -2,6 +2,7 @@
 import matplotlib
 import logging
 import json
+import math
 
 matplotlib.use('Agg')
 import numpy as np
@@ -74,6 +75,31 @@ def get_source_data():
     return context
 
 
+def get_correct_filter(source_data):
+    N0 = source_data["N0"]
+    Q = source_data["Q"]
+    signal = []
+    if source_data["signal_type"]["name"] == "delta_func":
+        signal = np.append(np.ones(1), np.zeros(N0 - 1))
+    elif source_data["signal_type"]["name"] == "rectangular_videopulse":
+        tmp = math.floor(N0/Q)
+        signal = np.append(np.ones(tmp), np.zeros(N0 - tmp))
+    elif source_data["signal_type"]["name"] == "rectangular_radiopulse_f4":
+        tmp = math.floor(N0 / Q)
+        tmp1 = math.ceil(math.ceil(N0 / Q) / 3)
+        tmp2 = np.tile([1, 0, -1], tmp1)[0:tmp]
+        signal = np.append(tmp2, np.zeros(N0 - len(tmp2)))
+    elif source_data["signal_type"]["name"] == "rectangular_radiopulse_f2":
+        tmp = math.floor(N0 / Q)
+        tmp1 = math.ceil(math.ceil(N0 / Q) / 2)
+        tmp2 = np.tile([1, -1], tmp1)[0:tmp]
+        signal = np.append(tmp2, np.zeros(N0 - len(tmp2)))
+    else:
+        signal = np.zeros(N0)
+
+    return signal
+
+
 def check_answer(student_data, source_data):
     N0 = source_data["N0"]
     Ns = source_data["Ns"]
@@ -91,10 +117,13 @@ def check_answer(student_data, source_data):
     student_ubl = float(student_data["student_ubl"])
     student_p = float(student_data["student_p"])
 
-    d_et = np.append(np.ones(Q), np.zeros(N0 - Q))
+    d_et = get_correct_filter(source_data)
     b_et = np.ones(Ns)
     a_et = 1
+
     w_et = np.hamming(Ns)
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    log.info(w_et)
     z_et = signal.lfilter(w_et, 1, d_et)
     fz_et = np.abs(np.fft.fft(z_et))
     mz = max(fz_et)
