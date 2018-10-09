@@ -39,7 +39,7 @@ def get_source_data():
                 Q, N0)
         }
     ]
-    signal_type = signal_types[2]  # random.choice(signal_types)
+    signal_type = random.choice(signal_types) # signal_types[2]
 
     filter_windows = [
         {
@@ -55,9 +55,8 @@ def get_source_data():
             "title": "прямоугольное"
         }
     ]
-    filter_window = filter_windows[2]  # random.choice(filter_windows)
-    sum_sub = {"name": "sum",
-               "title": "сумматор"}  # random.choice([{"name": "sum", "title": "сумматор"}, {"name": "sub", "title": "вычитатель"}])
+    filter_window = random.choice(filter_windows)  #filter_windows[2]
+    sum_sub = random.choice([{"name": "sum", "title": "сумматор"}, {"name": "sub", "title": "вычитатель"}])  # {"name": "sum", "title": "сумматор"}
     filter_type = {
         "name": "filter_" + sum_sub['name'] + "_" + filter_window["name"],
         "title": "фильтр-{} длиной {} отсчётов".format(sum_sub["title"], Ns),
