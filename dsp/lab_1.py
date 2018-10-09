@@ -16,15 +16,31 @@ log = logging.getLogger(__name__)
 
 
 def get_source_data():
-    N0 = 100 #random.randint(10, 200)
-    Q = 2
-    Ns = 5 #random.randint(5, 12)
-    signal_type = random.choice([
+    N0 = 100  # random.randint(10, 200)
+    Q = random.randint(2, int(N0 / 2))
+    Ns = 5  # random.randint(5, 12)
+    signal_types = [
         {
             "name": "delta_func",
             "title": "дискретная дельта-функция длиной {} отсчётов".format(N0)
+        },
+        {
+            "name": "rectangular_videopulse",
+            "title": "прямоугольный видеоимпульс скважности {} и длиной сигнала {} отсчётов".format(Q, N0)
+        },
+        {
+            "name": "rectangular_radiopulse_f4",
+            "title": "прямоугольный радиоимпульс (в форме cos) скважности {} и длиной сигнала {} отсчётов с частотой \(f_d/4\)".format(
+                Q, N0)
+        },
+        {
+            "name": "rectangular_radiopulse_f2",
+            "title": "прямоугольный радиоимпульс (в форме cos) скважности {} и длиной сигнала {} отсчётов с частотой \(f_d/2\)".format(
+                Q, N0)
         }
-    ])
+    ]
+    signal_type = signal_types[2]  # random.choice(signal_types)
+
     filter_windows = [
         {
             "name": "hamming",
@@ -39,13 +55,14 @@ def get_source_data():
             "title": "прямоугольное"
         }
     ]
-    filter_type = random.choice([
-        {
-            "name": "filter_sum_hamming",
-            "title": "фильтр-сумматор длиной {} отсчётов".format(Ns),
-            "window": [x for x in filter_windows if x["name"] == "hamming"][0]
-        }
-    ])
+    filter_window = filter_windows[2]  # random.choice(filter_windows)
+    sum_sub = {"name": "sum",
+               "title": "сумматор"}  # random.choice([{"name": "sum", "title": "сумматор"}, {"name": "sub", "title": "вычитатель"}])
+    filter_type = {
+        "name": "filter_" + sum_sub['name'] + "_" + filter_window["name"],
+        "title": "фильтр-{} длиной {} отсчётов".format(sum_sub["title"], Ns),
+        "window": filter_window
+    }
 
     K = 12.5
     context = dict()
@@ -140,7 +157,7 @@ def check_answer(student_data, source_data):
     else:
         result["correctness"]["p_correctness"] = False
 
-    result["score"] = float(score)/float(max_score)
+    result["score"] = float(score) / float(max_score)
     # result["correct_answer"] = correct_answer
     return result
 
@@ -157,11 +174,11 @@ def get_graphics(student_data, source_data):
     z = signal.lfilter(b, a, d)
     fig, ax = plt.subplots(figsize=(4, 4))
     ax.stem(np.arange(N0), z)
-    ax.plot(np.arange(N0), np.ones((N0, 1))*(0.707 * max(z)), 'r')
+    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r')
     w = np.hamming(Ns)
     z = signal.lfilter(w, a, d)
     ax.stem(np.arange(N0), z)
-    ax.plot(np.arange(N0), np.ones((N0, 1))*(0.707 * max(z)), 'r')
+    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r')
     html = mpld3.fig_to_d3(fig)
     graphics.append(
         {

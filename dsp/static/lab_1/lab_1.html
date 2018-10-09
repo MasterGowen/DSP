@@ -31,7 +31,7 @@
         <li><strong>{{filter_type.title}} с окном: {{filter_type.window.title}}</strong></li>
     </ul>
 
-    <p>Введите фильтр:</p>
+    <p>Введите коэффициенты числителя передаточной функции (b):</p>
     <div class="array-input-container">
         <textarea id="input_student_filter" data-array-type="фильтр" class="filter-input array-input answer-input"
                   rows="3" cols="24"
@@ -39,22 +39,22 @@
         <div class="validation-message"></div>
     </div>
     <div class="numeric-input-container">
-        <label for="input_student_a">Введите ??? (a):</label>
+        <label for="input_student_a">Введите коэффициент знаменателя передаточной функции (a):</label>
         <input id="input_student_a" type=number class="numeric-input answer-input" step=any/>
     </div>
-    <div>
-        <fieldset>
-            <legend>Выбор окна:</legend>
-            <input type="radio" id="rectangular" name="input_student_window" value="rectangular" checked>
-            <label for="rectangular">прямоугольное окно</label><br/>
+    <!--<div>-->
+        <!--<fieldset>-->
+            <!--<legend>Выбор окна:</legend>-->
+            <!--<input type="radio" id="rectangular" name="input_student_window" value="rectangular" checked>-->
+            <!--<label for="rectangular">прямоугольное окно</label><br/>-->
 
-            <input type="radio" id="hamming" name="input_student_window" value="hamming">
-            <label for="hamming">окно Хэмминга</label><br/>
+            <!--<input type="radio" id="hamming" name="input_student_window" value="hamming">-->
+            <!--<label for="hamming">окно Хэмминга</label><br/>-->
 
-            <input type="radio" id="blackman" name="input_student_window" value="blackman">
-            <label for="blackman">окно Блэкмана</label><br/>
-        </fieldset>
-    </div>
+            <!--<input type="radio" id="blackman" name="input_student_window" value="blackman">-->
+            <!--<label for="blackman">окно Блэкмана</label><br/>-->
+        <!--</fieldset>-->
+    <!--</div>-->
 
     <button id="calculate_graphics">Построить графики</button>
 </div>
