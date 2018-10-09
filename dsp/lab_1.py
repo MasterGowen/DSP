@@ -63,6 +63,9 @@ def check_answer(student_data, source_data):
     Ns = source_data["Ns"]
     K = source_data["K"]
     Q = source_data["Q"]
+
+    log.info(source_data["filter_type"])
+
     signal_type = source_data["signal_type"]
     filter_type = source_data["filter_type"]
 
