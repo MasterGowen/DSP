@@ -116,6 +116,7 @@ class DSPXBlock(XBlock):
 
         self.student_state["score"] = self.score
         self.student_state["correctness"] = result["correctness"]
+
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
 
         return Response(json_body=self.student_state)
