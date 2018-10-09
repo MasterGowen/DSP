@@ -169,35 +169,35 @@ def check_answer(student_data, source_data):
         score += 1
     else:
         result["correctness"]["signal_correctness"] = False
-    result["correctness"]["signal_correct"] = d_et
+    result["correctness"]["signal_correct"] = str(d_et)
 
     if arrays_is_equal(b_et, student_b):
         result["correctness"]["filter_correctness"] = True
         score += 1
     else:
         result["correctness"]["filter_correctness"] = False
-    result["correctness"]["filter_correct"] = b_et
+    result["correctness"]["filter_correct"] = str(b_et)
 
     if numbers_is_equal(float(a_et), student_a, tol=0.1):
         result["correctness"]["a_correctness"] = True
         score += 1
     else:
         result["correctness"]["a_correctness"] = False
-    result["correctness"]["a_correct"] = a_et
+    result["correctness"]["a_correct"] = str(a_et)
 
     if numbers_is_equal(float(ubl_et), student_ubl, tol=0.1):
         result["correctness"]["ubl_correctness"] = True
         score += 1
     else:
         result["correctness"]["ubl_correctness"] = False
-    result["correctness"]["ubl_correct"] = ubl_et
+    result["correctness"]["ubl_correct"] = str(ubl_et)
 
     if numbers_is_equal(float(p_et), student_p, tol=0.1):
         result["correctness"]["p_correctness"] = True
         score += 1
     else:
         result["correctness"]["p_correctness"] = False
-    result["correctness"]["p_correct"] = p_et
+    result["correctness"]["p_correct"] = str(p_et)
 
     result["score"] = float(score) / float(max_score)
     # result["correct_answer"] = correct_answer
