@@ -110,13 +110,13 @@ def get_correct_signal(source_data):
 
 def get_correct_filter(source_data):
     Ns = source_data["Ns"]
-    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   ", str(Ns))
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   "+ str(Ns))
     if source_data["filter_type"]["name"].split("_")[1] == "sum":
         filter = np.ones(Ns)
     else:  # sub
         tmp = math.ceil(Ns / 2)
         filter = np.tile([1, -1], tmp)[0:Ns]
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    ", str(len(filter)))
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    "+ str(len(filter)))
     return filter
 
 
