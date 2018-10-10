@@ -189,26 +189,26 @@ def check_answer(student_data, source_data):
         result["correctness"]["filter_correctness"] = False
     result["correctness"]["filter_correct"] = b_et.tolist()
 
-    if numbers_is_equal(float(a_et), student_a, tol=0.1):
+    if numbers_is_equal(a_et, student_a, tol=0.1):
         result["correctness"]["a_correctness"] = True
         score += 1
     else:
         result["correctness"]["a_correctness"] = False
-    result["correctness"]["a_correct"] = a_et.tolist()
+    result["correctness"]["a_correct"] = a_et
 
-    if numbers_is_equal(float(ubl_et), student_ubl, tol=0.1):
+    if numbers_is_equal(ubl_et, student_ubl, tol=0.1):
         result["correctness"]["ubl_correctness"] = True
         score += 1
     else:
         result["correctness"]["ubl_correctness"] = False
-    result["correctness"]["ubl_correct"] =  ubl_et.tolist()
+    result["correctness"]["ubl_correct"] = ubl_et
 
-    if numbers_is_equal(float(p_et), student_p, tol=0.1):
+    if numbers_is_equal(p_et, student_p, tol=0.1):
         result["correctness"]["p_correctness"] = True
         score += 1
     else:
         result["correctness"]["p_correctness"] = False
-    result["correctness"]["p_correct"] = p_et.tolist()
+    result["correctness"]["p_correct"] = p_et
 
     result["score"] = float(score) / float(max_score)
     # result["correct_answer"] = correct_answer
