@@ -94,12 +94,12 @@ def get_correct_signal(source_data):
         signal = np.append(np.ones(tmp), np.zeros(N0 - tmp))
     elif source_data["signal_type"]["name"] == "rectangular_radiopulse_f4":
         tmp = math.floor(N0 / Q)
-        tmp1 = math.ceil(math.ceil(N0 / Q) / 3)
+        tmp1 = math.ceil(float(math.ceil(float(N0) / Q)) / 3)
         tmp2 = np.tile([1, 0, -1], tmp1)[0:tmp]
         signal = np.append(tmp2, np.zeros(N0 - len(tmp2)))
     elif source_data["signal_type"]["name"] == "rectangular_radiopulse_f2":
         tmp = math.floor(N0 / Q)
-        tmp1 = math.ceil(math.ceil(N0 / Q) / 2)
+        tmp1 = math.ceil(float(math.ceil(float(N0) / Q)) / 2)
         tmp2 = np.tile([1, -1], tmp1)[0:tmp]
         signal = np.append(tmp2, np.zeros(N0 - len(tmp2)))
     else:
@@ -109,14 +109,14 @@ def get_correct_signal(source_data):
 
 
 def get_correct_filter(source_data):
-    Ns = source_data["Ns"]
-    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   "+ str(Ns))
+    Ns = float(source_data["Ns"])
+    # log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   "+ str(Ns))
     if source_data["filter_type"]["name"].split("_")[1] == "sum":
         filter = np.ones(Ns)
     else:  # sub
         tmp = math.ceil(Ns / 2)
         filter = np.tile([1, -1], tmp)[0:Ns]
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    "+ str(len(filter)))
+        # log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    "+ str(len(filter)))
     return filter
 
 
