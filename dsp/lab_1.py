@@ -94,8 +94,8 @@ def get_correct_signal(source_data):
         signal = np.append(np.ones(tmp), np.zeros(N0 - tmp))
     elif source_data["signal_type"]["name"] == "rectangular_radiopulse_f4":
         tmp = math.floor(N0 / Q)
-        tmp1 = math.ceil(float(math.ceil(float(N0) / Q)) / 3)
-        tmp2 = np.tile([1, 0, -1], tmp1)[0:tmp]
+        tmp1 = math.ceil(float(math.ceil(float(N0) / Q)) / 4)
+        tmp2 = np.tile([1, 0, -1, 0], tmp1)[0:tmp]
         signal = np.append(tmp2, np.zeros(N0 - len(tmp2)))
     elif source_data["signal_type"]["name"] == "rectangular_radiopulse_f2":
         tmp = math.floor(N0 / Q)
