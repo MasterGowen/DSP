@@ -38,6 +38,7 @@ function process_array_input(input) {
 
 function highlight_correctness(state) {
     Object.keys(state).forEach(function (item) {
+        console.log(item);
         if (state[item]) {
             $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
         }
