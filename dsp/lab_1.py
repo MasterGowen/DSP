@@ -20,6 +20,7 @@ def get_source_data():
     N0 = 100  # random.randint(10, 200)
     Q = random.randint(2, int(N0 / 2))
     Ns = 5  # random.randint(5, 12)
+    K = 12.5
     signal_types = [
         {
             "name": "delta_func",
@@ -57,14 +58,22 @@ def get_source_data():
         }
     ]
     filter_window = filter_windows[2]  # random.choice(filter_windows)
-    sum_sub = random.choice([{"name": "sum", "title": "сумматор"}, {"name": "sub", "title": "вычитатель"}])  # {"name": "sum", "title": "сумматор"}
+    sum_sub = random.choice([
+        {
+            "name": "sum",
+            "title": "сумматор"
+        },
+        {
+            "name": "sub",
+            "title": "вычитатель"
+        }
+    ])  # {"name": "sum", "title": "сумматор"}
     filter_type = {
         "name": "filter_" + sum_sub['name'] + "_" + filter_window["name"],
         "title": "фильтр-{} длиной {} отсчётов".format(sum_sub["title"], Ns),
         "window": filter_window
     }
 
-    K = 12.5
     context = dict()
     context["N0"] = N0
     context["Ns"] = Ns
@@ -101,11 +110,13 @@ def get_correct_signal(source_data):
 
 def get_correct_filter(source_data):
     Ns = source_data["Ns"]
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", Ns)
     if source_data["filter_type"]["name"].split("_")[1] == "sum":
         filter = np.ones(Ns)
     else:  # sub
         tmp = math.ceil(Ns / 2)
         filter = np.tile([1, -1], tmp)[0:Ns]
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", len(filter))
     return filter
 
 
@@ -115,10 +126,10 @@ def check_answer(student_data, source_data):
     K = source_data["K"]
     Q = source_data["Q"]
 
-    log.info(source_data["filter_type"])
+    # log.info(source_data["filter_type"])
 
-    signal_type = source_data["signal_type"]
-    filter_type = source_data["filter_type"]
+    # signal_type = source_data["signal_type"]
+    # filter_type = source_data["filter_type"]
 
     student_d = student_data["student_signal"]
     student_b = student_data["student_filter"]
@@ -131,8 +142,8 @@ def check_answer(student_data, source_data):
     a_et = 1
 
     w_et = np.hamming(Ns)
-    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    log.info(w_et)
+    # log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    # log.info(w_et)
     z_et = signal.lfilter(w_et, 1, d_et)
     fz_et = np.abs(np.fft.fft(z_et))
     mz = max(fz_et)
@@ -153,12 +164,12 @@ def check_answer(student_data, source_data):
 
     p_et = i - 1
 
-    correct_answer = dict()
-    correct_answer["d_et"] = d_et.tolist()
-    correct_answer["b_et"] = b_et.tolist()
-    correct_answer["a_et"] = a_et
-    correct_answer["ubl_et"] = ubl_et
-    correct_answer["p_et"] = p_et
+    # correct_answer = dict()
+    # correct_answer["d_et"] = d_et.tolist()
+    # correct_answer["b_et"] = b_et.tolist()
+    # correct_answer["a_et"] = a_et
+    # correct_answer["ubl_et"] = ubl_et
+    # correct_answer["p_et"] = p_et
 
     max_score = 5
     score = 0
@@ -169,35 +180,35 @@ def check_answer(student_data, source_data):
         score += 1
     else:
         result["correctness"]["signal_correctness"] = False
-    result["correctness"]["signal_correct"] = str(d_et)
+    result["correctness"]["signal_correct"] = d_et.tolist()
 
     if arrays_is_equal(b_et, student_b):
         result["correctness"]["filter_correctness"] = True
         score += 1
     else:
         result["correctness"]["filter_correctness"] = False
-    result["correctness"]["filter_correct"] = str(b_et)
+    result["correctness"]["filter_correct"] = b_et.tolist()
 
     if numbers_is_equal(float(a_et), student_a, tol=0.1):
         result["correctness"]["a_correctness"] = True
         score += 1
     else:
         result["correctness"]["a_correctness"] = False
-    result["correctness"]["a_correct"] = str(a_et)
+    result["correctness"]["a_correct"] = a_et.tolist()
 
     if numbers_is_equal(float(ubl_et), student_ubl, tol=0.1):
         result["correctness"]["ubl_correctness"] = True
         score += 1
     else:
         result["correctness"]["ubl_correctness"] = False
-    result["correctness"]["ubl_correct"] = str(ubl_et)
+    result["correctness"]["ubl_correct"] =  ubl_et.tolist()
 
     if numbers_is_equal(float(p_et), student_p, tol=0.1):
         result["correctness"]["p_correctness"] = True
         score += 1
     else:
         result["correctness"]["p_correctness"] = False
-    result["correctness"]["p_correct"] = str(p_et)
+    result["correctness"]["p_correct"] = p_et.tolist()
 
     result["score"] = float(score) / float(max_score)
     # result["correct_answer"] = correct_answer
