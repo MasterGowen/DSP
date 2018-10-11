@@ -8,7 +8,6 @@ from xblock.fields import Integer, Scope, String, JSONField, Float
 from xblock.fragment import Fragment
 from webob.response import Response
 
-
 from .utils import (
     render_template,
     load_resources,
@@ -17,6 +16,7 @@ from .utils import (
 from .calc_utils import merge_two_dicts
 
 from lab_1 import get_source_data, get_graphics, check_answer
+
 log = logging.getLogger(__name__)
 
 
@@ -38,23 +38,28 @@ class DSPXBlock(XBlock):
     lab_list = JSONField(
         display_name='Display Name',
         scope=Scope.settings,
-        default={
-            "lab_1": {
-                "title":  "Лабораторная 1. Исследование цифровых фильтров с конечной импульсной характеристикой",
+        default=[
+            {
+                "id": "lab_1",
+                "title": "Лабораторная 1. Исследование цифровых фильтров с конечной импульсной характеристикой",
             },
-            "lab_2": {
+            {
+                "id": "lab_2",
                 "title": "Лабораторная 2. Цифровой спектральный анализ",
             },
-            "lab_3": {
+            {
+                "id": "lab_3",
                 "title": "Лабораторная 3. Цифровой согласованный фильтр",
             },
-            "lab_4": {
+            {
+                "id": "lab_4",
                 "title": "Лабораторная 4. Исследование рекурсивных цифровых фильтров",
             },
-            "lab_5": {
+            {
+                "id": "lab_5",
                 "title": "Лабораторная 5 . Исследование рекурсивных цифровых фильтров",
             },
-        }
+        ]
 
     )
 
@@ -94,16 +99,16 @@ class DSPXBlock(XBlock):
     )
 
     lab_source_data = JSONField(
-         default={},
-         scope=Scope.user_state,
-         help='Начальные данные лабораторной для студента',
-        )
+        default={},
+        scope=Scope.user_state,
+        help='Начальные данные лабораторной для студента',
+    )
 
     student_state = JSONField(
-         default={},
-         scope=Scope.user_state,
-         help='Ответ студента',
-        )
+        default={},
+        scope=Scope.user_state,
+        help='Ответ студента',
+    )
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -180,8 +185,7 @@ class DSPXBlock(XBlock):
         context = {
             "display_name": self.display_name,
             "current_lab": self.current_lab,
-            "lab_list": self.lab_list,
-            "lab_list_arr": self.lab_list.keys()
+            "lab_list": self.lab_list
         }
 
         fragment = Fragment()
@@ -205,13 +209,11 @@ class DSPXBlock(XBlock):
         fragment.initialize_js('DSPXBlock')
         return fragment
 
-
     @XBlock.json_handler
     def studio_submit(self, data, suffix=''):
         self.display_name = data.get('display_name')
 
         return {'result': 'success'}
-
 
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
