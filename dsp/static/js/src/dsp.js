@@ -62,7 +62,7 @@ function show_graphic_load(element){
         class: 'graphic-loading',
         text: "Строим график ...",
     });
-    $(element).html(error_message)
+    $(element).html(loading_message)
 }
 
 function log_ajax_error(jqXHR, exception) {
