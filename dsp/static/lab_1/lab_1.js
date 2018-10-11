@@ -84,13 +84,19 @@ function DSPXBlock(runtime, element, data) {
                 highlight_correctness(data["student_state"]["correctness"]);
             }
         }
-        if (highlight_correct) {
-            $(document).on('input', ".answer-input", function () {
-                console.log($(this));
+
+        $(document).on('input', ".answer-input", function () {
+            console.log($(this));
+            if (highlight_correct) {
                 $(this).removeClass("dsp-incorrect-input");
                 $(this).removeClass("dsp-correct-input");
-            });
-        }
+            }
+
+            var student_data = generateAnswer();
+            // if
+            console.log(student_data)
+
+        });
 
         $("textarea.array-input", element).each(function (i) {
             $(this).change(function () {
