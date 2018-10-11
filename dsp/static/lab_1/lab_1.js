@@ -93,7 +93,7 @@ function DSPXBlock(runtime, element, data) {
 
     $(function ($) {
         // console.log(data);
-        buttons_disable();
+
         if (data.student_state.answer) {
             build_lab_state(data["student_state"]);
             $("textarea.array-input", element).each(function (i) {
@@ -103,6 +103,7 @@ function DSPXBlock(runtime, element, data) {
                 highlight_correctness(data["student_state"]["correctness"]);
             }
         }
+        buttons_disable();
 
         $(document).on('input', ".answer-input", function () {
             console.log($(this));
