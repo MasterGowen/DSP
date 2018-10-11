@@ -102,6 +102,7 @@ class DSPXBlock(XBlock):
 
     @XBlock.json_handler
     def student_submit(self, data, suffix=''):
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка")
 
         # TO-DO: проверка возможности ответа
 
@@ -124,6 +125,7 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос графики")
         # try:
         graphics = get_graphics(data, self.lab_source_data)
         return Response(json_body={"graphics": graphics})
