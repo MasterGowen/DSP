@@ -181,6 +181,7 @@ class DSPXBlock(XBlock):
             "display_name": self.display_name,
             "current_lab": self.current_lab,
             "lab_list": self.lab_list,
+            "lab_list_arr": self.lab_list.keys()
         }
 
         fragment = Fragment()
