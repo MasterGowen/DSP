@@ -1,22 +1,20 @@
 .graphic-container {
-text-align: center;
+    text-align: center;
     padding: 10px;
     border: 1px solid rosybrown;
     flex: 50%;
     padding: 0px;
     margin: 2px;
-        position: relative;
+    position: relative;
     height: 330px;
-     background: white;
+    background: #f7f7f7;
 }
 
-#calculate_graphics{
-        margin: 15px;
+#calculate_graphics {
+    margin: 15px;
 }
 
-
-
-.graphic-error{
+.graphic-error {
     position: absolute;
     top: 50%;
     left: 50%;

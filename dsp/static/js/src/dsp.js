@@ -38,7 +38,7 @@ function process_array_input(input) {
 
 function highlight_correctness(state) {
     Object.keys(state).forEach(function (item) {
-        console.log(item);
+        // console.log(item);
         if (state[item] == true) {
             $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
         }
@@ -48,15 +48,33 @@ function highlight_correctness(state) {
     })
 }
 
-function show_graphic_error(element){
-    console.log($(element));
+function show_graphic_error(element) {
+    // console.log($(element));
     var error_message = $('<div/>', {
         class: 'graphic-error',
-        text:"При построении графика произошла ошибка. Проверьте праввильность введенных данных.",
+        text: "При построении графика произошла ошибка." + "<br />" + "Проверьте праввильность введенных данных.",
     });
     $(element).html(error_message)
+}
 
-
+function log_ajax_error(jqXHR, exception) {
+    var msg = '';
+    if (jqXHR.status === 0) {
+        msg = 'Not connect.\n Verify Network.';
+    } else if (jqXHR.status == 404) {
+        msg = 'Requested page not found. [404]';
+    } else if (jqXHR.status == 500) {
+        msg = 'Internal Server Error [500].';
+    } else if (exception === 'parsererror') {
+        msg = 'Requested JSON parse failed.';
+    } else if (exception === 'timeout') {
+        msg = 'Time out error.';
+    } else if (exception === 'abort') {
+        msg = 'Ajax request aborted.';
+    } else {
+        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+    }
+    console.log(msg);
 }
 
 function example_data_lab_1() {
