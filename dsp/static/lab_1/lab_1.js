@@ -74,7 +74,7 @@ function DSPXBlock(runtime, element, data) {
     }
 
     $(function ($) {
-        console.log(data);
+        // console.log(data);
         if (data.student_state.answer) {
             build_lab_state(data["student_state"]);
             $("textarea.array-input", element).each(function (i) {
@@ -86,6 +86,7 @@ function DSPXBlock(runtime, element, data) {
         }
         if (highlight_correct) {
             $(document).on('input', ".answer-input", function () {
+                console.log($(this));
                 $(this).removeClass("dsp-incorrect-input");
                 $(this).removeClass("dsp-correct-input");
             });
