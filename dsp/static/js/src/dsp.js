@@ -49,10 +49,13 @@ function highlight_correctness(state) {
 }
 
 function show_graphic_error(element){
+    console.log($(element));
+    console.log($(element).find('div'));
     var error_message = $('<div/>', {
         class: 'graphic-error',
         title: 'При построении графика произошла ошибка. Проверьте праввильность введенных данных.'
-    }).appendTo(element.find('div'));
+    })
+    $(element).find('div').html(error_message)
 
 
 }
