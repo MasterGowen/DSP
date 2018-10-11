@@ -107,19 +107,19 @@ class DSPXBlock(XBlock):
         # TO-DO: проверка возможности ответа
 
         self.student_state["answer"] = data
-
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 1")
         result = check_answer(data, self.lab_source_data)
 
         # log.info("!!!!!!!!!!!!!!!!!!!!!!!")
         # log.info()
-
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 2")
         self.score = round(self.maximum_score * result["score"])
-
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 3")
         self.student_state["score"] = self.score
         self.student_state["correctness"] = result["correctness"]
-
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 4")
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
-
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 5")
         return Response(json_body=self.student_state)
 
     @XBlock.json_handler
