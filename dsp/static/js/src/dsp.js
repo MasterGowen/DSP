@@ -57,6 +57,14 @@ function show_graphic_error(element) {
     $(element).html(error_message)
 }
 
+function show_graphic_load(element){
+        var loading_message = $('<div/>', {
+        class: 'graphic-loading',
+        text: "Строим график ...",
+    });
+    $(element).html(error_message)
+}
+
 function log_ajax_error(jqXHR, exception) {
     var msg = '';
     if (jqXHR.status === 0) {

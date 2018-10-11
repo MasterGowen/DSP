@@ -5,8 +5,10 @@ function DSPXBlock(runtime, element, data) {
     var highlight_correct = true;
 
     function build_graphics() {
-        $("#graphic_1", element).html(""); //<div style='background: #f3f3f2;width: 100%;height:330px;'></div>
-        $("#graphic_2", element).html("");
+        // $("#graphic_1", element).html(""); //<div style='background: #f3f3f2;width: 100%;height:330px;'></div>
+        // $("#graphic_2", element).html("");
+        show_graphic_load($('#graphic_1'));
+        show_graphic_load($('#graphic_2'));
         $.ajax({
             type: "POST",
             url: get_graphics,
