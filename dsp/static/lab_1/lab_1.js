@@ -5,8 +5,8 @@ function DSPXBlock(runtime, element, data) {
     var highlight_correct = true;
 
     function build_graphics() {
-        // $("#graphic_1", element).html("<div style='background: #f3f3f2;width: 100%;height:330px;'></div>");
-        // $("#graphic_2", element).html("<div style='background: #f3f3f2;width: 100%;height:330px;'></div>");
+        $("#graphic_1", element).html(""); //<div style='background: #f3f3f2;width: 100%;height:330px;'></div>
+        $("#graphic_2", element).html("");
         $.ajax({
             type: "POST",
             url: get_graphics,
