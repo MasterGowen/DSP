@@ -73,8 +73,26 @@ function DSPXBlock(runtime, element, data) {
         build_graphics();
     }
 
+    function buttons_disable() {
+        var student_data = generateAnswer();
+        if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_a)) {
+            $("#calculate_graphics").removeAttr("disabled");
+            if (parseFloat(student_data.student_p) && parseFloat(student_data.student_ubl)) {
+                $("#check_answer").removeAttr("disabled");
+            }
+            else {
+                $("#check_answer").attr('disabled', 'disabled');
+            }
+        }
+        else {
+            $("#calculate_graphics").attr('disabled', 'disabled');
+            $("#check_answer").attr('disabled', 'disabled');
+        }
+    }
+
     $(function ($) {
         // console.log(data);
+        buttons_disable();
         if (data.student_state.answer) {
             build_lab_state(data["student_state"]);
             $("textarea.array-input", element).each(function (i) {
@@ -87,14 +105,14 @@ function DSPXBlock(runtime, element, data) {
 
         $(document).on('input', ".answer-input", function () {
             console.log($(this));
+            buttons_disable();
             if (highlight_correct) {
                 $(this).removeClass("dsp-incorrect-input");
                 $(this).removeClass("dsp-correct-input");
             }
 
-            var student_data = generateAnswer();
-            // if
-            console.log(student_data)
+
+            // console.log(student_data)
 
         });
 
