@@ -5,8 +5,8 @@ function DSPXBlock(runtime, element, data) {
     var highlight_correct = true;
 
     function build_graphics() {
-        $("#graphic_1", element).html("<div style='background: #f3f3f2;width: 100%;height:330px;'></div>");
-        $("#graphic_2", element).html("<div style='background: #f3f3f2;width: 100%;height:330px;'></div>");
+        // $("#graphic_1", element).html("<div style='background: #f3f3f2;width: 100%;height:330px;'></div>");
+        // $("#graphic_2", element).html("<div style='background: #f3f3f2;width: 100%;height:330px;'></div>");
         $.ajax({
             type: "POST",
             url: get_graphics,
@@ -17,6 +17,7 @@ function DSPXBlock(runtime, element, data) {
             },
             error: function (jqXHR, exception) {
                 var msg = '';
+                show_graphic_error($('#graphic_1'));
                 if (jqXHR.status === 0) {
                     msg = 'Not connect.\n Verify Network.';
                 } else if (jqXHR.status == 404) {

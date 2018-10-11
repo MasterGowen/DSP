@@ -48,6 +48,15 @@ function highlight_correctness(state) {
     })
 }
 
+function show_graphic_error(element){
+    var error_message = $('<div/>', {
+        class: 'graphic-error',
+        title: 'При построении графика произошла ошибка. Проверьте праввильность введенных данных.'
+    }).appendTo(element.find('div'));
+
+
+}
+
 function example_data_lab_1() {
     var signal = "[1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]"
     var filter = "[1. 1. 1. 1. 1. 1. 1. 1. 1.]";
