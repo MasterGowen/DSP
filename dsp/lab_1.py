@@ -159,51 +159,53 @@ def check_answer(student_data, source_data):
 
     p_et = i - 1
 
-    correct_answer = dict()
-    correct_answer["d_et"] = d_et.tolist()
-    correct_answer["b_et"] = b_et.tolist()
-    correct_answer["a_et"] = a_et
-    correct_answer["ubl_et"] = ubl_et
-    correct_answer["p_et"] = p_et
-
+    # correct_answer = dict()
+    # correct_answer["d_et"] = d_et.tolist()
+    # correct_answer["b_et"] = b_et.tolist()
+    # correct_answer["a_et"] = a_et
+    # correct_answer["ubl_et"] = ubl_et
+    # correct_answer["p_et"] = p_et
     max_score = 5
     score = 0
     result = dict()
     result["correctness"] = dict()
-    result["correct_answer"] = correct_answer
-
     if arrays_is_equal(d_et, student_d):
         result["correctness"]["signal_correctness"] = True
         score += 1
     else:
         result["correctness"]["signal_correctness"] = False
+    result["correctness"]["signal_correct"] = d_et.tolist()
 
     if arrays_is_equal(b_et, student_b):
         result["correctness"]["filter_correctness"] = True
         score += 1
     else:
         result["correctness"]["filter_correctness"] = False
+    result["correctness"]["filter_correct"] = b_et.tolist()
 
     if numbers_is_equal(a_et, student_a, tol=0.1):
         result["correctness"]["a_correctness"] = True
         score += 1
     else:
         result["correctness"]["a_correctness"] = False
+    result["correctness"]["a_correct"] = a_et
 
     if numbers_is_equal(ubl_et, student_ubl, tol=0.1):
         result["correctness"]["ubl_correctness"] = True
         score += 1
     else:
         result["correctness"]["ubl_correctness"] = False
+    result["correctness"]["ubl_correct"] = ubl_et
 
     if numbers_is_equal(p_et, student_p, tol=0.1):
         result["correctness"]["p_correctness"] = True
         score += 1
     else:
         result["correctness"]["p_correctness"] = False
+    result["correctness"]["p_correct"] = p_et
 
     result["score"] = float(score) / float(max_score)
-
+    # result["correct_answer"] = correct_answer
     return result
 
 
