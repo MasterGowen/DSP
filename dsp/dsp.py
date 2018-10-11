@@ -102,35 +102,24 @@ class DSPXBlock(XBlock):
 
     @XBlock.json_handler
     def student_submit(self, data, suffix=''):
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка")
-
         # TO-DO: проверка возможности ответа
-
         self.student_state["answer"] = data
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 1")
         result = check_answer(data, self.lab_source_data)
-
-        # log.info("!!!!!!!!!!!!!!!!!!!!!!!")
-        # log.info()
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 2")
         self.score = round(self.maximum_score * result["score"])
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 3")
         self.student_state["score"] = self.score
         self.student_state["correctness"] = result["correctness"]
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 4")
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос проверка 5")
         return Response(json_body=self.student_state)
 
     @XBlock.json_handler
     def get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
         log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос графики")
-        # try:
-        graphics = get_graphics(data, self.lab_source_data)
-        return Response(json_body={"graphics": graphics})
-        # except:
-            # return Response('Error!', 500)
+        try:
+            graphics = get_graphics(data, self.lab_source_data)
+            return Response(json_body={"graphics": graphics})
+        except:
+            return Response('Error!', 500)
 
     def get_general_context(self):
         general_context = {
