@@ -212,6 +212,7 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def studio_submit(self, data, suffix=''):
         self.display_name = data.get('display_name')
+        self.current_lab = data.get('current_lab')
 
         return {'result': 'success'}
 
