@@ -124,11 +124,11 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
-        try:
-            graphics = get_graphics(data, self.lab_source_data)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        # try:
+        graphics = get_graphics(data, self.lab_source_data)
+        return Response(json_body={"graphics": graphics})
+        # except:
+            # return Response('Error!', 500)
 
     def get_general_context(self):
         general_context = {
