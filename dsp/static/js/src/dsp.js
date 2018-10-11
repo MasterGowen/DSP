@@ -52,7 +52,7 @@ function show_graphic_error(element) {
     // console.log($(element));
     var error_message = $('<div/>', {
         class: 'graphic-error',
-        text: "При построении графика произошла ошибка." + "<br />" + "Проверьте праввильность введенных данных.",
+        text: "При построении графика произошла ошибка.\nПроверьте праввильность введенных данных.",
     });
     $(element).html(error_message)
 }
