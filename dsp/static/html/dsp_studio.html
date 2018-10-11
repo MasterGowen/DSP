@@ -19,7 +19,12 @@
   </div>
 
   <div id="scenario-settings" hidden="true">
-
+<!--  {% if lab_scenario|slugify == scenario.number|slugify %} selected="selected" {% endif %} -->
+    <select class="select-lab" name="lab_scenario" selected="{{current_lab}}">
+      {% for lab in lab_list.keys() %}
+          <option value="{{lab}}"> {{scenario[lab]['title']}} </option>
+      {% endfor %}
+    </select>
 
       <li class="field comp-setting-entry is-set">
         <div class="wrapper-comp-setting">

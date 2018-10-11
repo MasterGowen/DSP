@@ -35,6 +35,29 @@ class DSPXBlock(XBlock):
         scope=Scope.settings
     )
 
+    lab_list = JSONField(
+        display_name='Display Name',
+        scope=Scope.settings,
+        default={
+            "lab_1": {
+                "title":  "Лабораторная 1. Исследование цифровых фильтров с конечной импульсной характеристикой",
+            },
+            "lab_2": {
+                "title": "Лабораторная 2. Цифровой спектральный анализ",
+            },
+            "lab_3": {
+                "title": "Лабораторная 3. Цифровой согласованный фильтр",
+            },
+            "lab_4": {
+                "title": "Лабораторная 4. Исследование рекурсивных цифровых фильтров",
+            },
+            "lab_5": {
+                "title": "Лабораторная 5 . Исследование рекурсивных цифровых фильтров",
+            },
+        }
+
+    )
+
     max_attempts = Integer(
         display_name=u"Максимальное количество попыток",
         help=u"",
@@ -114,7 +137,7 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос графики")
+
         try:
             graphics = get_graphics(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
@@ -156,8 +179,8 @@ class DSPXBlock(XBlock):
     def studio_view(self, context=None):
         context = {
             "display_name": self.display_name,
-            "current_lab": self.current_lab
-
+            "current_lab": self.current_lab,
+            "lab_list": self.lab_list,
         }
 
         fragment = Fragment()
