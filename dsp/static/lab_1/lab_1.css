@@ -6,7 +6,7 @@
     padding: 0px;
     margin: 2px;
     position: relative;
-    height: 330px;
+    min-height: 100px;
     background: white;
 }
 

@@ -68,19 +68,19 @@ function show_graphic_load(element){
 function log_ajax_error(jqXHR, exception) {
     var msg = '';
     if (jqXHR.status === 0) {
-        msg = 'Not connect.\n Verify Network.';
+        msg = 'Нет подключения к сети.\n Проверьте интернет-соединение.';
     } else if (jqXHR.status == 404) {
-        msg = 'Requested page not found. [404]';
+        msg = 'Запрашиваемый адрес не найден. Код ошибки: 404';
     } else if (jqXHR.status == 500) {
-        msg = 'Internal Server Error [500].';
+        msg = 'Внутренняя ошибка сервера. Код ошибки: 500';
     } else if (exception === 'parsererror') {
         msg = 'Requested JSON parse failed.';
     } else if (exception === 'timeout') {
-        msg = 'Time out error.';
+        msg = 'Превышено время ожидания.';
     } else if (exception === 'abort') {
-        msg = 'Ajax request aborted.';
+        msg = 'Ajax-соединение прервано.';
     } else {
-        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+        msg = 'Неизвестная ошибка.\n' + jqXHR.responseText;
     }
     console.log(msg);
 }
