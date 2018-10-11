@@ -121,10 +121,13 @@ def get_correct_filter(source_data):
 
 
 def check_answer(student_data, source_data):
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос лолка 1")
+
     N0 = source_data["N0"]
     Ns = source_data["Ns"]
     K = source_data["K"]
     Q = source_data["Q"]
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос лолка 2")
 
     # log.info(source_data["filter_type"])
 
@@ -136,20 +139,24 @@ def check_answer(student_data, source_data):
     student_a = float(student_data["student_a"])
     student_ubl = float(student_data["student_ubl"])
     student_p = float(student_data["student_p"])
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос лолка 3")
 
     d_et = get_correct_signal(source_data)
     b_et = get_correct_filter(source_data)
     a_et = 1
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос лолка 4")
 
     w_et = np.hamming(Ns)
     z_et = signal.lfilter(w_et, 1, d_et)
     fz_et = np.abs(np.fft.fft(z_et))
     mz = max(fz_et)
     dz = np.diff(fz_et)
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос лолка 5")
 
     dz_temp = np.multiply(dz[:-1], dz[1:])
     dz0 = [0 if d > 0 else 1 for d in dz_temp]
     mz1 = max(fz_et * np.append(dz0, np.zeros(len(fz_et) - len(dz0))))
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос лолка 6")
 
     ubl_et = 20 * np.log10(mz1 / mz)
     i = 2
@@ -161,6 +168,7 @@ def check_answer(student_data, source_data):
         i = i + 1
 
     p_et = i - 1
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос лолка 7")
 
     # correct_answer = dict()
     # correct_answer["d_et"] = d_et.tolist()
@@ -168,6 +176,7 @@ def check_answer(student_data, source_data):
     # correct_answer["a_et"] = a_et
     # correct_answer["ubl_et"] = ubl_et
     # correct_answer["p_et"] = p_et
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос лолка 8")
 
     max_score = 5
     score = 0
@@ -207,6 +216,7 @@ def check_answer(student_data, source_data):
     else:
         result["correctness"]["p_correctness"] = False
     result["correctness"]["p_correct"] = p_et
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! запрос лолка 9")
 
     result["score"] = float(score) / float(max_score)
     # result["correct_answer"] = correct_answer
