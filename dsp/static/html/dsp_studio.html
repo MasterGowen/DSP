@@ -22,7 +22,7 @@
 <!--  {% if lab_scenario|slugify == scenario.number|slugify %} selected="selected" {% endif %} -->
     <select class="select-lab" name="lab_scenario" selected="{{current_lab}}">
       {% for lab in lab_list_arr %}
-          <option value="{{lab}}"> {{lab_list[lab]}} </option>
+          <option value="{{lab}}"> {{lab_list}} </option>
       {% endfor %}
     </select>
 
