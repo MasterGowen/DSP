@@ -225,7 +225,7 @@ def get_graphics(student_data, source_data):
         z = signal.lfilter(b, a, d)
         fz = np.abs(np.fft.fft(z))
 
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots(figsize=(6, 6))
     ax.stem(np.arange(N0), z, 'c')
     ax.plot(np.arange(N0), z, 'y', linewidth=3.0)
     ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r', linewidth=3.0)
@@ -241,7 +241,7 @@ def get_graphics(student_data, source_data):
             "html": html
         }
     )
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots(figsize=(6, 6))
     # ax.semilogy(fz)
     if source_data["filter_type"]["window"]["name"] == "hamming":
         ax.semilogy(fz)
