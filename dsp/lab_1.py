@@ -138,9 +138,21 @@ def check_answer(student_data, source_data):
     b_et = get_correct_filter(source_data)
     a_et = 1
 
-    w_et = np.hamming(Ns)
-    z_et = signal.lfilter(w_et, 1, d_et)
-    fz_et = np.abs(np.fft.fft(z_et))
+    if source_data["filter_type"]["window"]["name"] == "hamming":
+        w_et = np.hamming(len(b_et))
+        z_et = signal.lfilter(b_et * w_et, a_et, d_et)
+        fz_et = np.abs(np.fft.fft(z_et))
+    elif source_data["filter_type"]["window"]["name"] == "blackman":  # тут написать алгоритм для Блэкмана
+        w_et = np.blackman(len(b_et))
+        z_et = signal.lfilter(b_et * w_et, a_et, d_et)
+        fz_et = np.abs(np.fft.fft(z_et))
+    else:  # прямоугольное окно
+        z_et = signal.lfilter(b_et, a_et, d_et)
+        fz_et = np.abs(np.fft.fft(z_et))
+
+    # w_et = np.hamming(Ns)
+    # z_et = signal.lfilter(w_et, 1, d_et)
+    # fz_et = np.abs(np.fft.fft(z_et))
     mz = max(fz_et)
     dz = np.diff(fz_et)
 
