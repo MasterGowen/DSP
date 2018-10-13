@@ -216,14 +216,18 @@ def get_graphics(student_data, source_data):
     Ns = len(student_data["student_filter"])
     b = student_data["student_filter"]
     a = float(student_data["student_a"])
+
     z = signal.lfilter(b, a, d)
     fig, ax = plt.subplots(figsize=(4, 4))
     ax.stem(np.arange(N0), z)
+    ax.plot(np.arange(N0), z, 'y')
     ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r')
-    w = np.hamming(Ns)
-    z = signal.lfilter(w, a, d)
-    ax.stem(np.arange(N0), z)
-    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r')
+
+
+    # w = np.hamming(Ns)
+    # z = signal.lfilter(w, a, d)
+    # ax.stem(np.arange(N0), z)
+    # ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r')
     html = mpld3.fig_to_d3(fig)
     graphics.append(
         {
@@ -231,6 +235,7 @@ def get_graphics(student_data, source_data):
             "html": html
         }
     )
+
     fz = np.abs(np.fft.fft(z))
     fig, ax = plt.subplots(figsize=(4, 4))
     ax.semilogy(fz)
