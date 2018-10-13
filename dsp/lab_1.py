@@ -243,7 +243,10 @@ def get_graphics(student_data, source_data):
     )
     fig, ax = plt.subplots(figsize=(8, 8))
     # ax.semilogy(fz)
-    ax.plot(np.arange(N0), fz, 'c', linewidth=3.0)
+    if source_data["filter_type"]["window"]["name"] == "hamming":
+        ax.semilogy(fz)
+    else:
+        ax.plot(np.arange(N0), fz, 'c', linewidth=3.0)
     ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(fz)), 'r')
 
     html = mpld3.fig_to_d3(fig)
