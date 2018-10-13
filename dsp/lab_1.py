@@ -218,10 +218,11 @@ def get_graphics(student_data, source_data):
     a = float(student_data["student_a"])
 
     z = signal.lfilter(b, a, d)
-    fig, ax = plt.subplots(figsize=(10, 10))
-    ax.stem(np.arange(N0), z, 'c')
-    ax.plot(np.arange(N0), z, 'y')
-    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r')
+    fig, ax = plt.subplots(figsize=(8, 8))
+    markerline, stemlines, baseline = ax.stem(np.arange(N0), z, 'c', linewidth=5.0)
+    ax.setp(stemlines, 'linewidth', 4)
+    ax.plot(np.arange(N0), z, 'y', linewidth=5.0)
+    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r', linewidth=5.0)
 
 
     # w = np.hamming(Ns)
