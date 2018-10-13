@@ -214,10 +214,21 @@ def get_graphics(student_data, source_data):
     N0 = len(student_data["student_signal"])
     d = student_data["student_signal"]  # сигнал, вводимый студентом
     Ns = len(student_data["student_filter"])
-    b = student_data["student_filter"]
+    b = student_data["student_filter"]  # фильтр, вводимый студентом
     a = float(student_data["student_a"])
 
-    z = signal.lfilter(b, a, d)
+    if source_data["filter_type"]["window"]["name"] == "hamming":
+        w = np.hamming(len(b))
+        z = signal.lfilter(b * w, 1, d)
+        fz = np.abs(np.fft.fft(z))
+    elif source_data["filter_type"]["window"]["name"] == "blackman":
+        w = np.blackman(len(b))
+        z = signal.lfilter(b * w, a, d)  # тут написать алгоритм для Блэкмана
+        fz = np.abs(np.fft.fft(z))
+    else:  # прямоугольное окно
+        z = signal.lfilter(b, a, d)
+        fz = np.abs(np.fft.fft(z))
+
     fig, ax = plt.subplots(figsize=(8, 8))
     ax.stem(np.arange(N0), z, 'c')
     ax.plot(np.arange(N0), z, 'y', linewidth=3.0)
@@ -234,8 +245,6 @@ def get_graphics(student_data, source_data):
             "html": html
         }
     )
-
-    fz = np.abs(np.fft.fft(z))
     fig, ax = plt.subplots(figsize=(8, 8))
     # ax.semilogy(fz)
     ax.plot(np.arange(N0), fz, 'c', linewidth=3.0)
