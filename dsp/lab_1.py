@@ -223,9 +223,8 @@ def get_graphics(student_data, source_data):
     ax.plot(np.arange(N0), z, 'y', linewidth=3.0)
     ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r', linewidth=3.0)
 
-
     # w = np.hamming(Ns)
-    # z = signal.lfilter(w, a, d)
+    # z = signal.lfilter(b*w, a, d)
     # ax.stem(np.arange(N0), z)
     # ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r')
     html = mpld3.fig_to_d3(fig)
@@ -238,7 +237,10 @@ def get_graphics(student_data, source_data):
 
     fz = np.abs(np.fft.fft(z))
     fig, ax = plt.subplots(figsize=(8, 8))
-    ax.semilogy(fz)
+    # ax.semilogy(fz)
+    ax.plot(np.arange(N0), fz, 'c', linewidth=3.0)
+    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(fz)), 'r')
+
     html = mpld3.fig_to_d3(fig)
     graphics.append(
         {
