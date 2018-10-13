@@ -185,7 +185,8 @@ class DSPXBlock(XBlock):
         context = {
             "display_name": self.display_name,
             "current_lab": self.current_lab,
-            "lab_list": self.lab_list
+            "lab_list": self.lab_list,
+            "maximum_score": self.maximum_score,
         }
 
         fragment = Fragment()

@@ -119,14 +119,8 @@ def get_correct_filter(source_data):
 
 
 def check_answer(student_data, source_data):
-
     N0 = source_data["N0"]
-    Ns = source_data["Ns"]
     K = source_data["K"]
-    Q = source_data["Q"]
-
-    # signal_type = source_data["signal_type"]
-    # filter_type = source_data["filter_type"]
 
     student_d = student_data["student_signal"]
     student_b = student_data["student_filter"]
@@ -150,9 +144,6 @@ def check_answer(student_data, source_data):
         z_et = signal.lfilter(b_et, a_et, d_et)
         fz_et = np.abs(np.fft.fft(z_et))
 
-    # w_et = np.hamming(Ns)
-    # z_et = signal.lfilter(w_et, 1, d_et)
-    # fz_et = np.abs(np.fft.fft(z_et))
     mz = max(fz_et)
     dz = np.diff(fz_et)
 
@@ -168,15 +159,8 @@ def check_answer(student_data, source_data):
         z0 = [1 if d / max(f_et) < 0.707 else 0 for d in f_et]
         kf = len(np.where(np.array(z0[:int(np.floor(len(z0) / 2))]) < 1)[0]) + 1
         i = i + 1
-
     p_et = i - 1
 
-    # correct_answer = dict()
-    # correct_answer["d_et"] = d_et.tolist()
-    # correct_answer["b_et"] = b_et.tolist()
-    # correct_answer["a_et"] = a_et
-    # correct_answer["ubl_et"] = ubl_et
-    # correct_answer["p_et"] = p_et
     max_score = 5
     score = 0
     result = dict()
@@ -217,7 +201,7 @@ def check_answer(student_data, source_data):
     result["correctness"]["p_correct"] = p_et
 
     result["score"] = float(score) / float(max_score)
-    # result["correct_answer"] = correct_answer
+
     return result
 
 
