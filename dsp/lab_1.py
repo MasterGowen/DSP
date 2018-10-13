@@ -219,8 +219,7 @@ def get_graphics(student_data, source_data):
 
     z = signal.lfilter(b, a, d)
     fig, ax = plt.subplots(figsize=(8, 8))
-    markerline, stemlines, baseline = ax.stem(np.arange(N0), z, 'c', linewidth=5.0)
-    ax.setp(stemlines, 'linewidth', 4)
+    ax.stem(np.arange(N0), z, 'c')
     ax.plot(np.arange(N0), z, 'y', linewidth=5.0)
     ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r', linewidth=5.0)
 
@@ -238,7 +237,7 @@ def get_graphics(student_data, source_data):
     )
 
     fz = np.abs(np.fft.fft(z))
-    fig, ax = plt.subplots(figsize=(10, 10))
+    fig, ax = plt.subplots(figsize=(8, 8))
     ax.semilogy(fz)
     html = mpld3.fig_to_d3(fig)
     graphics.append(
