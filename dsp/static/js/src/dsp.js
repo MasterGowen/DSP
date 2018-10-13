@@ -19,14 +19,20 @@ function parseTextSignal(signal_string) {
 }
 
 function process_array_input(input) {
+    max_array_length = parseInt($(input).data('maxLength')) || 2000;
     parse_array = parseTextSignal(input.value);
     var message = "";
     if (parse_array.signal_valid) {
         if (parse_array.signal.length > 0) {
-            message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
+            if (parse_array.signal.length < max_array_length) {
+                message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
+            }
+            else{
+                message = "<span>Максимально допустимая длина " + $(input).data('arrayType') + "а составляет " + max_array_length + "отсчётов.</span>";
+            }
         }
         else {
-            message = "<span>Введите сигнал!</span>";
+            message = "<span class='error-text'>Введите " + $(input).data('arrayType') + "!</span>";
         }
     }
     else {

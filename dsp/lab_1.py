@@ -119,8 +119,6 @@ def get_correct_filter(source_data):
 
 
 def check_answer(student_data, source_data):
-    N0 = source_data["N0"]
-    K = source_data["K"]
 
     student_d = student_data["student_signal"]
     student_b = student_data["student_filter"]
@@ -128,6 +126,8 @@ def check_answer(student_data, source_data):
     student_ubl = float(student_data["student_ubl"])
     student_p = float(student_data["student_p"])
 
+    N0 = source_data["N0"]
+    K = source_data["K"]
     d_et = get_correct_signal(source_data)
     b_et = get_correct_filter(source_data)
     a_et = 1
@@ -146,7 +146,6 @@ def check_answer(student_data, source_data):
 
     mz = max(fz_et)
     dz = np.diff(fz_et)
-
     dz_temp = np.multiply(dz[:-1], dz[1:])
     dz0 = [0 if d > 0 else 1 for d in dz_temp]
     mz1 = max(fz_et * np.append(dz0, np.zeros(len(fz_et) - len(dz0))))
@@ -209,7 +208,7 @@ def get_graphics(student_data, source_data):
     graphics = []
     N0 = len(student_data["student_signal"])
     d = student_data["student_signal"]  # сигнал, вводимый студентом
-    Ns = len(student_data["student_filter"])
+    # Ns = len(student_data["student_filter"])
     b = student_data["student_filter"]  # фильтр, вводимый студентом
     a = float(student_data["student_a"])
 
@@ -247,7 +246,7 @@ def get_graphics(student_data, source_data):
         ax.semilogy(fz)
     else:
         ax.plot(np.arange(N0), fz, 'c', linewidth=3.0)
-    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(fz)), 'r')
+    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(fz)), 'r', linewidth=3.0)
 
     html = mpld3.fig_to_d3(fig)
     graphics.append(
