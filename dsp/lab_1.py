@@ -220,8 +220,8 @@ def get_graphics(student_data, source_data):
     z = signal.lfilter(b, a, d)
     fig, ax = plt.subplots(figsize=(8, 8))
     ax.stem(np.arange(N0), z, 'c')
-    ax.plot(np.arange(N0), z, 'y', linewidth=5.0)
-    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r', linewidth=5.0)
+    ax.plot(np.arange(N0), z, 'y', linewidth=3.0)
+    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(z)), 'r', linewidth=3.0)
 
 
     # w = np.hamming(Ns)
