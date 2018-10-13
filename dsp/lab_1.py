@@ -48,16 +48,16 @@ def get_source_data():
             "name": "hamming",
             "title": "Хэмминга"
         },
-        {
-            "name": "blackman",
-            "title": "Блэкмана"
-        },
+        # {
+        #     "name": "blackman",
+        #     "title": "Блэкмана"
+        # },
         {
             "name": "rectangular",
             "title": "прямоугольное"
         }
     ]
-    filter_window = filter_windows[2]  # random.choice(filter_windows)
+    filter_window = random.choice(filter_windows)  # filter_windows[2]
     sum_sub = random.choice([
         {
             "name": "sum",
