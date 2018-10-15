@@ -92,10 +92,14 @@ function example_data_lab_1() {
     var signal = "[1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]"
     var filter = "[1. 1. 1. 1. 1. 1. 1. 1. 1.]";
     var a = "1";
+    var p = "7";
+    var ubl = "7";
     var window = "hamming";
 
     $("textarea#input_student_signal").val(signal);
     $("textarea#input_student_filter").val(filter);
     $("#input_student_a").val(a);
+    $("#input_student_p").val(p);
+    $("#input_student_ubl").val(ubl);
     $('input:radio[name="input_student_window"]').filter('[value="' + window + '"]').attr('checked', true);
 }
