@@ -1,13 +1,14 @@
 /* Javascript for DSPXBlock. */
 
-function parseTextSignal(signal_string, max_length) {
-    var max_length = max_length || 1000;
+function parseTextSignal(input) {
+    var max_array_length = parseInt($(input).data('maxLength')) || 1000;
+    signal_string = input.value;
     var signal_array = signal_string.replace('[', '').replace(']', '').replace('(', '').replace(')', '').split(/[ ,]+/);
     var cleaned_array = signal_array.filter(function (item) {
         return item != "";
     });
     signal_valid = cleaned_array.every((item) => !isNaN(parseFloat(item)));
-    if (signal_valid && cleaned_array.length < max_length) {
+    if (signal_valid && cleaned_array.length < max_array_length) {
         signal = cleaned_array.map(function (item) {
             return parseFloat(item)
         });
@@ -20,10 +21,10 @@ function parseTextSignal(signal_string, max_length) {
 }
 
 function process_array_input(input) {
-    console.log(parseInt($(input).data('maxLength')));
-    console.log($(input));
+    // console.log(parseInt($(input).data('maxLength')));
+    // console.log($(input));
     var max_array_length = parseInt($(input).data('maxLength')) || 1000;
-    parse_array = parseTextSignal(input.value, max_array_length);
+    parse_array = parseTextSignal(input);
     var message = "";
     if (parse_array.signal_valid) {
         if (parse_array.signal.length > 0) {
