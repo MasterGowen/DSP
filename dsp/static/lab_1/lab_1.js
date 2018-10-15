@@ -30,6 +30,7 @@ function DSPXBlock(runtime, element, data) {
     }
 
     $('#check_answer', element).click(function (event) {
+        console.info("Начали проверку");
         $.ajax({
             type: "POST",
             url: student_submit,
@@ -39,6 +40,7 @@ function DSPXBlock(runtime, element, data) {
                 $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
                 $('.points', element).text(result.score + ' из ' + data.maximum_score);
                 if (highlight_correct) highlight_correctness(result.correctness);
+                console.info("Закончили проверку");
             },
             contentType: 'application/json; charset=utf-8'
         });

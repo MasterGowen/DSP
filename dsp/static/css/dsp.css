@@ -83,3 +83,7 @@
 .dsp-correct-input{
     border: 2px solid #009b00 !important;
 }
+
+.xblock button.btn-brand:hover {
+    background-color: #065683;
+}
