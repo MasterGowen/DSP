@@ -41,7 +41,7 @@ def get_source_data():
                 Q, N0)
         }
     ]
-    signal_type = signal_types[0]  # random.choice(signal_types)
+    signal_type = random.choice(signal_types)  # signal_types[0]
 
     filter_windows = [
         {
@@ -208,7 +208,6 @@ def get_graphics(student_data, source_data):
     graphics = []
     N0 = len(student_data["student_signal"])
     d = student_data["student_signal"]  # сигнал, вводимый студентом
-    # Ns = len(student_data["student_filter"])
     b = student_data["student_filter"]  # фильтр, вводимый студентом
     a = float(student_data["student_a"])
 
@@ -241,11 +240,11 @@ def get_graphics(student_data, source_data):
         }
     )
     fig, ax = plt.subplots(figsize=(6, 6))
-    # ax.semilogy(fz)
-    if source_data["filter_type"]["window"]["name"] == "hamming":
-        ax.semilogy(fz)
-    else:
-        ax.plot(np.arange(N0), fz, 'c', linewidth=3.0)
+
+    # if source_data["filter_type"]["window"]["name"] == "hamming":
+    #     ax.semilogy(fz)
+    # else:
+    ax.plot(np.arange(N0), fz, 'c', linewidth=3.0)
     ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(fz)), 'r', linewidth=3.0)
 
     html = mpld3.fig_to_d3(fig)
