@@ -10,8 +10,8 @@ function DSPXBlock(runtime, element, data) {
     function build_graphics() {
         // $("#graphic_1", element).html(""); //<div style='background: #f3f3f2;width: 100%;height:330px;'></div>
         // $("#graphic_2", element).html("");
-        show_graphic_load($('#graphic_1'));
-        show_graphic_load($('#graphic_2'));
+        show_graphic_load($('#graphic_1', element));
+        show_graphic_load($('#graphic_2', element));
         $.ajax({
             type: "POST",
             url: get_graphics,
@@ -21,8 +21,8 @@ function DSPXBlock(runtime, element, data) {
                 $("#graphic_2", element).html(result["graphics"][1]["html"]);
             },
             error: function (jqXHR, exception) {
-                show_graphic_error($('#graphic_1'));
-                show_graphic_error($('#graphic_2'));
+                show_graphic_error($('#graphic_1', element));
+                show_graphic_error($('#graphic_2', element));
                 log_ajax_error(jqXHR, exception);
             },
             contentType: 'application/json; charset=utf-8'
@@ -80,17 +80,17 @@ function DSPXBlock(runtime, element, data) {
         var student_data = generateAnswer();
         console.log(student_data);
         if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_a)) {
-            $("#calculate_graphics").removeAttr("disabled");
+            $("#calculate_graphics", element).removeAttr("disabled");
             if (parseFloat(student_data.student_p) && parseFloat(student_data.student_ubl)) {
-                $("#check_answer").removeAttr("disabled");
+                $("#check_answer", element).removeAttr("disabled");
             }
             else {
-                $("#check_answer").attr('disabled', 'disabled');
+                $("#check_answer", element).attr('disabled', 'disabled');
             }
         }
         else {
-            $("#calculate_graphics").attr('disabled', 'disabled');
-            $("#check_answer").attr('disabled', 'disabled');
+            $("#calculate_graphics", element).attr('disabled', 'disabled');
+            $("#check_answer", element).attr('disabled', 'disabled');
         }
     }
 
@@ -108,7 +108,7 @@ function DSPXBlock(runtime, element, data) {
         }
         buttons_disable();
 
-        $(document).on('input', ".answer-input", function () {
+        $(element).on('input', ".answer-input", function () {
             // console.log($(this));
             // console.log($(this));
             buttons_disable();

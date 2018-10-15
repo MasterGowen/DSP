@@ -1,7 +1,9 @@
 /* Javascript for DSPXBlock. */
 
+var max_arr_len = 1000;
+
 function parseTextSignal(input) {
-    var max_array_length = parseInt($(input).data('maxLength')) || 1000;
+    var max_array_length = parseInt($(input).data('maxLength')) || max_arr_len;
     console.log(input);
     signal_string = $(input).val();
     var signal_array = signal_string.replace('[', '').replace(']', '').replace('(', '').replace(')', '').split(/[ ,]+/);
@@ -24,7 +26,7 @@ function parseTextSignal(input) {
 function process_array_input(input) {
     // console.log(parseInt($(input).data('maxLength')));
     // console.log($(input));
-    var max_array_length = parseInt($(input).data('maxLength')) || 1000;
+    var max_array_length = parseInt($(input).data('maxLength')) || max_arr_len;
     parse_array = parseTextSignal(input);
     var message = "";
     if (parse_array.signal_valid) {
