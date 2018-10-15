@@ -1,12 +1,12 @@
 /* Javascript for DSPXBlock. */
 
-function parseTextSignal(signal_string) {
+function parseTextSignal(signal_string, max_length) {
     var signal_array = signal_string.replace('[', '').replace(']', '').replace('(', '').replace(')', '').split(/[ ,]+/);
     var cleaned_array = signal_array.filter(function (item) {
         return item != "";
     });
     signal_valid = cleaned_array.every((item) => !isNaN(parseFloat(item)));
-    if (signal_valid) {
+    if (signal_valid && cleaned_array.length < max_length) {
         signal = cleaned_array.map(function (item) {
             return parseFloat(item)
         });
@@ -20,23 +20,18 @@ function parseTextSignal(signal_string) {
 
 function process_array_input(input) {
     max_array_length = parseInt($(input).data('maxLength')) || 2000;
-    parse_array = parseTextSignal(input.value);
+    parse_array = parseTextSignal(input.value, max_array_length);
     var message = "";
     if (parse_array.signal_valid) {
         if (parse_array.signal.length > 0) {
-            if (parse_array.signal.length < max_array_length) {
-                message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
-            }
-            else{
-                message = "<span>Максимально допустимая длина " + $(input).data('arrayType') + "а составляет " + max_array_length + "отсчётов.</span>";
-            }
+            message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
         }
         else {
             message = "<span class='error-text'>Введите " + $(input).data('arrayType') + "!</span>";
         }
     }
     else {
-        message = "<span class='error-text'>Ошибка формата ввода " + $(input).data('arrayType') + "а!</span>";
+        message = "<span class='error-text'>Ошибка формата ввода " + $(input).data('arrayType') + "а!" + " Максимально допустимая длина " + $(input).data('arrayType') + "а составляет " + max_array_length + " отсчётов.</span>";
 
     }
     $(input).parent().find(".validation-message").html(message)
@@ -63,8 +58,8 @@ function show_graphic_error(element) {
     $(element).html(error_message)
 }
 
-function show_graphic_load(element){
-        var loading_message = $('<div/>', {
+function show_graphic_load(element) {
+    var loading_message = $('<div/>', {
         class: 'graphic-loading',
         text: "Строим график ...",
     });
