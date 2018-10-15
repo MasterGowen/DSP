@@ -77,7 +77,7 @@ class DSPXBlock(XBlock):
         scope=Scope.user_state
     )
 
-    maximum_score = Float(
+    maximum_score = Integer(
         display_name=u"Максимальное количество баллов",
         help=(u"Максимальное количество баллов",
               u"которое может получить студент."),
@@ -186,7 +186,7 @@ class DSPXBlock(XBlock):
             "display_name": self.display_name,
             "current_lab": self.current_lab,
             "lab_list": self.lab_list,
-            "maximum_score": int(self.maximum_score),
+            "maximum_score": self.maximum_score,
         }
 
         fragment = Fragment()
