@@ -214,7 +214,7 @@ class DSPXBlock(XBlock):
     def studio_submit(self, data, suffix=''):
         self.display_name = data.get('display_name')
         self.current_lab = data.get('current_lab')
-        self.maximum_score = int(data.get('maximum_score'))
+        self.maximum_score = int(float(data.get('maximum_score')))
 
         return {'result': 'success'}
 
