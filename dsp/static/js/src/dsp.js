@@ -2,7 +2,8 @@
 
 function parseTextSignal(input) {
     var max_array_length = parseInt($(input).data('maxLength')) || 1000;
-    signal_string = input.value;
+    console.log(input);
+    signal_string = $(input).val();
     var signal_array = signal_string.replace('[', '').replace(']', '').replace('(', '').replace(')', '').split(/[ ,]+/);
     var cleaned_array = signal_array.filter(function (item) {
         return item != "";
