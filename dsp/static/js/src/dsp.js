@@ -36,7 +36,7 @@ function process_array_input(input) {
         }
     }
     else {
-        message = "<span class='error-text'>Ошибка формата ввода " + $(input).data('arrayType') + "а!" + " Максимально допустимая длина " + $(input).data('arrayType') + "а составляет " + max_array_length + " отсчётов.</span>";
+        message = "<span class='error-text'>Ошибка ввода " + $(input).data('arrayType') + "а!" + " Максимально допустимая длина " + $(input).data('arrayType') + "а составляет " + max_array_length + " отсчётов.</span>";
 
     }
     $(input).parent().find(".validation-message").html(message)
