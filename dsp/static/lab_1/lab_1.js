@@ -121,6 +121,11 @@ function DSPXBlock(runtime, element, data) {
             $(this).change(function () {
                 process_array_input(this);
             });
+
+            // $(this).bind('textarea propertychange', function() {
+            // // console.log(this.value);
+            //   process_array_input(this);
+            // });
         });
 
 
