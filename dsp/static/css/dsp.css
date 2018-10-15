@@ -86,4 +86,6 @@
 
 .xblock button.btn-brand:hover {
     background-color: #065683;
+    background-image: none;
+    box-shadow: none;
 }
