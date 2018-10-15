@@ -4,6 +4,9 @@ function DSPXBlock(runtime, element, data) {
     var get_graphics = runtime.handlerUrl(element, 'get_graphics');
     var highlight_correct = true;
 
+    // var max_signal_length = parseInt($('#input_student_signal').data('maxLength')) || 1000;
+    // var max_filter_length = parseInt($('#input_student_signal').data('maxLength')) || 500;
+
     function build_graphics() {
         // $("#graphic_1", element).html(""); //<div style='background: #f3f3f2;width: 100%;height:330px;'></div>
         // $("#graphic_2", element).html("");
@@ -106,7 +109,8 @@ function DSPXBlock(runtime, element, data) {
         buttons_disable();
 
         $(document).on('input', ".answer-input", function () {
-            console.log($(this));
+            // console.log($(this));
+            // console.log($(this));
             buttons_disable();
             if (highlight_correct) {
                 $(this).removeClass("dsp-incorrect-input");
