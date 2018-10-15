@@ -4,7 +4,6 @@ var max_arr_len = 1000;
 
 function parseTextSignal(input) {
     var max_array_length = parseInt($(input).data('maxLength')) || max_arr_len;
-    console.log(input);
     signal_string = $(input).val();
     var signal_array = signal_string.replace('[', '').replace(']', '').replace('(', '').replace(')', '').split(/[ ,]+/);
     var cleaned_array = signal_array.filter(function (item) {
@@ -24,8 +23,6 @@ function parseTextSignal(input) {
 }
 
 function process_array_input(input) {
-    // console.log(parseInt($(input).data('maxLength')));
-    // console.log($(input));
     var max_array_length = parseInt($(input).data('maxLength')) || max_arr_len;
     parse_array = parseTextSignal(input);
     var message = "";
@@ -46,7 +43,6 @@ function process_array_input(input) {
 
 function highlight_correctness(state) {
     Object.keys(state).forEach(function (item) {
-        // console.log(item);
         if (state[item] == true) {
             $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
         }
@@ -57,7 +53,6 @@ function highlight_correctness(state) {
 }
 
 function show_graphic_error(element) {
-    // console.log($(element));
     var error_message = $('<div/>', {
         class: 'graphic-error',
         text: "При построении графика произошла ошибка.\nПроверьте правильность введенных данных.",
@@ -90,7 +85,7 @@ function log_ajax_error(jqXHR, exception) {
     } else {
         msg = 'Неизвестная ошибка.\n' + jqXHR.responseText;
     }
-    console.log(msg);
+    console.error(msg);
 }
 
 function example_data_lab_1() {

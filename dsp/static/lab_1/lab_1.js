@@ -78,7 +78,6 @@ function DSPXBlock(runtime, element, data) {
 
     function buttons_disable() {
         var student_data = generateAnswer();
-        console.log(student_data);
         if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_a)) {
             $("#calculate_graphics", element).removeAttr("disabled");
             if (parseFloat(student_data.student_p) && parseFloat(student_data.student_ubl)) {
@@ -109,22 +108,15 @@ function DSPXBlock(runtime, element, data) {
         buttons_disable();
 
         $(element).on('input', ".answer-input", function () {
-            // console.log($(this));
-            // console.log($(this));
             buttons_disable();
             if (highlight_correct) {
                 $(this).removeClass("dsp-incorrect-input");
                 $(this).removeClass("dsp-correct-input");
             }
-
-
-            // console.log(student_data)
-
         });
 
         $("textarea.array-input", element).each(function (i) {
             $(this).change(function () {
-                console.log(this);
                 process_array_input(this);
             });
         });
