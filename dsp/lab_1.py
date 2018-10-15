@@ -41,7 +41,7 @@ def get_source_data():
                 Q, N0)
         }
     ]
-    signal_type = random.choice(signal_types)  # signal_types[0]
+    signal_type = signal_types[0]  # random.choice(signal_types)  #
 
     filter_windows = [
         {
