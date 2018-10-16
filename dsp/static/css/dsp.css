@@ -6,14 +6,23 @@
 
 .dsp_block p {
     margin: 6px 0px !important;
+    font-weight: 300;
 }
+
+.dsp_block span {
+    font-weight: 300;
+}
+
 
 .dsp_block h3 {
     margin-bottom: 16px;
+    font-weight: 600;
 }
 
 .dsp_block {
-    background: #f3f3f2a1;
+    background: #f3f3f27a;
+    border-top: 1px solid #00000030;
+    border-bottom: 1px solid #00000030;
     padding: 10px;
     margin: 10px;
 }
@@ -29,6 +38,7 @@
     height: 100px;
     max-height: 300px;
     margin: 4px;
+    font-size: 0.9em;
 }
 
 .validation-message {
@@ -70,17 +80,17 @@
 }
 
 .signal-highlight {
-    color: #000086;
+    color: #0c0c23;
     background: white;
     padding: 2px;
     font-size: 0.9em;
 }
 
-.dsp-incorrect-input{
+.dsp-incorrect-input {
     border: 2px solid #cb0712 !important;
 }
 
-.dsp-correct-input{
+.dsp-correct-input {
     border: 2px solid #009b00 !important;
 }
 
