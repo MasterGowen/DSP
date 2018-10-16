@@ -41,17 +41,17 @@ def get_source_data():
                 Q, N0)
         }
     ]
-    signal_type = signal_types[1]  # random.choice(signal_types)  #
+    signal_type = random.choice(signal_types)  # signal_types[1]  #
 
     filter_windows = [
         {
             "name": "hamming",
             "title": "Хэмминга"
         },
-        # {
-        #     "name": "blackman",
-        #     "title": "Блэкмана"
-        # },
+        {
+            "name": "blackman",
+            "title": "Блэкмана"
+        },
         {
             "name": "rectangular",
             "title": "прямоугольное"
