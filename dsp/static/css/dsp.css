@@ -112,3 +112,7 @@
     background-image: none;
     box-shadow: none;
 }
+
+span.signal-filter-wording{
+    font-weight: 500 !important;
+}

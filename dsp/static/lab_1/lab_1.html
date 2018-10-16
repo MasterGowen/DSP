@@ -13,10 +13,10 @@
 
 <div class="dsp_block">
     <h3>Блок формирования сигналов</h3>
-    <p>Вам необходимо сформировать следующий сигнал:</p>
-    <ul>
+    <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type.title}}</span></p>
+    <!--<ul>
         <li>{{signal_type.title}}</li>
-    </ul>
+    </ul>-->
     <p>Введите сигнал:</p>
     <div class="array-input-container">
         <textarea id="input_student_signal" data-array-type="сигнал" data-max-length="500"
@@ -28,10 +28,10 @@
 </div>
 <div class="dsp_block">
     <h3>Блок формирования фильтров</h3>
-    <p>Сформировать модель КИХ-фильтра I порядка:</p>
-    <ul>
+    <p>Сформировать модель КИХ-фильтра I порядка: <span class="signal-filter-wording">{{filter_type.title}} с окном: {{filter_type.window.title}}</span></p>
+    <!--<ul>
         <li>{{filter_type.title}} с окном: {{filter_type.window.title}}</li>
-    </ul>
+    </ul>-->
 
     <p>Введите коэффициенты числителя передаточной функции (b):</p>
     <div class="array-input-container">
