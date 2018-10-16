@@ -66,7 +66,7 @@ class DSPXBlock(XBlock):
     max_attempts = Integer(
         display_name=u"Максимальное количество попыток",
         help=u"",
-        default=10,
+        default=0,
         scope=Scope.settings
     )
 
@@ -187,6 +187,7 @@ class DSPXBlock(XBlock):
             "current_lab": self.current_lab,
             "lab_list": self.lab_list,
             "maximum_score": self.maximum_score,
+            "max_attempts": self.max_attempts,
         }
 
         fragment = Fragment()
@@ -215,6 +216,7 @@ class DSPXBlock(XBlock):
         self.display_name = data.get('display_name')
         self.current_lab = data.get('current_lab')
         self.maximum_score = int(float(data.get('maximum_score')))
+        self.max_attempts = data.get('max_attempts')
 
         return {'result': 'success'}
 
