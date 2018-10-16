@@ -27,6 +27,16 @@
     margin: 10px;
 }
 
+.dsp_header {
+    padding: 10px;
+    margin: 10px;
+}
+
+.dsp_footer {
+    padding: 10px;
+    margin: 10px;
+}
+
 .array-input-container {
     display: flex;
 }
