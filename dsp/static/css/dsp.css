@@ -83,6 +83,7 @@
 .numeric-input-container label {
     display: inline-block;
     vertical-align: middle;
+    margin-bottom: 0px !important;
 }
 
 .numeric-input-container input {
