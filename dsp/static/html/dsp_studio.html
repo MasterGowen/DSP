@@ -1,77 +1,63 @@
 <div class="dsp_studio">
-<div class="wrapper-comp-settings editor-with-buttons is-active" id="settings-tab">
+    <div class="wrapper-comp-settings editor-with-buttons is-active" id="settings-tab">
 
-    <ul class="list-input settings-list">
+        <ul class="list-input settings-list">
 
-  <!--  <div id="main-settings">
+            <!--  <div id="main-settings">
 
- <div class="main-settings-content">
+           <div class="main-settings-content">
 
-</div>
+          </div>
 
-  </div>-->
-
-  <div id="scenario-settings">
-
-
-
-      <li class="field comp-setting-entry metadata_entry">
-        <div class="wrapper-comp-setting">
-          <label class="label setting-label" for="display_name">Название:</label>
-          <input class="input setting-input" name="display_name" id="display_name" value="{{display_name}}" type="text" />
+            </div>-->
+            <div id="scenario-settings">
+                <li class="field comp-setting-entry metadata_entry">
+                    <div class="wrapper-comp-setting">
+                        <label class="label setting-label" for="display_name">Название:</label>
+                        <input class="input setting-input" name="display_name" id="display_name"
+                               value="{{display_name}}" type="text"/>
+                    </div>
+                    <span class="tip setting-help">Название задание. Отображается заголовком вверху задания.</span>
+                </li>
+                <li class="field comp-setting-entry metadata_entry">
+                    <div class="wrapper-comp-setting">
+                        <label class="label setting-label" for="display_name">Лабораторная:</label>
+                        <select class="select-lab" name="lab_scenario" selected="{{current_lab}}">
+                            {% for lab in lab_list %}
+                            <option {% if current_lab== lab.id %} selected="selected" {% endif %} value="{{lab.id}}">
+                                {{lab.title}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <span class="tip setting-help">Выбор сценария используемой лабораторной работы.</span>
+                </li>
+                <li class="field comp-setting-entry metadata_entry">
+                    <div class="wrapper-comp-setting">
+                        <label class="label setting-label" for="maximum_score">Максимальное количество баллов:</label>
+                        <input class="input setting-input" name="maximum_score" id="maximum_score"
+                               value="{{maximum_score}}" type="number" min="0" max="100"/>
+                    </div>
+                    <span class="tip setting-help">Определяет количество баллов за задание. Если значение не указано, задание будет оцениваться в десять баллов.</span>
+                </li>
+            </div>
+            <div id="advanced-settings" hidden="true">
+                <li class="field comp-setting-entry is-set">
+                    <div class="wrapper-comp-setting">
+                        <label class="label setting-label" for="sequence">Здесь могут быть расширенные настройки</label>
+                    </div>
+                </li>
+            </div>
+        </ul>
+        <div class="xblock-actions">
+            <ul>
+                <li class="action-item">
+                    <a href="#" class="button action-primary save-button">Save</a>
+                </li>
+                <li class="action-item">
+                    <a href="#" class="button cancel-button">Cancel</a>
+                </li>
+            </ul>
         </div>
-          <span class="tip setting-help">Название задание. Отображается заголовком вверху задания.</span>
-      </li>
-
-      <li class="field comp-setting-entry metadata_entry">
-        <div class="wrapper-comp-setting">
-          <label class="label setting-label" for="display_name">Лабораторная:</label>
-             <select class="select-lab" name="lab_scenario" selected="{{current_lab}}">
-                  {% for lab in lab_list %}
-                      <option {% if current_lab == lab.id %} selected="selected" {% endif %}  value="{{lab.id}}"> {{lab.title}} </option>
-                  {% endfor %}
-             </select>
-        </div>
-          <span class="tip setting-help">Выбор сценария используемой лабораторной работы.</span>
-      </li>
-
-      <li class="field comp-setting-entry metadata_entry">
-        <div class="wrapper-comp-setting">
-          <label class="label setting-label" for="maximum_score">Максимальное количество баллов:</label>
-          <input class="input setting-input" name="maximum_score" id="maximum_score" value="{{maximum_score}}" type="number" min="0" max="100" />
-        </div>
-      </li>
-      <span class="tip setting-help">Определяет количество баллов за задание. Если значение не указано, задание будет оцениваться в десять баллов.</span>
-
-  </div>
-
-  <div id="advanced-settings" hidden="true">
-
-  <li class="field comp-setting-entry is-set">
-        <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="sequence">Здесь могут быть расширенные настройки</label>
-        </div>
-  </li>
-
-
-
-
-
-  </div>
-
-
-</ul>
-
-
-  <div class="xblock-actions">
-    <ul>
-      <li class="action-item">
-        <a href="#" class="button action-primary save-button">Save</a>
-      </li>
-      <li class="action-item">
-        <a href="#" class="button cancel-button">Cancel</a>
-      </li>
-    </ul>
-  </div>
-</div>
+    </div>
 </div>
