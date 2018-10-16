@@ -116,3 +116,7 @@
 span.signal-filter-wording{
     font-weight: 500 !important;
 }
+
+div.task-wording{
+    margin-bottom: 12px;
+}
