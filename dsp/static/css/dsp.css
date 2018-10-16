@@ -36,6 +36,7 @@
     margin-top: 0px;
     margin-bottom: 0px;
     height: 100px;
+    min-height: 100px;
     max-height: 300px;
     margin: 4px;
     font-size: 0.9em;
@@ -80,6 +81,8 @@
 }
 
 .signal-highlight {
+    line-height: -0.1em;
+    letter-spacing: 0.5em;
     color: #0c0c23;
     background: white;
     padding: 2px;

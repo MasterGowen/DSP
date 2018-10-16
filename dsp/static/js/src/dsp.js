@@ -28,7 +28,7 @@ function process_array_input(input) {
     var message = "";
     if (parse_array.signal_valid) {
         if (parse_array.signal.length > 0) {
-            message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <span class='signal-highlight'>" + parse_array.signal.join(" ") + "</span>";
+            message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <p class='signal-highlight'>" + parse_array.signal.join(" ") + "</p>";
         }
         else {
             message = "<span class='error-text'>Введите " + $(input).data('arrayType') + "!</span>";
