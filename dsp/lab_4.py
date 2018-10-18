@@ -25,7 +25,7 @@ def lab_4_get_source_data():
         },
         {
             "name": "constant",
-            "title": "постоянный сигнал длиной \({}\) отсчётов".format(Q)
+            "title": "постоянный сигнал длиной \({}\) отсчётов".format(N0)
         },
         {
             "name": "harmonic_f4",
