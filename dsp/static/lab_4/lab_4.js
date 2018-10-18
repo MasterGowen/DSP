@@ -1,7 +1,13 @@
-
 /* Javascript for DSPXBlock. */
 function DSPXBlock(runtime, element) {
+
+
+
     $(function ($) {
-        console.log("i'm lab 4");
+        $("textarea.array-input", element).each(function (i) {
+            $(this).change(function () {
+                process_array_input(this);
+            });
+        });
     });
 }
