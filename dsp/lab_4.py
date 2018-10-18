@@ -38,10 +38,27 @@ def lab_4_get_source_data():
     ]
     signal_type = random.choice(signal_types)  # signal_types[1]  #
 
+    filter_types = [
+        {
+            "name": "nch_filter",
+            "title": "устойчивый НЧ-фильтр I порядка (накопитель) с полосой пропускания по уровню -3 дБ, равной \(F_s\). Этот фильтр имеет передаточную характеристику вида \(H(z) = \frac{1}{1 + a_1 z^{-1}} \)",
+        },
+        {
+            "name": "vch_filter",
+            "title": "устойчивый ВЧ-фильтр I порядка (рециркулятор) с полосой пропускания по уровню -3 дБ, равной \(F_s\). Этот фильтр имеет передаточную характеристику вида \(H(z) = \frac{1}{1 - a_1 z^{-1}} \)",
+        },
+        {
+            "name": "band_filter",
+            "title": "Полосовой фильтр"
+        }
+    ]
+
+    filter_type = random.choice(filter_types)
 
     context = dict()
     context["N0"] = N0
     context["signal_type"] = signal_type
+    context["filter_type"] = filter_type
     return context
 
 
