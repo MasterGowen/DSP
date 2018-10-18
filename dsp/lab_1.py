@@ -16,7 +16,7 @@ from .calc_utils import arrays_is_equal, numbers_is_equal
 log = logging.getLogger(__name__)
 
 
-def get_source_data():
+def lab_1_get_source_data():
     N0 = 100  # random.randint(10, 200)
     Q = random.randint(2, int(N0 / 3))  # 2 < Q < N0/3
     Ns = 5  # random.randint(5, 12)
@@ -118,7 +118,7 @@ def get_correct_filter(source_data):
     return filter
 
 
-def check_answer(student_data, source_data):
+def lab_1_check_answer(student_data, source_data):
 
     student_d = student_data["student_signal"]
     student_b = student_data["student_filter"]
@@ -204,7 +204,7 @@ def check_answer(student_data, source_data):
     return result
 
 
-def get_graphics(student_data, source_data):
+def lab_1_get_graphics(student_data, source_data):
     graphics = []
     N0 = len(student_data["student_signal"])
     d = student_data["student_signal"]  # сигнал, вводимый студентом

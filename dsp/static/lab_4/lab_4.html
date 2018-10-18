@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-шаблон четвертой лаборатории
-</body>
-</html>
+<div class="dsp_header">
+    <h2 class="problem-header">{{display_name}}</h2>
+    <div class="problem-progress">
+        {% if score == 0 or score %}
+        <me-span class="weight"> Набрано баллов:
+            <me-span class="points">{{score|floatformat:"0" }} из {{maximum_score|floatformat:"0" }}</me-span>
+        </me-span>
+        {% else %}
+        <me-span class="weight">(Максимальное кoличество баллов: {{maximum_score|floatformat:"0" }})</me-span>
+        {% endif %}
+    </div>
+</div>
+
+<div class="dsp_block">
+    <h3>Блок формирования сигналов</h3>
+    <div class="task-wording">
+    <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type.title}}</span></p>
+    </div>
+        <!--<ul>
+        <li>{{signal_type.title}}</li>
+    </ul>-->
+    <p>Введите сигнал:</p>
+    <div class="array-input-container">
+        <textarea id="input_student_signal" data-array-type="сигнал" data-max-length="500"
+                  class="signal-input array-input answer-input"
+                  rows="4" cols="24"
+                  wrap="hard"></textarea>
+        <div class="validation-message"></div>
+    </div>
+</div>
+<div class="dsp_block">
+    <!--<h3>Блок формирования фильтров</h3>-->
+    <!--<div class="task-wording">-->
+    <!--<p>Сформировать модель КИХ-фильтра I порядка: <span class="signal-filter-wording">{{filter_type.title}} с окном: {{filter_type.window.title}}</span></p>-->
+    <!--</div> -->
+    <!--<p>Введите коэффициенты числителя передаточной функции (b):</p>-->
+    <!--<div class="array-input-container">-->
+        <!--<textarea id="input_student_filter" data-array-type="фильтр" data-max-length="100"-->
+                  <!--class="filter-input array-input answer-input"-->
+                  <!--rows="3" cols="24"-->
+                  <!--wrap="hard"></textarea>-->
+        <!--<div class="validation-message"></div>-->
+    <!--</div>-->
+    <!--<div class="numeric-input-container">-->
+        <!--<label for="input_student_a">Введите коэффициент знаменателя передаточной функции (a):</label>-->
+        <!--<input id="input_student_a" type=number class="numeric-input answer-input" step=any/>-->
+    <!--</div>-->
+
+    <!--<button disabled="disabled" id="calculate_graphics">Построить графики</button>-->
+</div>
+
+
+<div class="dsp_footer">
+    <!--<button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span>
+    </button>-->
+</div>

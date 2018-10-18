@@ -15,8 +15,8 @@ from .utils import (
 
 from .calc_utils import merge_two_dicts
 
-from lab_1 import get_source_data, get_graphics, check_answer
-
+from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
+from lab_4 import lab_4_get_source_data, lab_4_check_answer
 log = logging.getLogger(__name__)
 
 
@@ -122,7 +122,7 @@ class DSPXBlock(XBlock):
         when viewing courses.
         """
         # self.current_lab
-        context = self.lab_1_context()
+        context = self.lab_context()
         # print(context)
         fragment = self.load_lab_static(self.current_lab, context)
         fragment.initialize_js('DSPXBlock', context)
@@ -132,7 +132,21 @@ class DSPXBlock(XBlock):
     def student_submit(self, data, suffix=''):
         # TO-DO: проверка возможности ответа
         self.student_state["answer"] = data
-        result = check_answer(data, self.lab_source_data)
+        result = {}
+
+        if self.current_lab == "lab_1":
+            result = lab_1_check_answer(data, self.lab_source_data)
+        elif self.current_lab == "lab_2":
+            pass
+        elif self.current_lab == "lab_3":
+            pass
+        elif self.current_lab == "lab_4":
+            pass
+        elif self.current_lab == "lab_5":
+            pass
+        else:
+            pass
+
         self.score = round(self.maximum_score * result["score"])
         self.student_state["score"] = self.score
         self.student_state["correctness"] = result["correctness"]
@@ -140,11 +154,10 @@ class DSPXBlock(XBlock):
         return Response(json_body=self.student_state)
 
     @XBlock.json_handler
-    def get_graphics(self, data, suffix=''):
+    def lab_1_get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
-
         try:
-            graphics = get_graphics(data, self.lab_source_data)
+            graphics = lab_1_get_graphics(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -161,9 +174,18 @@ class DSPXBlock(XBlock):
 
         return general_context
 
-    def lab_1_context(self):
+    def lab_context(self):
         if not self.lab_source_data:
-            self.lab_source_data = get_source_data()
+            if self.current_lab == "lab_1":
+                self.lab_source_data = lab_1_get_source_data()
+            elif self.current_lab == "lab_2":
+                self.lab_source_data = lab_1_get_source_data()
+            elif self.current_lab == "lab_3":
+                self.lab_source_data = lab_1_get_source_data()
+            elif self.current_lab == "lab_4":
+                self.lab_source_data = lab_4_get_source_data()
+            elif self.current_lab == "lab_5":
+                self.lab_source_data = lab_1_get_source_data()
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 

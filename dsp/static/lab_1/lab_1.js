@@ -1,7 +1,7 @@
 function DSPXBlock(runtime, element, data) {
 
     var student_submit = runtime.handlerUrl(element, 'student_submit');
-    var get_graphics = runtime.handlerUrl(element, 'get_graphics');
+    var get_graphics = runtime.handlerUrl(element, 'lab_1_get_graphics');
     var highlight_correct = true;
 
     // var max_signal_length = parseInt($('#input_student_signal').data('maxLength')) || 1000;
