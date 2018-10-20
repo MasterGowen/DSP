@@ -25,7 +25,7 @@ log = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(__file__)
 TMPL_DIR = os.path.join(BASE_DIR, 'static')
-settings.TEMPLATE_DIRS += (TMPL_DIR,)
+# settings.TEMPLATE_DIRS += (TMPL_DIR,)
 
 
 class DSPXBlock(XBlock):
@@ -132,7 +132,7 @@ class DSPXBlock(XBlock):
         # self.current_lab
         context = self.lab_context()
         # print(context)
-        log.warning(str(settings.TEMPLATE_DIRS) + '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        log.warning(str(settings.TEMPLATES) + '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
         fragment = self.load_lab_static(self.current_lab, context)
         fragment.initialize_js('DSPXBlock', context)
