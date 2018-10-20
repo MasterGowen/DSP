@@ -9,6 +9,8 @@ from xblock.fields import Integer, Scope, String, JSONField, Float
 from xblock.fragment import Fragment
 from webob.response import Response
 
+from pathlib import Path
+
 from .utils import (
     render_template,
     load_resources,
@@ -25,7 +27,7 @@ log = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(__file__)
 TMPL_DIR = os.path.join(BASE_DIR, 'static')
-settings.TEMPLATES[0]['DIRS'].append(TMPL_DIR)
+settings.TEMPLATES[0]['DIRS'].append(Path(TMPL_DIR))
 
 
 class DSPXBlock(XBlock):
