@@ -39,7 +39,7 @@ def load_resources(js_urls, css_urls, fragment):
         else:
             pass
 
-def render_template(template_path, context=None, lab_id):
+def render_template(template_path, context=None):
     """
     Evaluate a template by resource path, applying the provided context.
     """
