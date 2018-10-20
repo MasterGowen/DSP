@@ -11,6 +11,7 @@ from webob.response import Response
 from .utils import (
     render_template,
     load_resources,
+load_resource
 )
 
 from .calc_utils import merge_two_dicts
@@ -124,6 +125,7 @@ class DSPXBlock(XBlock):
         # self.current_lab
         context = self.lab_context()
         # print(context)
+
         fragment = self.load_lab_static(self.current_lab, context)
         fragment.initialize_js('DSPXBlock', context)
         return fragment
@@ -164,6 +166,7 @@ class DSPXBlock(XBlock):
 
     def get_general_context(self):
         general_context = {
+            "base_template": load_resource("static/html/dsp.html"),
             "current_lab": self.current_lab,
             "display_name": self.display_name,
             "maximum_score": self.maximum_score,
