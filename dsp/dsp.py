@@ -193,8 +193,9 @@ class DSPXBlock(XBlock):
         frag = Fragment()
         frag.add_content(
             render_template(
-                "static/{}/{}.html".format(lab_id, lab_id),
-                context
+                "static/html/dsp.html",
+                context,
+                lab_id
             )
         )
         frag.add_css(self.resource_string("static/{}/{}.css".format(lab_id, lab_id)))
@@ -216,7 +217,8 @@ class DSPXBlock(XBlock):
         fragment.add_content(
             render_template(
                 "static/html/dsp_studio.html",
-                context
+                context,
+                self.current_lab
             )
         )
 
