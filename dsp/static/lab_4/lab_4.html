@@ -1,9 +1,8 @@
 
-{% extends base_template %}
+{% extends "../html/dsp.html" %}
 {% block content %}
 
 <div class="dsp_header">
-    {{base_template}}
     <h2 class="problem-header">{{display_name}}</h2>
     <div class="problem-progress">
         {% if score == 0 or score %}
