@@ -3,6 +3,7 @@ import os
 import pkg_resources
 
 from django.template import Context, Template
+from django.template.loader import get_template
 from django.utils.encoding import smart_text
 
 
