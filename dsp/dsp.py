@@ -25,7 +25,7 @@ log = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(__file__)
 TMPL_DIR = os.path.join(BASE_DIR, 'static')
-# settings.TEMPLATE_DIRS += (TMPL_DIR,)
+settings.TEMPLATES[0]['DIRS'].append(TMPL_DIR)
 
 
 class DSPXBlock(XBlock):
