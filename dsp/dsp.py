@@ -164,6 +164,7 @@ class DSPXBlock(XBlock):
 
     def get_general_context(self):
         general_context = {
+            "current_lab": self.current_lab,
             "display_name": self.display_name,
             "maximum_score": self.maximum_score,
             "score": self.score,
