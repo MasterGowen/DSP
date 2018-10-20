@@ -48,12 +48,4 @@ def render_template(template_path, context=None):
 
     template_str = load_resource(template_path)
     template = Template(template_str)
-
-
-    template_str1 = load_resource("static/{}/{}.html".format(context["current_lab"], context["current_lab"]))
-    template1 = Template(template_str1)
-    info_fragment = template1.render(Context(context))
-
-        # "static/{}/{}.html".format(context["current_lab"], context["current_lab"])
-
-    return template.render(context={'info_fragment': info_fragment})
+    return template.render(Context(context))
