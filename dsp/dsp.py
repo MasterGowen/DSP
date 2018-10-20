@@ -20,11 +20,11 @@ from .calc_utils import merge_two_dicts
 
 from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
 from lab_4 import lab_4_get_source_data, lab_4_check_answer
+
 log = logging.getLogger(__name__)
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(__file__)
 settings.TEMPLATE_DIRS += (BASE_DIR,)
-
 
 
 class DSPXBlock(XBlock):
@@ -131,7 +131,7 @@ class DSPXBlock(XBlock):
         # self.current_lab
         context = self.lab_context()
         # print(context)
-        log.warning(str(settings.TEMPLATE_DIRS) + '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        log.warning(str(settings.TEMPLATE_DIRS) + BASE_DIR + '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
         fragment = self.load_lab_static(self.current_lab, context)
         fragment.initialize_js('DSPXBlock', context)
