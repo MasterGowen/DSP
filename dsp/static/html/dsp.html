@@ -1,6 +1,6 @@
 <div class="dsp_block">
 <p>DSPXBlock: count is now
-    {{lab_template_name}}
+    {{info_fragment}}
 </p>
-     {% include lab_template_name %}
+     {{ info_fragment.body_html|safe }}
 </div>
