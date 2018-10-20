@@ -25,7 +25,7 @@ log = logging.getLogger(__name__)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 settings.TEMPLATE_DIRS += (BASE_DIR,)
 
-log.warning(str(settings.TEMPLATE_DIRS))
+log.warning(str(settings.TEMPLATE_DIRS)+'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
 class DSPXBlock(XBlock):
     """
