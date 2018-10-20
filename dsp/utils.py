@@ -46,7 +46,7 @@ def render_template(template_path, context=None):
     if context is None:
         context = {}
 
-    context["lab_template_name"] = "{}/{}.html".format(context["current_lab"], context["current_lab"])
+    context["lab_template_name"] = "static/{}/{}.html".format(context["current_lab"], context["current_lab"])
 
     template_str = load_resource(template_path)
     template = Template(template_str)
