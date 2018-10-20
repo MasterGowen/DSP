@@ -1,6 +1,10 @@
 <div class="dsp_block">
-<p>DSPXBlock: count is now {{current_lab}}
+<p>DSPXBlock: count is now
     {{lab_template_name}}
 </p>
-    {% include lab_template_name %}
+
+    {% block content %}
+     {% include lab_template_name %}
+{% endblock %}
+
 </div>
