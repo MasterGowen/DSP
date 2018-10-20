@@ -23,7 +23,7 @@ from lab_4 import lab_4_get_source_data, lab_4_check_answer
 log = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-settings.TEMPLATE_DIRS += BASE_DIR
+settings.TEMPLATE_DIRS += (BASE_DIR,)
 
 log.warning(str(settings.TEMPLATE_DIRS))
 
