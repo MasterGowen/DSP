@@ -33,22 +33,29 @@
     <div class="task-wording">
     <p>Сформировать модель БИХ-фильтра I порядка: <span class="signal-filter-wording">{{filter_type.title}}</span></p>
     </div>
-    <!--<p>Введите коэффициенты числителя передаточной функции (b):</p>-->
-    <!--<div class="array-input-container">-->
-        <!--<textarea id="input_student_filter" data-array-type="фильтр" data-max-length="100"-->
-                  <!--class="filter-input array-input answer-input"-->
-                  <!--rows="3" cols="24"-->
-                  <!--wrap="hard"></textarea>-->
-        <!--<div class="validation-message"></div>-->
-    <!--</div>-->
-    <!--<div class="numeric-input-container">-->
-        <!--<label for="input_student_a">Введите коэффициент знаменателя передаточной функции (a):</label>-->
-        <!--<input id="input_student_a" type=number class="numeric-input answer-input" step=any/>-->
-    <!--</div>-->
-
-    <!--<button disabled="disabled" id="calculate_graphics">Построить графики</button>-->
+    <div class="numeric-input-container">
+        <label for="input_student_a">Введите коэффициент числителя передаточной функции (b):</label>
+        <input id="input_student_a" type="number" class="numeric-input answer-input" step="any/">
+    </div>
+    <p>Введите коэффициенты знаменателя передаточной функции (a):</p>
+    <div class="array-input-container">
+        <textarea id="input_student_filter" data-array-type="фильтр" data-max-length="5"
+                  class="filter-input array-input answer-input"
+                  rows="3" cols="24"
+                  wrap="hard"></textarea>
+        <div class="validation-message"></div>
+    </div>
 </div>
 
+<div class="dsp_block">
+    <h3>Блок построения графиков</h3>
+    <div style="display: flex;">
+        <div id="graphic_1" class="graphic-container">
+        </div>
+        <div id="graphic_2" class="graphic-container">
+        </div>
+    </div>
+</div>
 
 <div class="dsp_footer">
     <!--<button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span>

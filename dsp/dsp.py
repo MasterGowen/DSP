@@ -17,7 +17,7 @@ from .utils import (
 from .calc_utils import merge_two_dicts
 
 from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
-from lab_4 import lab_4_get_source_data, lab_4_check_answer
+from lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
 log = logging.getLogger(__name__)
 
 
@@ -160,6 +160,15 @@ class DSPXBlock(XBlock):
         self.student_state["answer"] = data
         try:
             graphics = lab_1_get_graphics(data, self.lab_source_data)
+            return Response(json_body={"graphics": graphics})
+        except:
+            return Response('Error!', 500)
+
+    @XBlock.json_handler
+    def lab_4_get_graphics(self, data, suffix=''):
+        self.student_state["answer"] = data
+        try:
+            graphics = lab_4_get_graphics(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
