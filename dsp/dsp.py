@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
 import json
-import os
 
 import pkg_resources
 from xblock.core import XBlock
@@ -9,24 +8,17 @@ from xblock.fields import Integer, Scope, String, JSONField, Float
 from xblock.fragment import Fragment
 from webob.response import Response
 
-
 from .utils import (
     render_template,
     load_resources,
     load_resource
 )
-from django.conf import settings
 
 from .calc_utils import merge_two_dicts
 
 from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
 from lab_4 import lab_4_get_source_data, lab_4_check_answer
-
 log = logging.getLogger(__name__)
-
-BASE_DIR = os.path.dirname(__file__)
-TMPL_DIR = os.path.join(BASE_DIR, 'static')
-settings.TEMPLATES[0]['DIRS'].append(TMPL_DIR)
 
 
 class DSPXBlock(XBlock):
@@ -133,7 +125,6 @@ class DSPXBlock(XBlock):
         # self.current_lab
         context = self.lab_context()
         # print(context)
-        log.warning(type(settings.TEMPLATES[0]['DIRS'][0]) + '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
         fragment = self.load_lab_static(self.current_lab, context)
         fragment.initialize_js('DSPXBlock', context)
