@@ -76,4 +76,35 @@ def lab_4_check_answer(student_data, source_data):
 
 
 def lab_4_get_graphics(student_data, source_data):
-    pass
+    graphics = []
+    N0 = len(student_data["student_signal"])
+    d = student_data["student_signal"]  # сигнал, вводимый студентом
+    b = float(student_data["student_b"])
+    a = student_data["student_filter"]  # фильтр, вводимый студентом
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    z = signal.lfilter(b, a, d)
+    ax.plot(np.arange(N0), z_et, 'y', linewidth=2.0)
+    ax.plot(np.arange(N0), np.full((N0, 1), 0.05 * max(z)), 'r')
+    ax.plot(np.arange(N0), np.full((N0, 1), -0.05 * max(z)), 'r')
+
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_1",
+            "html": html
+        }
+    )
+    fig, ax = plt.subplots(figsize=(6, 6))
+    fz = np.abs(np.fft.fft(z))
+    plt.plot(np.arange(N0), fz, 'y', linewidth=2.0)
+    plt.plot(np.arange(N0), np.full((N0, 1), 0.707 * max(fz)), 'r')
+
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_2",
+            "html": html
+        }
+    )
+    return graphics
