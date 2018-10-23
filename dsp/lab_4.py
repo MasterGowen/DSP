@@ -84,7 +84,7 @@ def lab_4_get_graphics(student_data, source_data):
 
     fig, ax = plt.subplots(figsize=(6, 6))
     z = signal.lfilter(b, a, d)
-    ax.plot(np.arange(N0), z_et, 'y', linewidth=2.0)
+    ax.plot(np.arange(N0), z, 'y', linewidth=2.0)
     ax.plot(np.arange(N0), np.full((N0, 1), 0.05 * max(z)), 'r')
     ax.plot(np.arange(N0), np.full((N0, 1), -0.05 * max(z)), 'r')
 
