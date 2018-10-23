@@ -79,7 +79,7 @@ def lab_4_get_graphics(student_data, source_data):
     graphics = []
     N0 = len(student_data["student_signal"])
     d = student_data["student_signal"]  # сигнал, вводимый студентом
-    b = student_data["student_b"]
+    b = np.array([float(student_data["student_b"])])
     a = student_data["student_filter"]  # фильтр, вводимый студентом
 
     fig, ax = plt.subplots(figsize=(6, 6))
