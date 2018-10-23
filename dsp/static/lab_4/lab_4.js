@@ -52,12 +52,15 @@ function DSPXBlock(runtime, element, data) {
             "student_b": "",
             "student_F": "",
             "student_Dp": "",
+            "student_filter_stable": "stable",
         };
         student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
         student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
         student_data.student_b = $("#input_student_b", element).val();
         student_data.student_F = $("#input_student_F", element).val();
         student_data.student_Dp = $("#input_student_Dp", element).val();
+        student_data.student_filter_stable = $('input[name=input_student_filter_stable]:checked', element).val();
+
         console.log(student_data);
         return student_data;
     }
@@ -68,6 +71,7 @@ function DSPXBlock(runtime, element, data) {
         $("#input_student_b", element).val(data.answer.student_b);
         $("#input_student_F", element).val(data.answer.student_F);
         $("#input_student_Dp", element).val(data.answer.student_Dp);
+        $('input:radio[name="input_student_filter_stable"]', element).filter('[value="' + data.answer.student_filter_stable + '"]').attr('checked', true);
         build_graphics();
     }
 
@@ -75,12 +79,12 @@ function DSPXBlock(runtime, element, data) {
         var student_data = generateAnswer();
         if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_b)) {
             $("#calculate_graphics", element).removeAttr("disabled");
-            // if (parseFloat(student_data.student_p) && parseFloat(student_data.student_ubl)) {
-            //     $("#check_answer", element).removeAttr("disabled");
-            // }
-            // else {
-            //     $("#check_answer", element).attr('disabled', 'disabled');
-            // }
+            if (parseFloat(student_data.student_F) && parseFloat(student_data.student_Dp)) {
+                $("#check_answer", element).removeAttr("disabled");
+            }
+            else {
+                $("#check_answer", element).attr('disabled', 'disabled');
+            }
         }
         else {
             $("#calculate_graphics", element).attr('disabled', 'disabled');
@@ -100,10 +104,10 @@ function DSPXBlock(runtime, element, data) {
                 // highlight_correctness(data["student_state"]["correctness"]);
             }
         }
-        // buttons_disable();
+        buttons_disable();
 
         $(element).on('input', ".answer-input", function () {
-            // buttons_disable();
+            buttons_disable();
             // if (highlight_correct) {
             //     $(this).removeClass("dsp-incorrect-input");
             //     $(this).removeClass("dsp-correct-input");
