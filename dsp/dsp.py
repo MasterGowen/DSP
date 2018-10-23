@@ -169,7 +169,7 @@ class DSPXBlock(XBlock):
         self.student_state["answer"] = data
         # try:
         graphics = lab_4_get_graphics(data, self.lab_source_data)
-            return Response(json_body={"graphics": graphics})
+        return Response(json_body={"graphics": graphics})
         # except:
         #     return Response('Error!', 500)
 
