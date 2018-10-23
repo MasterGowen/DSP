@@ -85,8 +85,8 @@ def lab_4_get_graphics(student_data, source_data):
     fig, ax = plt.subplots(figsize=(6, 6))
     z = signal.lfilter(b, a, d)
     ax.plot(np.arange(N0), z, 'y', linewidth=2.0)
-    ax.plot(np.arange(N0), np.ones((N0, 1), 0.05 * max(z)), 'r')
-    ax.plot(np.arange(N0), np.ones((N0, 1), -0.05 * max(z)), 'r')
+    ax.plot(np.arange(N0), np.ones((N0, 1)) * (0.05 * max(z)), 'r')
+    ax.plot(np.arange(N0), np.ones((N0, 1)) * (-0.05 * max(z)), 'r')
 
     html = mpld3.fig_to_d3(fig)
     graphics.append(
@@ -98,7 +98,7 @@ def lab_4_get_graphics(student_data, source_data):
     fig, ax = plt.subplots(figsize=(6, 6))
     fz = np.abs(np.fft.fft(z))
     plt.plot(np.arange(N0), fz, 'y', linewidth=2.0)
-    plt.plot(np.arange(N0), np.ones((N0, 1), 0.707 * max(fz)), 'r')
+    plt.plot(np.arange(N0), np.ones((N0, 1)) * (0.707 * max(fz)), 'r')
 
     html = mpld3.fig_to_d3(fig)
     graphics.append(
