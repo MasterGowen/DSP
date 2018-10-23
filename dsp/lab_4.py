@@ -37,7 +37,7 @@ def lab_4_get_source_data():
             "title": "гармоническое колебание длиной \({}\) отсчётов (в форме cos) с частотой \(f_d/2\)".format(N0)
         }
     ]
-    signal_type = random.choice(signal_types)  # signal_types[1]  #
+    signal_type = signal_types[0]  # random.choice(signal_types)  #
 
     filter_types = [
         {
@@ -54,7 +54,7 @@ def lab_4_get_source_data():
         # }
     ]
 
-    filter_type = random.choice(filter_types)
+    filter_type = filter_types[0]  # random.choice(filter_types)
     context = dict()
     context["N0"] = N0
     context["a1"] = a1

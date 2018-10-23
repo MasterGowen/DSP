@@ -45,33 +45,33 @@ function DSPXBlock(runtime, element, data) {
         build_graphics();
     });
 
-    // function generateAnswer() {
-    //     var student_data = {
-    //         "student_signal": [],
-    //         "student_filter": [],
-    //         "student_a": "",
-    //         //"student_window": "rectangular",
-    //         "student_ubl": "",
-    //         "student_p": ""
-    //     };
-    //     student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
-    //     student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
-    //     student_data.student_a = $("#input_student_a", element).val();
-    //     student_data.student_ubl = $("#input_student_ubl", element).val();
-    //     student_data.student_p = $("#input_student_p", element).val();
-    //     return student_data;
-    // }
+    function generateAnswer() {
+        var student_data = {
+            "student_signal": [],
+            "student_filter": [],
+            "input_student_b": "",
+            "input_student_F": "",
+            "input_student_Dp": "",
+        };
+        student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
+        student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
+        student_data.student_b = $("#input_student_b", element).val();
+        student_data.student_F = $("#input_student_F", element).val();
+        student_data.student_Dp = $("#input_student_Dp", element).val();
+        console.log(student_data);
+        return student_data;
+    }
 
     function build_lab_state(data) {
         $("textarea#input_student_signal", element).val(data.answer.student_signal);
         $("textarea#input_student_filter", element).val(data.answer.student_filter);
-        // $("#input_student_a", element).val(data.answer.student_a);
-        // $("#input_student_ubl", element).val(data.answer.student_ubl);
-        // $("#input_student_p", element).val(data.answer.student_p);
+        $("#input_student_b", element).val(data.answer.student_b);
+        $("#input_student_F", element).val(data.answer.student_F);
+        $("#input_student_Dp", element).val(data.answer.student_Dp);
         build_graphics();
     }
 
-    // function buttons_disable() {
+    function buttons_disable() {
     //     var student_data = generateAnswer();
     //     if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_a)) {
     //         $("#calculate_graphics", element).removeAttr("disabled");
@@ -83,10 +83,10 @@ function DSPXBlock(runtime, element, data) {
     //         }
     //     }
     //     else {
-    //         $("#calculate_graphics", element).attr('disabled', 'disabled');
+            $("#calculate_graphics", element).attr('disabled', 'disabled');
     //         $("#check_answer", element).attr('disabled', 'disabled');
     //     }
-    // }
+    }
 
     $(function ($) {
         // console.log(data);
