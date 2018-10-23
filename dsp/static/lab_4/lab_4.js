@@ -49,9 +49,9 @@ function DSPXBlock(runtime, element, data) {
         var student_data = {
             "student_signal": [],
             "student_filter": [],
-            "input_student_b": "",
-            "input_student_F": "",
-            "input_student_Dp": "",
+            "student_b": "",
+            "student_F": "",
+            "student_Dp": "",
         };
         student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
         student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
