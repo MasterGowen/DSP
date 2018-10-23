@@ -1,6 +1,6 @@
 function DSPXBlock(runtime, element, data) {
 
-    // var student_submit = runtime.handlerUrl(element, 'student_submit');
+    var student_submit = runtime.handlerUrl(element, 'student_submit');
     var get_graphics = runtime.handlerUrl(element, 'lab_4_get_graphics');
     var highlight_correct = true;
 
@@ -26,19 +26,19 @@ function DSPXBlock(runtime, element, data) {
 
     $('#check_answer', element).click(function (event) {
         console.info("Начали проверку");
-        // $.ajax({
-        //     type: "POST",
-        //     url: student_submit,
-        //     data: JSON.stringify(generateAnswer()),
-        //     success: function (result) {
-        //         $(element).find('me-span.points').html(result.score);
-        //         $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
-        //         $('.points', element).text(result.score + ' из ' + data.maximum_score);
-        //         if (highlight_correct) highlight_correctness(result.correctness);
-        //         console.info("Закончили проверку");
-        //     },
-        //     contentType: 'application/json; charset=utf-8'
-        // });
+        $.ajax({
+            type: "POST",
+            url: student_submit,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $(element).find('me-span.points').html(result.score);
+                $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
+                $('.points', element).text(result.score + ' из ' + data.maximum_score);
+                if (highlight_correct) highlight_correctness(result.correctness);
+                console.info("Закончили проверку");
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
     });
 
     $('#calculate_graphics', element).click(function (event) {
@@ -72,20 +72,20 @@ function DSPXBlock(runtime, element, data) {
     }
 
     function buttons_disable() {
-    //     var student_data = generateAnswer();
-    //     if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_a)) {
-    //         $("#calculate_graphics", element).removeAttr("disabled");
-    //         if (parseFloat(student_data.student_p) && parseFloat(student_data.student_ubl)) {
-    //             $("#check_answer", element).removeAttr("disabled");
-    //         }
-    //         else {
-    //             $("#check_answer", element).attr('disabled', 'disabled');
-    //         }
-    //     }
-    //     else {
+        var student_data = generateAnswer();
+        if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_b)) {
+            $("#calculate_graphics", element).removeAttr("disabled");
+            // if (parseFloat(student_data.student_p) && parseFloat(student_data.student_ubl)) {
+            //     $("#check_answer", element).removeAttr("disabled");
+            // }
+            // else {
+            //     $("#check_answer", element).attr('disabled', 'disabled');
+            // }
+        }
+        else {
             $("#calculate_graphics", element).attr('disabled', 'disabled');
-    //         $("#check_answer", element).attr('disabled', 'disabled');
-    //     }
+            $("#check_answer", element).attr('disabled', 'disabled');
+        }
     }
 
     $(function ($) {
