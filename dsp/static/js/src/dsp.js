@@ -97,7 +97,7 @@ function log_ajax_error(jqXHR, exception) {
 
 function counting_title(number) {
     last_numeral = number.toString()[number.toString().length - 1];
-    if [11, 12, 13, 14].includes(number){
+    if ([11, 12, 13, 14].includes(number)){
         return "отсчётов";
     }
 
