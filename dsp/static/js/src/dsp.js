@@ -101,7 +101,6 @@ function counting_title(number) {
         return "отсчётов";
     }
 
-
     if (["0", "5", "6", "7", "8", "9"].includes(last_numeral)) {
         return "отсчётов";
     }
