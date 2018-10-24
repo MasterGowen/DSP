@@ -1,28 +1,27 @@
 function DSPXBlock(runtime, element, data) {
 
     var student_submit = runtime.handlerUrl(element, 'student_submit');
-    var get_graphics = runtime.handlerUrl(element, 'lab_4_get_graphics');
+    var get_graphic_1 = runtime.handlerUrl(element, 'lab_3_get_graphic_1');
     var highlight_correct = true;
 
-    // function build_graphics() {
-    //     show_graphic_load($('#graphic_1', element));
-    //     show_graphic_load($('#graphic_2', element));
-    //     $.ajax({
-    //         type: "POST",
-    //         url: get_graphics,
-    //         data: JSON.stringify(generateAnswer()),
-    //         success: function (result) {
-    //             $("#graphic_1", element).html(result["graphics"][0]["html"]);
-    //             $("#graphic_2", element).html(result["graphics"][1]["html"]);
-    //         },
-    //         error: function (jqXHR, exception) {
-    //             show_graphic_error($('#graphic_1', element));
-    //             show_graphic_error($('#graphic_2', element));
-    //             log_ajax_error(jqXHR, exception);
-    //         },
-    //         contentType: 'application/json; charset=utf-8'
-    //     });
-    // }
+    function build_graphic_1() {
+        show_graphic_load($('#graphic_1', element));
+        $.ajax({
+            type: "POST",
+            url: get_graphic_1,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $("#graphic_1", element).html(result["graphic"]["html"]);
+                // $("#graphic_2", element).html(result["graphics"][1]["html"]);
+            },
+            error: function (jqXHR, exception) {
+                show_graphic_error($('#graphic_1', element));
+                // show_graphic_error($('#graphic_2', element));
+                log_ajax_error(jqXHR, exception);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
 
     // $('#check_answer', element).click(function (event) {
     //     console.info("Начали проверку");
@@ -41,29 +40,29 @@ function DSPXBlock(runtime, element, data) {
     //     });
     // });
 
-    // $('#calculate_graphics', element).click(function (event) {
-    //     build_graphics();
-    // });
+    $('#calculate_graphic_1', element).click(function (event) {
+        build_graphic_1();
+    });
 
-    // function generateAnswer() {
-    //     var student_data = {
-    //         "student_signal": [],
-    //         "student_filter": [],
-    //         "student_b": "",
-    //         "student_F": "",
-    //         "student_Dp": "",
-    //         "student_filterstable": "stable",
-    //     };
-    //     student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
-    //     student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
-    //     student_data.student_b = $("#input_student_b", element).val();
-    //     student_data.student_F = $("#input_student_F", element).val();
-    //     student_data.student_Dp = $("#input_student_Dp", element).val();
-    //     student_data.student_filterstable = $('input[name=input_student_filterstable]:checked', element).val();
-    //
-    //     console.log(student_data);
-    //     return student_data;
-    // }
+    function generateAnswer() {
+        var student_data = {
+            "student_signal": [],
+            "student_filter": [],
+            // "student_b": "",
+            // "student_F": "",
+            // "student_Dp": "",
+            // "student_filterstable": "stable",
+        };
+        student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
+        student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
+        // student_data.student_b = $("#input_student_b", element).val();
+        // student_data.student_F = $("#input_student_F", element).val();
+        // student_data.student_Dp = $("#input_student_Dp", element).val();
+        // student_data.student_filterstable = $('input[name=input_student_filterstable]:checked', element).val();
+
+        console.log(student_data);
+        return student_data;
+    }
 
     // function build_lab_state(data) {
     //     $("textarea#input_student_signal", element).val(data.answer.student_signal);
