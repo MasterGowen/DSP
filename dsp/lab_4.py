@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 
 
 def lab_4_get_source_data():
-    N0 = 120  # random.randint(10, 200)  # должно делится на 4 б/о
+    N0 = 100  # random.randint(10, 200)  # должно делится на 4 б/о
     a1 = random.choice([random.randint(1, 10), np.round(np.random.uniform(0.01, 1), decimals=2)])
     signal_types = [
         {
@@ -79,7 +79,7 @@ def get_correct_signal(source_data):
 
 
 def get_correct_filter(source_data):
-    a1 = source_data["a1"]
+    a1 = float(source_data["a1"])
     if source_data["filter_type"]["name"] == "nch_filter":
         a1 = a1
     elif source_data["filter_type"]["name"] == "vch_filter":
