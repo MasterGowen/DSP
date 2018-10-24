@@ -126,7 +126,7 @@ def lab_4_check_answer(student_data, source_data):
         score += 1
     else:
         result["correctness"]["b_correctness"] = False
-    result["correctness"]["b_correct"] = float(b_et)
+    result["correctness"]["b_correct"] = float(b_et[0])
 
     if arrays_is_equal(a_et, student_a):
         result["correctness"]["filter_correctness"] = True
