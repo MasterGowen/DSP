@@ -126,7 +126,7 @@ def lab_4_check_answer(student_data, source_data):
         score += 1
     else:
         result["correctness"]["b_correctness"] = False
-    result["correctness"]["b_correct"] = b_et
+    result["correctness"]["b_correct"] = float(b_et)
 
     if arrays_is_equal(a_et, student_a):
         result["correctness"]["filter_correctness"] = True
@@ -140,14 +140,14 @@ def lab_4_check_answer(student_data, source_data):
         score += 1
     else:
         result["correctness"]["F_correctness"] = False
-    result["correctness"]["F_correct"] = F_et
+    result["correctness"]["F_correct"] = float(F_et)
 
     if numbers_is_equal(Dp_et, student_Dp, tol=0.1):
         result["correctness"]["Dp_correctness"] = True
         score += 1
     else:
         result["correctness"]["Dp_correctness"] = False
-    result["correctness"]["Dp_correct"] = Dp_et
+    result["correctness"]["Dp_correct"] = float(Dp_et)
 
     if is_stable == student_filter_stable:
         result["correctness"]["filter_stable_correctness"] = True
