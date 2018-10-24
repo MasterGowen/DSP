@@ -64,16 +64,62 @@ def lab_4_get_source_data():
 
 
 def get_correct_signal(source_data):
-    pass
+    N0 = source_data["N0"]
+    if source_data["signal_type"]["name"] == "delta_func":
+        signal = np.append(np.ones(1), np.zeros(N0 - 1))
+    elif source_data["signal_type"]["name"] == "constant":
+        signal = np.ones(N0)
+    elif source_data["signal_type"]["name"] == "harmonic_f4":
+        signal = np.tile([1, 0, -1, 0], int(N0 / 4))
+    elif source_data["signal_type"]["name"] == "harmonic_f2":
+        signal = np.tile([1, -1], int(N0 / 2))
+    else:
+        signal = np.append(np.ones(1), np.zeros(N0 - 1))
+    return signal
 
 
 def get_correct_filter(source_data):
-    pass
+    a1 = source_data["a1"]
+    filter = np.array([1, a1])
+    return filter
 
 
 def lab_4_check_answer(student_data, source_data):
-    pass
+    student_b = float(student_data["student_b"])
+    student_d = student_data["student_signal"]
+    student_a = student_data["student_filter"]
 
+
+    student_F = float(student_data["student_F"])
+    student_Dp = float(student_data["student_Dp"])
+    student_filter_stable = student_data["student_filter_stable"]
+
+    a_et = get_correct_filter(source_data)
+    b_et = [1]
+    d_et = get_correct_signal(source_data)
+
+    z_et = signal.lfilter(b_et, a_et, d_et)
+    fz_et = np.abs(np.fft.fft(z_et))
+
+    f707 = [1 if x > 0.707*max(fz_et) else 0 for x in fz_et]
+    Fp = N0/2 - (np.where(np.flip(f707)[int(N0/2):] == 1)[0][0]+1) + 1
+    mz = [1 if x > 0.05*max(abs(z_et)) else 0 for x in abs(z_et)]
+    Dp = N0 - (np.where(np.flip(mz) == 1)[0][0]+1)
+
+
+    if arrays_is_equal(d_et, student_d):
+        result["correctness"]["signal_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["signal_correctness"] = False
+    result["correctness"]["signal_correct"] = d_et.tolist()
+
+    if arrays_is_equal(a_et, student_a):
+        result["correctness"]["filter_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["filter_correctness"] = False
+    result["correctness"]["filter_correct"] = b_et.tolist()
 
 def lab_4_get_graphics(student_data, source_data):
     graphics = []
