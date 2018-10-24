@@ -90,7 +90,7 @@ def lab_4_check_answer(student_data, source_data):
     student_a = student_data["student_filter"]
     student_F = float(student_data["student_F"])
     student_Dp = float(student_data["student_Dp"])
-    student_filter_stable = student_data["student_filter_stable"]
+    student_filterstable = student_data["student_filterstable"]
 
     a_et = get_correct_filter(source_data)
     b_et = [1]
@@ -149,12 +149,12 @@ def lab_4_check_answer(student_data, source_data):
         result["correctness"]["Dp_correctness"] = False
     result["correctness"]["Dp_correct"] = float(Dp_et)
 
-    if is_stable == student_filter_stable:
-        result["correctness"]["filter_stable_correctness"] = True
+    if is_stable == student_filterstable:
+        result["correctness"]["filterstable_correctness"] = True
         score += 1
     else:
-        result["correctness"]["filter_stable_correctness"] = False
-    result["correctness"]["filter_stable_correct"] = is_stable
+        result["correctness"]["filterstable_correctness"] = False
+    result["correctness"]["filterstable_correct"] = is_stable
 
     result["score"] = float(score) / float(max_score)
 

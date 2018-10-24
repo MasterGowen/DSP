@@ -43,6 +43,8 @@ function process_array_input(input) {
 
 function highlight_correctness(state) {
     Object.keys(state).forEach(function (item) {
+        console.log($("#input_student_" + item.split("_")[0]));
+
         if (state[item] == true) {
             $("#input_student_" + item.split("_")[0]).removeClass("dsp-incorrect-input");
             $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
