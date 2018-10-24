@@ -52,14 +52,14 @@ function DSPXBlock(runtime, element, data) {
             "student_b": "",
             "student_F": "",
             "student_Dp": "",
-            "student_filter_stable": "stable",
+            "student_filterstable": "stable",
         };
         student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
         student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
         student_data.student_b = $("#input_student_b", element).val();
         student_data.student_F = $("#input_student_F", element).val();
         student_data.student_Dp = $("#input_student_Dp", element).val();
-        student_data.student_filter_stable = $('input[name=input_student_filter_stable]:checked', element).val();
+        student_data.student_filterstable = $('input[name=input_student_filterstable]:checked', element).val();
 
         console.log(student_data);
         return student_data;
@@ -71,7 +71,7 @@ function DSPXBlock(runtime, element, data) {
         $("#input_student_b", element).val(data.answer.student_b);
         $("#input_student_F", element).val(data.answer.student_F);
         $("#input_student_Dp", element).val(data.answer.student_Dp);
-        $('input:radio[name="input_student_filter_stable"]', element).filter('[value="' + data.answer.student_filter_stable + '"]').attr('checked', true);
+        $('input:radio[name="input_student_filterstable"]', element).filter('[value="' + data.answer.student_filterstable + '"]').attr('checked', true);
         build_graphics();
     }
 
