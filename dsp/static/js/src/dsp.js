@@ -28,14 +28,14 @@ function process_array_input(input) {
     var message = "";
     if (parse_array.signal_valid) {
         if (parse_array.signal.length > 0) {
-            message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " отсчётов):</span> <br /> <p class='signal-highlight'>" + parse_array.signal.join(" ") + "</p>";
+            message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " " + counting_title(parse_array.signal.length) + "):</span> <br /> <p class='signal-highlight'>" + parse_array.signal.join(" ") + "</p>";
         }
         else {
             message = "<span class='error-text'>Введите " + $(input).data('arrayType') + "!</span>";
         }
     }
     else {
-        message = "<span class='error-text'>Ошибка ввода " + $(input).data('arrayType') + "а!" + " Максимально допустимая длина " + $(input).data('arrayType') + "а составляет " + (max_array_length - 1) + " отсчётов.</span>";
+        message = "<span class='error-text'>Ошибка ввода " + $(input).data('arrayType') + "а!" + " Максимально допустимая длина " + $(input).data('arrayType') + "а составляет " + (max_array_length - 1) + " " + counting_title(max_array_length - 1) + ".</span>";
 
     }
     $(input).parent().find(".validation-message").html(message)
@@ -45,7 +45,7 @@ function highlight_correctness(state) {
     Object.keys(state).forEach(function (item) {
         // console.log($("#input_student_" + item.split("_")[0]));
         // console.log(state[item], item);
-        if (item.split("_")[item.split("_").length-1] == "correctness") {
+        if (item.split("_")[item.split("_").length - 1] == "correctness") {
             if (state[item] == true) {
                 $("#input_student_" + item.split("_")[0]).removeClass("dsp-incorrect-input");
                 $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
@@ -94,6 +94,23 @@ function log_ajax_error(jqXHR, exception) {
     }
     console.error(msg);
 }
+
+function counting_title(number) {
+    last_numeral = number.toString()[number.toString().length - 1];
+    if (["0", "5", "6", "7", "8", "9"].includes(last_numeral)) {
+        return "отсчётов"
+    }
+    else if (["2", "3", "4"].includes(last_numeral)) {
+        return "отсчёта"
+    }
+    else if (["1"].includes(last_numeral)) {
+        return "отсчёт"
+    }
+    else {
+        return "отсчётов"
+    }
+}
+
 
 function example_data_lab_1() {
     var signal = "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
