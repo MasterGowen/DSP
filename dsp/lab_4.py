@@ -103,7 +103,7 @@ def lab_4_check_answer(student_data, source_data):
     f707 = [1 if x > 0.707*max(fz_et) else 0 for x in fz_et]
     F_et = N0/2 - (np.where(np.array(f707[::-1])[int(N0/2):] == 1)[0][0]+1) + 1
     mz = [1 if x > 0.05*max(abs(z_et)) else 0 for x in abs(z_et)]
-    Dp_et = N0 - (np.where(np.flip(mz) == 1)[0][0]+1)
+    Dp_et = N0 - (np.where(np.array(f707[::-1]) == 1)[0][0]+1)
 
     if abs(float(source_data["a1"])) > 1:
         is_stable = "stable"
