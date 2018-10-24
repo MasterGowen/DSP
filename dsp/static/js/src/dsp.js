@@ -35,7 +35,7 @@ function process_array_input(input) {
         }
     }
     else {
-        message = "<span class='error-text'>Ошибка ввода " + $(input).data('arrayType') + "а!" + " Максимально допустимая длина " + $(input).data('arrayType') + "а составляет " + (max_array_length - 1) + " " + counting_title(max_array_length - 1) + ".</span>";
+        message = "<span class='error-text'>Ошибка ввода " + $(input).data('arrayType') + "а!" + " Максимально допустимая длина " + $(input).data('arrayType') + "а составляет " + (max_array_length - 1) + " " +  counting_title(max_array_length - 1) + ".</span>";
 
     }
     $(input).parent().find(".validation-message").html(message)
@@ -45,7 +45,7 @@ function highlight_correctness(state) {
     Object.keys(state).forEach(function (item) {
         // console.log($("#input_student_" + item.split("_")[0]));
         // console.log(state[item], item);
-        if (item.split("_")[item.split("_").length - 1] == "correctness") {
+        if (item.split("_")[item.split("_").length-1] == "correctness") {
             if (state[item] == true) {
                 $("#input_student_" + item.split("_")[0]).removeClass("dsp-incorrect-input");
                 $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
