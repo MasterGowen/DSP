@@ -203,7 +203,7 @@ class DSPXBlock(XBlock):
             elif self.current_lab == "lab_2":
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_3":
-                self.lab_source_data = lab_1_get_source_data()
+                self.lab_source_data = lab_3_get_source_data()
             elif self.current_lab == "lab_4":
                 self.lab_source_data = lab_4_get_source_data()
             elif self.current_lab == "lab_5":
