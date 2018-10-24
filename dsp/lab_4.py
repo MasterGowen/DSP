@@ -37,7 +37,7 @@ def lab_4_get_source_data():
             "title": "гармоническое колебание длиной \({}\) отсчётов (в форме cos) с частотой \(f_d/2\)".format(N0)
         }
     ]
-    signal_type = signal_types[0]  # random.choice(signal_types)  #
+    signal_type = random.choice(signal_types)  # signal_types[0]  #
 
     filter_types = [
         {
@@ -54,7 +54,7 @@ def lab_4_get_source_data():
         # }
     ]
 
-    filter_type = filter_types[0]  # random.choice(filter_types)
+    filter_type = random.choice(filter_types)  # filter_types[0]  #
     context = dict()
     context["N0"] = N0
     context["a1"] = a1
@@ -80,6 +80,12 @@ def get_correct_signal(source_data):
 
 def get_correct_filter(source_data):
     a1 = source_data["a1"]
+    if source_data["filter_type"]["name"] == "nch_filter":
+        a1 = a1
+    elif source_data["filter_type"]["name"] == "vch_filter":
+        a1 = (-1) * a1
+    else:
+        a1 = a1
     filter = np.array([1, a1])
     return filter
 

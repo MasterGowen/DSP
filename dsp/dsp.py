@@ -122,9 +122,7 @@ class DSPXBlock(XBlock):
         The primary view of the DSPXBlock, shown to students
         when viewing courses.
         """
-        # self.current_lab
         context = self.lab_context()
-        # print(context)
 
         fragment = self.load_lab_static(self.current_lab, context)
         fragment.initialize_js('DSPXBlock', context)
@@ -167,11 +165,11 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def lab_4_get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
-        # try:
-        graphics = lab_4_get_graphics(data, self.lab_source_data)
-        return Response(json_body={"graphics": graphics})
-        # except:
-        #     return Response('Error!', 500)
+        try:
+            graphics = lab_4_get_graphics(data, self.lab_source_data)
+            return Response(json_body={"graphics": graphics})
+        except:
+            return Response('Error!', 500)
 
     def get_general_context(self):
         general_context = {
