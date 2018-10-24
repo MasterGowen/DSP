@@ -105,7 +105,7 @@ def lab_4_check_answer(student_data, source_data):
     mz = [1 if x > 0.05*max(abs(z_et)) else 0 for x in abs(z_et)]
     Dp_et = N0 - (np.where(np.array(f707[::-1]) == 1)[0][0]+1)
 
-    if abs(float(source_data["a1"])) > 1:
+    if abs(float(source_data["a1"])) < 1:
         is_stable = "stable"
     else:
         is_stable = "unstable"
