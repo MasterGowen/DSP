@@ -115,6 +115,7 @@ function DSPXBlock(runtime, element, data) {
         });
 
         $("#input_student_filterstable input[type=radio]", element).change(function () {
+            console.log($(this));
             if (highlight_correct) {
                 $(this).removeClass("dsp-incorrect-input");
                 $(this).removeClass("dsp-correct-input");
