@@ -143,7 +143,7 @@ class DSPXBlock(XBlock):
         elif self.current_lab == "lab_3":
             pass
         elif self.current_lab == "lab_4":
-            pass
+            result = lab_4_check_answer(data, self.lab_source_data)
         elif self.current_lab == "lab_5":
             pass
         else:
