@@ -76,6 +76,10 @@
     outline: 0;
 }
 
+.radio-input-container{
+    padding: 2px;
+}
+
 .numeric-input-container {
     padding: 6px 0px;
 }
