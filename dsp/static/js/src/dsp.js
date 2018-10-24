@@ -97,17 +97,22 @@ function log_ajax_error(jqXHR, exception) {
 
 function counting_title(number) {
     last_numeral = number.toString()[number.toString().length - 1];
+    if [11, 12, 13, 14].includes(number){
+        return "отсчётов";
+    }
+
+
     if (["0", "5", "6", "7", "8", "9"].includes(last_numeral)) {
-        return "отсчётов"
+        return "отсчётов";
     }
     else if (["2", "3", "4"].includes(last_numeral)) {
-        return "отсчёта"
+        return "отсчёта";
     }
     else if (["1"].includes(last_numeral)) {
-        return "отсчёт"
+        return "отсчёт";
     }
     else {
-        return "отсчётов"
+        return "отсчётов";
     }
 }
 
