@@ -43,12 +43,12 @@ function process_array_input(input) {
 
 function highlight_correctness(state) {
     Object.keys(state).forEach(function (item) {
-        $("#input_student_" + item.split("_")[0]).removeClass("dsp-correct-input");
-        $("#input_student_" + item.split("_")[0]).removeClass("dsp-incorrect-input");
         if (state[item] == true) {
+            $("#input_student_" + item.split("_")[0]).removeClass("dsp-incorrect-input");
             $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
         }
         else {
+            $("#input_student_" + item.split("_")[0]).removeClass("dsp-correct-input");
             $("#input_student_" + item.split("_")[0]).addClass("dsp-incorrect-input");
         }
     })
