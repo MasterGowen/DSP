@@ -101,7 +101,9 @@ def lab_3_get_graphic_2(student_data, source_data):
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.plot(y2, linewidth=2.0)
     ax.plot(s2, linewidth=2.0)
-    ax.plot(np.arange(len(y)), np.full((len(y), 1), 0.707 * max(s2)), 'r')
+    # ax.plot(np.arange(len(y)), np.full((len(y), 1), 0.707 * max(s2)), 'r')
+    ax.plot(np.arange(len(y)), np.ones((len(y), 1)) * (0.707 * max(s2)), 'r')
+
     html = mpld3.fig_to_d3(fig)
     graphic = {
         "id": "graphic_2",
