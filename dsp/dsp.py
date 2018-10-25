@@ -178,7 +178,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_3_get_graphic_2(self, request, suffix=''):
 
-        pss = request.GET.get('lol')
+        pss = request.GET['lol']
         log.info(pss)
         return Response(json_body={"graphic": pss})
         # self.student_state["answer"] = data
