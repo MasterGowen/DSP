@@ -185,7 +185,7 @@ class DSPXBlock(XBlock):
         if 'reload' in request.GET:
             reload = True
         self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data, reload)
-        return Response(json_body={"graphic": graphic, "state": self.student_state})
+        return Response(json_body={"graphic": graphic, "student_state": self.student_state})
 
         # #try:
         # self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data)
