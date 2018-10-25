@@ -177,8 +177,9 @@ class DSPXBlock(XBlock):
 
     @XBlock.handler
     def lab_3_get_graphic_2(self, request, suffix=''):
-        self.student_state["answer"] = request.body
+        self.student_state["answer"] = json.loads(request.body)
         log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        log.info(type(request.body))
         log.info(request.body)
         reload = False
         if 'reload' in request.GET:
