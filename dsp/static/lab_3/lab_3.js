@@ -2,14 +2,14 @@ function DSPXBlock(runtime, element, data) {
 
     var student_submit = runtime.handlerUrl(element, 'student_submit');
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_3_get_graphic_1');
-    var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2?lol=kek');
+    var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
     var highlight_correct = true;
 
     function build_graphic_1() {
         show_graphic_load($('#graphic_1', element));
         $.ajax({
             type: "POST",
-            url: get_graphic_1,
+            url: get_graphic_1 + "?lol=kek",
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_1", element).html(result["graphic"]["html"]);
