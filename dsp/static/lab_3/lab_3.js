@@ -22,11 +22,11 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
-    function build_graphic_2() {
+    function build_graphic_2(reload) {
         show_graphic_load($('#graphic_2', element));
         $.ajax({
             type: "POST",
-            url: get_graphic_2 + "?lol=kek",
+            url: get_graphic_2 + (reload ? "?reload=true" : ""),
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_2", element).html(result["graphic"]["html"]);
@@ -63,7 +63,7 @@ function DSPXBlock(runtime, element, data) {
     });
 
     $('#calculate_graphic_2', element).click(function (event) {
-        build_graphic_2();
+        build_graphic_2(false);
     });
 
     function generateAnswer() {
@@ -94,7 +94,7 @@ function DSPXBlock(runtime, element, data) {
         // $("#input_student_Dp", element).val(data.answer.student_Dp);
         // $('input:radio[name="input_student_filterstable"]', element).filter('[value="' + data.answer.student_filterstable + '"]').attr('checked', true);
         build_graphic_1();
-        build_graphic_2();
+        build_graphic_2(true);
     }
 
     // function buttons_disable() {
