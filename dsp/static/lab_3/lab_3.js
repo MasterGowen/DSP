@@ -30,6 +30,9 @@ function DSPXBlock(runtime, element, data) {
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_2", element).html(result["graphic"]["html"]);
+                console.log("i: " + result["state"]["state"]["Ku_i"]);
+                console.log("j: " + result["state"]["state"]["Ku_j"]);
+                console.log("Ku_done: " + result["state"]["state"]["Ku_done"]);
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_2', element));
