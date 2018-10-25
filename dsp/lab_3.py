@@ -89,7 +89,7 @@ def lab_3_get_graphic_2(student_data, source_data, reload):
             y2 = y + s_st[j-1] * np.random.randn(1, 3 * N0)[0]
             s2 = signal.lfilter(b, 1, y2)
 
-    if reload:
+    if not reload:
         if Ku_i == 10:
             if Ku_j == 10:
                 student_data["state"]["Ku_done"] = True
