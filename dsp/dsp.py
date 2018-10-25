@@ -227,6 +227,8 @@ class DSPXBlock(XBlock):
                 state = dict()
                 state["Ku_j"] = 1
                 state["Ku_i"] = 1
+                state["Ku_i_current"] = 1
+                state["Ku_j_current"] = 1
                 state["Ku_done"] = False
                 self.student_state["state"] = state
             elif self.current_lab == "lab_4":
