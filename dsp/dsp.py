@@ -18,7 +18,7 @@ from .calc_utils import merge_two_dicts
 
 from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
 
-from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1
+from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2
 from lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
 
 log = logging.getLogger(__name__)
@@ -168,11 +168,22 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def lab_3_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
+        try:
+            graphic = lab_3_get_graphic_1(data, self.lab_source_data)
+            return Response(json_body={"graphic": graphic})
+        except:
+            return Response('Error!', 500)
+
+
+    @XBlock.json_handler
+    def lab_3_get_graphic_2(self, data, suffix=''):
+        self.student_state["answer"] = data
         #try:
-        graphic = lab_3_get_graphic_1(data, self.lab_source_data)
+        self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data)
         return Response(json_body={"graphic": graphic})
         # except:
         #     return Response('Error!', 500)
+
 
     @XBlock.json_handler
     def lab_4_get_graphics(self, data, suffix=''):
@@ -204,6 +215,11 @@ class DSPXBlock(XBlock):
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_3":
                 self.lab_source_data = lab_3_get_source_data()
+                state = dict()
+                state["Ku_j"] = 1
+                state["Ku_i"] = 1
+                state["Ku_done"] = False
+                self.student_state["state"] = state
             elif self.current_lab == "lab_4":
                 self.lab_source_data = lab_4_get_source_data()
             elif self.current_lab == "lab_5":

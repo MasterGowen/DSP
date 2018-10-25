@@ -25,9 +25,10 @@ def lab_3_get_source_data():
         }
     ]
     signal_type = random.choice(signal_types)  # signal_types[0]  #
-
+    s = [0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8]
     context = dict()
     context["N1"] = N1
+    context["s"] = s
     context["signal_type"] = signal_type
     return context
 
@@ -54,8 +55,6 @@ def lab_3_get_graphic_1(student_data, source_data):
     y = student_data["student_signal"]
     b = student_data["student_filter"]
     N0 = len(b)
-
-    # s_et = signal.lfilter(b_et, 1, y_et)
     S = int(np.floor(np.random.uniform(0, 1) * N0))
     y1_et = np.roll(np.roll(y, S), (-1) * S)
 
@@ -70,5 +69,42 @@ def lab_3_get_graphic_1(student_data, source_data):
             "id": "graphic_1",
             "html": html
         }
-
     return graphic
+
+
+def lab_3_get_graphic_2(student_data, source_data):
+    y2 = []
+    s2 = []
+    y = np.array(student_data["answer"]["student_signal"])
+    b = np.array(student_data["answer"]["student_filter"])
+    N0 = len(b)
+    s_st = np.array(source_data["s"])
+    Ku_j = int(student_data["state"]["Ku_j"])
+    Ku_i = int(student_data["state"]["Ku_i"])
+
+    # v = np.zeros(10)
+
+    for j in np.arange(1, Ku_j + 1):
+        for i in np.arange(1, Ku_i + 1):
+            y2 = y + s_st[j-1] * np.random.randn(1, 3 * N0)[0]
+            s2 = signal.lfilter(b, 1, y2)
+
+    if Ku_j == 10 and Ku_j == 10:
+        student_data["state"]["Ku_done"] = True
+    else:
+        Ku_j = Ku_j + 1
+        Ku_i = Ku_i + 1
+
+    student_data["state"]["Ku_j"] = Ku_j
+    student_data["state"]["Ku_i"] = Ku_i
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(y2, linewidth=2.0)
+    ax.plot(s2, linewidth=2.0)
+    ax.plot(np.arange(len(y)), np.full((len(y), 1), 0.707 * max(s2)), 'r')
+    html = mpld3.fig_to_d3(fig)
+    graphic = {
+        "id": "graphic_2",
+        "html": html
+    }
+    return student_data, graphic

@@ -2,6 +2,7 @@ function DSPXBlock(runtime, element, data) {
 
     var student_submit = runtime.handlerUrl(element, 'student_submit');
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_3_get_graphic_1');
+    var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
     var highlight_correct = true;
 
     function build_graphic_1() {
@@ -12,11 +13,26 @@ function DSPXBlock(runtime, element, data) {
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_1", element).html(result["graphic"]["html"]);
-                // $("#graphic_2", element).html(result["graphics"][1]["html"]);
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_1', element));
-                // show_graphic_error($('#graphic_2', element));
+                log_ajax_error(jqXHR, exception);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
+
+    function build_graphic_2() {
+        show_graphic_load($('#graphic_2', element));
+        $.ajax({
+            type: "POST",
+            url: get_graphic_2,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $("#graphic_2", element).html(result["graphic"]["html"]);
+            },
+            error: function (jqXHR, exception) {
+                show_graphic_error($('#graphic_2', element));
                 log_ajax_error(jqXHR, exception);
             },
             contentType: 'application/json; charset=utf-8'
@@ -42,6 +58,10 @@ function DSPXBlock(runtime, element, data) {
 
     $('#calculate_graphic_1', element).click(function (event) {
         build_graphic_1();
+    });
+
+    $('#calculate_graphic_2', element).click(function (event) {
+        build_graphic_2();
     });
 
     function generateAnswer() {
