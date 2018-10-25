@@ -44,7 +44,7 @@
         <div class="validation-message"></div>
     </div>
      <!--disabled="disabled"-->
-    <button id="calculate_graphic_1">Построить график</button>
+    <button id="calculate_graphic_1" class="get-graphic-button">Построить график</button>
 </div>
 
 <div class="dsp_block">
@@ -61,8 +61,10 @@
 </div>
 
 <div class="dsp_block">
-    <h3>Блок построения графика 1</h3>
+    <h3>Блок построения графика 2</h3>
     <button id="calculate_graphic_2">Построить график</button>
+    <div id="current_Ku_i">{{ student_state.state.Ku_i }}</div>
+    <div id="current_Ku_j">{{ student_state.state.Ku_j }}</div>
     <div style="display: flex;">
         <div id="graphic_2" class="graphic-container">
         </div>
