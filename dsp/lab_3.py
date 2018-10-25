@@ -82,6 +82,8 @@ def lab_3_get_graphic_2(student_data, source_data, reload):
     Ku_j = int(student_data["state"]["Ku_j"])
     Ku_i = int(student_data["state"]["Ku_i"])
 
+    # v = np.zeros(10)
+
     for j in np.arange(1, Ku_j + 1):
         for i in np.arange(1, Ku_i + 1):
             y2 = y + s_st[j-1] * np.random.randn(1, 3 * N0)[0]
@@ -103,8 +105,8 @@ def lab_3_get_graphic_2(student_data, source_data, reload):
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.plot(y2, linewidth=2.0)
     ax.plot(s2, linewidth=2.0)
-    # ax.plot(np.arange(len(y)), np.ones((len(y), 1)) * (0.707 * max(s2)), 'r')
-    ax.plot(np.arange(len(y)), np.ones((len(y), 1)) * (0.707 * max(y2)), 'r')
+    # ax.plot(np.arange(len(y)), np.full((len(y), 1), 0.707 * max(s2)), 'r')
+    ax.plot(np.arange(len(y)), np.ones((len(y), 1)) * (0.707 * max(s2)), 'r')
 
     html = mpld3.fig_to_d3(fig)
     graphic = {
