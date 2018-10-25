@@ -2,7 +2,7 @@ function DSPXBlock(runtime, element, data) {
 
     var student_submit = runtime.handlerUrl(element, 'student_submit');
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_3_get_graphic_1');
-    var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
+    var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2?lol=kek');
     var highlight_correct = true;
 
     function build_graphic_1() {
@@ -94,6 +94,7 @@ function DSPXBlock(runtime, element, data) {
         // $("#input_student_Dp", element).val(data.answer.student_Dp);
         // $('input:radio[name="input_student_filterstable"]', element).filter('[value="' + data.answer.student_filterstable + '"]').attr('checked', true);
         build_graphic_1();
+        build_graphic_2();
     }
 
     // function buttons_disable() {
