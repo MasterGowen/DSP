@@ -9,7 +9,7 @@ function DSPXBlock(runtime, element, data) {
         show_graphic_load($('#graphic_1', element));
         $.ajax({
             type: "POST",
-            url: get_graphic_1 + "?lol=kek",
+            url: get_graphic_1,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_1", element).html(result["graphic"]["html"]);
@@ -26,7 +26,7 @@ function DSPXBlock(runtime, element, data) {
         show_graphic_load($('#graphic_2', element));
         $.ajax({
             type: "POST",
-            url: get_graphic_2,
+            url: get_graphic_2 + "?lol=kek",
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_2", element).html(result["graphic"]["html"]);
