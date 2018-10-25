@@ -179,7 +179,7 @@ class DSPXBlock(XBlock):
     def lab_3_get_graphic_2(self, request, suffix=''):
 
         print(request.GET.get('lol'))
-        pass
+        return Response(json_body={"graphic": "lol"})
         # self.student_state["answer"] = data
         # #try:
         # self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data)
