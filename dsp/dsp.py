@@ -177,15 +177,17 @@ class DSPXBlock(XBlock):
 
     @XBlock.handler
     def lab_3_get_graphic_2(self, request, suffix=''):
+        self.student_state["answer"] = request.data
+        reload = False
+        if 'reload' in request.GET:
+            reload = True
+        self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data, reload)
+        return Response(json_body={"graphic": graphic, "state": self.student_state})
 
-        pss = request.GET['lol']
-        log.info(pss)
-        return Response(json_body={"graphic": pss})
-        # self.student_state["answer"] = data
         # #try:
         # self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data)
         # return Response(json_body={"graphic": graphic, "state": self.student_state})
-        # # except:
+        # except:
         #     return Response('Error!', 500)
 
 
