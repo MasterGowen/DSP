@@ -76,6 +76,8 @@ def lab_3_get_graphic_1(student_data, source_data):
 def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
     y2 = []
     s2 = []
+    Ku_i_max = 5
+    Ku_j_max = 5
     y = np.array(student_data["answer"]["student_signal"])
     b = np.array(student_data["answer"]["student_filter"])
     N0 = len(b)
@@ -93,11 +95,9 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
     else:
         pass
 
-    student_data["state"]["there_is_signal_states"][Ku_j - 1] = {"there_is_signal_count": there_is_signal_count,
+    if Ku_j != Ku_j_max:
+        student_data["state"]["there_is_signal_states"][Ku_j - 1] = {"there_is_signal_count": there_is_signal_count,
                                                  "there_is_no_signal_count": there_is_no_signal_count}
-
-    Ku_i_max = 5
-    Ku_j_max = 5
 
     if not reload:
         if Ku_i == Ku_i_max:
