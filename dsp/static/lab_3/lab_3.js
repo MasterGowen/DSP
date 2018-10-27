@@ -28,10 +28,10 @@ function DSPXBlock(runtime, element, data) {
         params = [];
         params_str = "";
         if (reload) {
-            params.append("reload=true");
+            params.push("reload=true");
         }
         if (there_is_signal !== ""){
-            params.append("there_is_signal="+there_is_signal)
+            params.push("there_is_signal="+there_is_signal)
         }
         if(params > 0){
             params_str = "?" + params.join("&")
