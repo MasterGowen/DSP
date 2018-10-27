@@ -86,7 +86,7 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
     there_is_signal_count = int(student_data["state"]["there_is_signal_count"])
     there_is_no_signal_count = int(student_data["state"]["there_is_no_signal_count"])
 
-    state["there_is_signal_states"]
+    # state["there_is_signal_states"]
 
     # v = np.zeros(10)
 
