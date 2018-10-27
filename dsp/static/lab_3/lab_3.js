@@ -52,6 +52,9 @@ function DSPXBlock(runtime, element, data) {
                  $("#there-is-no-signal-count", element).html(result["student_state"]["state"]["there_is_no_signal_count"]);
                  $("#there-is-signal-count", element).html(result["student_state"]["state"]["there_is_signal_count"]);
 
+                 if (result["student_state"]["state"]["Ku_done"]){
+                     $("#graphic-2-controls", element).css("display", "none");
+                 }
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_2', element));
