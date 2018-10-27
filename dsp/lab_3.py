@@ -110,6 +110,8 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
             else:
                 Ku_j += 1
                 Ku_i = 1
+                there_is_signal_count = 0
+                there_is_no_signal_count = 0
         else:
             Ku_i += 1
 
