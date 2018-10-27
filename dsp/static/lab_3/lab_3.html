@@ -91,12 +91,20 @@
             </div>
         </div>
 
+        <div style="display:flex">
+
+            <div>
      {% for s_value in s %}
             <div class="numeric-input-container">
                 <label for="input_student_s_{{ forloop.counter0 }}">\( \sigma = {{ s_value }} \):</label>
                 <input id="input_student_s_{{ forloop.counter0 }}" class="numeric-input answer-input" type=number step=any/>
             </div>
      {% endfor %}
+            </div>
+        <div>
+
+                    </div>
+        </div>
 
     </div>
 </div>
