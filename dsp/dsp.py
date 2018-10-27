@@ -178,9 +178,6 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_3_get_graphic_2(self, request, suffix=''):
         self.student_state["answer"] = json.loads(request.body)
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        log.info(type(request.body))
-        log.info(request.body)
         reload = False
         if 'reload' in request.GET:
             reload = True
@@ -230,6 +227,9 @@ class DSPXBlock(XBlock):
                 state["Ku_i_current"] = 1
                 state["Ku_j_current"] = 1
                 state["Ku_done"] = False
+                state["there_is_signal_count"] = 0
+                state["there_is_no_signal_count"] = 0
+                state["there_is_signal_states"] = []
                 self.student_state["state"] = state
             elif self.current_lab == "lab_4":
                 self.lab_source_data = lab_4_get_source_data()

@@ -22,11 +22,24 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
-    function build_graphic_2(reload) {
+    function build_graphic_2(reload, there_is_signal="") {
         show_graphic_load($('#graphic_2', element));
+
+        params = [];
+        params_str = "";
+        if (reload) {
+            params.append("reload=true");
+        }
+        if (there_is_signal !== ""){
+            params.append("there_is_signal="+there_is_signal)
+        }
+        if(params > 0){
+            params_str = "?" + params.join("&")
+        }
+        console.log(params_str);
         $.ajax({
             type: "POST",
-            url: get_graphic_2 + (reload ? "?reload=true" : ""),
+            url: get_graphic_2 + params_str,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_2", element).html(result["graphic"]["html"]);
@@ -65,6 +78,15 @@ function DSPXBlock(runtime, element, data) {
     $('#calculate_graphic_2', element).click(function (event) {
         build_graphic_2(false);
     });
+
+    $('#there_is_signal', element).click(function (event) {
+        build_graphic_2(false, "there_is_signal");
+    });
+    $('#there_is_no_signal', element).click(function (event) {
+        build_graphic_2(false, "there_is_no_signal");
+    });
+
+
 
     function generateAnswer() {
         var student_data = {
