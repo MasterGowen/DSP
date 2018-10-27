@@ -33,7 +33,7 @@ function DSPXBlock(runtime, element, data) {
         if (there_is_signal !== ""){
             params.push("there_is_signal="+there_is_signal)
         }
-        if(params > 0){
+        if (params.length > 0){
             params_str = "?" + params.join("&")
         }
         console.log(params_str);
