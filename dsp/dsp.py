@@ -224,8 +224,8 @@ class DSPXBlock(XBlock):
                 state = dict()
                 state["Ku_j"] = 1
                 state["Ku_i"] = 1
-                state["Ku_i_current"] = 1
-                state["Ku_j_current"] = 1
+                # state["Ku_i_current"] = 1
+                # state["Ku_j_current"] = 1
                 state["Ku_done"] = False
                 state["there_is_signal_count"] = 0
                 state["there_is_no_signal_count"] = 0
