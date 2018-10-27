@@ -3,6 +3,7 @@ function DSPXBlock(runtime, element, data) {
     var student_submit = runtime.handlerUrl(element, 'student_submit');
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_3_get_graphic_1');
     var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
+    var get_graphic_3 = runtime.handlerUrl(element, 'lab_3_get_graphic_3');
     var highlight_correct = true;
 
     function build_graphic_1() {
@@ -64,6 +65,23 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
+    function build_graphic_3() {
+        show_graphic_load($('#graphic_3', element));
+        $.ajax({
+            type: "POST",
+            url: get_graphic_3,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $("#graphic_3", element).html(result["graphic"]["html"]);
+            },
+            error: function (jqXHR, exception) {
+                show_graphic_error($('#graphic_3', element));
+                log_ajax_error(jqXHR, exception);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
+
     // $('#check_answer', element).click(function (event) {
     //     console.info("Начали проверку");
     //     $.ajax({
@@ -83,6 +101,10 @@ function DSPXBlock(runtime, element, data) {
 
     $('#calculate_graphic_1', element).click(function (event) {
         build_graphic_1();
+    });
+
+    $('#calculate_graphic_3', element).click(function (event) {
+        build_graphic_3();
     });
 
     $('#calculate_graphic_2', element).click(function (event) {
@@ -106,7 +128,7 @@ function DSPXBlock(runtime, element, data) {
             "student_signal": [],
             "student_filter": [],
             "student_B": "",
-            // "student_F": "",
+            "student_s": [],
             // "student_Dp": "",
             // "student_filterstable": "stable",
         };
@@ -116,7 +138,9 @@ function DSPXBlock(runtime, element, data) {
         // student_data.student_F = $("#input_student_F", element).val();
         // student_data.student_Dp = $("#input_student_Dp", element).val();
         // student_data.student_filterstable = $('input[name=input_student_filterstable]:checked', element).val();
-
+        $("#input_student_s input").each(function(){
+            student_data.student_s.push($(this).val());
+        });
         console.log(student_data);
         return student_data;
     }

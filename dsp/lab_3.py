@@ -141,9 +141,12 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
     }
     return student_data, graphic
 
+
 def lab_3_get_graphic_3(student_data, source_data):
+    s = np.array(source_data["s"])
+    v = student_data["student_s"]
     fig, ax = plt.subplots(figsize=(6, 6))
-    (markers, stemlines, baseline) = ax.stem(s_st[0:3], v[0:3], 'y')
+    (markers, stemlines, baseline) = ax.stem(s, v, 'y')
     ax.setp(markers, marker='D', markersize=10, markeredgecolor="orange", markeredgewidth=2)
 
     html = mpld3.fig_to_d3(fig)

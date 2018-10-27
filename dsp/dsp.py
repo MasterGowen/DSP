@@ -18,7 +18,7 @@ from .calc_utils import merge_two_dicts
 
 from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
 
-from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2
+from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3
 from lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
 
 log = logging.getLogger(__name__)
@@ -180,21 +180,27 @@ class DSPXBlock(XBlock):
         self.student_state["answer"] = json.loads(request.body)
         reload = False
         is_signal = ""
-        if 'reload' in request.GET:
-            reload = True
-        if 'is_signal' in request.GET:
-            is_signal = request.GET["is_signal"]
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        log.info(is_signal)
-        self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data, reload, is_signal)
-        return Response(json_body={"graphic": graphic, "student_state": self.student_state})
+        try:
+            if 'reload' in request.GET:
+                reload = True
+            if 'is_signal' in request.GET:
+                is_signal = request.GET["is_signal"]
+            # log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            # log.info(is_signal)
+            self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data, reload, is_signal)
+            return Response(json_body={"graphic": graphic, "student_state": self.student_state})
+        except:
+            return Response('Error!', 500)
 
-        # #try:
-        # self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data)
-        # return Response(json_body={"graphic": graphic, "state": self.student_state})
+
+    @XBlock.json_handler
+    def lab_3_get_graphic_3(self, data, suffix=''):
+        self.student_state["answer"] = data
+        # try:
+        graphic = lab_3_get_graphic_3(data, self.lab_source_data)
+        return Response(json_body={"graphic": graphic})
         # except:
         #     return Response('Error!', 500)
-
 
     @XBlock.json_handler
     def lab_4_get_graphics(self, data, suffix=''):
