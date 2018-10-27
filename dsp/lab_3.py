@@ -120,6 +120,9 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
+    student_data["state"]["there_is_signal_count"] = there_is_signal_count
+    student_data["state"]["there_is_no_signal_count"] = there_is_no_signal_count
+
 
     # student_data["state"]["Ku_j_current"] = Ku_j
     # student_data["state"]["Ku_i_current"] = Ku_i
