@@ -42,7 +42,15 @@ function DSPXBlock(runtime, element, data) {
             url: get_graphic_2 + params_str,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
-                $("#graphic_2", element).html(result["graphic"]["html"]);
+                 if (result["student_state"]["state"]["Ku_i_current"] == 1 && result["student_state"]["state"]["Ku_j_current"] == 1 ){
+                     $(".graphic-2-first-build", element).css("display", "block");
+                     $(".graphic-2-not-first-build", element).css("display", "none");
+                }
+                else{
+                     $(".graphic-2-first-build", element).css("display", "none");
+                     $(".graphic-2-not-first-build", element).css("display", "block");
+                 }
+                 $("#graphic_2", element).html(result["graphic"]["html"]);
                  $("#current_Ku_i", element).html(result["student_state"]["state"]["Ku_i_current"]);
                  $("#current_Ku_j", element).html(result["student_state"]["state"]["Ku_j_current"]);
             },
