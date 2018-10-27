@@ -179,9 +179,14 @@ class DSPXBlock(XBlock):
     def lab_3_get_graphic_2(self, request, suffix=''):
         self.student_state["answer"] = json.loads(request.body)
         reload = False
+        is_signal = ""
         if 'reload' in request.GET:
             reload = True
-        self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data, reload)
+        if 'is_signal' in request.GET:
+            is_signal = request.GET["is_signal"]
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        log.info(is_signal)
+        self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data, reload, is_signal)
         return Response(json_body={"graphic": graphic, "student_state": self.student_state})
 
         # #try:

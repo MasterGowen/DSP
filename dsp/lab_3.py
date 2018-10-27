@@ -21,7 +21,8 @@ def lab_3_get_source_data():
     signal_types = [
         {
             "name": "videopulse_ Barker_13",
-            "title": "прямоугольный видеоимпульс амплитуды 1 с внутриимпульсной манипуляцией в соответствии с кодом (например, Баркер-13) и длиной элементарной посылки \(N_1 = {}\) отсчётов".format(N1)
+            "title": "прямоугольный видеоимпульс амплитуды 1 с внутриимпульсной манипуляцией в соответствии с кодом (например, Баркер-13) и длиной элементарной посылки \(N_1 = {}\) отсчётов".format(
+                N1)
         }
     ]
     signal_type = random.choice(signal_types)  # signal_types[0]  #
@@ -66,13 +67,13 @@ def lab_3_get_graphic_1(student_data, source_data):
     ax.plot(z, linewidth=2.0)
     html = mpld3.fig_to_d3(fig)
     graphic = {
-            "id": "graphic_1",
-            "html": html
-        }
+        "id": "graphic_1",
+        "html": html
+    }
     return graphic
 
 
-def lab_3_get_graphic_2(student_data, source_data, reload):
+def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
     y2 = []
     s2 = []
     y = np.array(student_data["answer"]["student_signal"])
@@ -82,7 +83,22 @@ def lab_3_get_graphic_2(student_data, source_data, reload):
     Ku_j = int(student_data["state"]["Ku_j"])
     Ku_i = int(student_data["state"]["Ku_i"])
 
+    there_is_signal_count = int(student_data["state"]["there_is_signal_count"])
+    there_is_no_signal_count = int(student_data["state"]["there_is_no_signal_count"])
+
+    state["there_is_signal_states"]
+
     # v = np.zeros(10)
+
+    if is_signal == "there_is_signal":
+        there_is_signal_count += 1
+    elif is_signal == "there_is_no_signal":
+        there_is_no_signal_count += 1
+    else:
+        pass
+
+    student_data["state"]["there_is_signal_states"][Ku_j - 1] = {"there_is_signal_count": there_is_signal_count,
+                                                 "there_is_no_signal_count": there_is_no_signal_count}
 
     Ku_i_max = 5
     Ku_j_max = 5
@@ -99,7 +115,7 @@ def lab_3_get_graphic_2(student_data, source_data, reload):
 
     for j in np.arange(1, Ku_j + 1):
         for i in np.arange(1, Ku_i + 1):
-            y2 = y + s_st[j-1] * np.random.randn(1, 3 * N0)[0]
+            y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
             s2 = signal.lfilter(b, 1, y2)
 
     student_data["state"]["Ku_j"] = Ku_j
