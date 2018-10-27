@@ -95,9 +95,9 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
     else:
         pass
 
-    if Ku_j != Ku_j_max:
+    if not student_data["state"]["Ku_done"]:
         student_data["state"]["there_is_signal_states"][Ku_j - 1] = {"there_is_signal_count": there_is_signal_count,
-                                                 "there_is_no_signal_count": there_is_no_signal_count}
+                                             "there_is_no_signal_count": there_is_no_signal_count}
 
     if not reload:
         if Ku_i == Ku_i_max:
