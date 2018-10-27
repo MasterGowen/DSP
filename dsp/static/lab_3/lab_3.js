@@ -46,8 +46,8 @@ function DSPXBlock(runtime, element, data) {
                  $(".graphic-2-not-first-build", element).css("display", "block");
 
                  $("#graphic_2", element).html(result["graphic"]["html"]);
-                 $("#current_Ku_i", element).html(result["student_state"]["state"]["Ku_i_current"]);
-                 $("#current_Ku_j", element).html(result["student_state"]["state"]["Ku_j_current"]);
+                 $("#current_Ku_i", element).html(result["student_state"]["state"]["Ku_i"]);
+                 $("#current_Ku_j", element).html(result["student_state"]["state"]["Ku_j"]);
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_2', element));
