@@ -91,9 +91,9 @@
             </div>
         </div>
 
-        <div style="display:flex">
+        <div style="display:flex;align-items: center;justify-content: center;margin: 10px;">
 
-            <div>
+            <div style="margin: 20px;">
      {% for s_value in s %}
             <div class="numeric-input-container">
                 <label for="input_student_s_{{ forloop.counter0 }}">\( \sigma = {{ s_value }} \):</label>
@@ -101,9 +101,9 @@
             </div>
      {% endfor %}
             </div>
-        <div>
-
-                    </div>
+        <div style="width: 440px;background: aqua;height: 440px;margin: 20px;">
+            <div id="graphic_3"></div>
+        </div>
         </div>
 
     </div>
