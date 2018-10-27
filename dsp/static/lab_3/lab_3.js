@@ -79,7 +79,7 @@ function DSPXBlock(runtime, element, data) {
     });
 
     $('#calculate_graphic_2', element).click(function (event) {
-        build_graphic_2(false);
+        build_graphic_2(true);
     });
 
     $('#there_is_signal', element).click(function (event) {
