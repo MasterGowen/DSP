@@ -42,7 +42,7 @@ function DSPXBlock(runtime, element, data) {
             url: get_graphic_2 + params_str,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
-                 $(".graphic-2-first-build", element).css("display", "none");
+                 // $(".graphic-2-first-build", element).css("display", "none");
                  $(".graphic-2-not-first-build", element).css("display", "block");
 
                  $("#graphic_2", element).html(result["graphic"]["html"]);
@@ -78,12 +78,12 @@ function DSPXBlock(runtime, element, data) {
         build_graphic_1();
     });
 
-    $('#calculate_graphic_2_first', element).click(function (event) {
+    $('#calculate_graphic_2', element).click(function (event) {
         build_graphic_2(true);
     });
-    $('#calculate_graphic_2_reload', element).click(function (event) {
-        build_graphic_2(true);
-    });
+    // $('#calculate_graphic_2_reload', element).click(function (event) {
+    //     build_graphic_2(true);
+    // });
 
     $('#calculate_graphic_2_there_is_signal', element).click(function (event) {
         build_graphic_2(false, "there_is_signal");
