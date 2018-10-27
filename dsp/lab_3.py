@@ -86,10 +86,6 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
     there_is_signal_count = int(student_data["state"]["there_is_signal_count"])
     there_is_no_signal_count = int(student_data["state"]["there_is_no_signal_count"])
 
-    # state["there_is_signal_states"]
-
-    # v = np.zeros(10)
-
     if is_signal == "there_is_signal":
         there_is_signal_count += 1
     elif is_signal == "there_is_no_signal":
@@ -110,8 +106,8 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
             else:
                 Ku_j += 1
                 Ku_i = 1
-                there_is_signal_count = 0
-                there_is_no_signal_count = 0
+            there_is_signal_count = 0
+            there_is_no_signal_count = 0
         else:
             Ku_i += 1
 
