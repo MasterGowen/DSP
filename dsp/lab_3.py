@@ -83,13 +83,6 @@ def lab_3_get_graphic_2(student_data, source_data, reload):
     Ku_i = int(student_data["state"]["Ku_i"])
 
     # v = np.zeros(10)
-
-    for j in np.arange(1, Ku_j + 1):
-        for i in np.arange(1, Ku_i + 1):
-            y2 = y + s_st[j-1] * np.random.randn(1, 3 * N0)[0]
-            s2 = signal.lfilter(b, 1, y2)
-
-
     if not reload:
         if Ku_i == 10:
             if Ku_j == 10:
@@ -99,6 +92,14 @@ def lab_3_get_graphic_2(student_data, source_data, reload):
                 Ku_i = 1
         else:
             Ku_i += 1
+
+    for j in np.arange(1, Ku_j + 1):
+        for i in np.arange(1, Ku_i + 1):
+            y2 = y + s_st[j-1] * np.random.randn(1, 3 * N0)[0]
+            s2 = signal.lfilter(b, 1, y2)
+
+
+
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
