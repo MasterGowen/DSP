@@ -48,6 +48,10 @@ function DSPXBlock(runtime, element, data) {
                  $("#graphic_2", element).html(result["graphic"]["html"]);
                  $("#current_Ku_i", element).html(result["student_state"]["state"]["Ku_i"]);
                  $("#current_Ku_j", element).html(result["student_state"]["state"]["Ku_j"]);
+
+                 $("#there-is-no-signal-count", element).html(result["student_state"]["state"]["there_is_no_signal_count"]);
+                 $("#there-is-signal-count", element).html(result["student_state"]["state"]["there_is_signal_count"]);
+
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_2', element));
