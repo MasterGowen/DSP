@@ -69,14 +69,15 @@
         <div id="graphic_2" class="graphic-container" style="height: 480px;">
         </div>
         <div style="display: flex;">
+            <div id="calculate_graphic_2_reload">Обновить</div>
             <div style="margin: 0 auto;">
                     <div style="margin: 0 auto;" class="graphic-2-first-build">
-                        <button id="calculate_graphic_2" style="width: 100%;">Построить график</button>
+                        <button id="calculate_graphic_2_first" style="width: 100%;">Построить график</button>
                     </div>
                     <div class="graphic-2-not-first-build" style="display: none;">
                         <p style="text-align: center;">Построен график для i = <label id="current_Ku_i">{{ student_state.state.Ku_i }}</label> и j = <label id="current_Ku_j">{{ student_state.state.Ku_j }}</label></p>
-                        <button id="there_is_signal" class="get-graphic-button">Сигнал есть</button>
-                        <button id="there_is_no_signal" class="get-graphic-button">Сигнала нет</button>
+                        <button id="calculate_graphic_2_there_is_signal" class="get-graphic-button">Сигнал есть</button>
+                        <button id="calculate_graphic_2_there_is_no_signal" class="get-graphic-button">Сигнала нет</button>
                     </div>
             </div>
         </div>

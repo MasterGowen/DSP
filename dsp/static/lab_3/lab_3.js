@@ -78,14 +78,17 @@ function DSPXBlock(runtime, element, data) {
         build_graphic_1();
     });
 
-    $('#calculate_graphic_2', element).click(function (event) {
+    $('#calculate_graphic_2_first', element).click(function (event) {
+        build_graphic_2(true);
+    });
+    $('#calculate_graphic_2_reload', element).click(function (event) {
         build_graphic_2(true);
     });
 
-    $('#there_is_signal', element).click(function (event) {
+    $('#calculate_graphic_2_there_is_signal', element).click(function (event) {
         build_graphic_2(false, "there_is_signal");
     });
-    $('#there_is_no_signal', element).click(function (event) {
+    $('#calculate_graphic_2_there_is_no_signal', element).click(function (event) {
         build_graphic_2(false, "there_is_no_signal");
     });
 
