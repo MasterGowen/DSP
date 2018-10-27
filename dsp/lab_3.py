@@ -89,8 +89,6 @@ def lab_3_get_graphic_2(student_data, source_data, reload):
             y2 = y + s_st[j-1] * np.random.randn(1, 3 * N0)[0]
             s2 = signal.lfilter(b, 1, y2)
 
-    student_data["state"]["Ku_j_current"] = Ku_j
-    student_data["state"]["Ku_i_current"] = Ku_i
 
     if not reload:
         if Ku_i == 10:
@@ -104,6 +102,9 @@ def lab_3_get_graphic_2(student_data, source_data, reload):
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
+
+    student_data["state"]["Ku_j_current"] = Ku_j
+    student_data["state"]["Ku_i_current"] = Ku_i
 
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.plot(y2, linewidth=2.0)
