@@ -59,7 +59,7 @@
 
 <div class="dsp_block">
     <h3>Блок построения графика 2</h3>
-    <div>[
+    <div>Случайные значения с.к.о. шума: [
         {% for value in s %}
             {{ value }}
         {% endfor %}
@@ -94,8 +94,8 @@
 
         <div style="display:flex;align-items: center;justify-content: center;margin: 10px;">
 
-            <div style="padding: 10px;border: 1px solid #00000024;height: 460px;margin: 10px;text-align: center;" id="input_student_s">
-                <p>Вероятность правильного обнаружения: </p>
+            <div style="padding: 10px;border: 1px solid #00000024;height: 460px;margin: 10px;" id="input_student_s">
+                <p>Введите вероятность правильного обнаружения: </p>
              {% for s_value in s %}
                     <div class="numeric-input-container-3">
                         <label for="input_student_s_{{ forloop.counter0 }}">\( \sigma = {{ s_value }} \):</label>
