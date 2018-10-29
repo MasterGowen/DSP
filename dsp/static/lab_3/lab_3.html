@@ -98,11 +98,11 @@
                     <div class="numeric-input-container">
                         <label for="input_student_s_{{ forloop.counter0 }}">\( \sigma = {{ s_value }} \):</label>
                         <input id="input_student_s_{{ forloop.counter0 }}" class="numeric-input answer-input s-input" type=number step=any/>
-
+                        <label class="label-signal-count">{{student_state.state.there_is_signal_states.forloop.counter0.there_is_signal_count}} / {{student_state.state.there_is_signal_states.forloop.counter0.there_is_no_signal_count}}</label>
                     </div>
              {% endfor %}
             </div>
-            <div id="lolkek">{{student_state.state.there_is_signal_states.1.there_is_signal_count}}</div>
+            <div id="lolkek">{{student_state.state.there_is_signal_states.forloop.counter0.there_is_signal_count}}</div>
         <div style="width: 480px;height: 480px;">
             <div id="graphic_3" class="graphic-3-container"></div>
         </div>
