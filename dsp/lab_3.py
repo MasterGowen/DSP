@@ -144,7 +144,14 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
 
 def lab_3_get_graphic_3(student_data, source_data):
     v = student_data["student_s"]
-    s = np.array(source_data["s"])[0:len(v)]
+    for idx, v_value in enumerate(v):
+        try:
+            v[idx] = float(v_value)
+        except:
+            v[idx] = 0
+    s = np.array(source_data["s"])
+    # [0:len(v)]
+
     fig, ax = plt.subplots(figsize=(6, 6))
     # (markers, stemlines, baseline) =
     ax.stem(s, v, 'y')
