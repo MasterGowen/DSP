@@ -138,7 +138,7 @@ function DSPXBlock(runtime, element, data) {
         // student_data.student_F = $("#input_student_F", element).val();
         // student_data.student_Dp = $("#input_student_Dp", element).val();
         // student_data.student_filterstable = $('input[name=input_student_filterstable]:checked', element).val();
-        $("#input_student_s input").each(function(){
+        $("input.s-input", element).each(function(){
             student_data.student_s.push($(this).val());
         });
         console.log(student_data);
@@ -149,6 +149,9 @@ function DSPXBlock(runtime, element, data) {
         $("textarea#input_student_signal", element).val(data.answer.student_signal);
         $("textarea#input_student_filter", element).val(data.answer.student_filter);
         $("#input_student_B", element).val(data.answer.student_B);
+        data.answer.student_s.forEach(function(s_value, idx) {
+            $("input.s-input", element)[idx].value = s_value;
+        });
         // $("#input_student_F", element).val(data.answer.student_F);
         // $("#input_student_Dp", element).val(data.answer.student_Dp);
         // $('input:radio[name="input_student_filterstable"]', element).filter('[value="' + data.answer.student_filterstable + '"]').attr('checked', true);
@@ -201,6 +204,12 @@ function DSPXBlock(runtime, element, data) {
                 process_array_input(this);
             });
         });
+
+        $("input.s-input", element).each(function (i) {
+            $(this).change(function () {
+                build_graphic_3();
+            });
+        })
 
 
     });
