@@ -185,8 +185,6 @@ class DSPXBlock(XBlock):
                 reload = True
             if 'is_signal' in request.GET:
                 is_signal = request.GET["is_signal"]
-            # log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            # log.info(is_signal)
             self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data, reload, is_signal)
             return Response(json_body={"graphic": graphic, "student_state": self.student_state})
         except:
@@ -196,11 +194,11 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def lab_3_get_graphic_3(self, data, suffix=''):
         self.student_state["answer"] = data
-        # try:
-        graphic = lab_3_get_graphic_3(data, self.lab_source_data)
-        return Response(json_body={"graphic": graphic})
-        # except:
-        #     return Response('Error!', 500)
+        try:
+            graphic = lab_3_get_graphic_3(data, self.lab_source_data)
+            return Response(json_body={"graphic": graphic})
+        except:
+            return Response('Error!', 500)
 
     @XBlock.json_handler
     def lab_4_get_graphics(self, data, suffix=''):
