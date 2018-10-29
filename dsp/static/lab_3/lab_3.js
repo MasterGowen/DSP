@@ -56,7 +56,7 @@ function DSPXBlock(runtime, element, data) {
                  result["student_state"]["state"]["there_is_signal_states"].forEach(function(state_value, idx) {
                     console.log(state_value.there_is_signal_count);
                     if (state_value.there_is_signal_count !== undefined ) {
-                        $("#input_student_s .label-signal-count", element)[idx].innerHTML = state_value.there_is_signal_count + "/" + state_value.there_is_signal_count;
+                        $("#input_student_s .label-signal-count", element)[idx].innerHTML = state_value.there_is_signal_count + "/" + state_value.there_is_no_signal_count;
                     }
 
                 });
