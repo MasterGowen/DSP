@@ -62,7 +62,15 @@
 
 <div class="dsp_block">
     <h3>Блок построения графика 2</h3>
-    <div>{{ s }}</div>
+    <div>[
+        {% for value in s %}
+            {{ s }}
+        {% endfor %}
+        ]
+    </div>
+
+
+
     <!--<div>Для i = <div id="current_Ku_i">{{ student_state.state.Ku_i }}</div></div>-->
     <!--<div>Для j = <div id="current_Ku_j">{{ student_state.state.Ku_j }}</div></div>-->
     <div style="/*display: flex;*/">
