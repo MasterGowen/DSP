@@ -21,3 +21,8 @@
     height: inherit;
     background: white;
 }
+
+.label-signal-count {
+    width: 40px;
+    text-align: center;
+}

@@ -53,6 +53,11 @@ function DSPXBlock(runtime, element, data) {
                  $("#there-is-no-signal-count", element).html(result["student_state"]["state"]["there_is_no_signal_count"]);
                  $("#there-is-signal-count", element).html(result["student_state"]["state"]["there_is_signal_count"]);
 
+                 result["student_state"]["state"]["there_is_signal_states"].forEach(function(state_value, idx) {
+                    $("#input_student_s .label-signal-count", element)[idx].value = state_value;
+
+                });
+
                  if (result["student_state"]["state"]["Ku_done"]){
                      $("#graphic-2-controls", element).css("display", "none");
                  }
