@@ -103,9 +103,9 @@
                         {% for lol in student_state.state.there_is_signal_states %}
                             {% if forloop.counter0 == forloop.parentloop.counter0 %}
                                     {% if lol.there_is_signal_count or lol.there_is_no_signal_count %}
-                                        <label>{{ lol.there_is_signal_count }}/{{ lol.there_is_no_signal_count }}</label>
+                                        <label style="width: 40px;text-align: center;">{{ lol.there_is_signal_count }}/{{ lol.there_is_no_signal_count }}</label>
                                     {% else %}
-                                        <label>0/0</label>
+                                        <label style="width: 40px;text-align: center;">0/0</label>
                                     {% endif %}
 
                             {% endif %}
