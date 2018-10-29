@@ -2,20 +2,10 @@
 import os
 import pkg_resources
 
-from django.template import Context, Template, Library
+from django.template import Context, Template
 from django.template.loader import get_template
 from django.utils.encoding import smart_text
-from django.utils.numberformat import format
-
-register = Library()
-
-
-@register.filter
-def floatdot(value, decimal_pos=4):
-    return format(value, ".", decimal_pos)
-
-
-floatdot.is_safe = True
+# from django.utils.numberformat import format
 
 
 def load_resource(resource_path):
