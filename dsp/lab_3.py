@@ -27,8 +27,8 @@ def lab_3_get_source_data():
     ]
     signal_type = random.choice(signal_types)  # signal_types[0]  #
 
-    s = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8]
-    # s = [0.0, 0.2, 0.4, 0.6, 0.8]
+    # s = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8]
+    s = [0.0, 0.2, 0.4, 0.6, 0.8]
 
     context = dict()
     context["N1"] = N1
