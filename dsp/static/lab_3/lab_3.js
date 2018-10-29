@@ -154,6 +154,7 @@ function DSPXBlock(runtime, element, data) {
         // $('input:radio[name="input_student_filterstable"]', element).filter('[value="' + data.answer.student_filterstable + '"]').attr('checked', true);
         build_graphic_1();
         build_graphic_2(true);
+        build_graphic_3();
     }
 
     // function buttons_disable() {
