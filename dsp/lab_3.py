@@ -124,10 +124,6 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
     student_data["state"]["there_is_signal_count"] = there_is_signal_count
     student_data["state"]["there_is_no_signal_count"] = there_is_no_signal_count
 
-
-    # student_data["state"]["Ku_j_current"] = Ku_j
-    # student_data["state"]["Ku_i_current"] = Ku_i
-
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.plot(y2, linewidth=2.0)
     ax.plot(s2, linewidth=2.0)
@@ -150,7 +146,6 @@ def lab_3_get_graphic_3(student_data, source_data):
         except:
             v[idx] = 0
     s = np.array(source_data["s"])
-    # [0:len(v)]
 
     fig, ax = plt.subplots(figsize=(6, 6))
     # (markers, stemlines, baseline) =
