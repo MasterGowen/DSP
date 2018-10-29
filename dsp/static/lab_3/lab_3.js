@@ -102,18 +102,9 @@ function DSPXBlock(runtime, element, data) {
     $('#calculate_graphic_1', element).click(function (event) {
         build_graphic_1();
     });
-
-    $('#calculate_graphic_3', element).click(function (event) {
-        build_graphic_3();
-    });
-
     $('#calculate_graphic_2', element).click(function (event) {
         build_graphic_2(true);
     });
-    // $('#calculate_graphic_2_reload', element).click(function (event) {
-    //     build_graphic_2(true);
-    // });
-
     $('#calculate_graphic_2_there_is_signal', element).click(function (event) {
         build_graphic_2(false, "there_is_signal");
     });
@@ -129,15 +120,10 @@ function DSPXBlock(runtime, element, data) {
             "student_filter": [],
             "student_B": "",
             "student_s": [],
-            // "student_Dp": "",
-            // "student_filterstable": "stable",
         };
         student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
         student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
         student_data.student_B = $("#input_student_B", element).val();
-        // student_data.student_F = $("#input_student_F", element).val();
-        // student_data.student_Dp = $("#input_student_Dp", element).val();
-        // student_data.student_filterstable = $('input[name=input_student_filterstable]:checked', element).val();
         $("input.s-input", element).each(function(){
             student_data.student_s.push($(this).val());
         });
@@ -152,9 +138,6 @@ function DSPXBlock(runtime, element, data) {
         data.answer.student_s.forEach(function(s_value, idx) {
             $("input.s-input", element)[idx].value = s_value;
         });
-        // $("#input_student_F", element).val(data.answer.student_F);
-        // $("#input_student_Dp", element).val(data.answer.student_Dp);
-        // $('input:radio[name="input_student_filterstable"]', element).filter('[value="' + data.answer.student_filterstable + '"]').attr('checked', true);
         build_graphic_1();
         build_graphic_2(true);
         build_graphic_3();
