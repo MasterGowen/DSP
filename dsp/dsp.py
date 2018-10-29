@@ -13,13 +13,6 @@ from .utils import (
     load_resources,
     load_resource
 )
-from django import template
-
-register = template.Library()
-
-@register.filter
-def get_at_index(list, index):
-    return list[index]
 
 from .calc_utils import merge_two_dicts
 
