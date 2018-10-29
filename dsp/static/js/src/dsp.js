@@ -59,6 +59,14 @@ function highlight_correctness(state) {
     })
 }
 
+function disable(element){
+    $(element).attr("disabled", "disabled");
+}
+
+function enable(element){
+    $(element).removeAttr("disabled");
+}
+
 function show_graphic_error(element) {
     var error_message = $('<div/>', {
         class: 'graphic-error',
@@ -139,9 +147,9 @@ function example_data_lab_3() {
     var s_0 = "0";
     var s_1 = "0";
     var s_2 = "0.1";
-    var s_3 = "0.6";
-    var s_4 = "0.9";
-    var s_5 = "1";
+    var s_3 = "0.5";
+    var s_4 = "0.7";
+    var s_5 = "0.9";
     var s_6 = "1";
     var s_7 = "1";
     var s_8 = "1";

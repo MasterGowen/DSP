@@ -8,16 +8,19 @@ function DSPXBlock(runtime, element, data) {
 
     function build_graphic_1() {
         show_graphic_load($('#graphic_1', element));
+        disable($('#calculate_graphic_1', element));
         $.ajax({
             type: "POST",
             url: get_graphic_1,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_1", element).html(result["graphic"]["html"]);
+                enable($('#calculate_graphic_1', element));
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_1', element));
                 log_ajax_error(jqXHR, exception);
+                enable($('#calculate_graphic_1', element));
             },
             contentType: 'application/json; charset=utf-8'
         });
@@ -25,7 +28,9 @@ function DSPXBlock(runtime, element, data) {
 
     function build_graphic_2(reload, there_is_signal="") {
         show_graphic_load($('#graphic_2', element));
-
+        disable($('#calculate_graphic_2_there_is_signal', element));
+        disable($('#calculate_graphic_2_there_is_no_signal', element));
+        disable($('#calculate_graphic_2', element));
         params = [];
         params_str = "";
         if (reload) {
@@ -43,7 +48,6 @@ function DSPXBlock(runtime, element, data) {
             url: get_graphic_2 + params_str,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
-                 // $(".graphic-2-first-build", element).css("display", "none");
                  $(".graphic-2-not-first-build", element).css("display", "block");
 
                  $("#graphic_2", element).html(result["graphic"]["html"]);
@@ -64,10 +68,16 @@ function DSPXBlock(runtime, element, data) {
                  if (result["student_state"]["state"]["Ku_done"]){
                      $("#graphic-2-controls", element).css("display", "none");
                  }
+                    enable($('#calculate_graphic_2_there_is_signal', element));
+                    enable($('#calculate_graphic_2_there_is_no_signal', element));
+                    enable($('#calculate_graphic_2', element));
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_2', element));
                 log_ajax_error(jqXHR, exception);
+                enable($('#calculate_graphic_2_there_is_signal', element));
+                enable($('#calculate_graphic_2_there_is_no_signal', element));
+                enable($('#calculate_graphic_2', element));
             },
             contentType: 'application/json; charset=utf-8'
         });
