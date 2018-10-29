@@ -1,4 +1,3 @@
-{% load dsp_extras %}
 <div class="dsp_header">
     <h2 class="problem-header">{{display_name}}</h2>
     <div class="problem-progress">
@@ -65,7 +64,7 @@
     <h3>Блок построения графика 2</h3>
     <div>[
         {% for value in s %}
-            {{ value|floatdot:2 }}
+            {{ value|stringformat:"f" }}
         {% endfor %}
         ]
     </div>
@@ -101,7 +100,7 @@
             <div style="margin: 20px;" id="input_student_s">
              {% for s_value in s %}
                     <div class="numeric-input-container">
-                        <label for="input_student_s_{{ forloop.counter0 }}">\( \sigma = {{ s_value|floatdot:2 }} \):</label>
+                        <label for="input_student_s_{{ forloop.counter0 }}">\( \sigma = {{ s_value|floatformat }} \):</label>
                         <input id="input_student_s_{{ forloop.counter0 }}" class="numeric-input answer-input s-input" type=number step=any/>
                     </div>
              {% endfor %}
