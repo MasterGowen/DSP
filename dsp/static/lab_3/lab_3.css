@@ -20,6 +20,7 @@
     position: relative;
     height: inherit;
     background: white;
+    margin: -1px;
 }
 
 .label-signal-count, .label-no-signal-count {
@@ -38,7 +39,7 @@
     min-height: 460px;
     /* margin: 10px; */
     width: 370px;
-    border: 1px solid #ffffff00;
+    /*border: 1px solid #ffffff00;*/
 }
 
 #input_student_s td{
