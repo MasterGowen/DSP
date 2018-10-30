@@ -171,12 +171,12 @@ function example_data_lab_3() {
 function example_data_lab_4() {
     var signal = "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
     var filter = "1. 0.8";
-    var b = "1";
+    var B = "1";
     var F = "7";
     var Dp = "7";
     $("textarea#input_student_signal").val(signal);
     $("textarea#input_student_filter").val(filter);
-    $("#input_student_B").val(b);
+    $("#input_student_B").val(B);
     $("#input_student_F").val(F);
     $("#input_student_Dp").val(Dp);
     // $('input:radio[name="input_student_window"]').filter('[value="' + window + '"]').attr('checked', true);
