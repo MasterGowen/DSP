@@ -176,7 +176,7 @@ function example_data_lab_4() {
     var Dp = "7";
     $("textarea#input_student_signal").val(signal);
     $("textarea#input_student_filter").val(filter);
-    $("#input_student_b").val(b);
+    $("#input_student_B").val(b);
     $("#input_student_F").val(F);
     $("#input_student_Dp").val(Dp);
     // $('input:radio[name="input_student_window"]').filter('[value="' + window + '"]').attr('checked', true);
