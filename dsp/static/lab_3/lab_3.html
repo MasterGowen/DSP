@@ -107,11 +107,11 @@
                             {% if forloop.counter0 == forloop.parentloop.counter0 %}
                                     {% if lol.there_is_signal_count or lol.there_is_no_signal_count %}
                                         <td><label class="label-signal-count">{{ lol.there_is_signal_count }}</label></td>
-                                        <td><label class="label-signal-count">{{ lol.there_is_no_signal_count }}</label></td>
+                                        <td><label class="label-no-signal-count">{{ lol.there_is_no_signal_count }}</label></td>
 
                                     {% else %}
-                                        <td><label class="label-signal-count">0/0</label></td>
-                                        <td><label class="label-signal-count">0/0</label></td>
+                                        <td><label class="label-signal-count">0</label></td>
+                                        <td><label class="label-no-signal-count">0</label></td>
                                     {% endif %}
 
                             {% endif %}
