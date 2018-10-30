@@ -2,6 +2,10 @@
     margin: 15px;
 }
 
+#calculate_graphic_2 {
+    width: 100%;
+}
+
 #there-is-signal-count, #there-is-no-signal-count {
     text-align: center;
     display: none;
@@ -9,6 +13,16 @@
 
 .get-graphic-2-button {
     margin: 5px 0px;
+}
+
+.graphic-2-controls{
+    margin: 0 auto;
+    text-align: center;
+    width: 300px;
+}
+
+#graphic_2{
+    height: 480px;
 }
 
 .graphic-3-container {
