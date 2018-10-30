@@ -43,8 +43,6 @@ function process_array_input(input) {
 
 function highlight_correctness(state) {
     Object.keys(state).forEach(function (item) {
-        // console.log($("#input_student_" + item.split("_")[0]));
-        // console.log(state[item], item);
         if (item.split("_")[item.split("_").length-1] == "correctness") {
             if (state[item] == true) {
                 $("#input_student_" + item.split("_")[0]).removeClass("dsp-incorrect-input");
@@ -154,7 +152,6 @@ function example_data_lab_3() {
     var s_7 = "1";
     var s_8 = "1";
     var s_9 = "1";
-
     $("#input_student_s_0").val(s_0);
     $("#input_student_s_1").val(s_1);
     $("#input_student_s_2").val(s_2);
@@ -165,7 +162,6 @@ function example_data_lab_3() {
     $("#input_student_s_7").val(s_7);
     $("#input_student_s_8").val(s_8);
     $("#input_student_s_9").val(s_9);
-
     $("textarea#input_student_signal").val(signal);
     $("textarea#input_student_filter").val(filter);
 
@@ -178,14 +174,11 @@ function example_data_lab_4() {
     var b = "1";
     var F = "7";
     var Dp = "7";
-
-
     $("textarea#input_student_signal").val(signal);
     $("textarea#input_student_filter").val(filter);
     $("#input_student_b").val(b);
     $("#input_student_F").val(F);
     $("#input_student_Dp").val(Dp);
-    input_student_s_4
     // $('input:radio[name="input_student_window"]').filter('[value="' + window + '"]').attr('checked', true);
 }
 

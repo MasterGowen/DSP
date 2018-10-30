@@ -4,12 +4,8 @@ function DSPXBlock(runtime, element, data) {
     var get_graphics = runtime.handlerUrl(element, 'lab_1_get_graphics');
     var highlight_correct = true;
 
-    // var max_signal_length = parseInt($('#input_student_signal').data('maxLength')) || 1000;
-    // var max_filter_length = parseInt($('#input_student_signal').data('maxLength')) || 500;
-
     function build_graphics() {
-        // $("#graphic_1", element).html(""); //<div style='background: #f3f3f2;width: 100%;height:330px;'></div>
-        // $("#graphic_2", element).html("");
+        disable($('#calculate_graphics', element));
         show_graphic_load($('#graphic_1', element));
         show_graphic_load($('#graphic_2', element));
         $.ajax({
@@ -19,11 +15,13 @@ function DSPXBlock(runtime, element, data) {
             success: function (result) {
                 $("#graphic_1", element).html(result["graphics"][0]["html"]);
                 $("#graphic_2", element).html(result["graphics"][1]["html"]);
+                enable($('#calculate_graphics', element));
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_1', element));
                 show_graphic_error($('#graphic_2', element));
                 log_ajax_error(jqXHR, exception);
+                enable($('#calculate_graphics', element));
             },
             contentType: 'application/json; charset=utf-8'
         });
@@ -62,7 +60,6 @@ function DSPXBlock(runtime, element, data) {
         student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
         student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
         student_data.student_a = $("#input_student_a", element).val();
-        //student_data.student_window = $('input[name=input_student_window]:checked', element).val();
         student_data.student_ubl = $("#input_student_ubl", element).val();
         student_data.student_p = $("#input_student_p", element).val();
         return student_data;
@@ -72,7 +69,6 @@ function DSPXBlock(runtime, element, data) {
         $("textarea#input_student_signal", element).val(data.answer.student_signal);
         $("textarea#input_student_filter", element).val(data.answer.student_filter);
         $("#input_student_a", element).val(data.answer.student_a);
-        //$('input:radio[name="input_student_window"]', element).filter('[value="' + data.answer.student_window + '"]').attr('checked', true);
         $("#input_student_ubl", element).val(data.answer.student_ubl);
         $("#input_student_p", element).val(data.answer.student_p);
         build_graphics();
@@ -97,7 +93,6 @@ function DSPXBlock(runtime, element, data) {
 
     $(function ($) {
         // console.log(data);
-
         if (data.student_state.answer) {
             build_lab_state(data["student_state"]);
             $("textarea.array-input", element).each(function (i) {
@@ -108,7 +103,6 @@ function DSPXBlock(runtime, element, data) {
             }
         }
         buttons_disable();
-
         $(element).on('input', ".answer-input", function () {
             buttons_disable();
             if (highlight_correct) {
@@ -116,7 +110,6 @@ function DSPXBlock(runtime, element, data) {
                 $(this).removeClass("dsp-correct-input");
             }
         });
-
         $("textarea.array-input", element).each(function (i) {
             $(this).change(function () {
                 process_array_input(this);

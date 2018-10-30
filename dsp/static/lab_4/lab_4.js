@@ -5,6 +5,7 @@ function DSPXBlock(runtime, element, data) {
     var highlight_correct = true;
 
     function build_graphics() {
+        disable($('#calculate_graphics', element));
         show_graphic_load($('#graphic_1', element));
         show_graphic_load($('#graphic_2', element));
         $.ajax({
@@ -14,11 +15,13 @@ function DSPXBlock(runtime, element, data) {
             success: function (result) {
                 $("#graphic_1", element).html(result["graphics"][0]["html"]);
                 $("#graphic_2", element).html(result["graphics"][1]["html"]);
+                enable($('#calculate_graphics', element));
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_1', element));
                 show_graphic_error($('#graphic_2', element));
                 log_ajax_error(jqXHR, exception);
+                enable($('#calculate_graphics', element));
             },
             contentType: 'application/json; charset=utf-8'
         });
@@ -94,7 +97,6 @@ function DSPXBlock(runtime, element, data) {
 
     $(function ($) {
         // console.log(data);
-
         if (data.student_state.answer) {
             build_lab_state(data["student_state"]);
             $("textarea.array-input", element).each(function (i) {
@@ -115,7 +117,6 @@ function DSPXBlock(runtime, element, data) {
         });
 
         $("#input_student_filterstable input[type=radio]", element).change(function () {
-            // console.log($(this));
             if (highlight_correct) {
                 $(this).closest("#input_student_filterstable").removeClass("dsp-incorrect-input");
                 $(this).closest("#input_student_filterstable").removeClass("dsp-correct-input");

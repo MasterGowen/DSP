@@ -29,7 +29,6 @@ def lab_3_get_source_data():
 
     s = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8]
     # s = [0.0, 0.2, 0.4, 0.6, 0.8]
-
     context = dict()
     context["N1"] = N1
     context["s"] = s
@@ -48,10 +47,23 @@ def get_correct_signal(source_data):
 
 
 def get_correct_filter(source_data):
-    pass
+    x = [1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1]
+    K = len(x)
+    N1 = source_data["N1"]
+    N0 = K * N1
+    x2 = np.matlib.repmat(x, N1, 1)
+    y = np.append(x2.flatten('F'), np.zeros(N0 * 2))
+    b = y[0:N0][::-1]
+    return b
 
 
 def lab_3_check_answer(student_data, source_data):
+    student_y = student_data["student_signal"]
+    student_b = student_data["student_filter"]
+    student_B = float(student_data["student_B"])
+
+    y_et = get_correct_signal(source_data)
+    b_et = get_correct_filter(source_data)
     pass
 
 
