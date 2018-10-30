@@ -35,15 +35,15 @@
 
 #input_student_s {
     padding: 10px;
-
     min-height: 460px;
     margin: 10px;
-    width: 300px;
+    width: 370px;
 }
 
 #input_student_s td{
     vertical-align: middle;
     text-align: center;
     padding: 4px;
+    word-break: normal;
     border: 1px solid #00000024;
 }
