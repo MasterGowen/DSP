@@ -22,9 +22,10 @@
     background: white;
 }
 
-.label-signal-count {
+.label-signal-count, .label-no-signal-count {
     width: 40px;
     text-align: center;
+    white-space: nowrap;
 }
 
 
@@ -43,5 +44,5 @@
 #input_student_s td{
     vertical-align: middle;
     text-align: center;
-    padding: 3px;
+    padding: 4px;
 }
