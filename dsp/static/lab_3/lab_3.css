@@ -4,6 +4,7 @@
 
 #there-is-signal-count, #there-is-no-signal-count {
     text-align: center;
+    display: none;
 }
 
 .get-graphic-2-button {
