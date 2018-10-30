@@ -96,9 +96,10 @@
 
             <div style="padding: 10px;border: 1px solid #00000024;min-height: 460px;margin: 10px;width: 260px;" id="input_student_s">
                 <p>Введите вероятность правильного обнаружения: </p>
-             {% for s_value in s %}
+             <table>
+                {% for s_value in s %}
                     <!--<div class="numeric-input-container-3">-->
-                <td>
+                <tr>
                     <td><label for="input_student_s_{{ forloop.counter0 }}">\( \sigma = {{ s_value }} \):</label> </td>
                     <td></td><input id="input_student_s_{{ forloop.counter0 }}" class="numeric-input answer-input s-input" type=number step=any/></td>
 
@@ -118,6 +119,7 @@
                     </tr>
                     <!--</div>-->
              {% endfor %}
+             </table>
             </div>
 
         <div style="width: 480px;height: 480px;">
