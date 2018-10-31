@@ -78,6 +78,10 @@ function DSPXBlock(runtime, element, data) {
                         $("#input_student_s .label-signal-count", element)[idx].innerHTML = state_value.there_is_signal_count;
                         $("#input_student_s .label-no-signal-count", element)[idx].innerHTML = state_value.there_is_no_signal_count;
                     }
+                    else {
+                        $("#input_student_s .label-signal-count", element)[idx].innerHTML = 0;
+                        $("#input_student_s .label-no-signal-count", element)[idx].innerHTML = 0;
+                    }
 
                 });
 
