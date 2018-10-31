@@ -192,6 +192,7 @@ function DSPXBlock(runtime, element, data) {
         if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0) {
             enable($("#calculate_graphic_1", element));
             enable($("#calculate_graphic_2", element));
+            enable($("#reset_task", element));
             if (parseFloat(student_data.student_B) && student_data.student_s.every(elem => elem.toString().replace(/\s/g, "") != "")) {
                 enable($("#check_answer", element));
             }
@@ -202,6 +203,7 @@ function DSPXBlock(runtime, element, data) {
         else {
             disable($("#calculate_graphic_1", element));
             disable($("#calculate_graphic_2", element));
+            disable($("#reset_task", element));
             disable($("#check_answer", element));
         }
     }
