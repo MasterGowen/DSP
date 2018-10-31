@@ -247,7 +247,7 @@ class DSPXBlock(XBlock):
                 state["Ku_done"] = False
                 state["there_is_signal_count"] = 0
                 state["there_is_no_signal_count"] = 0
-                state["there_is_signal_states"] = [{}]*10
+                state["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
                 self.student_state["state"] = state
             elif self.current_lab == "lab_4":
                 self.lab_source_data = lab_4_get_source_data()
