@@ -168,7 +168,7 @@ function DSPXBlock(runtime, element, data) {
                 enable($("#check_answer", element));
             }
             else {
-                disable($("#check_answer", element));
+                disable( $("#check_answer", element));
             }
         }
         else {
@@ -187,15 +187,15 @@ function DSPXBlock(runtime, element, data) {
             //     highlight_correctness(data["student_state"]["correctness"]);
             // }
         }
-        // buttons_disable();
+        buttons_disable();
 
-        // $(element).on('input', ".answer-input", function () {
-        //     buttons_disable();
-        //     if (highlight_correct) {
-        //         $(this).removeClass("dsp-incorrect-input");
-        //         $(this).removeClass("dsp-correct-input");
-        //     }
-        // });
+        $(element).on('input', ".answer-input", function () {
+            buttons_disable();
+            // if (highlight_correct) {
+            //     $(this).removeClass("dsp-incorrect-input");
+            //     $(this).removeClass("dsp-correct-input");
+            // }
+        });
 
 
         $("textarea.array-input", element).each(function (i) {
