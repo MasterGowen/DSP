@@ -11,9 +11,10 @@ function DSPXBlock(runtime, element, data) {
         $.ajax({
             type: "GET",
             url: reset_task_url,
-            data: JSON.stringify(generateAnswer()),
+            // data: JSON.stringify(generateAnswer()),
             success: function (result) {
-                console.log(result);
+                // console.log(result);
+                build_graphic_2(true);
             },
             error: function (jqXHR, exception) {
                 alert("При сбросе ответа возникла ошибка.")
