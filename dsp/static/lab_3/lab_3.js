@@ -4,7 +4,23 @@ function DSPXBlock(runtime, element, data) {
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_3_get_graphic_1');
     var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
     var get_graphic_3 = runtime.handlerUrl(element, 'lab_3_get_graphic_3');
+    var reset_task = runtime.handlerUrl(element, 'lab_3_reset_task');
     var highlight_correct = true;
+    
+    function reset_task() {
+        $.ajax({
+            type: "GET",
+            url: reset_task,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                console.log(result);
+            },
+            error: function (jqXHR, exception) {
+                alert("При сбросе ответа возникла ошибка.")
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
 
     function build_graphic_1() {
         show_graphic_load($('#graphic_1', element));
@@ -128,6 +144,10 @@ function DSPXBlock(runtime, element, data) {
     $('#calculate_graphic_2_there_is_no_signal', element).click(function (event) {
         build_graphic_2(false, "there_is_no_signal");
     });
+    $('#reset_task', element).click(function (event) {
+        reset_task();
+    });
+
 
 
 

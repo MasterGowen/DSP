@@ -200,6 +200,16 @@ class DSPXBlock(XBlock):
         except:
             return Response('Error!', 500)
 
+    @XBlock.handler
+    def lab_3_reset_task(self, data, suffix=''):
+        self.student_state["state"]["Ku_j"] = 1
+        self.student_state["state"]["Ku_i"] = 1
+        self.student_state["state"]["Ku_done"] = False
+        self.student_state["state"]["there_is_signal_count"] = 0
+        self.student_state["state"]["there_is_no_signal_count"] = 0
+        self.student_state["state"]["there_is_signal_states"] = [{}] * 10
+        return Response(json_body={"student_state": self.student_state})
+
     @XBlock.json_handler
     def lab_4_get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
@@ -233,8 +243,6 @@ class DSPXBlock(XBlock):
                 state = dict()
                 state["Ku_j"] = 1
                 state["Ku_i"] = 1
-                # state["Ku_i_current"] = 1
-                # state["Ku_j_current"] = 1
                 state["Ku_done"] = False
                 state["there_is_signal_count"] = 0
                 state["there_is_no_signal_count"] = 0
