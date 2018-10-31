@@ -173,6 +173,7 @@ function DSPXBlock(runtime, element, data) {
         }
         else {
             disable($("#calculate_graphic_1", element));
+            disable($("#calculate_graphic_2", element));
             disable($("#check_answer", element));
         }
     }
