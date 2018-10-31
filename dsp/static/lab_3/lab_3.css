@@ -32,8 +32,9 @@
     position: relative;
     height: inherit;
     background: white;
-    margin: -1px;
+    /*margin: -1px;*/
 }
+
 
 .label-signal-count, .label-no-signal-count {
     width: 40px;
