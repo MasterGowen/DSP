@@ -42,7 +42,6 @@ function DSPXBlock(runtime, element, data) {
         if (params.length > 0){
             params_str = "?" + params.join("&")
         }
-        console.log(params_str);
         $.ajax({
             type: "POST",
             url: get_graphic_2 + params_str,
@@ -58,7 +57,6 @@ function DSPXBlock(runtime, element, data) {
                  $("#there-is-signal-count", element).html(result["student_state"]["state"]["there_is_signal_count"]);
 
                  result["student_state"]["state"]["there_is_signal_states"].forEach(function(state_value, idx) {
-                    console.log(state_value.there_is_signal_count);
                     if (state_value.there_is_signal_count !== undefined ) {
                         $("#input_student_s .label-signal-count", element)[idx].innerHTML = state_value.there_is_signal_count;
                         $("#input_student_s .label-no-signal-count", element)[idx].innerHTML = state_value.there_is_no_signal_count;
@@ -146,7 +144,6 @@ function DSPXBlock(runtime, element, data) {
         $("input.s-input", element).each(function(){
             student_data.student_s.push($(this).val());
         });
-        console.log(student_data);
         return student_data;
     }
 
@@ -162,25 +159,25 @@ function DSPXBlock(runtime, element, data) {
         build_graphic_3();
     }
 
-    // function buttons_disable() {
-    //     var student_data = generateAnswer();
-    //     if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_b)) {
-    //         $("#calculate_graphics", element).removeAttr("disabled");
-    //         if (parseFloat(student_data.student_F) && parseFloat(student_data.student_Dp)) {
-    //             $("#check_answer", element).removeAttr("disabled");
-    //         }
-    //         else {
-    //             $("#check_answer", element).attr('disabled', 'disabled');
-    //         }
-    //     }
-    //     else {
-    //         $("#calculate_graphics", element).attr('disabled', 'disabled');
-    //         $("#check_answer", element).attr('disabled', 'disabled');
-    //     }
-    // }
+    function buttons_disable() {
+        var student_data = generateAnswer();
+        if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0) {
+            enable($("#calculate_graphic_1", element));
+            enable($("#calculate_graphic_2", element));
+            if (parseFloat(student_data.student_B) && student_data.student_s.every(elem => elem.toString().replace(/\s/g, "") != "")) {
+                enable($("#check_answer", element));
+            }
+            else {
+                disable($("#check_answer", element));
+            }
+        }
+        else {
+            disable($("#calculate_graphic_1", element));
+            disable($("#check_answer", element));
+        }
+    }
 
     $(function ($) {
-        console.log(data);
         if (data.student_state.answer) {
             build_lab_state(data["student_state"]);
             $("textarea.array-input", element).each(function (i) {
