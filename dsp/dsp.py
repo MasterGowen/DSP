@@ -200,7 +200,7 @@ class DSPXBlock(XBlock):
         except:
             return Response('Error!', 500)
 
-    @XBlock.json_handler
+    @XBlock.handler
     def lab_3_reset_task(self, data, suffix=''):
         self.student_state["state"]["Ku_j"] = 1
         self.student_state["state"]["Ku_i"] = 1
