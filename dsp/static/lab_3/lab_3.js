@@ -88,9 +88,12 @@ function DSPXBlock(runtime, element, data) {
                  if (result["student_state"]["state"]["Ku_done"]){
                      $("#graphic-2-controls", element).css("display", "none");
                  }
-                    enable($('#calculate_graphic_2_there_is_signal', element));
-                    enable($('#calculate_graphic_2_there_is_no_signal', element));
-                    enable($('#calculate_graphic_2', element));
+                 else{
+                     $("#graphic-2-controls", element).css("display", "block");
+                 }
+                enable($('#calculate_graphic_2_there_is_signal', element));
+                enable($('#calculate_graphic_2_there_is_no_signal', element));
+                enable($('#calculate_graphic_2', element));
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_2', element));
