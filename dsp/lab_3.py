@@ -141,7 +141,7 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
             log.info(w)
             # log.info(math.floor(N0 - float(K)/2)-1)
             # log.info(math.floor(N0 + float(K)/2)+3)
-            for x in np.arange(math.floor(N0-float(K)/2), math.floor(N0+float(K)/2)+3):
+            for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
                 w[x-1] = 0
             log.info(w)
             q = q + np.double(sum(w) > 0)
