@@ -137,10 +137,11 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
             s2 = signal.lfilter(b, 1, y2)
             w = (np.array(s2) > np.array(pp)).astype(int)
             log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            log.info(math.floor(N0 - float(K)/2)-1)
-            log.info(math.floor(N0 + float(K)/2)+3)
+            # log.info(math.floor(N0 - float(K)/2)-1)
+            # log.info(math.floor(N0 + float(K)/2)+3)
             for x in np.arange(math.floor(N0-float(K)/2), math.floor(N0+float(K)/2)+3):
                 w[x-1] = 0
+            log.info(w)
             q = q + np.double(sum(w) > 0)
         if Ku_i == 10:
             correct_answer["s"][Ku_j-1] = float(q/Ku_i)
