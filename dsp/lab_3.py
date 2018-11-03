@@ -140,9 +140,10 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
                 w[x-1] = 0
             q = q + np.double(sum(w) > 0)
         if Ku_i == 10:
+            log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            log.info(q)
             correct_answer["s"][Ku_j-1] = float(q/Ku_i)
 
-    # student_data["state"]["correct_s"] = Ku_j
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
     student_data["state"]["there_is_signal_count"] = there_is_signal_count
