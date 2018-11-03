@@ -43,7 +43,7 @@ def get_correct_signal(source_data):
     N0 = K * N1
     x2 = np.matlib.repmat(x, N1, 1)
     y = np.append(x2.flatten('F'), np.zeros(N0 * 2))
-    return y
+    return y, K
 
 
 def get_correct_filter(source_data):
@@ -62,7 +62,7 @@ def lab_3_check_answer(student_data, source_data):
     student_b = student_data["student_filter"]
     student_B = float(student_data["student_B"])
 
-    y_et = get_correct_signal(source_data)
+    y_et, K = get_correct_signal(source_data)
     b_et = get_correct_filter(source_data)
     pass
 
@@ -88,7 +88,7 @@ def lab_3_get_graphic_1(student_data, source_data):
     return graphic
 
 
-def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
+def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True", is_signal=""):
     y2 = []
     s2 = []
     Ku_i_max = len(source_data["s"])
@@ -99,6 +99,8 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
     s_st = np.array(source_data["s"])
     Ku_j = int(student_data["state"]["Ku_j"])
     Ku_i = int(student_data["state"]["Ku_i"])
+
+    K = 13
 
     there_is_signal_count = int(student_data["state"]["there_is_signal_count"])
     there_is_no_signal_count = int(student_data["state"]["there_is_no_signal_count"])
@@ -114,6 +116,7 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
         student_data["state"]["there_is_signal_states"][Ku_j - 1] = {"there_is_signal_count": there_is_signal_count,
                                              "there_is_no_signal_count": there_is_no_signal_count}
 
+    correct_s = correct_answer["s"]
     if not reload:
         if Ku_i == Ku_i_max:
             if Ku_j == Ku_j_max:
@@ -127,10 +130,19 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
             Ku_i += 1
 
     for j in np.arange(1, Ku_j + 1):
+        pp = 2 * math.sqrt(N0)
+        q = 0
         for i in np.arange(1, Ku_i + 1):
             y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
             s2 = signal.lfilter(b, 1, y2)
+            w = (np.array(s2) > np.array(pp)).astype(int)
+            for x in np.arange(math.floor(N0-K/2)-1, math.floor(N0+K/2)+3):
+                w[x-1] = 0
+            q = q + np.double(sum(w) > 0)
+        if Ku_i == 10:
+            correct_answer["s"][Ku_j-1] = float(q/Ku_i)
 
+    # student_data["state"]["correct_s"] = Ku_j
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
     student_data["state"]["there_is_signal_count"] = there_is_signal_count
@@ -147,7 +159,7 @@ def lab_3_get_graphic_2(student_data, source_data, reload="True", is_signal=""):
         "id": "graphic_2",
         "html": html
     }
-    return student_data, graphic
+    return correct_answer, student_data, graphic
 
 
 def lab_3_get_graphic_3(student_data, source_data):

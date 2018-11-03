@@ -114,6 +114,13 @@ class DSPXBlock(XBlock):
         help='Ответ студента',
     )
 
+    correct_answer = JSONField(
+        default={},
+        scope=Scope.user_state,
+        help='Правильный ответ',
+    )
+
+
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
         data = pkg_resources.resource_string(__name__, path)
@@ -185,8 +192,8 @@ class DSPXBlock(XBlock):
                 reload = True
             if 'is_signal' in request.GET:
                 is_signal = request.GET["is_signal"]
-            self.student_state, graphic = lab_3_get_graphic_2(self.student_state, self.lab_source_data, reload, is_signal)
-            return Response(json_body={"graphic": graphic, "student_state": self.student_state})
+                self.correct_answer, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
+            return Response(json_body={"graphic": graphic, "student_state": self.student_state, "correct_answer": self.correct_answer})
         except:
             return Response('Error!', 500)
 
@@ -248,6 +255,7 @@ class DSPXBlock(XBlock):
                 state["there_is_signal_count"] = 0
                 state["there_is_no_signal_count"] = 0
                 state["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
+                self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
                 self.student_state["state"] = state
             elif self.current_lab == "lab_4":
                 self.lab_source_data = lab_4_get_source_data()
