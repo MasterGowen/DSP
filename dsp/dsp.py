@@ -175,11 +175,11 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def lab_3_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
-        try:
-            graphic = lab_3_get_graphic_1(data, self.lab_source_data)
-            return Response(json_body={"graphic": graphic})
-        except:
-            return Response('Error!', 500)
+        # try:
+        graphic = lab_3_get_graphic_1(data, self.lab_source_data)
+        return Response(json_body={"graphic": graphic})
+        # except:
+        #     return Response('Error!', 500)
 
 
     @XBlock.handler
