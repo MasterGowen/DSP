@@ -42,7 +42,7 @@ def get_correct_signal(source_data):
     N1 = source_data["N1"]
     N0 = K * N1
     x2 = np.matlib.repmat(x, N1, 1)
-    y = np.append(x2.flatten('F'), np.zeros(N0 * 2))
+    y = np.append(x2.flatten('F'))
     return y, K
 
 
@@ -68,9 +68,9 @@ def lab_3_check_answer(student_data, source_data):
 
 
 def lab_3_get_graphic_1(student_data, source_data):
-    y = student_data["student_signal"]
     b = student_data["student_filter"]
     N0 = len(b)
+    y = np.append(student_data["student_signal"], np.zeros(N0 * 2))
     S = int(np.floor(np.random.uniform(0, 1) * N0))
     y1_et = np.roll(np.roll(y, S), (-1) * S)
 
@@ -93,14 +93,14 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
     s2 = []
     Ku_i_max = len(source_data["s"])
     Ku_j_max = len(source_data["s"])
-    y = np.array(student_data["answer"]["student_signal"])
     b = np.array(student_data["answer"]["student_filter"])
     N0 = len(b)
+    y = np.append(np.array(student_data["answer"]["student_signal"]), np.zeros(N0 * 2))
     s_st = np.array(source_data["s"])
     Ku_j = int(student_data["state"]["Ku_j"])
     Ku_i = int(student_data["state"]["Ku_i"])
 
-    K = 13
+    K = 13  # сделать не так
 
     there_is_signal_count = int(student_data["state"]["there_is_signal_count"])
     there_is_no_signal_count = int(student_data["state"]["there_is_no_signal_count"])
