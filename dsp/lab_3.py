@@ -137,7 +137,8 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
             s2 = signal.lfilter(b, 1, y2)
             w = (np.array(s2) > np.array(pp)).astype(int)
             log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            log.info(math.floor(N0-K/2)-1, math.floor(N0+K/2)+3)
+            log.info(math.floor(N0-K/2)-1)
+            lag.info(math.floor(N0+K/2)+3)
             for x in np.arange(math.floor(N0-K/2)-1, math.floor(N0+K/2)+3):
                 w[x-1] = 0
             q = q + np.double(sum(w) > 0)
