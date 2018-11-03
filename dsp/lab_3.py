@@ -136,7 +136,9 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
             y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
             s2 = signal.lfilter(b, 1, y2)
             w = (np.array(s2) > np.array(pp)).astype(int)
+
             log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            log.info(w)
             # log.info(math.floor(N0 - float(K)/2)-1)
             # log.info(math.floor(N0 + float(K)/2)+3)
             for x in np.arange(math.floor(N0-float(K)/2), math.floor(N0+float(K)/2)+3):
