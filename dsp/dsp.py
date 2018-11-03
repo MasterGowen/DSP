@@ -187,15 +187,15 @@ class DSPXBlock(XBlock):
         self.student_state["answer"] = json.loads(request.body)
         reload = False
         is_signal = ""
-        try:
-            if 'reload' in request.GET:
-                reload = True
-            if 'is_signal' in request.GET:
-                is_signal = request.GET["is_signal"]
-                self.correct_answer, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
-            return Response(json_body={"graphic": graphic, "student_state": self.student_state, "correct_answer": self.correct_answer})
-        except:
-            return Response('Error!', 500)
+        # try:
+        if 'reload' in request.GET:
+            reload = True
+        if 'is_signal' in request.GET:
+            is_signal = request.GET["is_signal"]
+            self.correct_answer, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
+        return Response(json_body={"graphic": graphic, "student_state": self.student_state, "correct_answer": self.correct_answer})
+        # except:
+            # return Response('Error!', 500)
 
 
     @XBlock.json_handler

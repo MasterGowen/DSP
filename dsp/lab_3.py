@@ -116,7 +116,7 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
         student_data["state"]["there_is_signal_states"][Ku_j - 1] = {"there_is_signal_count": there_is_signal_count,
                                              "there_is_no_signal_count": there_is_no_signal_count}
 
-    correct_s = correct_answer["s"]
+    # correct_s = correct_answer["s"]
     if not reload:
         if Ku_i == Ku_i_max:
             if Ku_j == Ku_j_max:
