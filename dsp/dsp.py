@@ -18,8 +18,9 @@ from .calc_utils import merge_two_dicts
 
 from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
 
-from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3
+from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, lab_3_check_answer
 from lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
+from lab_5 import lab_5_get_source_data, lab_5_check_answer
 
 log = logging.getLogger(__name__)
 
@@ -149,11 +150,11 @@ class DSPXBlock(XBlock):
         elif self.current_lab == "lab_2":
             pass
         elif self.current_lab == "lab_3":
-            pass
+            result = lab_3_check_answer(data, self.lab_source_data)
         elif self.current_lab == "lab_4":
             result = lab_4_check_answer(data, self.lab_source_data)
         elif self.current_lab == "lab_5":
-            pass
+            result = lab_5_check_answer(data, self.lab_source_data)
         else:
             pass
 
@@ -260,7 +261,7 @@ class DSPXBlock(XBlock):
             elif self.current_lab == "lab_4":
                 self.lab_source_data = lab_4_get_source_data()
             elif self.current_lab == "lab_5":
-                self.lab_source_data = lab_1_get_source_data()
+                self.lab_source_data = lab_5_get_source_data()
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 

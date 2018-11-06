@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-шаблон пятой лаборатории
-</body>
-</html>
+
+<div class="dsp_header">
+    <h2 class="problem-header">{{display_name}}</h2>
+    <div class="problem-progress">
+        {% if score == 0 or score %}
+        <me-span class="weight"> Набрано баллов:
+            <me-span class="points">{{score|floatformat:"0" }} из {{maximum_score|floatformat:"0" }}</me-span>
+        </me-span>
+        {% else %}
+        <me-span class="weight">(Максимальное кoличество баллов: {{maximum_score|floatformat:"0" }})</me-span>
+        {% endif %}
+    </div>
+</div>
+
+<div class="dsp_block">
+    <h3>Блок формирования сигналов</h3>
+    <div class="task-wording">
+    <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type.title}}</span></p>
+    </div>
+    <p>Введите сигнал:</p>
+    <div class="array-input-container">
+        <textarea id="input_student_s" data-array-type="сигнал" data-max-length="500"
+                  class="signal-input array-input answer-input"
+                  style="height: 100px"
+                  rows="4" cols="24"
+                  wrap="hard"></textarea>
+        <div class="validation-message"></div>
+    </div>
+
+    <div class="task-wording">
+    <p>Сигнал после компрессии</p>
+    </div>
+    <p>Введите сигнал:</p>
+    <div class="array-input-container">
+        <textarea id="input_student_s1" data-array-type="сигнал" data-max-length="500"
+                  class="signal-input array-input answer-input"
+                  style="height: 100px"
+                  rows="4" cols="24"
+                  wrap="hard"></textarea>
+        <div class="validation-message"></div>
+    </div>
+</div>
+
+
+
+<!--<div class="dsp_footer">-->
+    <!--<button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span>-->
+    <!--</button>-->
+<!--</div>-->
