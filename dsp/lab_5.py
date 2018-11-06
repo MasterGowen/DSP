@@ -46,7 +46,29 @@ def lab_5_check_answer(student_data, source_data):
 
 
 def lab_5_get_graphic_1(student_data, source_data):
-    pass
+    graphics = []
+    s = student_data["student_s"]
+    s1 = student_data["student_s1"]
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.stem(abs(np.fft.fft(s)))
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_1",
+            "html": html
+        }
+    )
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.stem(abs(np.fft.fft(s1)))
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_2",
+            "html": html
+        }
+    )
+    return graphics
 
 
 def lab_5_get_graphic_2(student_data, source_data):
