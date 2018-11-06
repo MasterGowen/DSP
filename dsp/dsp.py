@@ -20,7 +20,7 @@ from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
 
 from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, lab_3_check_answer
 from lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
-from lab_5 import lab_5_get_source_data, lab_5_check_answer
+from lab_5 import lab_5_get_source_data, lab_5_get_graphic_1, lab_5_check_answer
 
 log = logging.getLogger(__name__)
 
