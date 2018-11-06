@@ -160,12 +160,10 @@ function DSPXBlock(runtime, element, data) {
 
 
     function generateAnswer() {
-        // var student_data = {
-        //     "student_signal": [],
-        //     "student_filter": [],
-        //     "student_B": "",
-        //     "student_s": [],
-        // };
+        var student_data = {
+            "student_s": [],
+            "student_s1": [],
+        };
         // student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
         // student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
         // student_data.student_B = $("#input_student_B", element).val();
