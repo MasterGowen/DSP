@@ -108,7 +108,7 @@ def lab_5_get_graphic_2(student_data, source_data):
         }
     )
     fig, ax = plt.subplots(figsize=(6, 6))
-    ax.plot(abs(np.fft.fft(sl)))
+    ax.plot(np.fft.fft(sl))
     html = mpld3.fig_to_d3(fig)
     graphics.append(
         {
@@ -117,7 +117,7 @@ def lab_5_get_graphic_2(student_data, source_data):
         }
     )
     fig, ax = plt.subplots(figsize=(6, 6))
-    ax.plot(abs(np.fft.fft(slc)))
+    ax.plot(np.fft.fft(slc))
     html = mpld3.fig_to_d3(fig)
     graphics.append(
         {
