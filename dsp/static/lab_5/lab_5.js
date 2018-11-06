@@ -177,13 +177,13 @@ function DSPXBlock(runtime, element, data) {
     }
 
     function build_lab_state(data) {
-        // $("textarea#input_student_signal", element).val(data.answer.student_signal);
-        // $("textarea#input_student_filter", element).val(data.answer.student_filter);
+        $("textarea#input_student_s", element).val(data.answer.student_s);
+        $("textarea#input_student_s1", element).val(data.answer.student_s1);
         // $("#input_student_B", element).val(data.answer.student_B);
         // data.answer.student_s.forEach(function(s_value, idx) {
         //     $("input.s-input", element)[idx].value = s_value;
         // });
-        // build_graphic_1();
+        build_graphic_1();
         // build_graphic_2(true);
         // build_graphic_3();
     }
