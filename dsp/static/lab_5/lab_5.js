@@ -167,8 +167,8 @@ function DSPXBlock(runtime, element, data) {
             "student_s": [],
             "student_s1": [],
         };
-        // student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
-        // student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
+        student_data.student_s = parseTextSignal($("#input_student_s", element)).signal;
+        student_data.student_s1 = parseTextSignal($("#input_student_s1", element)).signal;
         // student_data.student_B = $("#input_student_B", element).val();
         // $("input.s-input", element).each(function(){
         //     student_data.student_s.push($(this).val());
