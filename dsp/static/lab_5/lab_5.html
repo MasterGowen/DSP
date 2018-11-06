@@ -108,6 +108,68 @@
     </div>
 </div>
 
+<div class="dsp_block">
+    <!--<h3>Блок формирования сигналов</h3>-->
+    <div class="task-wording">
+    <p>Восстановить прежнюю частоту дискретизации, рассчитать среднеквадратичное отклонение исходного и преобразованного сигналов и занести значение в соответствующее поле ввода. Восстановление сигнала проводить с помощью КИХ-НЧ-фильтра.</p>
+    </div>
+    <div class="task-wording-1">
+        {{ s2 }}
+    </div>
+
+    <div class="task-wording">
+        <p>Компрессия без предфильтрации в \( K = {{ K_1 }} \) раз.</p>
+        <div class="task-wording-1">
+            {{ s41 }}
+        </div>
+    </div>
+    <div class="task-wording">
+        <p>Компрессия без предфильтрации в \( K = {{ K_2 }} \) раз.</p>
+        <div class="task-wording-1">
+            {{ s42 }}
+        </div>
+    </div>
+    <div class="task-wording">
+        <p>Компрессия с предфильтрацией в \( K = {{ K_1 }} \) раз.</p>
+        <div class="task-wording-1">
+            {{ s43 }}
+        </div>
+    </div>
+    <div class="task-wording">
+        <p>Компрессия с предфильтрацией в \( K = {{ K_2 }} \) раз.</p>
+        <div class="task-wording-1">
+            {{ s44 }}
+        </div>
+    </div>
+
+    <!--<div class="array-input-container">-->
+        <!--<textarea id="input_student_sl" data-array-type="сигнал" data-max-length="1100"-->
+                  <!--class="signal-input array-input answer-input"-->
+                  <!--style="height: 100px"-->
+                  <!--rows="4" cols="24"-->
+                  <!--wrap="hard"></textarea>-->
+        <!--<div class="validation-message"></div>-->
+    <!--</div>-->
+
+    <div class="numeric-input-container">
+        <label for="input_student_K1">\( K1: \)</label>
+        <input id="input_student_K1" class="numeric-input answer-input" type=number step=any/>
+    </div>
+    <div class="numeric-input-container">
+        <label for="input_student_K2">\( K2: \)</label>
+        <input id="input_student_K2" class="numeric-input answer-input" type=number step=any/>
+    </div>
+    <div class="numeric-input-container">
+        <label for="input_student_K3">\( K3: \)</label>
+        <input id="input_student_K3" class="numeric-input answer-input" type=number step=any/>
+    </div>
+    <div class="numeric-input-container">
+        <label for="input_student_K4">\( K4: \)</label>
+        <input id="input_student_K4" class="numeric-input answer-input" type=number step=any/>
+    </div>
+
+</div>
+
 <!--<div class="dsp_footer">-->
     <!--<button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span>-->
     <!--</button>-->
