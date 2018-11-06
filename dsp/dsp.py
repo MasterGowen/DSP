@@ -232,11 +232,11 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def lab_5_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
-        try:
-            graphics = lab_5_get_graphic_1(data, self.lab_source_data)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        # try:
+        graphics = lab_5_get_graphic_1(data, self.lab_source_data)
+        return Response(json_body={"graphics": graphics})
+        # except:
+        #     return Response('Error!', 500)
 
 
     def get_general_context(self):
