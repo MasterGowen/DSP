@@ -85,4 +85,45 @@ def lab_5_get_graphic_1(student_data, source_data):
 
 
 def lab_5_get_graphic_2(student_data, source_data):
-    pass
+    graphics = []
+    sl = np.array(student_data["student_sl"])
+    slc = np.array(student_data["student_slc"])
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(sl)
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_3",
+            "html": html
+        }
+    )
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(slc)
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_4",
+            "html": html
+        }
+    )
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(abs(np.fft.fft(sl)))
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_5",
+            "html": html
+        }
+    )
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(abs(np.fft.fft(slc)))
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_6",
+            "html": html
+        }
+    )
+
+    return graphics

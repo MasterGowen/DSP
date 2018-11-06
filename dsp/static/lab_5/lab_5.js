@@ -2,6 +2,7 @@ function DSPXBlock(runtime, element, data) {
 
     // var student_submit = runtime.handlerUrl(element, 'student_submit');
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_5_get_graphic_1');
+    var get_graphic_2 = runtime.handlerUrl(element, 'lab_5_get_graphic_2');
     // var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
     // var get_graphic_3 = runtime.handlerUrl(element, 'lab_3_get_graphic_3');
     // var reset_task_url = runtime.handlerUrl(element, 'lab_3_reset_task');
@@ -41,6 +42,34 @@ function DSPXBlock(runtime, element, data) {
                 show_graphic_error($('#graphic_2', element));
                 log_ajax_error(jqXHR, exception);
                 enable($('#calculate_graphic_1', element));
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
+    function build_graphic_2() {
+        disable($('#calculate_graphic_2', element));
+        show_graphic_load($('#graphic_3', element));
+        show_graphic_load($('#graphic_4', element));
+        show_graphic_load($('#graphic_5', element));
+        show_graphic_load($('#graphic_6', element));
+        $.ajax({
+            type: "POST",
+            url: get_graphic_2,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $("#graphic_3", element).html(result["graphics"][0]["html"]);
+                $("#graphic_4", element).html(result["graphics"][1]["html"]);
+                $("#graphic_5", element).html(result["graphics"][2]["html"]);
+                $("#graphic_6", element).html(result["graphics"][3]["html"]);
+                enable($('#calculate_graphic_2', element));
+            },
+            error: function (jqXHR, exception) {
+                show_graphic_error($('#graphic_3', element));
+                show_graphic_error($('#graphic_4', element));
+                show_graphic_error($('#graphic_5', element));
+                show_graphic_error($('#graphic_6', element));
+                log_ajax_error(jqXHR, exception);
+                enable($('#calculate_graphic_2', element));
             },
             contentType: 'application/json; charset=utf-8'
         });

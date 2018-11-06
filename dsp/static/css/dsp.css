@@ -102,6 +102,8 @@
     background: white;
     padding: 2px;
     font-size: 1em;
+    overflow: auto;
+    max-height: 200px;
 }
 
 .dsp-incorrect-input {
