@@ -19,17 +19,30 @@ log = logging.getLogger(__name__)
 def lab_5_get_source_data():
     fd = 100
     f0 = 23  # np.floor(50*np.random.uniform(0, 1)) 5...48
-    K = 4  # np.random.choice(np.array([2, 3, 4, 5]))
-    signal_type = {
+    K1 = 4  # np.random.choice(np.array([2, 3, 4, 5]))
+    K2 = 6
+    signal_type_1 = {
         "name": "harmonic_oscillations",
         "title": "Для гармонических колебаний (при \(f_0 = {}\) и \(f_д = {}\)) произвести компрессию частоты дискретизации в \({}\) раз путём отбрасывания отсчётов.".format(
-            f0, fd, K)
+            f0, fd, K1)
+    }
+    T = 10
+    fe = 0
+    fs = 20
+    signal_type_2 = {
+        "name": "lchm_signal",
+        "title": "Сигнал с ЛЧМ с параметрами \(T = {}\),\(f_e = {}\),\(f_s = {}\), амплитуда = 1".format(T, fe, fs)
     }
     context = dict()
     context["fd"] = fd
     context["f0"] = f0
-    context["K"] = K
-    context["signal_type"] = signal_type
+    context["T"] = T
+    context["fe"] = fe
+    context["fs"] = fs
+    context["K1"] = K1
+    context["K2"] = K2
+    context["signal_type_1"] = signal_type_1
+    context["signal_type_2"] = signal_type_2
     return context
 
 

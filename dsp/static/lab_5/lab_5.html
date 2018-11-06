@@ -15,7 +15,7 @@
 <div class="dsp_block">
     <h3>Блок формирования сигналов</h3>
     <div class="task-wording">
-    <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type.title}}</span></p>
+    <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type_1.title}}</span></p>
     </div>
     <p>Введите сигнал:</p>
     <div class="array-input-container">
@@ -57,7 +57,56 @@
     </div>
 </div>
 
+<div class="dsp_block">
+    <!--<h3>Блок формирования сигналов</h3>-->
+    <div class="task-wording">
+    <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type_2.title}}</span></p>
+    </div>
+    <p>Введите сигнал:</p>
+    <div class="array-input-container">
+        <textarea id="input_student_sl" data-array-type="сигнал" data-max-length="500"
+                  class="signal-input array-input answer-input"
+                  style="height: 100px"
+                  rows="4" cols="24"
+                  wrap="hard"></textarea>
+        <div class="validation-message"></div>
+    </div>
 
+    <p>Введите сигнал после компрессии, при \( K = {{ K2 }} \):</p>
+    <div class="array-input-container">
+        <textarea id="input_student_slc" data-array-type="сигнал" data-max-length="500"
+                  class="signal-input array-input answer-input"
+                  style="height: 100px"
+                  rows="4" cols="24"
+                  wrap="hard"></textarea>
+        <div class="validation-message"></div>
+    </div>
+    <!--disabled="disabled"-->
+    <button id="calculate_graphic_2" class="get-graphic-button">Построить графики</button>
+</div>
+
+<div class="dsp_block">
+    <h3>Блок построения графиков</h3>
+    <div style="display: flex;">
+        <div id="graphic_3" class="graphic-container">
+        </div>
+        <div id="graphic_4" class="graphic-container">
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div id="graphic_5" class="graphic-container">
+        </div>
+        <div id="graphic_6" class="graphic-container">
+    </div>
+    </div>
+</div>
+
+<div class="dsp_block">
+    <div class="numeric-input-container">
+        <label for="input_student_Np">Ввод паразитного периода:</label>
+        <input id="input_student_Np" class="numeric-input answer-input" type=number step=any/>
+    </div>
+</div>
 
 <!--<div class="dsp_footer">-->
     <!--<button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span>-->

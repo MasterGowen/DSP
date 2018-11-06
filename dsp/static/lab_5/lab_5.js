@@ -146,6 +146,11 @@ function DSPXBlock(runtime, element, data) {
     $('#calculate_graphic_1', element).click(function (event) {
         build_graphic_1();
     });
+
+    $('#calculate_graphic_2', element).click(function (event) {
+        build_graphic_2();
+    });
+
     // $('#calculate_graphic_2', element).click(function (event) {
     //     build_graphic_2(true);
     // });
@@ -169,7 +174,11 @@ function DSPXBlock(runtime, element, data) {
         };
         student_data.student_s = parseTextSignal($("#input_student_s", element)).signal;
         student_data.student_s1 = parseTextSignal($("#input_student_s1", element)).signal;
-        // student_data.student_B = $("#input_student_B", element).val();
+        student_data.student_fn = $("#input_student_fn", element).val();
+
+        student_data.student_sl = parseTextSignal($("#input_student_sl", element)).signal;
+        student_data.student_slc = parseTextSignal($("#input_student_slc", element)).signal;
+        student_data.student_Np = $("#input_student_Np", element).val();
         // $("input.s-input", element).each(function(){
         //     student_data.student_s.push($(this).val());
         // });
@@ -179,7 +188,11 @@ function DSPXBlock(runtime, element, data) {
     function build_lab_state(data) {
         $("textarea#input_student_s", element).val(data.answer.student_s);
         $("textarea#input_student_s1", element).val(data.answer.student_s1);
-        // $("#input_student_B", element).val(data.answer.student_B);
+        $("#input_student_fn", element).val(data.answer.student_fn);
+
+        $("textarea#input_student_sl", element).val(data.answer.student_sl);
+        $("textarea#input_student_slc", element).val(data.answer.student_slc);
+        $("#input_student_Np", element).val(data.answer.student_Np);
         // data.answer.student_s.forEach(function(s_value, idx) {
         //     $("input.s-input", element)[idx].value = s_value;
         // });
