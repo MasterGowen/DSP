@@ -226,6 +226,7 @@ function DSPXBlock(runtime, element, data) {
         //     $("input.s-input", element)[idx].value = s_value;
         // });
         build_graphic_1();
+        build_graphic_2();
         // build_graphic_2(true);
         // build_graphic_3();
     }
