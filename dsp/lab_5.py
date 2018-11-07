@@ -44,10 +44,10 @@ def lab_5_get_source_data():
     s33 = signal.decimate(s2, 2, ftype='fir')
     s34 = signal.decimate(s2, 5, ftype='fir')
 
-    s41 = resample_poly(s31, 2, 1)
-    s42 = resample_poly(s32, 5, 1)
-    s43 = resample_poly(s33, 2, 1)
-    s44 = resample_poly(s34, 5, 1)
+    s41 = signal.resample(s31, len(s31) * K1)
+    s42 = signal.resample(s32, len(s32) * K2)
+    s43 = signal.resample(s33, len(s33) * K1)
+    s44 = signal.resample(s34, len(s34) * K2)
 
     context = dict()
     context["fd"] = fd
