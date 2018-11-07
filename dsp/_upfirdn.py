@@ -33,7 +33,7 @@
 
 import numpy as np
 import pyximport; pyximport.install()
-import ._upfirdn_apply
+from ._upfirdn_apply import _output_len, _apply
 
 __all__ = ['upfirdn', '_output_len']
 
