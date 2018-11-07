@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.signal.fir_filter_design import firwin
-from scipy.signal._upfirdn import _output_len, _UpFIRDn
+from ._upfirdn import _output_len, _UpFIRDn
 
 
 def arrays_is_equal(x, y):
