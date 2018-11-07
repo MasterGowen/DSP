@@ -10,7 +10,6 @@ from scipy import signal
 import matplotlib.pyplot as plt
 import mpld3
 import random
-from .calc_utils import resample_poly
 
 from .calc_utils import arrays_is_equal, numbers_is_equal
 
