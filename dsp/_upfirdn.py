@@ -32,8 +32,8 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import numpy as np
-
-from ._upfirdn_apply import _output_len, _apply
+import pyximport; pyximport.install()
+import ._upfirdn_apply
 
 __all__ = ['upfirdn', '_output_len']
 

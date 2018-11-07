@@ -3,7 +3,6 @@
 import os
 
 from setuptools import setup
-from Cython.Build import cythonize
 
 def package_data(pkg, roots):
     """Generic function to find package_data.
@@ -37,6 +36,5 @@ setup(
             'dsp = dsp:DSPXBlock',
         ]
     },
-    ext_modules = cythonize("_upfirdn_apply.pyx"),
     package_data=package_data("dsp", ["static", "public"]),
 )
