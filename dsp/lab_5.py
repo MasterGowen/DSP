@@ -10,6 +10,7 @@ from scipy import signal
 import matplotlib.pyplot as plt
 import mpld3
 import random
+from .calc_utils import resample_poly
 
 from .calc_utils import arrays_is_equal, numbers_is_equal
 
@@ -43,10 +44,10 @@ def lab_5_get_source_data():
     s33 = signal.decimate(s2, 2, ftype='fir')
     s34 = signal.decimate(s2, 5, ftype='fir')
 
-    s41 = signal.resample_poly(s31, 2, 1)
-    s42 = signal.resample_poly(s32, 5, 1)
-    s43 = signal.resample_poly(s33, 2, 1)
-    s44 = signal.resample_poly(s34, 5, 1)
+    s41 = resample_poly(s31, 2, 1)
+    s42 = resample_poly(s32, 5, 1)
+    s43 = resample_poly(s33, 2, 1)
+    s44 = resample_poly(s34, 5, 1)
 
     context = dict()
     context["fd"] = fd
