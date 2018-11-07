@@ -37,8 +37,9 @@ def lab_5_get_source_data():
     K_1 = 2
     K_2 = 5
 
-    s2 = signal.lfilter(np.array([1, 1, 1]) / 3, [1, -0.85], np.random.randn(250))
+    s2 = signal.lfilter(np.array([1, 1, 1]) / float(3), [1, -0.85], np.random.randn(250))
     log.info(s2)
+
     s31 = s2[0::2]
     s32 = s2[0::5]
     s33 = signal.decimate(s2, 2, ftype='fir')
