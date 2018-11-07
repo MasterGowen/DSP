@@ -56,15 +56,13 @@ def lab_5_get_source_data():
     context["fs"] = fs
     context["K1"] = K1
     context["K2"] = K2
-    context["s2"] = s2
-
     context["K_1"] = K_1
     context["K_2"] = K_2
-
-    context["s41"] = s41
-    context["s42"] = s42
-    context["s43"] = s43
-    context["s44"] = s44
+    context["s2"] = s2.tolist()
+    context["s41"] = s41.tolist()
+    context["s42"] = s42.tolist()
+    context["s43"] = s43.tolist()
+    context["s44"] = s44.tolist()
 
     context["signal_type_1"] = signal_type_1
     context["signal_type_2"] = signal_type_2
