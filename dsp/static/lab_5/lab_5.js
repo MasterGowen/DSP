@@ -132,8 +132,12 @@ function DSPXBlock(runtime, element, data) {
         $("#input_student_K2", element).val(data.answer.student_K2);
         $("#input_student_K3", element).val(data.answer.student_K3);
         $("#input_student_K4", element).val(data.answer.student_K4);
-        build_graphic_1();
-        build_graphic_2();
+        if (data.answer.student_s && data.answer.student_s1){
+            build_graphic_1();
+        }
+        if (data.answer.student_sl && data.answer.student_slc) {
+            build_graphic_2();
+        }
     }
 
     function buttons_disable() {
