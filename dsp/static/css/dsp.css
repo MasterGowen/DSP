@@ -126,6 +126,7 @@ span.signal-filter-wording{
 
 div.task-wording{
     margin-bottom: 12px;
+    margin-top: 8px;
 }
 
 .graphic-container {
@@ -160,3 +161,10 @@ div.task-wording{
     width: 100%;
 }
 
+.array-display{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 150px;
+    width: 100%;
+    font-size: 0.8em;
+}

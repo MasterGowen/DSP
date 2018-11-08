@@ -206,6 +206,11 @@ function DSPXBlock(runtime, element, data) {
         student_data.student_slc = parseTextSignal($("#input_student_slc", element)).signal;
         student_data.student_Np = $("#input_student_Np", element).val();
 
+        student_data.student_K1 = $("#input_student_K1", element).val();
+        student_data.student_K2 = $("#input_student_K2", element).val();
+        student_data.student_K3 = $("#input_student_K3", element).val();
+        student_data.student_K4 = $("#input_student_K4", element).val();
+
         return student_data;
     }
 
@@ -217,13 +222,13 @@ function DSPXBlock(runtime, element, data) {
         $("textarea#input_student_sl", element).val(data.answer.student_sl);
         $("textarea#input_student_slc", element).val(data.answer.student_slc);
         $("#input_student_Np", element).val(data.answer.student_Np);
-        // data.answer.student_s.forEach(function(s_value, idx) {
-        //     $("input.s-input", element)[idx].value = s_value;
-        // });
+
+        $("#input_student_K1", element).val(data.answer.student_K1);
+        $("#input_student_K2", element).val(data.answer.student_K2);
+        $("#input_student_K3", element).val(data.answer.student_K3);
+        $("#input_student_K4", element).val(data.answer.student_K4);
         build_graphic_1();
         build_graphic_2();
-        // build_graphic_2(true);
-        // build_graphic_3();
     }
 
     // function buttons_disable() {
