@@ -1,7 +1,8 @@
 import numpy as np
 
-def arrays_is_equal(x, y):
-    return np.allclose(x, y, atol=0.01)
+
+def arrays_is_equal(x, y, tolerance = 0.01):
+    return np.allclose(x, y, atol=tolerance)
 
 
 def numbers_is_equal(x, y, tol=0.5, rel=0.00005):
