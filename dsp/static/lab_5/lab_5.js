@@ -154,6 +154,7 @@ function DSPXBlock(runtime, element, data) {
         }
     }
 
+
     $('.copy_to_clipboard', element).click(function (event) {
         console.log(this);
         var id = this.id.split("_")[this.id.split("_").length-1];
@@ -162,7 +163,7 @@ function DSPXBlock(runtime, element, data) {
         textarea.select();
         console.log(textarea);
         document.execCommand("copy");
-        var tooltip = $('#copy_to_clipboard_'+id+".copy-to-clipboard-tooltiptext", element);
+        var tooltip = $('#copy_to_clipboard_'+id+" .copy-to-clipboard-tooltiptext", element)[0];
         tooltip.innerHTML = "Скопировано в буфер обмена!";
     });
 
