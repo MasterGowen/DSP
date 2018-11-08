@@ -132,10 +132,10 @@ function DSPXBlock(runtime, element, data) {
         $("#input_student_K2", element).val(data.answer.student_K2);
         $("#input_student_K3", element).val(data.answer.student_K3);
         $("#input_student_K4", element).val(data.answer.student_K4);
-        if (data.answer.student_s && data.answer.student_s1){
+        if (data.answer.student_s.length > 0 && data.answer.student_s1.length > 0){
             build_graphic_1();
         }
-        if (data.answer.student_sl && data.answer.student_slc) {
+        if (data.answer.student_sl.length > 0 && data.answer.student_slc.length > 0) {
             build_graphic_2();
         }
     }
