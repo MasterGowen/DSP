@@ -112,15 +112,20 @@
     <!--<h3>Блок формирования сигналов</h3>-->
     <div class="task-wording">
         <p>Восстановить прежнюю частоту дискретизации, рассчитать среднеквадратичное отклонение исходного и преобразованного сигналов и занести значение в соответствующее поле ввода. Восстановление сигнала проводить с помощью КИХ-НЧ-фильтра.</p>
-    </div>
+
 
         <textarea id="display_signal_s2" class="array-display" readonly="readonly">{{ s2 }}</textarea>
-        <div class="copy-to-clipboard-tooltip">
-        <button class="copy_to_clipboard" id="copy_to_clipboard_s2">
-          <span class="copy-to-clipboard-tooltiptext">Скопировать сигнал в буфер</span>
-          Копировать в буфер
-          </button>
+
+        <div class="copy-to-clipboard-wrapper">
+            <div class="copy-to-clipboard-tooltip">
+            <button class="copy_to_clipboard" id="copy_to_clipboard_s2">
+              <span class="copy-to-clipboard-tooltiptext">Скопировать сигнал в буфер обмена</span>
+              Копировать в буфер
+              </button>
+            </div>
         </div>
+
+    </div>
 
     <div class="task-wording">
         <p>Компрессия без предфильтрации в \( K = {{ K_1 }} \) раз:</p>

@@ -35,3 +35,12 @@
     visibility: visible;
     opacity: 1;
 }
+
+.copy_to_clipboard {
+    padding: 4px 8px !important;
+    font-size: 0.725em !important;
+}
+
+.copy-to-clipboard-wrapper{
+
+}

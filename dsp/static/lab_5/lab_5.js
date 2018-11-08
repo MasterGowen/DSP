@@ -154,6 +154,11 @@ function DSPXBlock(runtime, element, data) {
         }
     }
 
+    function clearSelection()
+    {
+     if (window.getSelection) {window.getSelection().removeAllRanges();}
+     else if (document.selection) {document.selection.empty();}
+    }
 
     $('.copy_to_clipboard', element).click(function (event) {
         console.log(this);
@@ -164,8 +169,15 @@ function DSPXBlock(runtime, element, data) {
         console.log(textarea);
         document.execCommand("copy");
         var tooltip = $('#copy_to_clipboard_'+id+" .copy-to-clipboard-tooltiptext", element)[0];
-        tooltip.innerHTML = "Скопировано в буфер обмена!";
+        tooltip.innerHTML = "Скопировано в буфер обмена";
+        clearSelection();
     });
+
+     $('.copy_to_clipboard', element).mouseout(function() {
+        var id = this.id.split("_")[this.id.split("_").length-1];
+        var tooltip = $('#copy_to_clipboard_'+id+" .copy-to-clipboard-tooltiptext", element)[0];
+        tooltip.innerHTML = "Скопировать сигнал в буфер обмена";
+      });
 
 
     $(function ($) {
