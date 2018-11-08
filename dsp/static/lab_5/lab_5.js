@@ -197,10 +197,7 @@ function DSPXBlock(runtime, element, data) {
 
 
     function generateAnswer() {
-        var student_data = {
-            "student_s": [],
-            "student_s1": [],
-        };
+        var student_data = {};
         student_data.student_s = parseTextSignal($("#input_student_s", element)).signal;
         student_data.student_s1 = parseTextSignal($("#input_student_s1", element)).signal;
         student_data.student_fn = $("#input_student_fn", element).val();
@@ -208,9 +205,7 @@ function DSPXBlock(runtime, element, data) {
         student_data.student_sl = parseTextSignal($("#input_student_sl", element)).signal;
         student_data.student_slc = parseTextSignal($("#input_student_slc", element)).signal;
         student_data.student_Np = $("#input_student_Np", element).val();
-        // $("input.s-input", element).each(function(){
-        //     student_data.student_s.push($(this).val());
-        // });
+
         return student_data;
     }
 
