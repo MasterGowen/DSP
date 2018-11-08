@@ -162,7 +162,7 @@ function DSPXBlock(runtime, element, data) {
         textarea.select();
         console.log(textarea);
         document.execCommand("copy");
-        var tooltip = $('#copy_to_clipboard_'+id, element);
+        var tooltip = $('#copy_to_clipboard_'+id+".copy-to-clipboard-tooltiptext", element);
         tooltip.innerHTML = "Скопировано в буфер обмена!";
     });
 
