@@ -151,7 +151,7 @@ function DSPXBlock(runtime, element, data) {
             disable($("#calculate_graphic_2", element));
         }
         if (student_data.student_s.length > 0 && student_data.student_s1.length > 0 && student_data.student_sl.length > 0 && student_data.student_slc.length > 0){
-            if (parseFloat(student_data.student_fn) && parseFloat(student_data.student_Np){
+            if (parseFloat(student_data.student_fn) && parseFloat(student_data.student_Np)){
                 if (parseFloat(student_data.student_K1) && parseFloat(student_data.student_K2) && parseFloat(student_data.student_K3) && parseFloat(student_data.student_K4)){
                     enable($("#check_answer", element));
                 }
