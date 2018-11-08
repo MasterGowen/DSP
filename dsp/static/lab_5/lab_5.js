@@ -156,9 +156,11 @@ function DSPXBlock(runtime, element, data) {
 
     $('.copy_to_clipboard', element).click(function (event) {
         console.log(this);
-        var id = this.id.split("_")[this.id.split("_").length]
+        var id = this.id.split("_")[this.id.split("_").length-1];
+        console.log(id);
         var textarea = $('#display_signal_'+id, element);
         textarea.select();
+        console.log(textarea);
         document.execCommand("copy");
         var tooltip = $('#copy_to_clipboard_'+id, element);
         tooltip.innerHTML = "Скопировано в буфер обмена!";
