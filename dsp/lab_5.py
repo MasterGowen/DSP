@@ -143,7 +143,7 @@ def lab_5_check_answer(student_data, source_data):
         result["correctness"]["s1_correctness"] = False
     result["correctness"]["s1_correct"] = s1_et.tolist()
 
-    if numbers_is_equal(fn_et, student_fn, tol=0.1):
+    if numbers_is_equal(fn_et, student_fn, tol=0.05):
         result["correctness"]["fn_et_correctness"] = True
         score += 1
     else:
@@ -164,35 +164,35 @@ def lab_5_check_answer(student_data, source_data):
         result["correctness"]["slc_correctness"] = False
     result["correctness"]["slc_correct"] = slc_et.tolist()
 
-    if numbers_is_equal(Np_et, student_Np, tol=0.1):
+    if numbers_is_equal(Np_et, student_Np, tol=0.05):
         result["correctness"]["Np_correctness"] = True
         score += 1
     else:
         result["correctness"]["Np_correctness"] = False
     result["correctness"]["Np_correct"] = float(Np_et)
 
-    if numbers_is_equal(K1_et, student_K1, tol=0.1):
+    if numbers_is_equal(K1_et, student_K1, tol=0.05):
         result["correctness"]["K1_correctness"] = True
         score += 1
     else:
         result["correctness"]["K1_correctness"] = False
     result["correctness"]["K1_correct"] = float(K1_et)
 
-    if numbers_is_equal(K2_et, student_K2, tol=0.1):
+    if numbers_is_equal(K2_et, student_K2, tol=0.05):
         result["correctness"]["K2_correctness"] = True
         score += 1
     else:
         result["correctness"]["K2_correctness"] = False
     result["correctness"]["K2_correct"] = float(K2_et)
 
-    if numbers_is_equal(K3_et, student_K3, tol=0.1):
+    if numbers_is_equal(K3_et, student_K3, tol=0.05):
         result["correctness"]["K3_correctness"] = True
         score += 1
     else:
         result["correctness"]["K3_correctness"] = False
     result["correctness"]["K3_correct"] = float(K3_et)
 
-    if numbers_is_equal(K4_et, student_K4, tol=0.1):
+    if numbers_is_equal(K4_et, student_K4, tol=0.05):
         result["correctness"]["K4_correctness"] = True
         score += 1
     else:

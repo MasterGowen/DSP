@@ -152,8 +152,15 @@ function DSPXBlock(runtime, element, data) {
         else{
             disable($("#check_answer", element));
         }
+    }
 
 
+    function copyToClipboard(id){
+      var textarea = $('#display_signal_'+id, element);
+      textarea.select();
+      document.execCommand("copy");
+      var tooltip = $('#copy_to_clipboard_'+id, element);
+      tooltip.innerHTML = "Скопировано в буфер обмена!";
     }
 
     $(function ($) {

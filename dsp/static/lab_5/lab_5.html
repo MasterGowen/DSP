@@ -114,23 +114,36 @@
         <p>Восстановить прежнюю частоту дискретизации, рассчитать среднеквадратичное отклонение исходного и преобразованного сигналов и занести значение в соответствующее поле ввода. Восстановление сигнала проводить с помощью КИХ-НЧ-фильтра.</p>
     </div>
 
-        <textarea class="array-display" disabled="">{{ s2 }}</textarea>
+        <textarea id="display_signal_s2" class="array-display" readonly="readonly">{{ s2 }}</textarea>
+        <div class="copy-to-clipboard-tooltip">
+        <button onclick="copyToClipboard('s2')" onmouseout="copyToClipboardOut('s2')" id="copy_to_clipboard_s2">
+          <span class="copy-to-clipboard-tooltiptext">Скопировать сигнал в буфер</span>
+          Копировать в буфер
+          </button>
+        </div>
 
     <div class="task-wording">
         <p>Компрессия без предфильтрации в \( K = {{ K_1 }} \) раз:</p>
-        <textarea class="array-display" disabled="">{{ s41 }}</textarea>
+        <textarea id="display_signal_s41" class="array-display" readonly="readonly">{{ s41 }}</textarea>
+        <div class="tooltip">
+        <button onclick="copyToClipboard('s41')" onmouseout="copyToClipboardOut('s41')" id="copy_to_clipboard_s41">
+          <span class="copy-to-clipboard-tooltiptext">Скопировать сигнал в буфер</span>
+          Копировать в буфер
+          </button>
+        </div>
+
     </div>
     <div class="task-wording">
         <p>Компрессия без предфильтрации в \( K = {{ K_2 }} \) раз:</p>
-        <textarea class="array-display" disabled="">{{ s42 }}</textarea>
+        <textarea class="array-display" readonly="readonly">{{ s42 }}</textarea>
     </div>
     <div class="task-wording">
         <p>Компрессия с предфильтрацией в \( K = {{ K_1 }} \) раз:</p>
-        <textarea class="array-display" disabled="">{{ s43 }}</textarea>
+        <textarea class="array-display" readonly="readonly">{{ s43 }}</textarea>
     </div>
     <div class="task-wording">
         <p>Компрессия с предфильтрацией в \( K = {{ K_2 }} \) раз:</p>
-        <textarea class="array-display" disabled="">{{ s44 }}</textarea>
+        <textarea class="array-display" readonly="readonly">{{ s44 }}</textarea>
     </div>
 
     <div class="task-wording">
