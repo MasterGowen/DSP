@@ -34,12 +34,10 @@ def lab_5_get_source_data():
         "title": "Сигнал с ЛЧМ с параметрами \(T = {}\),\(f_e = {}\),\(f_s = {}\), амплитуда = 1".format(T, fe, fs)
     }
 
-    K_1 = 2
-    K_2 = 5
+    K_1 = 2  # np.random.choice(np.array([2, 3, 4, 5]))
+    K_2 = 5  # np.random.choice(np.array([2, 3, 4, 5]))
 
     s2 = np.round(signal.lfilter(np.array([1, 1, 1]) / float(3), [1, -0.85], np.random.randn(250)), 5)
-    # log.info(s2)
-
     s31 = s2[0::2]
     s32 = s2[0::5]
     s33 = signal.decimate(s2, 2, ftype='fir')
@@ -49,11 +47,6 @@ def lab_5_get_source_data():
     s42 = signal.resample(s32, len(s32) * K2)
     s43 = signal.resample(s33, len(s33) * K1)
     s44 = signal.resample(s34, len(s34) * K2)
-
-    # log.info(s41)
-    # log.info(s42)
-    # log.info(s43)
-    # log.info(s44)
 
     context = dict()
     context["fd"] = fd
@@ -76,16 +69,139 @@ def lab_5_get_source_data():
     return context
 
 
-def get_correct_signal(source_data):
-    pass
+def get_correct_signals_1(source_data):
+    K = float(source_data["K1"])
+    f0 = float(source_data["f0"])
+    fd = float(source_data["fd"])
+
+    s = np.cos(2 * math.pi * f0 * (np.arange(fd)) / fd)
+    s1 = s[0::K]
+
+    return s, s1
 
 
-def get_correct_filter(source_data):
-    pass
+def get_correct_signals_2(source_data):
+    T = float(source_data["T"])
+    fs = float(source_data["fs"])
+    K = float(source_data["K2"])
+    sl = signal.chirp(np.arange(0.01, T + 0.01, 0.01), 0, T, fs)
+    slc = sl[0::K]
+
+    return sl, slc
 
 
 def lab_5_check_answer(student_data, source_data):
-    pass
+    student_s = student_data["student_s"]
+    student_s1 = student_data["student_s1"]
+    student_fn = float(student_data["student_fn"])
+    student_sl = student_data["student_sl"]
+    student_slc = student_data["student_slc"]
+    student_Np = float(student_data["student_Np"])
+
+    student_K1 = float(student_data["student_K1"])
+    student_K2 = float(student_data["student_K2"])
+    student_K3 = float(student_data["student_K3"])
+    student_K4 = float(student_data["student_K4"])
+
+    T = float(source_data["T"])
+    fs = float(source_data["fs"])
+    K = float(source_data["K2"])
+    fd = float(source_data["fd"])
+    s2 = np.array(source_data["s2"])
+    s41 = np.array(source_data["s41"])
+    s42 = np.array(source_data["s42"])
+    s43 = np.array(source_data["s43"])
+    s44 = np.array(source_data["s44"])
+
+    s_et, s1_et = get_correct_signals_1(source_data)
+    m1_et, mi_et = abs(np.fft.fft(s1_et)).max(0), abs(np.fft.fft(s1_et)).argmax(0) + 1
+    fn_et = fd * mi_et / len(s1_et)
+
+    sl_et, slc_et = get_correct_signals_2(source_data)
+    Np_et = math.pow(100, 2.0) / math.pow(K, 2) * T / fs
+
+    K1_et = np.std(s2 - s41)
+    K2_et = np.std(s2 - s42)
+    K3_et = np.std(s2 - s43)
+    K4_et = np.std(s2 - s44)
+
+    max_score = 10
+    score = 0
+    result = dict()
+    result["correctness"] = dict()
+    if arrays_is_equal(s_et, student_s):
+        result["correctness"]["s_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["s_correctness"] = False
+    result["correctness"]["s_correct"] = s_et.tolist()
+
+    if arrays_is_equal(s1_et, student_s1):
+        result["correctness"]["s1_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["s1_correctness"] = False
+    result["correctness"]["s1_correct"] = s1_et.tolist()
+
+    if numbers_is_equal(fn_et, student_fn, tol=0.1):
+        result["correctness"]["fn_et_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["fn_et_correctness"] = False
+    result["correctness"]["fn_et_correct"] = float(fn_et)
+
+    if arrays_is_equal(sl_et, student_sl):
+        result["correctness"]["sl_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["sl_correctness"] = False
+    result["correctness"]["sl_correct"] = sl_et.tolist()
+
+    if arrays_is_equal(slc_et, student_slc):
+        result["correctness"]["slc_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["slc_correctness"] = False
+    result["correctness"]["slc_correct"] = slc_et.tolist()
+
+    if numbers_is_equal(Np_et, student_Np, tol=0.1):
+        result["correctness"]["Np_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["Np_correctness"] = False
+    result["correctness"]["Np_correct"] = float(Np_et)
+
+    if numbers_is_equal(K1_et, student_K1, tol=0.1):
+        result["correctness"]["K1_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["K1_correctness"] = False
+    result["correctness"]["K1_correct"] = float(K1_et)
+
+    if numbers_is_equal(K2_et, student_K2, tol=0.1):
+        result["correctness"]["K2_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["K2_correctness"] = False
+    result["correctness"]["K2_correct"] = float(K2_et)
+
+    if numbers_is_equal(K3_et, student_K3, tol=0.1):
+        result["correctness"]["K3_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["K3_correctness"] = False
+    result["correctness"]["K3_correct"] = float(K3_et)
+
+    if numbers_is_equal(K4_et, student_K4, tol=0.1):
+        result["correctness"]["K4_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["K4_correctness"] = False
+    result["correctness"]["K4_correct"] = float(K4_et)
+
+    result["score"] = float(score) / float(max_score)
+
+    return result
 
 
 def lab_5_get_graphic_1(student_data, source_data):

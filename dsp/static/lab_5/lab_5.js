@@ -1,28 +1,10 @@
 function DSPXBlock(runtime, element, data) {
 
-    // var student_submit = runtime.handlerUrl(element, 'student_submit');
+    var student_submit = runtime.handlerUrl(element, 'student_submit');
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_5_get_graphic_1');
     var get_graphic_2 = runtime.handlerUrl(element, 'lab_5_get_graphic_2');
-    // var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
-    // var get_graphic_3 = runtime.handlerUrl(element, 'lab_3_get_graphic_3');
-    // var reset_task_url = runtime.handlerUrl(element, 'lab_3_reset_task');
-    // var highlight_correct = true;
-    //
-    // function reset_task() {
-    //     $.ajax({
-    //         type: "GET",
-    //         url: reset_task_url,
-    //         data: JSON.stringify(generateAnswer()),
-            // success: function (result) {
-            //     console.log(result);
-                // build_graphic_2(true);
-            // },
-            // error: function (jqXHR, exception) {
-            //     alert("При сбросе ответа возникла ошибка.")
-            // },
-            // contentType: 'application/json; charset=utf-8'
-        // });
-    // }
+
+    var highlight_correct = true;
 
     function build_graphic_1() {
         disable($('#calculate_graphic_1', element));
@@ -75,22 +57,22 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
-    // $('#check_answer', element).click(function (event) {
-    //     console.info("Начали проверку");
-    //     $.ajax({
-    //         type: "POST",
-    //         url: student_submit,
-    //         data: JSON.stringify(generateAnswer()),
-    //         success: function (result) {
-    //             $(element).find('me-span.points').html(result.score);
-    //             $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
-    //             $('.points', element).text(result.score + ' из ' + data.maximum_score);
-    //             if (highlight_correct) highlight_correctness(result.correctness);
-    //             console.info("Закончили проверку");
-    //         },
-    //         contentType: 'application/json; charset=utf-8'
-    //     });
-    // });
+    $('#check_answer', element).click(function (event) {
+        console.info("Начали проверку");
+        $.ajax({
+            type: "POST",
+            url: student_submit,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $(element).find('me-span.points').html(result.score);
+                $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
+                $('.points', element).text(result.score + ' из ' + data.maximum_score);
+                if (highlight_correct) highlight_correctness(result.correctness);
+                console.info("Закончили проверку");
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    });
 
     $('#calculate_graphic_1', element).click(function (event) {
         build_graphic_1();
@@ -181,18 +163,18 @@ function DSPXBlock(runtime, element, data) {
             $("textarea.array-input", element).each(function (i) {
                 process_array_input(this);
             });
-            // if (data.student_state.correctness && highlight_correct) {
-            //     highlight_correctness(data["student_state"]["correctness"]);
-            // }
+            if (data.student_state.correctness && highlight_correct) {
+                highlight_correctness(data["student_state"]["correctness"]);
+            }
         }
         buttons_disable();
 
         $(element).on('input', ".answer-input", function () {
             buttons_disable();
-            // if (highlight_correct) {
-            //     $(this).removeClass("dsp-incorrect-input");
-            //     $(this).removeClass("dsp-correct-input");
-            // }
+            if (highlight_correct) {
+                $(this).removeClass("dsp-incorrect-input");
+                $(this).removeClass("dsp-correct-input");
+            }
         });
 
         $("textarea.array-input", element).each(function (i) {
