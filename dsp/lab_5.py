@@ -37,16 +37,16 @@ def lab_5_get_source_data():
     K_1 = 2  # np.random.choice(np.array([2, 3, 4, 5]))
     K_2 = 5  # np.random.choice(np.array([2, 3, 4, 5]))
 
-    s2 = np.round(signal.lfilter(np.array([1, 1, 1]) / float(3), [1, -0.85], np.random.randn(250)), 5)
-    s31 = s2[0::2]
-    s32 = s2[0::5]
-    s33 = signal.decimate(s2, 2, ftype='fir')
-    s34 = signal.decimate(s2, 5, ftype='fir')
+    s2 = signal.lfilter(np.array([1, 1, 1]) / float(3), [1, -0.85], np.random.randn(250))
+    s31 = s2[0::K_1]
+    s32 = s2[0::K_2]
+    s33 = signal.decimate(s2, K_1, ftype='fir')
+    s34 = signal.decimate(s2, K_2, ftype='fir')
 
-    s41 = signal.resample(s31, len(s31) * K1)
-    s42 = signal.resample(s32, len(s32) * K2)
-    s43 = signal.resample(s33, len(s33) * K1)
-    s44 = signal.resample(s34, len(s34) * K2)
+    s41 = signal.resample(s31, len(s31) * K_1)
+    s42 = signal.resample(s32, len(s32) * K_2)
+    s43 = signal.resample(s33, len(s33) * K_1)
+    s44 = signal.resample(s34, len(s34) * K_2)
 
     context = dict()
     context["fd"] = fd

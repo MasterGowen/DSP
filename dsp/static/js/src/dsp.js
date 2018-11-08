@@ -191,10 +191,20 @@ function example_data_lab_5() {
     var fn = "12.0";
     var Np = "138.8";
 
+    var K1 = "0.13085641945088383";
+    var K2 = "0.5649481164374734";
+    var K3 = "0.10373916714304864";
+    var K4 = "0.41091354800744334";
+
     $("textarea#input_student_s").val(s);
     $("textarea#input_student_s1").val(s1);
     $("textarea#input_student_sl").val(sl);
     $("textarea#input_student_slc").val(slc);
     $("#input_student_fn").val(fn);
     $("#input_student_Np").val(Np);
+
+    $("#input_student_K1").val(K1);
+    $("#input_student_K2").val(K2);
+    $("#input_student_K3").val(K3);
+    $("#input_student_K4").val(K4);
 }
