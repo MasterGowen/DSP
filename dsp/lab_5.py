@@ -37,8 +37,8 @@ def lab_5_get_source_data():
     K_1 = 2
     K_2 = 5
 
-    s2 = signal.lfilter(np.array([1, 1, 1]) / float(3), [1, -0.85], np.random.randn(250))
-    log.info(s2)
+    s2 = np.round(signal.lfilter(np.array([1, 1, 1]) / float(3), [1, -0.85], np.random.randn(250)), 5)
+    # log.info(s2)
 
     s31 = s2[0::2]
     s32 = s2[0::5]
@@ -50,10 +50,10 @@ def lab_5_get_source_data():
     s43 = signal.resample(s33, len(s33) * K1)
     s44 = signal.resample(s34, len(s34) * K2)
 
-    log.info(s41)
-    log.info(s42)
-    log.info(s43)
-    log.info(s44)
+    # log.info(s41)
+    # log.info(s42)
+    # log.info(s43)
+    # log.info(s44)
 
     context = dict()
     context["fd"] = fd
