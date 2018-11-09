@@ -48,6 +48,9 @@ function DSPXBlock(runtime, element) {
                 "display_name": $(element).find("input[name=display_name]").val(),
                 "current_lab": $(element).find("select[name=lab_scenario]").val(),
                 "maximum_score": $(element).find("input[name=maximum_score]").val(),
+                "array_tolerance": $(element).find("input[name=array_tolerance]").val(),
+                "number_tolerance": $(element).find("input[name=number_tolerance]").val(),
+
             };
 
         $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
