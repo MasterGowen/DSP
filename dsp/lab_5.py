@@ -118,9 +118,12 @@ def lab_5_check_answer(student_data, source_data):
     s_et, s1_et = get_correct_signals_1(source_data)
     log.info(abs(np.fft.fft(s1_et)))
     m1_et = abs(np.fft.fft(s1_et)).max(0)
-    mi_et = np.argmax(abs(np.fft.fft(s1_et))) + 1
-    log.info("!!!!!!!!!!!!!!!OOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!???????????????????????????")
-    log.info(np.argmax(abs(np.fft.fft(s1_et))) + 1)
+    mi_et_tmp = abs(np.fft.fft(s1_et))
+    mi_et = np.argmax(mi_et_tmp) + 1
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!???????????????????????????")
+    log.info(np.where(mi_et_tmp == mi_et_tmp.max()).tolist())
+    log.info("KEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEk")
+    log.info(mi_et)
     fn_et = fd * mi_et / len(s1_et)
 
     sl_et, slc_et = get_correct_signals_2(source_data)
