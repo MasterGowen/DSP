@@ -118,8 +118,8 @@ def lab_5_check_answer(student_data, source_data):
     s_et, s1_et = get_correct_signals_1(source_data)
     log.info(abs(np.fft.fft(s1_et)))
     m1_et, mi_et = abs(np.fft.fft(s1_et)).max(0), np.argmax(abs(np.fft.fft(s1_et))) + 1
-    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    log.info(mi_et)
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!???????????????????????????")
+    log.info(np.__version__)
     fn_et = fd * mi_et / len(s1_et)
 
     sl_et, slc_et = get_correct_signals_2(source_data)
