@@ -103,6 +103,15 @@ class DSPXBlock(XBlock):
         scope=Scope.settings
     )
 
+    lab_settings = JSONField(
+        default={
+            "array_tolerance": 0.01,
+            "number_tolerance": 0.5,
+        },
+        scope=Scope.settings,
+        help='Настройка лабораторной',
+    )
+
     lab_source_data = JSONField(
         default={},
         scope=Scope.user_state,
@@ -146,15 +155,15 @@ class DSPXBlock(XBlock):
         result = {}
 
         if self.current_lab == "lab_1":
-            result = lab_1_check_answer(data, self.lab_source_data)
+            result = lab_1_check_answer(data, self.lab_source_data, self.lab_settings)
         elif self.current_lab == "lab_2":
             pass
         elif self.current_lab == "lab_3":
-            result = lab_3_check_answer(data, self.lab_source_data)
+            result = lab_3_check_answer(data, self.lab_source_data, self.lab_settings)
         elif self.current_lab == "lab_4":
-            result = lab_4_check_answer(data, self.lab_source_data)
+            result = lab_4_check_answer(data, self.lab_source_data, self.lab_settings)
         elif self.current_lab == "lab_5":
-            result = lab_5_check_answer(data, self.lab_source_data)
+            result = lab_5_check_answer(data, self.lab_source_data, self.lab_settings)
         else:
             pass
 
@@ -300,6 +309,12 @@ class DSPXBlock(XBlock):
         frag.add_javascript(self.resource_string("static/js/src/dsp.js"))
         return frag
 
+    # lab_settings = JSONField(
+    #     default={
+    #         "array_tolerance": 0.01,
+    #         "number_tolerance": 0.5,
+    #     },
+
     def studio_view(self, context=None):
         context = {
             "display_name": self.display_name,
@@ -307,6 +322,7 @@ class DSPXBlock(XBlock):
             "lab_list": self.lab_list,
             "maximum_score": self.maximum_score,
             "max_attempts": self.max_attempts,
+            "lab_settings": self.lab_settings
         }
 
         fragment = Fragment()
@@ -336,7 +352,8 @@ class DSPXBlock(XBlock):
         self.current_lab = data.get('current_lab')
         self.maximum_score = int(float(data.get('maximum_score')))
         self.max_attempts = data.get('max_attempts')
-
+        self.lab_settings["array_tolerance"] = float(data.get('array_tolerance'))
+        self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
         return {'result': 'success'}
 
     # TO-DO: change this to create the scenarios you'd like to see in the

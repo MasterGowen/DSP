@@ -119,7 +119,7 @@ def get_correct_filter(source_data):
     return filter
 
 
-def lab_1_check_answer(student_data, source_data):
+def lab_1_check_answer(student_data, source_data, lab_settings):
 
     student_d = student_data["student_signal"]
     student_b = student_data["student_filter"]
@@ -165,35 +165,37 @@ def lab_1_check_answer(student_data, source_data):
     score = 0
     result = dict()
     result["correctness"] = dict()
-    if arrays_is_equal(d_et, student_d):
+    arr_tol = float(lab_settings["array_tolerance"])
+    num_tol = float(lab_settings["number_tolerance"])
+    if arrays_is_equal(d_et, student_d, tolerance=arr_tol):
         result["correctness"]["signal_correctness"] = True
         score += 1
     else:
         result["correctness"]["signal_correctness"] = False
     result["correctness"]["signal_correct"] = d_et.tolist()
 
-    if arrays_is_equal(b_et, student_b):
+    if arrays_is_equal(b_et, student_b, tolerance=arr_tol):
         result["correctness"]["filter_correctness"] = True
         score += 1
     else:
         result["correctness"]["filter_correctness"] = False
     result["correctness"]["filter_correct"] = b_et.tolist()
 
-    if numbers_is_equal(a_et, student_a, tol=0.1):
+    if numbers_is_equal(a_et, student_a, tolerance=num_tol):
         result["correctness"]["a_correctness"] = True
         score += 1
     else:
         result["correctness"]["a_correctness"] = False
     result["correctness"]["a_correct"] = a_et
 
-    if numbers_is_equal(ubl_et, student_ubl, tol=0.1):
+    if numbers_is_equal(ubl_et, student_ubl, tolerance=num_tol):
         result["correctness"]["ubl_correctness"] = True
         score += 1
     else:
         result["correctness"]["ubl_correctness"] = False
     result["correctness"]["ubl_correct"] = ubl_et
 
-    if numbers_is_equal(p_et, student_p, tol=0.1):
+    if numbers_is_equal(p_et, student_p, tolerance=num_tol):
         result["correctness"]["p_correctness"] = True
         score += 1
     else:

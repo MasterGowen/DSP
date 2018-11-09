@@ -91,7 +91,7 @@ def get_correct_filter(source_data):
     return filter
 
 
-def lab_4_check_answer(student_data, source_data):
+def lab_4_check_answer(student_data, source_data, lab_settings):
     student_b = float(student_data["student_b"])
     student_d = student_data["student_signal"]
     student_a = student_data["student_filter"]
@@ -121,35 +121,37 @@ def lab_4_check_answer(student_data, source_data):
     score = 0
     result = dict()
     result["correctness"] = dict()
-    if arrays_is_equal(d_et, student_d):
+    arr_tol = float(lab_settings["array_tolerance"])
+    num_tol = float(lab_settings["number_tolerance"])
+    if arrays_is_equal(d_et, student_d, tolerance=arr_tol):
         result["correctness"]["signal_correctness"] = True
         score += 1
     else:
         result["correctness"]["signal_correctness"] = False
     result["correctness"]["signal_correct"] = d_et.tolist()
 
-    if numbers_is_equal(b_et[0], student_b, tol=0.01):
+    if numbers_is_equal(b_et[0], student_b, tolerance=num_tol):
         result["correctness"]["b_correctness"] = True
         score += 1
     else:
         result["correctness"]["b_correctness"] = False
     result["correctness"]["b_correct"] = float(b_et[0])
 
-    if arrays_is_equal(a_et, student_a):
+    if arrays_is_equal(a_et, student_a, tolerance=arr_tol):
         result["correctness"]["filter_correctness"] = True
         score += 1
     else:
         result["correctness"]["filter_correctness"] = False
     result["correctness"]["filter_correct"] = a_et.tolist()
 
-    if numbers_is_equal(F_et, student_F, tol=0.1):
+    if numbers_is_equal(F_et, student_F, tolerance=num_tol):
         result["correctness"]["F_correctness"] = True
         score += 1
     else:
         result["correctness"]["F_correctness"] = False
     result["correctness"]["F_correct"] = float(F_et)
 
-    if numbers_is_equal(Dp_et, student_Dp, tol=0.1):
+    if numbers_is_equal(Dp_et, student_Dp, tolerance=num_tol):
         result["correctness"]["Dp_correctness"] = True
         score += 1
     else:
