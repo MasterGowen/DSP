@@ -55,20 +55,20 @@
 
                 <li class="field comp-setting-entry metadata_entry">
                     <div class="wrapper-comp-setting">
-                        <label class="label setting-label" for="array_tolerance">array_tolerance:</label>
+                        <label class="label setting-label" for="array_tolerance">Допуск проверки массивов:</label>
                         <input class="input setting-input" name="array_tolerance" id="array_tolerance"
                                value="{{array_tolerance|stringformat:'f'}}" type="number" min="0" max="100" step="0.01"/>
                     </div>
-                    <span class="tip setting-help">array_tolerance</span>
+                    <span class="tip setting-help">Значение, определяющее погрешность для каждого элемента массива при проверке. Значение допуска по умолчанию = 0.01</span>
                 </li>
 
                 <li class="field comp-setting-entry metadata_entry">
                     <div class="wrapper-comp-setting">
-                        <label class="label setting-label" for="number_tolerance">number_tolerance:</label>
+                        <label class="label setting-label" for="number_tolerance">Допуск проверки чисел:</label>
                         <input class="input setting-input" name="number_tolerance" id="number_tolerance"
                                value="{{number_tolerance|stringformat:'f'}}" type="number" min="0" max="100" step="0.01"/>
                     </div>
-                    <span class="tip setting-help">number_tolerance</span>
+                    <span class="tip setting-help">Значение, определяющее погрешность числовых ответов при проверке. Значение допуска по умолчанию = 0.5</span>
                 </li>
 
             </div>
