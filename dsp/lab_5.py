@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 import matplotlib
 import logging
 import json
@@ -20,7 +21,7 @@ log = logging.getLogger(__name__)
 def lab_5_get_source_data():
     fd = 100
     f0 = 23  # np.floor(50*np.random.uniform(0, 1)) 5...48
-    K1 = np.random.choice(np.array([2, 3, 4, 5]))  # 4
+    K1 = random.choice(np.array([2, 3, 4, 5]))  # 4
     K2 = 6
     signal_type_1 = {
         "name": "harmonic_oscillations",
