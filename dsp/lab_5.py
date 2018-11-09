@@ -12,6 +12,7 @@ import mpld3
 import random
 
 from .calc_utils import arrays_is_equal, numbers_is_equal
+from .display_utils import time_title, countdown_title
 
 log = logging.getLogger(__name__)
 
@@ -23,15 +24,15 @@ def lab_5_get_source_data():
     K2 = 6
     signal_type_1 = {
         "name": "harmonic_oscillations",
-        "title": "Для гармонических колебаний (при \(f_0 = {}\) и \(f_д = {}\)) произвести компрессию частоты дискретизации в \({}\) раз путём отбрасывания отсчётов.".format(
-            f0, fd, K1)
+        "title": "Для гармонических колебаний (при \(f_0 = {}\) и \(f_д = {}\)) произвести компрессию частоты дискретизации в \({}\) {} путём отбрасывания отсчётов.".format(
+            f0, fd, K1, time_title(K1))
     }
     T = 10
     fe = 0
     fs = 20
     signal_type_2 = {
         "name": "lchm_signal",
-        "title": "Сигнал с ЛЧМ с параметрами \(T = {}\),\(f_e = {}\),\(f_s = {}\), амплитуда = 1".format(T, fe, fs)
+        "title": "Сигнал с ЛЧМ с параметрами \(T = {}\), \(f_e = {}\), \(f_s = {}\), амплитуда = 1".format(T, fe, fs)
     }
 
     K_1 = 2  # np.random.choice(np.array([2, 3, 4, 5]))

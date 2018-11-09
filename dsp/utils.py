@@ -51,3 +51,4 @@ def render_template(template_path, context=None):
     template_str = load_resource(template_path)
     template = Template(template_str)
     return template.render(Context(context))
+
