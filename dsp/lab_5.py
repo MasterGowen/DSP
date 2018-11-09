@@ -135,6 +135,12 @@ def lab_5_check_answer(student_data, source_data, lab_settings):
     result["correctness"] = dict()
     arr_tol = float(lab_settings["array_tolerance"])
     num_tol = float(lab_settings["number_tolerance"])
+
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!arr_tol")
+    log.info(arr_tol)
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!num_tol")
+    log.info(num_tol)
+
     if arrays_is_equal(s_et, student_s, tolerance=arr_tol):
         result["correctness"]["s_correctness"] = True
         score += 1
