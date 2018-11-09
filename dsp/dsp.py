@@ -322,7 +322,8 @@ class DSPXBlock(XBlock):
             "lab_list": self.lab_list,
             "maximum_score": self.maximum_score,
             "max_attempts": self.max_attempts,
-            "lab_settings": self.lab_settings
+            "number_tolerance": self.lab_settings["number_tolerance"],
+            "array_tolerance": self.lab_settings["array_tolerance"],
         }
 
         fragment = Fragment()
