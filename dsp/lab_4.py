@@ -12,6 +12,7 @@ import mpld3
 import random
 
 from .calc_utils import arrays_is_equal, numbers_is_equal
+from .display_utils import countdown_title
 
 log = logging.getLogger(__name__)
 
@@ -22,19 +23,19 @@ def lab_4_get_source_data():
     signal_types = [
         {
             "name": "delta_func",
-            "title": "дискретная дельта-функция длиной \({}\) отсчётов".format(N0)
+            "title": "дискретная дельта-функция длиной \({}\) {}".format(N0, countdown_title(N0))
         },
         {
             "name": "constant",
-            "title": "постоянный сигнал длиной \({}\) отсчётов".format(N0)
+            "title": "постоянный сигнал длиной \({}\) {}".format(N0, countdown_title(N0))
         },
         {
             "name": "harmonic_f4",
-            "title": "гармоническое колебание длиной \({}\) отсчётов (в форме cos) с частотой \(f_d/4\)".format(N0)
+            "title": "гармоническое колебание длиной \({}\) {} (в форме cos) с частотой \(f_d/4\)".format(N0, countdown_title(N0))
         },
         {
             "name": "harmonic_f2",
-            "title": "гармоническое колебание длиной \({}\) отсчётов (в форме cos) с частотой \(f_d/2\)".format(N0)
+            "title": "гармоническое колебание длиной \({}\) {} (в форме cos) с частотой \(f_d/2\)".format(N0, countdown_title(N0))
         }
     ]
     signal_type = random.choice(signal_types)  # signal_types[0]  #

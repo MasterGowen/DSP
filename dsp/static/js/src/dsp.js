@@ -121,6 +121,15 @@ function counting_title(number) {
     }
 }
 
+function time_title(number) {
+    last_numeral = number.toString()[number.toString().length - 1];
+    if (["2", "3", "4"].includes(last_numeral)) {
+        return "раза";
+    }
+    else {
+        return "раз";
+    }
+}
 
 function example_data_lab_1() {
     var signal = "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";

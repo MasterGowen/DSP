@@ -13,7 +13,7 @@ import mpld3
 import random
 
 from .calc_utils import arrays_is_equal, numbers_is_equal
-from .display_utils import time_title, countdown_title
+from .display_utils import time_title
 
 log = logging.getLogger(__name__)
 

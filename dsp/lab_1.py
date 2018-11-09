@@ -12,6 +12,7 @@ import mpld3
 import random
 
 from .calc_utils import arrays_is_equal, numbers_is_equal
+from .display_utils import countdown_title
 
 log = logging.getLogger(__name__)
 
@@ -24,21 +25,21 @@ def lab_1_get_source_data():
     signal_types = [
         {
             "name": "delta_func",
-            "title": "дискретная дельта-функция длиной \({}\) отсчётов".format(N0)
+            "title": "дискретная дельта-функция длиной \({}\) {}".format(N0, countdown_title(N0))
         },
         {
             "name": "rectangular_videopulse",
-            "title": "прямоугольный видеоимпульс скважности \({}\) и длиной сигнала \({}\) отсчётов".format(Q, N0)
+            "title": "прямоугольный видеоимпульс скважности \({}\) и длиной сигнала \({}\) {}".format(Q, N0, countdown_title(N0))
         },
         {
             "name": "rectangular_radiopulse_f4",
-            "title": "прямоугольный радиоимпульс (в форме cos) скважности \({}\) и длиной сигнала \({}\) отсчётов с частотой \(f_d/4\)".format(
-                Q, N0)
+            "title": "прямоугольный радиоимпульс (в форме cos) скважности \({}\) и длиной сигнала \({}\) {} с частотой \(f_d/4\)".format(
+                Q, N0, countdown_title(N0))
         },
         {
             "name": "rectangular_radiopulse_f2",
-            "title": "прямоугольный радиоимпульс (в форме cos) скважности \({}\) и длиной сигнала \({}\) отсчётов с частотой \(f_d/2\)".format(
-                Q, N0)
+            "title": "прямоугольный радиоимпульс (в форме cos) скважности \({}\) и длиной сигнала \({}\) {} с частотой \(f_d/2\)".format(
+                Q, N0, countdown_title(N0))
         }
     ]
     signal_type = random.choice(signal_types)  # signal_types[1]  #

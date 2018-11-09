@@ -12,6 +12,7 @@ import mpld3
 import random
 
 from .calc_utils import arrays_is_equal, numbers_is_equal
+from .display_utils import countdown_title
 
 log = logging.getLogger(__name__)
 
@@ -21,8 +22,8 @@ def lab_3_get_source_data():
     signal_types = [
         {
             "name": "videopulse_ Barker_13",
-            "title": "прямоугольный видеоимпульс амплитуды 1 с внутриимпульсной манипуляцией в соответствии с кодом (например, Баркер-13) и длиной элементарной посылки \(N_1 = {}\) отсчётов".format(
-                N1)
+            "title": "прямоугольный видеоимпульс амплитуды 1 с внутриимпульсной манипуляцией в соответствии с кодом (например, Баркер-13) и длиной элементарной посылки \(N_1 = {}\) {}".format(
+                N1, countdown_title(N1))
         }
     ]
     signal_type = random.choice(signal_types)
