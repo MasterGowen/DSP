@@ -118,7 +118,7 @@ def lab_5_check_answer(student_data, source_data):
     s_et, s1_et = get_correct_signals_1(source_data)
     log.info(abs(np.fft.fft(s1_et)))
     m1_et = abs(np.fft.fft(s1_et)).max(0)
-    mi_et_tmp = abs(np.fft.fft(s1_et))
+    mi_et_tmp = np.around(abs(np.fft.fft(s1_et)), decimals=5)+1
     mi_et = np.argmax(mi_et_tmp) + 1
     log.info("!!!!!!!!!!!!!!!!!!!!!!!!???????????????????????????")
     log.info(np.where(mi_et_tmp == mi_et_tmp.max()))
