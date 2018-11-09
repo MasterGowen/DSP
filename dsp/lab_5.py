@@ -121,7 +121,7 @@ def lab_5_check_answer(student_data, source_data):
     mi_et_tmp = abs(np.fft.fft(s1_et))
     mi_et = np.argmax(mi_et_tmp) + 1
     log.info("!!!!!!!!!!!!!!!!!!!!!!!!???????????????????????????")
-    log.info(np.where(mi_et_tmp == mi_et_tmp.max()).tolist())
+    log.info(np.where(mi_et_tmp == mi_et_tmp.max()))
     log.info("KEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEk")
     log.info(mi_et)
     fn_et = fd * mi_et / len(s1_et)
