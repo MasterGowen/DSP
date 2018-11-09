@@ -6,17 +6,19 @@
 .copy-to-clipboard-tooltip .copy-to-clipboard-tooltiptext {
     visibility: hidden;
     width: 140px;
-    background-color: #555;
-    color: #fff;
+    background-color: #414040;
+    color: #ffffff;
+    text-shadow: none !important;
     text-align: center;
     border-radius: 6px;
     padding: 5px;
     position: absolute;
-    z-index: 1;
-    bottom: 150%;
+    z-index: 999;
+    bottom: 115%;
     left: 50%;
     margin-left: -75px;
     opacity: 0;
+    font-size: 1.1em;
     transition: opacity 0.3s;
 }
 
@@ -28,7 +30,7 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #555 transparent transparent transparent;
+    border-color: #414040 transparent transparent transparent;
 }
 
 .copy-to-clipboard-tooltip:hover .copy-to-clipboard-tooltiptext {
@@ -39,6 +41,7 @@
 .copy_to_clipboard {
     padding: 4px 8px !important;
     font-size: 0.725em !important;
+    display: block !important;
 }
 
 .copy-to-clipboard-wrapper{
