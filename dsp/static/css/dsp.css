@@ -219,9 +219,8 @@ div.dsp-notification .notification .icon {
     top: 4px;
 }
 
-
-.numeric-input-container>.status .status-icon:after {
-    color: #009b00;
-    font-size: 1.2em;
-    content: "\f00c";
-}
+/*.numeric-input-container>.status .status-icon:after {*/
+    /*color: #009b00;*/
+    /*font-size: 1.2em;*/
+    /*content: "\f00c";*/
+/*}*/
