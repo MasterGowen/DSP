@@ -2,6 +2,7 @@
 import logging
 import json
 import traceback
+import sys
 
 import pkg_resources
 from xblock.core import XBlock
