@@ -163,8 +163,8 @@ function is_success_bottom_notification(is_success, score, maximum_score, parent
         text: notification_message_text,
     });
 
-    notification_element.appendChild(icon_element);
-    notification_element.appendChild(notification_message_element);
+    notification_element.append(icon_element);
+    notification_element.append(notification_message_element);
     $(parent_element).html(notification_element)
 }
 
