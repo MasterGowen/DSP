@@ -29,6 +29,7 @@ function DSPXBlock(runtime, element, data) {
 
     $('#check_answer', element).click(function (event) {
         console.info("Начали проверку");
+        disable($('#check_answer'), element);
         $.ajax({
             type: "POST",
             url: student_submit,
@@ -39,6 +40,10 @@ function DSPXBlock(runtime, element, data) {
                 $('.points', element).text(result.score + ' из ' + data.maximum_score);
                 if (highlight_correct) highlight_correctness(result.correctness);
                 console.info("Закончили проверку");
+                enable($('#check_answer'), element);
+            },
+            error: function (jqXHR, exception){
+                enable($('#check_answer'), element);
             },
             contentType: 'application/json; charset=utf-8'
         });
