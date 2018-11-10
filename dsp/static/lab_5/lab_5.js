@@ -59,19 +59,19 @@ function DSPXBlock(runtime, element, data) {
     }
 
     $('#save_answer', element).click(function (event) {
-        disable($('#save_answer'), element);
+        disable($('#save_answer button'), element);
         $.ajax({
             type: "POST",
             url: save_answer,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 actions_bottom_notification("save", $('.dsp-notification', element));
-                enable($('#save_answer'), element);
+                enable($('#save_answer button'), element);
             },
             error: function (jqXHR){
                 console.log("Ошибка при сохранении ответа");
                 alert("Ошибка при сохранении ответа");
-                enable($('#save_answer'), element);
+                enable($('#save_answer button'), element);
             },
             contentType: 'application/json; charset=utf-8'
         });

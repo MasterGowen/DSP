@@ -241,7 +241,7 @@ div.dsp-notification .notification .icon {
 
 .dsp_footer button.btn-default {
     background-color: transparent;
-    box-shadow: none !important;
+    /*box-shadow: none !important;*/
 }
 
 .dsp_footer .btn-small.btn-default, .dsp_footer .btn-small.btn-brand {
