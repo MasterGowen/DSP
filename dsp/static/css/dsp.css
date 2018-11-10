@@ -229,7 +229,7 @@ div.dsp-notification .notification .icon {
 
 .dsp_footer.action button:hover {
     background-image: none;
-    box-shadow: none;
+    box-shadow: none !important;
 }
 
 .dsp_footer.action .problem-action-btn {
