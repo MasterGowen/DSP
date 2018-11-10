@@ -203,9 +203,13 @@ function DSPXBlock(runtime, element, data) {
         });
 
         $("textarea.array-input", element).each(function (i) {
-            $(this).change(function () {
-                process_array_input(this);
-            });
+            this.addEventListener('input', function (e) {
+             console.log(this.value);
+             process_array_input(this);
+            }, false);
+            // $(this).change(function () {
+            //     process_array_input(this);
+            // });
         });
 
     });

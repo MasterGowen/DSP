@@ -109,6 +109,7 @@ def lab_5_check_answer(student_data, source_data, lab_settings):
     fs = float(source_data["fs"])
     K = float(source_data["K2"])
     fd = float(source_data["fd"])
+
     s2 = np.array(source_data["s2"])
     s41 = np.array(source_data["s41"])
     s42 = np.array(source_data["s42"])
