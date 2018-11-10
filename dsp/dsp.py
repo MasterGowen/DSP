@@ -207,12 +207,12 @@ class DSPXBlock(XBlock):
             # возможно, трейсбэк следует показывать только сотрудникам
             # if self.is_course_staff() is True or self.is_instructor() is True:
             trace = traceback.extract_tb(sys.exc_info()[2])
-            output = "\tTraceback is:\n"
+            output = "Traceback is:\n"
             for (file, linenumber, affected, line) in trace:
-                output += "\t> Error at function {}\n".format(affected)
-                output += "\t  At: {}:{}\n".format(file, linenumber)
-                output += "\t  Source: {}\n".format(line)
-            output += "\t> Exception: {}\n".format(e)
+                output += "> Error at function {}\n".format(affected)
+                output += "  At: {}:{}\n".format(file, linenumber)
+                output += "  Source: {}\n".format(line)
+            output += "> Exception: {}\n".format(e)
             ex["traceback"] = output
             return Response(json.dumps(ex), status=500)
 
