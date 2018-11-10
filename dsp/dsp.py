@@ -154,34 +154,40 @@ class DSPXBlock(XBlock):
         self.student_state["answer"] = data
         result = {}
 
-        if self.current_lab == "lab_1":
-            result = lab_1_check_answer(data, self.lab_source_data, self.lab_settings)
-        elif self.current_lab == "lab_2":
-            pass
-        elif self.current_lab == "lab_3":
-            result = lab_3_check_answer(data, self.lab_source_data, self.lab_settings)
-        elif self.current_lab == "lab_4":
-            result = lab_4_check_answer(data, self.lab_source_data, self.lab_settings)
-        elif self.current_lab == "lab_5":
-            result = lab_5_check_answer(data, self.lab_source_data, self.lab_settings)
-        else:
-            pass
+        try:
+            if self.current_lab == "lab_1":
+                result = lab_1_check_answer(data, self.lab_source_data, self.lab_settings)
+            elif self.current_lab == "lab_2":
+                pass
+            elif self.current_lab == "lab_3":
+                result = lab_3_check_answer(data, self.lab_source_data, self.lab_settings)
+            elif self.current_lab == "lab_4":
+                result = lab_4_check_answer(data, self.lab_source_data, self.lab_settings)
+            elif self.current_lab == "lab_5":
+                result = lab_5_check_answer(data, self.lab_source_data, self.lab_settings)
+            else:
+                pass
 
-        self.score = round(self.maximum_score * result["score"])
-        self.student_state["score"] = self.score
-        self.student_state["correctness"] = result["correctness"]
+            self.score = round(self.maximum_score * result["score"])
+            self.student_state["score"] = self.score
+            self.student_state["correctness"] = result["correctness"]
 
-        if result["score"] == 1:
-            self.student_state["is_success"] = "success"
-        elif result["score"] == 0:
-            self.student_state["is_success"] = "error"
-        else:
-            self.student_state["is_success"] = "partially"
+            if result["score"] == 1:
+                self.student_state["is_success"] = "success"
+            elif result["score"] == 0:
+                self.student_state["is_success"] = "error"
+            else:
+                self.student_state["is_success"] = "partially"
 
-        self.student_state["maximum_score"] = self.maximum_score
+            self.student_state["maximum_score"] = self.maximum_score
 
-        self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
-        return Response(json_body=self.student_state)
+            self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
+            return Response(json_body=self.student_state)
+        except ValueError:
+            return Response({'exception': "ValueError"}, 500)
+        except Exception as e:
+            return Response({'exception': e}, 500)
+
 
     @XBlock.json_handler
     def lab_1_get_graphics(self, data, suffix=''):
