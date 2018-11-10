@@ -7,6 +7,7 @@ from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String, JSONField, Float
 from xblock.fragment import Fragment
 from webob.response import Response
+from django.http import JsonResponse
 
 from .utils import (
     render_template,
@@ -187,7 +188,7 @@ class DSPXBlock(XBlock):
         #     return Response({'exception': "ValueError"}, 500)
         except Exception as e:
             log.info(e)
-            return Response(json_body={"exception": e}, status=500)
+            return JsonResponse({"exception": e}, status=500)
 
 
     @XBlock.json_handler
