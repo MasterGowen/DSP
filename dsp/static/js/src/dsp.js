@@ -231,6 +231,10 @@ function check_error_bottom_notification(jqXHR, parent_element) {
     $(parent_element).html(notification_element)
 }
 
+function clean_bottom_notification(parent_element) {
+    $(parent_element).html("");
+}
+
 
 function example_data_lab_1() {
     var signal = "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";

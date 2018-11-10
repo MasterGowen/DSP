@@ -1,6 +1,7 @@
 function DSPXBlock(runtime, element, data) {
 
     var student_submit = runtime.handlerUrl(element, 'student_submit');
+    var save_answer = runtime.handlerUrl(element, 'save_answer');
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_5_get_graphic_1');
     var get_graphic_2 = runtime.handlerUrl(element, 'lab_5_get_graphic_2');
 
@@ -61,7 +62,7 @@ function DSPXBlock(runtime, element, data) {
         disable($('#save_answer'), element);
         $.ajax({
             type: "POST",
-            url: student_submit,
+            url: save_answer,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 actions_bottom_notification("save", $('.dsp-notification', element));
@@ -218,6 +219,7 @@ function DSPXBlock(runtime, element, data) {
 
         $(element).on('input', ".answer-input", function () {
             buttons_disable();
+            clean_bottom_notification($('.dsp-notification', element);
             if (highlight_correct) {
                 $(this).removeClass("dsp-incorrect-input");
                 $(this).removeClass("dsp-correct-input");

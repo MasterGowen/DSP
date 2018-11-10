@@ -298,7 +298,7 @@ class DSPXBlock(XBlock):
             return Response('Error!', 500)
 
     @XBlock.json_handler
-    def save_state(self, data, suffix=''):
+    def save_answer(self, data, suffix=''):
         self.student_state["answer"] = data
         return Response(json_body={"success": "success"})
 
