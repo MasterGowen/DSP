@@ -183,10 +183,11 @@ class DSPXBlock(XBlock):
 
             self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
             return Response(json_body=self.student_state)
-        except ValueError:
-            return Response({'exception': "ValueError"}, 500)
+        # except ValueError:
+        #     return Response({'exception': "ValueError"}, 500)
         except Exception as e:
-            return Response({'exception': e}, 500)
+            log.info(e)
+            return Response({"exception": e}, 500)
 
 
     @XBlock.json_handler
