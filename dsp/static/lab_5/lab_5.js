@@ -73,8 +73,11 @@ function DSPXBlock(runtime, element, data) {
                 is_success_bottom_notification(result.is_success, result.score, result.maximum_score, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
-            error: function (jqXHR, exception){
-                check_error_bottom_notification(jqXHR, exception, $('.dsp-notification', element));
+            error: function (jqXHR, textStatus, errorThrown){
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                // check_error_bottom_notification(jqXHR, exception, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
             contentType: 'application/json; charset=utf-8'
