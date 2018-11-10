@@ -208,6 +208,11 @@ div.dsp-notification .notification.error .icon {
     color: #cb0712;
 }
 
+div.dsp-notification .notification.warning .icon {
+    margin-right: 15px;
+    color: #ffc01f;
+}
+
 div.dsp-notification .notification .icon {
     float: left;
     position: relative;
