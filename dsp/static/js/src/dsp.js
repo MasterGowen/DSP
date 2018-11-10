@@ -168,6 +168,38 @@ function is_success_bottom_notification(is_success, score, maximum_score, parent
     $(parent_element).html(notification_element)
 }
 
+function actions_bottom_notification(action, parent_element) {
+    var notification_element_classlist = "";
+    var icon_classlist = "";
+    var notification_message_text = "";
+
+    if (action === "save"){
+        notification_element_classlist = "notification warning notification-save";
+        icon_classlist = "icon fa fa-save";
+        notification_message_text = "Ваши ответы сохранены, но не оценены. Нажмите 'Отправить', чтобы получить оценку.";
+    }
+    else{
+        notification_element_classlist = "notification warning notification-save";
+        icon_classlist = "icon fa fa-save";
+        notification_message_text = "Ваши ответы сохранены, но не оценены. Нажмите 'Отправить', чтобы получить оценку.";
+    }
+
+    var notification_element =  $('<div/>', {
+        class: notification_element_classlist,
+    });
+    var icon_element =  $('<span/>', {
+        class: icon_classlist,
+    });
+    var notification_message_element =  $('<span/>', {
+        class: "notification-message",
+        text: notification_message_text,
+    });
+
+    notification_element.append(icon_element);
+    notification_element.append(notification_message_element);
+    $(parent_element).html(notification_element)
+}
+
 function check_error_bottom_notification(jqXHR, parent_element) {
     var notification_element_classlist = "notification warning notification-gentle-alert";
     var icon_classlist = "icon fa fa-exclamation-circle";

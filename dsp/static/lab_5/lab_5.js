@@ -57,6 +57,26 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
+    $('#save_answer', element).click(function (event) {
+        disable($('#save_answer'), element);
+        $.ajax({
+            type: "POST",
+            url: student_submit,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                actions_bottom_notification("save", $('.dsp-notification', element));
+                enable($('#save_answer'), element);
+            },
+            error: function (jqXHR){
+                console.log("Ошибка при сохранении ответа");
+                alert("Ошибка при сохранении ответа");
+                enable($('#save_answer'), element);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    });
+
+
     $('#check_answer', element).click(function (event) {
         disable($('#check_answer'), element);
         $.ajax({
