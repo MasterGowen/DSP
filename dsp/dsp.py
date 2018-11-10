@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import json
+import traceback
 
 import pkg_resources
 from xblock.core import XBlock
@@ -188,7 +189,17 @@ class DSPXBlock(XBlock):
         #     return Response({'exception': "ValueError"}, 500)
         except Exception as e:
             log.info(e)
-            return Response(json.dumps({"exception": str(e)}), status=500)
+            # Get line
+            trace = traceback.extract_tb(sys.exc_info()[2])
+            # Add the event to the log
+            output = "Error in the server: %s.\n" % (e)
+            output += "\tTraceback is:\n"
+            for (file, linenumber, affected, line) in trace:
+                output += "\t> Error at function %s\n" % (affected)
+                output += "\t  At: %s:%s\n" % (file, linenumber)
+                output += "\t  Source: %s\n" % (line)
+            output += "\t> Exception: %s\n" % (e)
+            return Response(json.dumps({"exception": str(output)}), status=500)
 
 
     @XBlock.json_handler
