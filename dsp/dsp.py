@@ -170,6 +170,16 @@ class DSPXBlock(XBlock):
         self.score = round(self.maximum_score * result["score"])
         self.student_state["score"] = self.score
         self.student_state["correctness"] = result["correctness"]
+
+        if result["score"] == 1:
+            self.student_state["is_success"] = "success"
+        elif result["score"] == 0:
+            self.student_state["is_success"] = "error"
+        else:
+            self.student_state["is_success"] = "partially"
+
+        self.student_state["maximum_score"] = self.maximum_score
+
         self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
         return Response(json_body=self.student_state)
 

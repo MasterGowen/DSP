@@ -131,6 +131,33 @@ function time_title(number) {
     }
 }
 
+// Полностью верно
+// <div class="notification success notification-submit">
+//     <span class="icon fa fa-check" aria-hidden="true"></span>
+//     <span class="notification-message">Correct (2/2 points)</span>
+// </div>
+
+// Полностью неверно
+// <div class="notification error notification-submit">
+//     <span class="icon fa fa-close" aria-hidden="true"></span>
+//     <span class="notification-message">Incorrect (0/2 points)
+//     </span>
+// </div>
+
+// Частично верно
+// <div class="notification success notification-submit">
+//     <span class="icon fa fa-asterisk" aria-hidden="true"></span>
+//     <span class="notification-message">Partially correct (1/2 points)
+//     </span>
+// </div>
+
+// Ошибка при проверке
+// <div class="notification warning notification-gentle-alert">
+//     <span class="icon fa fa-exclamation-circle" aria-hidden="true"></span>
+//     <span class="notification-message"> ошибка</span>
+// </div>
+
+
 function example_data_lab_1() {
     var signal = "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
     var filter = "1. 1. 1. 1. 1.";
