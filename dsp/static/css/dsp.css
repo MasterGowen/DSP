@@ -192,3 +192,26 @@ div.dsp-notification .notification {
     padding: 8px 10px 4px 10px;
     line-height: 1.5em;
 }
+
+div.dsp-notification .notification .notification-message {
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+div.dsp-notification .notification.success .icon {
+    margin-right: 15px;
+    color: #009b00;
+}
+
+div.dsp-notification .notification.error .icon {
+    margin-right: 15px;
+    color: #cb0712;
+}
+
+div.dsp-notification .notification .icon {
+    float: left;
+    position: relative;
+    top: 4px;
+}
+
+
