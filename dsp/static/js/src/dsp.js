@@ -175,9 +175,6 @@ function check_error_bottom_notification(jqXHR, parent_element) {
     if (jqXHR.responseJSON.exception){
         notification_message_text += "\nОшибка: "+ jqXHR.responseJSON.exception;
     }
-    if (jqXHR.responseJSON.traceback){
-        notification_message_text += "\n"+ jqXHR.responseJSON.traceback;
-    }
     var notification_element = $('<div/>', {
         class: notification_element_classlist,
     });
@@ -186,10 +183,18 @@ function check_error_bottom_notification(jqXHR, parent_element) {
     });
     var notification_message_element = $('<span/>', {
         class: "notification-message",
-        text: notification_message_text,
+        html: "<strong>"+notification_message_text+"</strong>",
     });
 
     notification_element.append(icon_element);
+    if (jqXHR.responseJSON.traceback){
+        var notification_message_traceback_element = $('<span/>', {
+            class: "dsp-notification-traceback",
+            text: jqXHR.responseJSON.traceback,
+        });
+        notification_message_element.append(notification_message_traceback_element)
+    }
+
     notification_element.append(notification_message_element);
     $(parent_element).html(notification_element)
 }

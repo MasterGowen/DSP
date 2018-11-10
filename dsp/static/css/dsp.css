@@ -220,6 +220,12 @@ div.dsp-notification .notification .icon {
     top: 4px;
 }
 
+.dsp-notification-traceback{
+    font-size: 0.8em;
+    line-height: 1em;
+    white-space: pre-wrap;
+}
+
 /*.numeric-input-container>.status .status-icon:after {*/
     /*color: #009b00;*/
     /*font-size: 1.2em;*/
