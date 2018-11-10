@@ -187,7 +187,7 @@ class DSPXBlock(XBlock):
         #     return Response({'exception': "ValueError"}, 500)
         except Exception as e:
             log.info(e)
-            return Response(json_body={"exception": e}, 500)
+            return Response(json_body={"exception": e}, status=500)
 
 
     @XBlock.json_handler
