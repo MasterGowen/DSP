@@ -75,6 +75,8 @@ function DSPXBlock(runtime, element, data) {
             },
             error: function (jqXHR, exception){
                 enable($('#check_answer'), element);
+                console.log(jqXHR);
+                console.log(exception);
             },
             contentType: 'application/json; charset=utf-8'
         });
