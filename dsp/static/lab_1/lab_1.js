@@ -110,7 +110,7 @@ function DSPXBlock(runtime, element, data) {
         buttons_disable();
         $(element).on('input', ".answer-input", function () {
             buttons_disable();
-            clean_bottom_notification($('.dsp-notification', element);
+            clean_bottom_notification($('.dsp-notification', element));
             if (highlight_correct) {
                 $(this).removeClass("dsp-incorrect-input");
                 $(this).removeClass("dsp-correct-input");
