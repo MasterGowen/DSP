@@ -28,7 +28,6 @@ function DSPXBlock(runtime, element, data) {
     }
 
     $('#check_answer', element).click(function (event) {
-        console.info("Начали проверку");
         disable($('#check_answer'), element);
         $.ajax({
             type: "POST",
@@ -39,7 +38,7 @@ function DSPXBlock(runtime, element, data) {
                 $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
                 $('.points', element).text(result.score + ' из ' + data.maximum_score);
                 if (highlight_correct) highlight_correctness(result.correctness);
-                console.info("Закончили проверку");
+                is_success_bottom_notification(result.is_success, result.score, result.maximum_score, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
             error: function (jqXHR){
