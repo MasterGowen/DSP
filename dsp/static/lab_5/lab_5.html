@@ -199,9 +199,79 @@
 
 </div>
 
-<div class="dsp_footer">
-    <button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span></button>
+<!--<div class="dsp_footer">-->
+    <!--<button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span></button>-->
+<!--</div>-->
+
+<div class="dsp_footer action">
+    <div class="submit-attempt-container">
+        <button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span></button>
+    </div>
+    <div class="problem-action-buttons-wrapper">
+      <span class="problem-action-button-wrapper">
+          <button type="button" class="save problem-action-btn btn-default btn-small" data-value="Сохранить">
+              <span class="icon fa fa-floppy-o" aria-hidden="true"></span>
+              <span aria-hidden="true">Сохранить</span>
+              <span class="sr">Save your answer</span>
+          </button>
+      </span>
+      <span class="problem-action-button-wrapper">
+          <button type="button" class="reset problem-action-btn btn-default btn-small" data-value="Сбросить"><span class="icon fa fa-refresh" aria-hidden="true"></span><span aria-hidden="true">Сбросить</span><span class="sr">Reset your answer</span></button>
+      </span>
+    </div>
 </div>
+
+
+
+<style>
+.dsp_footer.action .problem-action-btn {
+    margin-right: 4px;
+    max-width: 110px;
+}
+.dsp_footer button.btn-default {
+    background-color: transparent;
+}
+
+.dsp_footer .btn-small.btn-default, .dsp_footer .btn-small.btn-brand {
+    padding: 0.625rem 0.625rem;
+    font-size: 14px;
+}
+.dsp_footer.action .problem-action-btn .icon {
+    margin-bottom: 2px;
+    display: block;
+}
+
+.dsp_footer.action .problem-action-button-wrapper {
+    border-right: 1px solid #ddd;
+    display: inline-block;
+}
+.dsp_footer.action .submit-attempt-container {
+    padding-bottom: 20px;
+    flex-grow: 1;
+}
+
+.dsp_footer.action .problem-action-button-wrapper:last-child {
+    border: none;
+}
+.dsp_footer.action .problem-action-button-wrapper {
+    border-right: 1px solid #ddd;
+    display: inline-block;
+}
+
+.dsp_footer.action {
+    margin-top: 20px;
+    min-height: 20px;
+    width: 100%;
+    display: flex;
+    display: -ms-flexbox;
+    -ms-flex-align: start;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+
+    </style>
+
+
 
 <div class="dsp-notification">
 

@@ -297,6 +297,10 @@ class DSPXBlock(XBlock):
         except:
             return Response('Error!', 500)
 
+    @XBlock.json_handler
+    def save_state(self, data, suffix=''):
+        self.student_state["answer"] = data
+        return Response(json_body={"success": "success"})
 
     def get_general_context(self):
         general_context = {

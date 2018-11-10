@@ -224,6 +224,7 @@ div.dsp-notification .notification .icon {
     font-size: 0.8em;
     line-height: 1em;
     white-space: pre-wrap;
+    display: none;
 }
 
 /*.numeric-input-container>.status .status-icon:after {*/
