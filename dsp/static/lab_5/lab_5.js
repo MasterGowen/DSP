@@ -69,6 +69,7 @@ function DSPXBlock(runtime, element, data) {
                 $('.points', element).text(result.score + ' из ' + data.maximum_score);
                 if (highlight_correct) highlight_correctness(result.correctness);
                 console.info("Закончили проверку");
+                is_success_bottom_notification(result.is_success, result.score, result.maximum_score, $('.dsp-notification', element))
             },
             contentType: 'application/json; charset=utf-8'
         });

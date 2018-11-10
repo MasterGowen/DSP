@@ -131,29 +131,66 @@ function time_title(number) {
     }
 }
 
+function is_success_bottom_notification(is_success, score, maximum_score, parent_element) {
+    var notification_element_classlist = "";
+    var icon_classlist = "";
+    var notification_message_text = "";
+
+    if (is_success === "success"){
+        notification_element_classlist = "notification success notification-submit";
+        icon_classlist = "icon fa fa-check";
+        notification_message_text = "Задание выполнено верно (" + score + "/" + maximum_score + " баллов) "
+    }
+    else if (is_success === "partially"){
+        notification_element_classlist = "notification success notification-submit";
+        icon_classlist = "icon fa fa-asterisk";
+        notification_message_text = "Задание выполнено частично верно (" + score + "/" + maximum_score + " баллов) "
+    }
+    else{
+        notification_element_classlist = "notification error notification-submit";
+        icon_classlist = "icon fa fa-close";
+        notification_message_text = "Задание выполнено неверно (" + score + "/" + maximum_score + " баллов) "
+    }
+
+    var notification_element =  $('<div/>', {
+        class: notification_element_classlist,
+    });
+    var icon_element =  $('<span/>', {
+        class: icon_classlist,
+    });
+    var notification_message_element =  $('<span/>', {
+        class: "notification-message",
+        text: notification_message_text,
+    });
+
+    notification_element.appendChild(icon_element);
+    notification_element.appendChild(notification_message_element);
+    $(parent_element).html(notification_element)
+}
+
 // Полностью верно
 // <div class="notification success notification-submit">
-//     <span class="icon fa fa-check" aria-hidden="true"></span>
+//     <span class="icon fa fa-check"></span>
 //     <span class="notification-message">Correct (2/2 points)</span>
-// </div>
-
-// Полностью неверно
-// <div class="notification error notification-submit">
-//     <span class="icon fa fa-close" aria-hidden="true"></span>
-//     <span class="notification-message">Incorrect (0/2 points)
-//     </span>
 // </div>
 
 // Частично верно
 // <div class="notification success notification-submit">
-//     <span class="icon fa fa-asterisk" aria-hidden="true"></span>
+//     <span class="icon fa fa-asterisk"></span>
 //     <span class="notification-message">Partially correct (1/2 points)
+//     </span>
+// </div>
+
+// Полностью неверно
+// <div class="notification error notification-submit">
+//     <span class="icon fa fa-close"></span>
+//     <span class="notification-message">Incorrect (0/2 points)
 //     </span>
 // </div>
 
 // Ошибка при проверке
 // <div class="notification warning notification-gentle-alert">
-//     <span class="icon fa fa-exclamation-circle" aria-hidden="true"></span>
+//     <span class="icon fa fa-exclamation-circle"></span>
 //     <span class="notification-message"> ошибка</span>
 // </div>
 

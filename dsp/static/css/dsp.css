@@ -174,3 +174,21 @@ div.task-wording{
     color: #5e5e5e;
     font-size: 0.875em;
 }
+
+div.dsp-notification .notification.success {
+    border-top: 3px solid #009b00;
+}
+
+div.dsp-notification .notification.warning {
+    border-top: 3px solid #ffc01f;
+}
+div.dsp-notification .notification.error {
+    border-top: 3px solid #cb0712;
+}
+
+div.dsp-notification .notification {
+    float: left;
+    margin-top: 10px;
+    padding: 8px 10px 4px 10px;
+    line-height: 1.5em;
+}
