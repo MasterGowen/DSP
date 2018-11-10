@@ -190,7 +190,7 @@ function check_error_bottom_notification(jqXHR, parent_element) {
     if (jqXHR.responseJSON.traceback){
         var notification_message_traceback_element = $('<span/>', {
             class: "dsp-notification-traceback",
-            text: jqXHR.responseJSON.traceback,
+            text: "\n"+jqXHR.responseJSON.traceback,
         });
         notification_message_element.append(notification_message_traceback_element)
     }
