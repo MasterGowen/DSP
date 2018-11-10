@@ -215,8 +215,8 @@ div.dsp-notification .notification .icon {
 }
 
 
-.numeric-input-container>.correct .status .status-icon:after, .xmodule_display.xmodule_CapaModule .problem .inputtype.formulaequationinput>.correct .status .status-icon:after {
+numeric-input-container>.status .status-icon:after {
     color: #009b00;
     font-size: 1.2em;
-    content: "";
+    content: "\f000";
 }
