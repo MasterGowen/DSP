@@ -261,11 +261,6 @@ div.dsp-notification .notification .icon {
 .dsp_footer.action .problem-action-button-wrapper:last-child {
     border: none;
 }
-.dsp_footer.action .problem-action-button-wrapper {
-    border-right: 1px solid #ddd;
-    display: inline-block;
-}
-
 .dsp_footer.action {
     margin-top: 20px;
     min-height: 20px;
