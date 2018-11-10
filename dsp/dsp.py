@@ -167,7 +167,6 @@ class DSPXBlock(XBlock):
         # TO-DO: проверка возможности ответа
         self.student_state["answer"] = data
         result = {}
-
         try:
             if self.current_lab == "lab_1":
                 result = lab_1_check_answer(data, self.lab_source_data, self.lab_settings)
@@ -180,7 +179,7 @@ class DSPXBlock(XBlock):
             elif self.current_lab == "lab_5":
                 result = lab_5_check_answer(data, self.lab_source_data, self.lab_settings)
             else:
-                pass
+                raise Exception('Hiding bugs lol')
 
             self.score = round(self.maximum_score * result["score"])
             self.student_state["score"] = self.score
@@ -197,11 +196,8 @@ class DSPXBlock(XBlock):
 
             self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
             return Response(json_body=self.student_state)
-        # except ValueError:
-        #     return Response({'exception': "ValueError"}, 500)
+
         except Exception as e:
-            # log.info(e)
-            # Get line
             ex = dict()
             ex["exception"] = str(e)
             # возможно, трейсбэк следует показывать только сотрудникам

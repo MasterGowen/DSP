@@ -42,7 +42,8 @@ function DSPXBlock(runtime, element, data) {
                 console.info("Закончили проверку");
                 enable($('#check_answer'), element);
             },
-            error: function (jqXHR, exception){
+            error: function (jqXHR){
+                check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
             contentType: 'application/json; charset=utf-8'

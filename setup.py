@@ -3,7 +3,7 @@
 import os
 
 from setuptools import setup
-from Cython.Build import cythonize
+# from Cython.Build import cythonize
 
 def package_data(pkg, roots):
     """Generic function to find package_data.
@@ -23,9 +23,9 @@ def package_data(pkg, roots):
 
 setup(
     name='dsp-xblock',
-    ext_modules = cythonize(["*.pyx"]),
+    # ext_modules = cythonize(["*.pyx"]),
     version='0.1',
-    description='dsp XBlock',   # TODO: write a better description.
+    description='digital signal processing XBlock',   # TODO: write a better description.
     license='UNKNOWN',          # TODO: choose a license: 'AGPL v3' and 'Apache 2.0' are popular.
     packages=[
         'dsp',

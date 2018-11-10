@@ -173,7 +173,7 @@ function check_error_bottom_notification(jqXHR, parent_element) {
     var icon_classlist = "icon fa fa-exclamation-circle";
     var notification_message_text = "При проверке задания возникла ошибка. Проверьте корректность введенных данных.";
     if (jqXHR.responseJSON.exception){
-        notification_message_text += "\n Ошибка: "+ jqXHR.responseJSON.exception;
+        notification_message_text += "\nОшибка: "+ jqXHR.responseJSON.exception;
     }
     if (jqXHR.responseJSON.traceback){
         notification_message_text += "\n"+ jqXHR.responseJSON.traceback;
