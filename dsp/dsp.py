@@ -133,6 +133,17 @@ class DSPXBlock(XBlock):
         help='Правильный ответ',
     )
 
+    def is_course_staff(self):
+        """
+        Проверка, является ли пользователь автором курса.
+        """
+        return getattr(self.xmodule_runtime, 'user_is_staff', False)
+
+    def is_instructor(self):
+        """
+        Проверка, является ли пользователь инструктором.
+        """
+        return self.xmodule_runtime.get_user_role() == 'instructor'
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -189,10 +200,13 @@ class DSPXBlock(XBlock):
         # except ValueError:
         #     return Response({'exception': "ValueError"}, 500)
         except Exception as e:
-            log.info(e)
+            # log.info(e)
             # Get line
+            ex = dict()
+            ex["exception"] = str(e)
+            # возможно трейсбэк следует показывать только сотрудникам
+            # if self.is_course_staff() is True or self.is_instructor() is True:
             trace = traceback.extract_tb(sys.exc_info()[2])
-            # Add the event to the log
             output = "Error in the server: %s.\n" % (e)
             output += "\tTraceback is:\n"
             for (file, linenumber, affected, line) in trace:
@@ -200,7 +214,8 @@ class DSPXBlock(XBlock):
                 output += "\t  At: %s:%s\n" % (file, linenumber)
                 output += "\t  Source: %s\n" % (line)
             output += "\t> Exception: %s\n" % (e)
-            return Response(json.dumps({"exception": str(output)}), status=500)
+            ex["traceback"] = output
+            return Response(json.dumps(ex), status=500)
 
 
     @XBlock.json_handler
