@@ -215,8 +215,8 @@ div.dsp-notification .notification .icon {
 }
 
 
-numeric-input-container>.status .status-icon:after {
+.numeric-input-container>.status .status-icon:after {
     color: #009b00;
     font-size: 1.2em;
-    content: "\f000";
+    content: "\f00c";
 }
