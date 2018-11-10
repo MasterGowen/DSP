@@ -168,6 +168,28 @@ function is_success_bottom_notification(is_success, score, maximum_score, parent
     $(parent_element).html(notification_element)
 }
 
+function check_error_bottom_notification(jqXHR, exception) {
+    console.log(jqXHR);
+    console.log(exception);
+    var notification_element_classlist = "notification warning notification-gentle-alert";
+    var icon_classlist = "icon fa fa-exclamation-circle";
+    var notification_message_text = "При проверке задания возникла ошибка. Проверьте корректность введенных данных.";
+    var notification_element = $('<div/>', {
+        class: notification_element_classlist,
+    });
+    var icon_element = $('<span/>', {
+        class: icon_classlist,
+    });
+    var notification_message_element = $('<span/>', {
+        class: "notification-message",
+        text: notification_message_text,
+    });
+
+    notification_element.append(icon_element);
+    notification_element.append(notification_message_element);
+    $(parent_element).html(notification_element)
+}
+
 // Полностью верно
 // <div class="notification success notification-submit">
 //     <span class="icon fa fa-check"></span>
