@@ -168,14 +168,12 @@ function is_success_bottom_notification(is_success, score, maximum_score, parent
     $(parent_element).html(notification_element)
 }
 
-function check_error_bottom_notification(jqXHR, exception, parent_element) {
-    console.log(jqXHR);
-    console.log(exception);
+function check_error_bottom_notification(jqXHR, parent_element) {
     var notification_element_classlist = "notification warning notification-gentle-alert";
     var icon_classlist = "icon fa fa-exclamation-circle";
     var notification_message_text = "При проверке задания возникла ошибка. Проверьте корректность введенных данных.";
     if (jqXHR.responseJSON.exception){
-        notification_message_text += "\n"+ jqXHR.responseJSON.exception;
+        notification_message_text += "\n Ошибка: "+ jqXHR.responseJSON.exception;
     }
     if (jqXHR.responseJSON.traceback){
         notification_message_text += "\n"+ jqXHR.responseJSON.traceback;

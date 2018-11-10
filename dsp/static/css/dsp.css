@@ -196,6 +196,7 @@ div.dsp-notification .notification {
 div.dsp-notification .notification .notification-message {
     display: inline-block;
     margin-bottom: 8px;
+    white-space: pre-wrap;
 }
 
 div.dsp-notification .notification.success .icon {

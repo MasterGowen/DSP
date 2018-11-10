@@ -204,16 +204,15 @@ class DSPXBlock(XBlock):
             # Get line
             ex = dict()
             ex["exception"] = str(e)
-            # возможно трейсбэк следует показывать только сотрудникам
+            # возможно, трейсбэк следует показывать только сотрудникам
             # if self.is_course_staff() is True or self.is_instructor() is True:
             trace = traceback.extract_tb(sys.exc_info()[2])
-            output = "Error in the server: %s.\n" % (e)
-            output += "\tTraceback is:\n"
+            output = "\tTraceback is:\n"
             for (file, linenumber, affected, line) in trace:
-                output += "\t> Error at function %s\n" % (affected)
-                output += "\t  At: %s:%s\n" % (file, linenumber)
-                output += "\t  Source: %s\n" % (line)
-            output += "\t> Exception: %s\n" % (e)
+                output += "\t> Error at function {}\n".format(affected)
+                output += "\t  At: {}:{}\n".format(file, linenumber)
+                output += "\t  Source: {}\n".format(line)
+            output += "\t> Exception: {}\n".format(e)
             ex["traceback"] = output
             return Response(json.dumps(ex), status=500)
 

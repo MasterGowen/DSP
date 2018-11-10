@@ -73,11 +73,8 @@ function DSPXBlock(runtime, element, data) {
                 is_success_bottom_notification(result.is_success, result.score, result.maximum_score, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
-            error: function (jqXHR, textStatus, errorThrown){
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
-                check_error_bottom_notification(jqXHR, textStatus, $('.dsp-notification', element));
+            error: function (jqXHR){
+                check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
             contentType: 'application/json; charset=utf-8'
@@ -171,12 +168,9 @@ function DSPXBlock(runtime, element, data) {
     }
 
     $('.copy_to_clipboard', element).click(function (event) {
-        console.log(this);
         var id = this.id.split("_")[this.id.split("_").length-1];
-        console.log(id);
         var textarea = $('#display_signal_'+id, element);
         textarea.select();
-        console.log(textarea);
         document.execCommand("copy");
         var tooltip = $('#copy_to_clipboard_'+id+" .copy-to-clipboard-tooltiptext", element)[0];
         tooltip.innerHTML = "Сигнал скопирован в буфер обмена!";
@@ -214,12 +208,8 @@ function DSPXBlock(runtime, element, data) {
 
         $("textarea.array-input", element).each(function (i) {
             this.addEventListener('input', function (e) {
-             console.log(this.value);
              process_array_input(this);
             }, false);
-            // $(this).change(function () {
-            //     process_array_input(this);
-            // });
         });
 
     });
