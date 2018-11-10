@@ -227,6 +227,8 @@ div.dsp-notification .notification .icon {
     display: none;
 }
 
+
+
 .dsp_footer.action button:hover {
     background-image: none;
     box-shadow: none !important;
@@ -239,6 +241,7 @@ div.dsp-notification .notification .icon {
 
 .dsp_footer button.btn-default {
     background-color: transparent;
+    box-shadow: none !important;
 }
 
 .dsp_footer .btn-small.btn-default, .dsp_footer .btn-small.btn-brand {
