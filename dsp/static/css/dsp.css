@@ -168,3 +168,9 @@ div.task-wording{
     width: 100%;
     font-size: 0.8em;
 }
+
+.dsp-problem-progress{
+    display: inline-block;
+    color: #5e5e5e;
+    font-size: 0.875em;
+}
