@@ -168,7 +168,7 @@ function is_success_bottom_notification(is_success, score, maximum_score, parent
     $(parent_element).html(notification_element)
 }
 
-function check_error_bottom_notification(jqXHR, exception) {
+function check_error_bottom_notification(jqXHR, exception, parent_element) {
     console.log(jqXHR);
     console.log(exception);
     var notification_element_classlist = "notification warning notification-gentle-alert";
@@ -190,32 +190,6 @@ function check_error_bottom_notification(jqXHR, exception) {
     $(parent_element).html(notification_element)
 }
 
-// Полностью верно
-// <div class="notification success notification-submit">
-//     <span class="icon fa fa-check"></span>
-//     <span class="notification-message">Correct (2/2 points)</span>
-// </div>
-
-// Частично верно
-// <div class="notification success notification-submit">
-//     <span class="icon fa fa-asterisk"></span>
-//     <span class="notification-message">Partially correct (1/2 points)
-//     </span>
-// </div>
-
-// Полностью неверно
-// <div class="notification error notification-submit">
-//     <span class="icon fa fa-close"></span>
-//     <span class="notification-message">Incorrect (0/2 points)
-//     </span>
-// </div>
-
-// Ошибка при проверке
-// <div class="notification warning notification-gentle-alert">
-//     <span class="icon fa fa-exclamation-circle"></span>
-//     <span class="notification-message"> ошибка</span>
-// </div>
-
 
 function example_data_lab_1() {
     var signal = "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
@@ -233,6 +207,9 @@ function example_data_lab_1() {
     $('input:radio[name="input_student_window"]').filter('[value="' + window + '"]').attr('checked', true);
 }
 
+function example_data_lab_2() {
+    return;
+}
 
 function example_data_lab_3() {
     var signal = "[ 1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1. 1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1. ]";

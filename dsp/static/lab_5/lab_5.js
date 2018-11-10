@@ -74,7 +74,7 @@ function DSPXBlock(runtime, element, data) {
                 enable($('#check_answer'), element);
             },
             error: function (jqXHR, exception){
-                check_error_bottom_notification(jqXHR, exception);
+                check_error_bottom_notification(jqXHR, exception, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
             contentType: 'application/json; charset=utf-8'
