@@ -174,6 +174,12 @@ function check_error_bottom_notification(jqXHR, exception, parent_element) {
     var notification_element_classlist = "notification warning notification-gentle-alert";
     var icon_classlist = "icon fa fa-exclamation-circle";
     var notification_message_text = "При проверке задания возникла ошибка. Проверьте корректность введенных данных.";
+    if (jqXHR.responseJSON.exception){
+        notification_message_text += "\n"+ jqXHR.responseJSON.exception;
+    }
+    if (jqXHR.responseJSON.traceback){
+        notification_message_text += "\n"+ jqXHR.responseJSON.traceback;
+    }
     var notification_element = $('<div/>', {
         class: notification_element_classlist,
     });

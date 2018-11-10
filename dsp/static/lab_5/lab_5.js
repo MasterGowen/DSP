@@ -77,7 +77,7 @@ function DSPXBlock(runtime, element, data) {
                 console.log(jqXHR);
                 console.log(textStatus);
                 console.log(errorThrown);
-                check_error_bottom_notification(jqXHR, exception, $('.dsp-notification', element));
+                check_error_bottom_notification(jqXHR, textStatus, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
             contentType: 'application/json; charset=utf-8'
