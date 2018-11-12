@@ -157,9 +157,6 @@ function DSPXBlock(runtime, element, data) {
         reset_task();
     });
 
-
-
-
     function generateAnswer() {
         var student_data = {
             "student_signal": [],
