@@ -401,7 +401,7 @@ class DSPXBlock(XBlock):
         self.max_attempts = data.get('max_attempts')
         self.lab_settings["array_tolerance"] = float(data.get('array_tolerance'))
         self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
-        # self.la
+        self.lab_settings["show_reset_button"] = bool(data.get('show_reset_button'))
         return {'result': 'success'}
 
     # TO-DO: change this to create the scenarios you'd like to see in the
