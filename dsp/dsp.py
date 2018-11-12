@@ -423,13 +423,10 @@ class DSPXBlock(XBlock):
         self.maximum_score = int(float(data.get('maximum_score')))
         try:
             self.max_attempts = int(round(float(data.get('max_attempts'))))
-            log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            log.info(self.max_attempts)
+            if self.max_attempts == 0:
+                raise Exception('Zero attempts is not allowed')
         except:
             self.max_attempts = None
-            log.info("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-            log.info(self.max_attempts)
-        self.max_attempts = data.get('max_attempts')
         self.lab_settings["array_tolerance"] = float(data.get('array_tolerance'))
         self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
         self.lab_settings["show_reset_button"] = True if data.get('show_reset_button') == 'true' else False
