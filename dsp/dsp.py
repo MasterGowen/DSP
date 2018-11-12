@@ -317,8 +317,8 @@ class DSPXBlock(XBlock):
 
         return general_context
 
-    def lab_context(self):
-        if not self.lab_source_data:
+    def lab_context(self, update=False):
+        if not self.lab_source_data or update:
             if self.current_lab == "lab_1":
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_2":
@@ -372,9 +372,6 @@ class DSPXBlock(XBlock):
             "array_tolerance": self.lab_settings["array_tolerance"],
             "show_reset_button": self.lab_settings["show_reset_button"],
         }
-        log.info("!$!$!$!$$!$!$!!$$$!$!$$!$!$!$!$!")
-        log.info(self.lab_settings["show_reset_button"])
-
         fragment = Fragment()
         fragment.add_content(
             render_template(
@@ -398,6 +395,7 @@ class DSPXBlock(XBlock):
 
     @XBlock.json_handler
     def studio_submit(self, data, suffix=''):
+        old_current_lab = self.current_lab
         self.display_name = data.get('display_name')
         self.current_lab = data.get('current_lab')
         self.maximum_score = int(float(data.get('maximum_score')))
@@ -405,6 +403,10 @@ class DSPXBlock(XBlock):
         self.lab_settings["array_tolerance"] = float(data.get('array_tolerance'))
         self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
         self.lab_settings["show_reset_button"] = True if data.get('show_reset_button') == 'true' else False
+
+        if old_current_lab != self.current_lab:
+            _ = self.lab_context(update=True)
+
         return {'result': 'success'}
 
     # TO-DO: change this to create the scenarios you'd like to see in the
