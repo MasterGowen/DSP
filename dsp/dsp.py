@@ -196,6 +196,7 @@ class DSPXBlock(XBlock):
             self.student_state["maximum_score"] = self.maximum_score
 
             self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
+            self.attempts += 1
             return Response(json_body=self.student_state)
 
         except Exception as e:
@@ -404,8 +405,12 @@ class DSPXBlock(XBlock):
         self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
         self.lab_settings["show_reset_button"] = True if data.get('show_reset_button') == 'true' else False
 
-        if old_current_lab != self.current_lab:
-            _ = self.lab_context(update=True)
+        log.info("KEKEKEKEEKKEKKEKEKEKEKEKEKEKEKEKEKE")
+        log.info(old_current_lab)
+        log.info(self.current_lab)
+
+        if old_current_lab != self.current_lab:  # обновить исходные данные лабы если она изменилась
+            context = self.lab_context(update=True)
 
         return {'result': 'success'}
 
