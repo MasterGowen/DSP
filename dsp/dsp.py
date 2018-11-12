@@ -339,7 +339,8 @@ class DSPXBlock(XBlock):
                 self.lab_source_data = lab_4_get_source_data()
             elif self.current_lab == "lab_5":
                 self.lab_source_data = lab_5_get_source_data()
-        context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
+        if not update:
+            context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 
     def load_lab_static(self, lab_id, context):
