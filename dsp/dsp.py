@@ -410,8 +410,8 @@ class DSPXBlock(XBlock):
         log.info(old_current_lab)
         log.info(self.current_lab)
 
-        if old_current_lab != self.current_lab:  # обновить исходные данные лабы если она изменилась
-            self.lab_source_data = {}
+        # if old_current_lab != self.current_lab:  # обновить исходные данные лабы если она изменилась
+        #     self.lab_source_data = {}
 
         return {'result': 'success'}
 
