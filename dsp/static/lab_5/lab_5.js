@@ -11,18 +11,18 @@ function DSPXBlock(runtime, element, data) {
         var reset_task = runtime.handlerUrl(element, 'reset_task');
 
         $('#reset_task', element).click(function (event) {
-        disable($('#reset_task'), element);
+        disable($('#reset_task button'), element);
         $.ajax({
             type: "GET",
             url: reset_task,
             success: function (result) {
                 // actions_bottom_notification("save", $('.dsp-notification', element));
-                enable($('#reset_task'), element);
+                enable($('#reset_task button'), element);
                 window.location.reload(true);
             },
             error: function (jqXHR){
                 error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
-                enable($('#reset_task'), element);
+                enable($('#reset_task button'), element);
             },
             contentType: 'application/json; charset=utf-8'
             });
