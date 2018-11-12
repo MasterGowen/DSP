@@ -7,28 +7,26 @@ function DSPXBlock(runtime, element, data) {
 
     var highlight_correct = true;
 
-    {% if show_reset_button %}
-        var reset_task = runtime.handlerUrl(element, 'reset_task');
+    var reset_task = runtime.handlerUrl(element, 'reset_task');
 
-        $('#reset_task', element).click(function (event) {
-        disable($('#reset_task button'), element);
-        $.ajax({
-            type: "GET",
-            url: reset_task,
-            success: function (result) {
-                // actions_bottom_notification("save", $('.dsp-notification', element));
-                enable($('#reset_task button'), element);
-                window.location.reload(true);
-            },
-            error: function (jqXHR){
-                error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
-                enable($('#reset_task button'), element);
-            },
-            contentType: 'application/json; charset=utf-8'
-            });
+    $('#reset_task', element).click(function (event) {
+    disable($('#reset_task button'), element);
+    $.ajax({
+        type: "GET",
+        url: reset_task,
+        success: function (result) {
+            // actions_bottom_notification("save", $('.dsp-notification', element));
+            enable($('#reset_task button'), element);
+            window.location.reload(true);
+        },
+        error: function (jqXHR){
+            error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
+            enable($('#reset_task button'), element);
+        },
+        contentType: 'application/json; charset=utf-8'
         });
+    });
 
-    {% endif %}
 
     function build_graphic_1() {
         disable($('#calculate_graphic_1', element));
