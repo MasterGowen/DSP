@@ -51,10 +51,9 @@ function DSPXBlock(runtime, element) {
                 "array_tolerance": $(element).find("input[name=array_tolerance]").val(),
                 "number_tolerance": $(element).find("input[name=number_tolerance]").val(),
                 "show_reset_button": $(element).find("select[name=show_reset_button]").val(),
-
             };
 
-        $.post(handlerUrl, data).done(function (response) {
+        $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
 
             // window.location.reload(true);
 
