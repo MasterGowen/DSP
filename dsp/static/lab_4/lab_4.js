@@ -3,6 +3,7 @@ function DSPXBlock(runtime, element, data) {
     var student_submit = runtime.handlerUrl(element, 'student_submit');
     var save_answer = runtime.handlerUrl(element, 'save_answer');
     var get_graphics = runtime.handlerUrl(element, 'lab_4_get_graphics');
+    var reset_task = runtime.handlerUrl(element, 'reset_task');
     var highlight_correct = true;
 
     function build_graphics() {
@@ -66,6 +67,24 @@ function DSPXBlock(runtime, element, data) {
             },
             contentType: 'application/json; charset=utf-8'
         });
+    });
+
+    $('#reset_task', element).click(function (event) {
+        disable($('#reset_task button'), element);
+        $.ajax({
+            type: "GET",
+            url: reset_task,
+            success: function (result) {
+                // actions_bottom_notification("save", $('.dsp-notification', element));
+                enable($('#reset_task button'), element);
+                window.location.reload(true);
+            },
+            error: function (jqXHR){
+                error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
+                enable($('#reset_task button'), element);
+            },
+            contentType: 'application/json; charset=utf-8'
+            });
     });
 
     $('#calculate_graphics', element).click(function (event) {

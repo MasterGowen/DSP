@@ -4,29 +4,9 @@ function DSPXBlock(runtime, element, data) {
     var save_answer = runtime.handlerUrl(element, 'save_answer');
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_5_get_graphic_1');
     var get_graphic_2 = runtime.handlerUrl(element, 'lab_5_get_graphic_2');
-
-    var highlight_correct = true;
-
     var reset_task = runtime.handlerUrl(element, 'reset_task');
 
-    $('#reset_task', element).click(function (event) {
-    disable($('#reset_task button'), element);
-    $.ajax({
-        type: "GET",
-        url: reset_task,
-        success: function (result) {
-            // actions_bottom_notification("save", $('.dsp-notification', element));
-            enable($('#reset_task button'), element);
-            window.location.reload(true);
-        },
-        error: function (jqXHR){
-            error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
-            enable($('#reset_task button'), element);
-        },
-        contentType: 'application/json; charset=utf-8'
-        });
-    });
-
+    var highlight_correct = true;
 
     function build_graphic_1() {
         disable($('#calculate_graphic_1', element));
@@ -118,6 +98,24 @@ function DSPXBlock(runtime, element, data) {
             },
             contentType: 'application/json; charset=utf-8'
         });
+    });
+
+    $('#reset_task', element).click(function (event) {
+        disable($('#reset_task button'), element);
+        $.ajax({
+            type: "GET",
+            url: reset_task,
+            success: function (result) {
+                // actions_bottom_notification("save", $('.dsp-notification', element));
+                enable($('#reset_task button'), element);
+                window.location.reload(true);
+            },
+            error: function (jqXHR){
+                error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
+                enable($('#reset_task button'), element);
+            },
+            contentType: 'application/json; charset=utf-8'
+            });
     });
 
     $('#calculate_graphic_1', element).click(function (event) {

@@ -5,13 +5,14 @@ function DSPXBlock(runtime, element, data) {
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_3_get_graphic_1');
     var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
     var get_graphic_3 = runtime.handlerUrl(element, 'lab_3_get_graphic_3');
-    var reset_task_url = runtime.handlerUrl(element, 'lab_3_reset_task');
+    var lab_3_reset_task = runtime.handlerUrl(element, 'lab_3_reset_task');
+    var reset_task = runtime.handlerUrl(element, 'reset_task');
     var highlight_correct = true;
     
-    function reset_task() {
+    function lab_3_reset_task() {
         $.ajax({
             type: "GET",
-            url: reset_task_url,
+            url: lab_3_reset_task,
             // data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 // console.log(result);
@@ -160,6 +161,24 @@ function DSPXBlock(runtime, element, data) {
     //     });
     // });
 
+    $('#reset_task', element).click(function (event) {
+        disable($('#reset_task button'), element);
+        $.ajax({
+            type: "GET",
+            url: reset_task,
+            success: function (result) {
+                // actions_bottom_notification("save", $('.dsp-notification', element));
+                enable($('#reset_task button'), element);
+                window.location.reload(true);
+            },
+            error: function (jqXHR){
+                error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
+                enable($('#reset_task button'), element);
+            },
+            contentType: 'application/json; charset=utf-8'
+            });
+    });
+
     $('#calculate_graphic_1', element).click(function (event) {
         build_graphic_1();
     });
@@ -172,8 +191,8 @@ function DSPXBlock(runtime, element, data) {
     $('#calculate_graphic_2_there_is_no_signal', element).click(function (event) {
         build_graphic_2(false, "there_is_no_signal");
     });
-    $('#reset_task', element).click(function (event) {
-        reset_task();
+    $('#lab_3_reset_task', element).click(function (event) {
+        lab_3_reset_task();
     });
 
     function generateAnswer() {
