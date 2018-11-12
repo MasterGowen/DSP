@@ -406,7 +406,7 @@ class DSPXBlock(XBlock):
         log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
         log.info(data.get('show_reset_button'))
         log.info(bool(data.get('show_reset_button')))
-        self.lab_settings["show_reset_button"] = bool(data.get('show_reset_button'))
+        self.lab_settings["show_reset_button"] = data.get('show_reset_button')
         return {'result': 'success'}
 
     # TO-DO: change this to create the scenarios you'd like to see in the
