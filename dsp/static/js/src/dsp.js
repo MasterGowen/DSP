@@ -226,10 +226,30 @@ function check_error_bottom_notification(jqXHR, parent_element) {
         });
         notification_message_element.append(notification_message_traceback_element)
     }
-
     notification_element.append(notification_message_element);
     $(parent_element).html(notification_element)
 }
+
+
+function error_bottom_notification(jqXHR, notification_message_text, parent_element) {
+    var notification_element_classlist = "notification warning notification-gentle-alert";
+    var icon_classlist = "icon fa fa-exclamation-circle";
+    var notification_element = $('<div/>', {
+        class: notification_element_classlist,
+    });
+    var icon_element = $('<span/>', {
+        class: icon_classlist,
+    });
+    var notification_message_element = $('<span/>', {
+        class: "notification-message",
+        html: notification_message_text,
+    });
+    notification_element.append(icon_element);
+    notification_element.append(notification_message_element);
+    $(parent_element).html(notification_element)
+}
+
+
 
 function clean_bottom_notification(parent_element) {
     $(parent_element).html("");

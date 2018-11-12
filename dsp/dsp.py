@@ -110,6 +110,7 @@ class DSPXBlock(XBlock):
         default={
             "array_tolerance": 0.01,
             "number_tolerance": 0.5,
+            "show_reset_button": False,
         },
         scope=Scope.settings,
         help='Настройка лабораторной',
@@ -368,6 +369,7 @@ class DSPXBlock(XBlock):
             "max_attempts": self.max_attempts,
             "number_tolerance": self.lab_settings["number_tolerance"],
             "array_tolerance": self.lab_settings["array_tolerance"],
+            "show_reset_button": self.lab_settings["show_reset_button"],
         }
 
         fragment = Fragment()
@@ -399,6 +401,7 @@ class DSPXBlock(XBlock):
         self.max_attempts = data.get('max_attempts')
         self.lab_settings["array_tolerance"] = float(data.get('array_tolerance'))
         self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
+        # self.la
         return {'result': 'success'}
 
     # TO-DO: change this to create the scenarios you'd like to see in the
