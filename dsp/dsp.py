@@ -311,7 +311,8 @@ class DSPXBlock(XBlock):
             "score": self.score,
             "max_attempts": self.max_attempts,
             "attempts": self.attempts,
-            "student_state": self.student_state
+            "student_state": self.student_state,
+            "show_reset_button": self.lab_settings["show_reset_button"],
         }
 
         return general_context
