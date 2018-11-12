@@ -422,6 +422,10 @@ class DSPXBlock(XBlock):
         self.display_name = data.get('display_name')
         self.current_lab = data.get('current_lab')
         self.maximum_score = int(float(data.get('maximum_score')))
+        try:
+            self.max_attempts = int(round(float(data.get('max_attempts'))))
+        except:
+            self.max_attempts = None
         self.max_attempts = data.get('max_attempts')
         self.lab_settings["array_tolerance"] = float(data.get('array_tolerance'))
         self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
