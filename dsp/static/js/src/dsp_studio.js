@@ -50,6 +50,7 @@ function DSPXBlock(runtime, element) {
                 "maximum_score": $(element).find("input[name=maximum_score]").val(),
                 "array_tolerance": $(element).find("input[name=array_tolerance]").val(),
                 "number_tolerance": $(element).find("input[name=number_tolerance]").val(),
+                "show_reset_button": $(element).find("select[name=show_reset_button]").val(),
 
             };
 
