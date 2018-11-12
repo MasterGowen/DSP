@@ -6,7 +6,7 @@ import sys
 
 import pkg_resources
 from xblock.core import XBlock
-from xblock.fields import Integer, Scope, String, JSONField, Float
+from xblock.fields import Integer, Scope, String, JSONField, Float, Boolean
 from xblock.fragment import Fragment
 from webob.response import Response
 from django.http import JsonResponse
@@ -132,6 +132,11 @@ class DSPXBlock(XBlock):
         default={},
         scope=Scope.user_state,
         help='Правильный ответ',
+    )
+    current_lab_changed = Boolean(
+        help="Текущая лабораторная изменилась",
+        default=False,
+        scope=Scope.settings
     )
 
     def is_course_staff(self):
@@ -318,8 +323,8 @@ class DSPXBlock(XBlock):
 
         return general_context
 
-    def lab_context(self, update=False):
-        if not self.lab_source_data:
+    def lab_context(self):
+        if not self.lab_source_data or self.current_lab_changed:
             if self.current_lab == "lab_1":
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_2":
@@ -410,6 +415,7 @@ class DSPXBlock(XBlock):
         log.info(old_current_lab)
         log.info(self.current_lab)
 
+        self.current_lab_changed = True
         # if old_current_lab != self.current_lab:  # обновить исходные данные лабы если она изменилась
         #     self.lab_source_data = {}
 
