@@ -262,11 +262,18 @@ div.dsp-notification .notification .icon {
 
 .dsp_footer.action .submission-feedback {
     margin-right: 10px;
+    margin-top: 10px;
     display: inline-block;
     color: #666;
     font-size: 0.9em;
     -webkit-font-smoothing: antialiased;
     vertical-align: middle;
+}
+
+.dsp_footer.action .submit-attempt-container .submit {
+    margin-right: 10px;
+    float: left;
+    white-space: nowrap;
 }
 
 .dsp_footer.action .submit-attempt-container {
