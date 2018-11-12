@@ -265,7 +265,7 @@ class DSPXBlock(XBlock):
         self.student_state["state"]["there_is_signal_count"] = 0
         self.student_state["state"]["there_is_no_signal_count"] = 0
         self.student_state["state"]["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
-        self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, True)
+        _, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, True)
         return Response(json_body={"graphic": graphic, "student_state": self.student_state})
 
     @XBlock.json_handler
