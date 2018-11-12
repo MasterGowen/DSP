@@ -133,11 +133,11 @@ class DSPXBlock(XBlock):
         scope=Scope.user_state,
         help='Правильный ответ',
     )
-    current_lab_changed = Boolean(
-        help="Текущая лабораторная изменилась",
-        default=False,
-        scope=Scope.settings
-    )
+    # current_lab_changed = Boolean(
+    #     help="Текущая лабораторная изменилась",
+    #     default=False,
+    #     scope=Scope.settings
+    # )
 
     def is_course_staff(self):
         """
@@ -324,7 +324,7 @@ class DSPXBlock(XBlock):
         return general_context
 
     def lab_context(self):
-        if not self.lab_source_data or self.current_lab_changed:
+        if not self.lab_source_data or self.lab_source_data["lab_id"] != self.current_lab:
             if self.current_lab == "lab_1":
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_2":
@@ -344,7 +344,13 @@ class DSPXBlock(XBlock):
                 self.lab_source_data = lab_4_get_source_data()
             elif self.current_lab == "lab_5":
                 self.lab_source_data = lab_5_get_source_data()
-        # if not update:
+
+            # if self.current_lab_changed:
+            self.student_state = {}
+
+            # self.current_lab_changed = False
+
+
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 
@@ -411,11 +417,11 @@ class DSPXBlock(XBlock):
         self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
         self.lab_settings["show_reset_button"] = True if data.get('show_reset_button') == 'true' else False
 
-        log.info("KEKEKEKEEKKEKKEKEKEKEKEKEKEKEKEKEKE")
-        log.info(old_current_lab)
-        log.info(self.current_lab)
+        # log.info("KEKEKEKEEKKEKKEKEKEKEKEKEKEKEKEKEKE")
+        # log.info(old_current_lab)
+        # log.info(self.current_lab)
 
-        self.current_lab_changed = True
+        # self.current_lab_changed = True
         # if old_current_lab != self.current_lab:  # обновить исходные данные лабы если она изменилась
         #     self.lab_source_data = {}
 

@@ -68,6 +68,7 @@ def lab_5_get_source_data():
 
     context["signal_type_1"] = signal_type_1
     context["signal_type_2"] = signal_type_2
+    context["lab_id"] = "lab_5"
     return context
 
 

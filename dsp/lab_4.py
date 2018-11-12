@@ -61,6 +61,7 @@ def lab_4_get_source_data():
     context["a1"] = a1
     context["signal_type"] = signal_type
     context["filter_type"] = filter_type
+    context["lab_id"] = "lab_4"
     return context
 
 
