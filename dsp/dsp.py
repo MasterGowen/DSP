@@ -74,7 +74,7 @@ class DSPXBlock(XBlock):
     max_attempts = Integer(
         display_name=u"Максимальное количество попыток",
         help=u"",
-        default=0,
+        default=None,
         scope=Scope.settings
     )
 
@@ -418,14 +418,17 @@ class DSPXBlock(XBlock):
 
     @XBlock.json_handler
     def studio_submit(self, data, suffix=''):
-        old_current_lab = self.current_lab
         self.display_name = data.get('display_name')
         self.current_lab = data.get('current_lab')
         self.maximum_score = int(float(data.get('maximum_score')))
         try:
             self.max_attempts = int(round(float(data.get('max_attempts'))))
+            log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            log.info(self.max_attempts)
         except:
             self.max_attempts = None
+            log.info("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+            log.info(self.max_attempts)
         self.max_attempts = data.get('max_attempts')
         self.lab_settings["array_tolerance"] = float(data.get('array_tolerance'))
         self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
