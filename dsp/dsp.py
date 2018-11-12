@@ -309,6 +309,18 @@ class DSPXBlock(XBlock):
         self.student_state["answer"] = data
         return Response(json_body={"success": "success"})
 
+    @XBlock.json_handler
+    def reset_task(self, suffix=''):
+        if self.lab_settings["show_reset_button"]:
+            self.attempts = 0
+            self.score = None
+            self.correct_answer = {}
+            self.student_state = {}
+            self.lab_source_data = {}
+            return Response(json_body={"success": "success"})
+        else:
+            return Response('Error!', 500)
+
     def get_general_context(self):
         general_context = {
             "current_lab": self.current_lab,
