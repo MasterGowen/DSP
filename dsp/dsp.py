@@ -325,6 +325,10 @@ class DSPXBlock(XBlock):
 
     def lab_context(self):
         if not self.lab_source_data or self.lab_source_data["lab_id"] != self.current_lab:
+            self.student_state = {}
+            self.attempts = 0
+            self.score = None
+
             if self.current_lab == "lab_1":
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_2":
@@ -344,14 +348,6 @@ class DSPXBlock(XBlock):
                 self.lab_source_data = lab_4_get_source_data()
             elif self.current_lab == "lab_5":
                 self.lab_source_data = lab_5_get_source_data()
-
-            # if self.current_lab_changed:
-            self.attempts = 0
-            self.score = None
-            self.student_state = {}
-
-            # self.current_lab_changed = False
-
 
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
@@ -418,14 +414,6 @@ class DSPXBlock(XBlock):
         self.lab_settings["array_tolerance"] = float(data.get('array_tolerance'))
         self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
         self.lab_settings["show_reset_button"] = True if data.get('show_reset_button') == 'true' else False
-
-        # log.info("KEKEKEKEEKKEKKEKEKEKEKEKEKEKEKEKEKE")
-        # log.info(old_current_lab)
-        # log.info(self.current_lab)
-
-        # self.current_lab_changed = True
-        # if old_current_lab != self.current_lab:  # обновить исходные данные лабы если она изменилась
-        #     self.lab_source_data = {}
 
         return {'result': 'success'}
 
