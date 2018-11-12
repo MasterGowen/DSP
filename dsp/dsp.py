@@ -319,7 +319,7 @@ class DSPXBlock(XBlock):
         return general_context
 
     def lab_context(self, update=False):
-        if not self.lab_source_data or update:
+        if not self.lab_source_data:
             if self.current_lab == "lab_1":
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_2":
@@ -339,8 +339,8 @@ class DSPXBlock(XBlock):
                 self.lab_source_data = lab_4_get_source_data()
             elif self.current_lab == "lab_5":
                 self.lab_source_data = lab_5_get_source_data()
-        if not update:
-            context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
+        # if not update:
+        context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 
     def load_lab_static(self, lab_id, context):
@@ -411,7 +411,7 @@ class DSPXBlock(XBlock):
         log.info(self.current_lab)
 
         if old_current_lab != self.current_lab:  # обновить исходные данные лабы если она изменилась
-            context = self.lab_context(update=True)
+            self.lab_source_data = {}
 
         return {'result': 'success'}
 
