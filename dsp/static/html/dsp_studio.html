@@ -35,8 +35,8 @@
                 <li class="field comp-setting-entry metadata_entry">
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label" for="maximum_score">Максимальное количество баллов:</label>
-                        <input class="input setting-input" name="maximum_score" id="maximum_score"
-                               value="{{maximum_score}}" type="number" min="0" max="100"/>
+                        <input class="input setting-input setting-input-number" name="maximum_score" id="maximum_score"
+                               value="{{maximum_score}}" type="number" min="0" max="100" step="1"/>
                     </div>
                     <span class="tip setting-help">Определяет количество баллов за задание. Если значение не указано, задание будет оцениваться в десять баллов.</span>
                 </li>
@@ -44,8 +44,8 @@
                 <li class="field comp-setting-entry metadata_entry">
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label" for="max_attempts">Максимальное количество попыток:</label>
-                        <input class="input setting-input" name="max_attempts" id="max_attempts"
-                               value="{{max_attempts}}" type="number" min="0"/>
+                        <input class="setting-input setting-input-number" name="max_attempts" id="max_attempts"
+                               value="{{max_attempts}}" type="number" min="1" step="1"/>
                     </div>
                     <span class="tip setting-help">Определяет, сколько раз можно давать ответ на задание. Если значение не установлено, предоставляется неограниченное количество попыток.</span>
                 </li>
