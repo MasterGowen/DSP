@@ -28,6 +28,25 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
+
+    $('#save_answer', element).click(function (event) {
+        disable($('#save_answer button'), element);
+        $.ajax({
+            type: "POST",
+            url: save_answer,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                actions_bottom_notification("save", $('.dsp-notification', element));
+                enable($('#save_answer button'), element);
+            },
+            error: function (jqXHR){
+                error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
+                enable($('#save_answer button'), element);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    });
+
     $('#check_answer', element).click(function (event) {
         disable($('#check_answer'), element);
         $.ajax({

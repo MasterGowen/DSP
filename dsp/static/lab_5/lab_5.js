@@ -69,8 +69,7 @@ function DSPXBlock(runtime, element, data) {
                 enable($('#save_answer button'), element);
             },
             error: function (jqXHR){
-                console.log("Ошибка при сохранении ответа");
-                alert("Ошибка при сохранении ответа");
+                error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
             contentType: 'application/json; charset=utf-8'
