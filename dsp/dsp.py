@@ -310,7 +310,7 @@ class DSPXBlock(XBlock):
         return Response(json_body={"success": "success"})
 
     @XBlock.handler
-    def reset_task(self, suffix=''):
+    def reset_task(self, data, suffix=''):
         if self.lab_settings["show_reset_button"]:
             self.attempts = 0
             self.score = None
