@@ -54,11 +54,11 @@ function DSPXBlock(runtime, element) {
 
             };
 
-        $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
-
-            window.location.reload(true);
-
-        });
+        // $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
+        //
+        //     window.location.reload(true);
+        //
+        // });
 
     });
 
