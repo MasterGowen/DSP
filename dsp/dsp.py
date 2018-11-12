@@ -346,6 +346,8 @@ class DSPXBlock(XBlock):
                 self.lab_source_data = lab_5_get_source_data()
 
             # if self.current_lab_changed:
+            self.attempts = 0
+            self.score = None
             self.student_state = {}
 
             # self.current_lab_changed = False
