@@ -371,6 +371,8 @@ class DSPXBlock(XBlock):
             "array_tolerance": self.lab_settings["array_tolerance"],
             "show_reset_button": self.lab_settings["show_reset_button"],
         }
+        log.info("!$!$!$!$$!$!$!!$$$!$!$$!$!$!$!$!")
+        log.info(self.lab_settings["show_reset_button"])
 
         fragment = Fragment()
         fragment.add_content(
