@@ -1,6 +1,7 @@
 function DSPXBlock(runtime, element, data) {
 
     var student_submit = runtime.handlerUrl(element, 'student_submit');
+    var save_answer = runtime.handlerUrl(element, 'save_answer');
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_3_get_graphic_1');
     var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
     var get_graphic_3 = runtime.handlerUrl(element, 'lab_3_get_graphic_3');

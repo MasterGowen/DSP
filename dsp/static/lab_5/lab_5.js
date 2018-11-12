@@ -75,7 +75,6 @@ function DSPXBlock(runtime, element, data) {
             },
             contentType: 'application/json; charset=utf-8'
         });
-        // $(this).blur();
     });
 
 

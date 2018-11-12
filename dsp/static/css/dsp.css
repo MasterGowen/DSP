@@ -227,8 +227,6 @@ div.dsp-notification .notification .icon {
     display: none;
 }
 
-
-
 .dsp_footer.action button:hover {
     background-image: none;
     box-shadow: none !important;
@@ -241,7 +239,6 @@ div.dsp-notification .notification .icon {
 
 .dsp_footer button.btn-default {
     background-color: transparent;
-    /*box-shadow: none !important;*/
 }
 
 .dsp_footer .btn-small.btn-default, .dsp_footer .btn-small.btn-brand {
@@ -280,9 +277,3 @@ div.dsp-notification .notification .icon {
     align-items: center;
     flex-wrap: wrap;
 }
-
-/*.numeric-input-container>.status .status-icon:after {*/
-/*color: #009b00;*/
-/*font-size: 1.2em;*/
-/*content: "\f00c";*/
-/*}*/
