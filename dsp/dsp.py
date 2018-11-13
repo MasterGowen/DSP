@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+import datetime
 import logging
 import json
 import traceback
 import sys
+import pytz
 
 import pkg_resources
 from xblock.core import XBlock
@@ -10,6 +12,8 @@ from xblock.fields import Integer, Scope, String, JSONField, Float, Boolean
 from xblock.fragment import Fragment
 from webob.response import Response
 from django.http import JsonResponse
+
+from xmodule.util.duedate import get_extended_due_date
 
 from .utils import (
     render_template,
@@ -150,6 +154,24 @@ class DSPXBlock(XBlock):
         Проверка, является ли пользователь инструктором.
         """
         return self.xmodule_runtime.get_user_role() == 'instructor'
+
+    def past_due(self):
+            """
+            Проверка, истекла ли дата для выполнения задания.
+            """
+            due = get_extended_due_date(self)
+            if due is not None:
+                if _now() > due:
+                    return False
+
+    def answer_opportunity(self):
+        """
+        Возможность ответа (если количество сделанное попыток меньше заданного).
+        """
+        if self.max_attempts is not None and self.max_attempts <= self.attempts:
+            return False
+        else:
+            return True
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -332,6 +354,14 @@ class DSPXBlock(XBlock):
             "student_state": self.student_state,
             "show_reset_button": self.lab_settings["show_reset_button"],
         }
+        if self.past_due():
+            general_context["past_due"] = True
+
+        if self.answer_opportunity():
+            general_context["answer_opportunity"] = True
+
+        if self.is_course_staff() is True or self.is_instructor() is True:
+            general_context['is_course_staff'] = True
 
         return general_context
 
@@ -450,3 +480,10 @@ class DSPXBlock(XBlock):
                 </vertical_demo>
              """),
         ]
+
+
+def _now():
+    """
+    Получение текущих даты и времени.
+    """
+    return datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
