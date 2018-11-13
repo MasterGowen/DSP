@@ -354,8 +354,6 @@ class DSPXBlock(XBlock):
             "student_state": self.student_state,
             "show_reset_button": self.lab_settings["show_reset_button"],
         }
-        if self.past_due():
-            general_context["past_due"] = True
 
         if self.answer_opportunity():
             general_context["answer_opportunity"] = True

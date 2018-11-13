@@ -202,28 +202,12 @@
 
 <div class="dsp_footer action">
     <div class="submit-attempt-container">
-    {% if past_due and answer_opportunity %}
         <button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span></button>
         <div class="submission-feedback">
             {% if max_attempts %}
                 Использовано {{ attempts }} из {{ max_attempts }} попыток
             {% endif %}
         </div>
-    {% elif past_due %}
-        <div class="submission-feedback">
-            {% if max_attempts %}
-                Использовано {{ attempts }} из {{ max_attempts }} попыток
-            {% endif %}
-        </div>
-    {% elif answer_opportunity %}
-        <div class="submission-feedback">
-            {% if max_attempts %}
-                Использовано {{ attempts }} из {{ max_attempts }} попыток  <br />Время для ответа истекло
-            {% endif %}
-        </div>
-    {% endif %}
-
-
     </div>
     <div class="problem-action-buttons-wrapper">
       <span class="problem-action-button-wrapper" id="save_answer">
