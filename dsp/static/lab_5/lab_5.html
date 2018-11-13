@@ -205,7 +205,7 @@
         <button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span></button>
         <div class="submission-feedback">
             {% if max_attempts %}
-                Использовано {{ attempts }} из {{ max_attempts }} попыток
+            Использовано <span class="attempts">{{ attempts }}</span> из {{ max_attempts }} попыток
             {% endif %}
         </div>
     </div>

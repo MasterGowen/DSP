@@ -221,6 +221,8 @@ class DSPXBlock(XBlock):
                 self.student_state["is_success"] = "partially"
 
             self.student_state["maximum_score"] = self.maximum_score
+            self.student_state["max_attempts"] = self.max_attempts
+            self.student_state["attempts"] = self.attempts
 
             self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
             self.attempts += 1
