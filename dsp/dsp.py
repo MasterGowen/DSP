@@ -196,6 +196,8 @@ class DSPXBlock(XBlock):
         self.student_state["answer"] = data
         result = {}
         try:
+            if not self.answer_opportunity():
+                raise Exception('Too many attempts')
             if self.current_lab == "lab_1":
                 result = lab_1_check_answer(data, self.lab_source_data, self.lab_settings)
             elif self.current_lab == "lab_2":
