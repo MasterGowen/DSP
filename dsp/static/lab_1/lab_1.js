@@ -128,17 +128,19 @@ function DSPXBlock(runtime, element, data) {
     function buttons_disable() {
         var student_data = generateAnswer();
         if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_a)) {
-            $("#calculate_graphics", element).removeAttr("disabled");
+            enable($("#calculate_graphics", element));
             if (parseFloat(student_data.student_p) && parseFloat(student_data.student_ubl)) {
-                $("#check_answer", element).removeAttr("disabled");
+                if(data.answer_opportunity) {
+                    enable($("#check_answer", element));
+                }
             }
             else {
-                $("#check_answer", element).attr('disabled', 'disabled');
+                disable($("#check_answer", element));
             }
         }
         else {
-            $("#calculate_graphics", element).attr('disabled', 'disabled');
-            $("#check_answer", element).attr('disabled', 'disabled');
+            disable($("#calculate_graphics", element));
+            disable($("#check_answer", element));
         }
     }
 

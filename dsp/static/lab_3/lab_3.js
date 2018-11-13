@@ -230,7 +230,9 @@ function DSPXBlock(runtime, element, data) {
             enable($("#calculate_graphic_2", element));
             enable($("#reset_task", element));
             if (parseFloat(student_data.student_B) && student_data.student_s.every(elem => elem.toString().replace(/\s/g, "") != "")) {
-                enable($("#check_answer", element));
+                if(data.answer_opportunity) {
+                    enable($("#check_answer", element));
+                }
             }
             else {
                 disable( $("#check_answer", element));
