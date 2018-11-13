@@ -93,8 +93,7 @@ function DSPXBlock(runtime, element, data) {
 
                 $('.attempts', element).text(result.attempts);
                 if (result.max_attempts && result.max_attempts <= result.attempts) {
-                    console.log("OK");
-                // $('.action', element).html('<p><strong>Попытки исчерпаны</strong></p>')
+                    data.answer_opportunity = false;
                 }
                 else{
                     enable($('#check_answer'), element);
