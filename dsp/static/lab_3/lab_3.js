@@ -5,24 +5,27 @@ function DSPXBlock(runtime, element, data) {
     var get_graphic_1 = runtime.handlerUrl(element, 'lab_3_get_graphic_1');
     var get_graphic_2 = runtime.handlerUrl(element, 'lab_3_get_graphic_2');
     var get_graphic_3 = runtime.handlerUrl(element, 'lab_3_get_graphic_3');
-    var lab_3_reset_task = runtime.handlerUrl(element, 'lab_3_reset_task');
+    var lab_3_reset_task_url = runtime.handlerUrl(element, 'lab_3_reset_task');
     var reset_task = runtime.handlerUrl(element, 'reset_task');
     var highlight_correct = true;
     
     function lab_3_reset_task() {
-        $.ajax({
-            type: "GET",
-            url: lab_3_reset_task,
-            // data: JSON.stringify(generateAnswer()),
-            success: function (result) {
-                // console.log(result);
-                build_graphic_2(true);
-            },
-            error: function (jqXHR, exception) {
-                alert("При сбросе ответа возникла ошибка.")
-            },
-            contentType: 'application/json; charset=utf-8'
-        });
+        var confirm_reset = confirm("Вы уверены, что хотите сбросить рассчитанные данные?");
+        if (confirm_reset) {
+            $.ajax({
+                type: "GET",
+                url: lab_3_reset_task_url,
+                // data: JSON.stringify(generateAnswer()),
+                success: function (result) {
+                    // console.log(result);
+                    build_graphic_2(true);
+                },
+                error: function (jqXHR, exception) {
+                    alert("При сбросе ответа возникла ошибка.")
+                },
+                contentType: 'application/json; charset=utf-8'
+            });
+        }
     }
 
     function build_graphic_1() {
