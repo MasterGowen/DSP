@@ -59,7 +59,13 @@ function DSPXBlock(runtime, element, data) {
                 $('.points', element).text(result.score + ' из ' + data.maximum_score);
                 if (highlight_correct) highlight_correctness(result.correctness);
                 is_success_bottom_notification(result.is_success, result.score, result.maximum_score, $('.dsp-notification', element));
-                enable($('#check_answer'), element);
+                $('.attempts', element).text(result.attempts);
+                if (result.max_attempts && result.max_attempts <= result.attempts) {
+                    data.answer_opportunity = false;
+                }
+                else{
+                    enable($('#check_answer'), element);
+                }
             },
             error: function (jqXHR){
                 check_error_bottom_notification(jqXHR, $('.dsp-notification', element));

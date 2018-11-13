@@ -98,8 +98,6 @@ function DSPXBlock(runtime, element, data) {
                 else{
                     enable($('#check_answer'), element);
                 }
-
-
             },
             error: function (jqXHR){
                 check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
