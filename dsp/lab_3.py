@@ -100,9 +100,8 @@ def get_y2_s2(N0, Ku_i_max, Ku_j_max, s_st, b, K, y):
         for i in np.arange(1, Ku_i_max + 1):
             y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
             s2 = signal.lfilter(b, 1, y2)
-            res["y2"][j - 1][i - 1] = y2
-            res["s2"][j - 1][i - 1] = s2
-
+            res["y2"][j - 1][i - 1] = y2.tolist()
+            res["s2"][j - 1][i - 1] = s2.tolist()
             w = (np.array(s2) > np.array(pp)).astype(int)
             for x in np.arange(math.floor(N0 - float(K) / 2) - 1, math.floor(N0 + float(K) / 2) + 3):
                 w[x - 1] = 0
