@@ -91,7 +91,7 @@ def lab_3_get_graphic_1(student_data, source_data):
     return graphic
 
 
-def get_y2_s2(N0, Ku_i_max, Ku_j_max, s_st, b, K):
+def get_y2_s2(N0, Ku_i_max, Ku_j_max, s_st, b, K, y):
     res = {"y2": [[None] * 10] * 10, "s2": [[None] * 10] * 10}
     v = [None] * Ku_j_max
     for j in np.arange(1, Ku_j_max + 1):
@@ -153,7 +153,7 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
             Ku_i += 1
 
     if student_data["state"]["y2_s2"] is None:
-        student_data["state"]["y2_s2"], correct_answer["s"] = get_y2_s2(N0, Ku_i_max, Ku_j_max, s_st, b, K)
+        student_data["state"]["y2_s2"], correct_answer["s"] = get_y2_s2(N0, Ku_i_max, Ku_j_max, s_st, b, K, y)
 
     y2 = student_data["state"]["y2_s2"]["y2"][Ku_j][Ku_i]
     s2 = student_data["state"]["y2_s2"]["s2"][Ku_j][Ku_i]
