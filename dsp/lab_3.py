@@ -94,6 +94,7 @@ def lab_3_get_graphic_1(student_data, source_data):
 def get_y2_s2(N0, Ku_i_max, Ku_j_max, s_st, b, K, y):
     res = {"y2": [[None] * 10] * 10, "s2": [[None] * 10] * 10}
     v = [None] * Ku_j_max
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! GENERATE NEW")
     for j in np.arange(1, Ku_j_max + 1):
         pp = 2 * math.sqrt(N0)
         q = 0
