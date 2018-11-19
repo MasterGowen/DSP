@@ -141,10 +141,10 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
             y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
             s2 = signal.lfilter(b, 1, y2)
             w = (np.array(s2) > np.array(pp)).astype(int)
-            res["y2"][j-1][i-1] = y2
-            res["s2"][j-1][i-1] = s2
-            log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            log.info(w)
+            res["y2"][j-1][i-1] = y2.tolist()
+            res["s2"][j-1][i-1] = s2.tolist()
+            # log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            # log.info(w)
             # log.info(math.floor(N0 - float(K)/2)-1)
             # log.info(math.floor(N0 + float(K)/2)+3)
             for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
@@ -154,6 +154,8 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
         # if Ku_i == 10:
         correct_answer["s"][Ku_j-1] = float(q/10)
 
+
+    student_data["state"]["y2_s2"] = res
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
     student_data["state"]["there_is_signal_count"] = there_is_signal_count
@@ -190,7 +192,6 @@ def lab_3_get_graphic_3(student_data, source_data):
     graphic = {
         "id": "graphic_3",
         "html": html,
-        "test_s2": s2,
-        "test_y2": y2,
+
     }
     return graphic
