@@ -91,6 +91,27 @@ def lab_3_get_graphic_1(student_data, source_data):
     return graphic
 
 
+def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K):
+    # res = {"y2":[], "s2":[]}
+
+    y2 = []
+    s2 = []
+
+    for j in np.arange(1, Ku_j + 1):
+        pp = 2 * math.sqrt(N0)
+        q = 0
+        for i in np.arange(1, Ku_i + 1):
+            y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
+            s2 = signal.lfilter(b, 1, y2)
+            w = (np.array(s2) > np.array(pp)).astype(int)
+            for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
+                w[x-1] = 0
+            q = q + np.double(sum(w) > 0)
+        # if Ku_i == 10:
+        #     correct_answer["s"][Ku_j-1] = float(q/Ku_i)
+    return s2, y2
+
+
 def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True", is_signal=""):
     y2 = []
     s2 = []
@@ -132,24 +153,7 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
         else:
             Ku_i += 1
 
-    for j in np.arange(1, Ku_j + 1):
-        pp = 2 * math.sqrt(N0)
-        q = 0
-        for i in np.arange(1, Ku_i + 1):
-            y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
-            s2 = signal.lfilter(b, 1, y2)
-            w = (np.array(s2) > np.array(pp)).astype(int)
-
-            # log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            # log.info(w)
-            # log.info(math.floor(N0 - float(K)/2)-1)
-            # log.info(math.floor(N0 + float(K)/2)+3)
-            for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
-                w[x-1] = 0
-            log.info(w)
-            q = q + np.double(sum(w) > 0)
-        if Ku_i == 10:
-            correct_answer["s"][Ku_j-1] = float(q/Ku_i)
+    s2, y2 = get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K)
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
