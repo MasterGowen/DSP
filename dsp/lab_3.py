@@ -165,8 +165,8 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
         # student_data["state"]["y2_s2"]["res_y2"] = []
         student_data["state"]["y2"], student_data["state"]["s2"] = get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y)
 
-    y2 = student_data["state"]["y2_s2"]["res_y2"][Ku_j-1][Ku_i-1]
-    s2 = student_data["state"]["y2_s2"]["res_s2"][Ku_j-1][Ku_i-1]
+    y2 = student_data["state"]["y2"][Ku_j-1][Ku_i-1]
+    s2 = student_data["state"]["s2"][Ku_j-1][Ku_i-1]
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
