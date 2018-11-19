@@ -91,7 +91,7 @@ def lab_3_get_graphic_1(student_data, source_data):
     return graphic
 
 
-def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K):
+def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y):
     # res = {"y2":[], "s2":[]}
 
     y2 = []
@@ -153,7 +153,7 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
         else:
             Ku_i += 1
 
-    s2, y2 = get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K)
+    s2, y2 = get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y)
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
