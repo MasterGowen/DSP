@@ -91,26 +91,6 @@ def lab_3_get_graphic_1(student_data, source_data):
     return graphic
 
 
-def get_y2_s2(N0, Ku_i_max, Ku_j_max, s_st, b, K, y):
-    res = {"y2": [[None] * 10] * 10, "s2": [[None] * 10] * 10}
-    v = [None] * Ku_j_max
-    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! GENERATE NEW")
-    for j in np.arange(1, Ku_j_max + 1):
-        pp = 2 * math.sqrt(N0)
-        q = 0
-        for i in np.arange(1, Ku_i_max + 1):
-            y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
-            s2 = signal.lfilter(b, 1, y2)
-            res["y2"][j - 1][i - 1] = y2.tolist()
-            res["s2"][j - 1][i - 1] = s2.tolist()
-            w = (np.array(s2) > np.array(pp)).astype(int)
-            for x in np.arange(math.floor(N0 - float(K) / 2) - 1, math.floor(N0 + float(K) / 2) + 3):
-                w[x - 1] = 0
-            q = q + np.double(sum(w) > 0)
-        v[j - 1] = float(q / Ku_i_max)
-    return res, v
-
-
 def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True", is_signal=""):
     y2 = []
     s2 = []
@@ -152,11 +132,27 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
         else:
             Ku_i += 1
 
-    if student_data["state"]["y2_s2"] is None:
-        student_data["state"]["y2_s2"], correct_answer["s"] = get_y2_s2(N0, Ku_i_max, Ku_j_max, s_st, b, K, y)
+    res = {"y2": [[None] * 10] * 10, "s2": [[None] * 10] * 10}
 
-    y2 = student_data["state"]["y2_s2"]["y2"][Ku_j-1][Ku_i-1]
-    s2 = student_data["state"]["y2_s2"]["s2"][Ku_j-1][Ku_i-1]
+    for j in np.arange(1, Ku_j_max + 1):
+        pp = 2 * math.sqrt(N0)
+        q = 0
+        for i in np.arange(1, Ku_i_max + 1):
+            y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
+            s2 = signal.lfilter(b, 1, y2)
+            w = (np.array(s2) > np.array(pp)).astype(int)
+            res["y2"][j-1][i-1] = y2
+            res["s2"][j-1][i-1] = s2
+            log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            log.info(w)
+            # log.info(math.floor(N0 - float(K)/2)-1)
+            # log.info(math.floor(N0 + float(K)/2)+3)
+            for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
+                w[x-1] = 0
+            log.info(w)
+            q = q + np.double(sum(w) > 0)
+        # if Ku_i == 10:
+        correct_answer["s"][Ku_j-1] = float(q/10)
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
@@ -172,12 +168,9 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
     html = mpld3.fig_to_d3(fig)
     graphic = {
         "id": "graphic_2",
-        "html": html,
-        "test_y2": y2,
-        "test_s2": s2,
+        "html": html
     }
     return correct_answer, student_data, graphic
-
 
 def lab_3_get_graphic_3(student_data, source_data):
     v = student_data["student_s"]
@@ -196,6 +189,8 @@ def lab_3_get_graphic_3(student_data, source_data):
     html = mpld3.fig_to_d3(fig)
     graphic = {
         "id": "graphic_3",
-        "html": html
+        "html": html,
+        "test_s2": s2,
+        "test_y2": y2,
     }
     return graphic
