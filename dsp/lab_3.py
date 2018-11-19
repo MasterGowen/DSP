@@ -172,7 +172,9 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
     html = mpld3.fig_to_d3(fig)
     graphic = {
         "id": "graphic_2",
-        "html": html
+        "html": html,
+        "test_y2": y2,
+        "test_s2": s2,
     }
     return correct_answer, student_data, graphic
 
