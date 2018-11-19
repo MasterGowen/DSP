@@ -297,7 +297,8 @@ class DSPXBlock(XBlock):
         self.student_state["state"]["Ku_done"] = False
         self.student_state["state"]["there_is_signal_count"] = 0
         self.student_state["state"]["there_is_no_signal_count"] = 0
-        self.student_state["state"]["y2_s2"] = None
+        self.student_state["y2"] = None
+        self.student_state["s2"] = None
         self.student_state["state"]["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
         self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
         _, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, True)
@@ -387,7 +388,8 @@ class DSPXBlock(XBlock):
                 state["Ku_done"] = False
                 state["there_is_signal_count"] = 0
                 state["there_is_no_signal_count"] = 0
-                state["y2_s2"] = None
+                state["y2"] = [[None]*10]*10
+                state["s2"] = [[None]*10]*10
                 state["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
                 self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
                 self.student_state["state"] = state
