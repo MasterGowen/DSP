@@ -106,6 +106,8 @@ def get_y2_s2(N0, s_st, b, K, y):
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             print(s_st[j-1])
             y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
+            print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+            print(y2)
             s2 = signal.lfilter(b, 1, y2)
             res_s2[j-1][i-1] = s2.tolist()
             res_y2[j-1][i-1] = y2.tolist()
