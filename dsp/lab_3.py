@@ -155,8 +155,8 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
     if student_data["state"]["y2_s2"] is None:
         student_data["state"]["y2_s2"], correct_answer["s"] = get_y2_s2(N0, Ku_i_max, Ku_j_max, s_st, b, K, y)
 
-    y2 = student_data["state"]["y2_s2"]["y2"][Ku_j][Ku_i]
-    s2 = student_data["state"]["y2_s2"]["s2"][Ku_j][Ku_i]
+    y2 = student_data["state"]["y2_s2"]["y2"][Ku_j-1][Ku_i-1]
+    s2 = student_data["state"]["y2_s2"]["s2"][Ku_j-1][Ku_i-1]
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
