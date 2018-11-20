@@ -137,11 +137,7 @@ class DSPXBlock(XBlock):
         scope=Scope.user_state,
         help='Правильный ответ',
     )
-    # current_lab_changed = Boolean(
-    #     help="Текущая лабораторная изменилась",
-    #     default=False,
-    #     scope=Scope.settings
-    # )
+
 
     def is_course_staff(self):
         """
@@ -203,7 +199,7 @@ class DSPXBlock(XBlock):
             elif self.current_lab == "lab_2":
                 pass
             elif self.current_lab == "lab_3":
-                result = lab_3_check_answer(data, self.lab_source_data, self.lab_settings)
+                result = lab_3_check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
             elif self.current_lab == "lab_4":
                 result = lab_4_check_answer(data, self.lab_source_data, self.lab_settings)
             elif self.current_lab == "lab_5":
@@ -258,11 +254,11 @@ class DSPXBlock(XBlock):
     @XBlock.json_handler
     def lab_3_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
-        # try:
-        graphic = lab_3_get_graphic_1(data, self.lab_source_data)
-        return Response(json_body={"graphic": graphic})
-        # except:
-        #     return Response('Error!', 500)
+        try:
+            graphic = lab_3_get_graphic_1(data, self.lab_source_data)
+            return Response(json_body={"graphic": graphic})
+        except:
+            return Response('Error!', 500)
 
 
     @XBlock.handler
@@ -270,15 +266,15 @@ class DSPXBlock(XBlock):
         self.student_state["answer"] = json.loads(request.body)
         reload = False
         is_signal = ""
-        # try:
-        if 'reload' in request.GET:
-            reload = True
-        if 'is_signal' in request.GET:
-            is_signal = request.GET["is_signal"]
-        self.correct_answer, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
-        return Response(json_body={"graphic": graphic, "student_state": self.student_state, "correct_answer": self.correct_answer})
-        # except:
-        #     return Response('Error!', 500)
+        try:
+            if 'reload' in request.GET:
+                reload = True
+            if 'is_signal' in request.GET:
+                is_signal = request.GET["is_signal"]
+            self.correct_answer, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
+            return Response(json_body={"graphic": graphic, "student_state": self.student_state, "correct_answer": self.correct_answer})
+        except:
+            return Response('Error!', 500)
 
 
     @XBlock.json_handler
@@ -414,12 +410,6 @@ class DSPXBlock(XBlock):
         frag.add_javascript(self.resource_string("static/{}/{}.js".format(lab_id, lab_id)))
         frag.add_javascript(self.resource_string("static/js/src/dsp.js"))
         return frag
-
-    # lab_settings = JSONField(
-    #     default={
-    #         "array_tolerance": 0.01,
-    #         "number_tolerance": 0.5,
-    #     },
 
     def studio_view(self, context=None):
         context = {

@@ -147,22 +147,34 @@ function DSPXBlock(runtime, element, data) {
         });
     });
 
-    // $('#check_answer', element).click(function (event) {
-    //     console.info("Начали проверку");
-    //     $.ajax({
-    //         type: "POST",
-    //         url: student_submit,
-    //         data: JSON.stringify(generateAnswer()),
-    //         success: function (result) {
-    //             $(element).find('me-span.points').html(result.score);
-    //             $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
-    //             $('.points', element).text(result.score + ' из ' + data.maximum_score);
-    //             if (highlight_correct) highlight_correctness(result.correctness);
-    //             console.info("Закончили проверку");
-    //         },
-    //         contentType: 'application/json; charset=utf-8'
-    //     });
-    // });
+    $('#check_answer', element).click(function (event) {
+        disable($('#check_answer'), element);
+        $.ajax({
+            type: "POST",
+            url: student_submit,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $(element).find('me-span.points').html(result.score);
+                $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
+                $('.points', element).text(result.score + ' из ' + data.maximum_score);
+                if (highlight_correct) highlight_correctness(result.correctness);
+                is_success_bottom_notification(result.is_success, result.score, result.maximum_score, $('.dsp-notification', element));
+                $('.attempts', element).text(result.attempts);
+                if (result.max_attempts && result.max_attempts <= result.attempts) {
+                    data.answer_opportunity = false;
+                }
+                else{
+                    enable($('#check_answer'), element);
+                }
+            },
+            error: function (jqXHR){
+                check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
+                enable($('#check_answer'), element);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    });
+
 
     $('#reset_task', element).click(function (event) {
         disable($('#reset_task button'), element);

@@ -60,7 +60,7 @@ def get_correct_filter(source_data):
     return b
 
 
-def lab_3_check_answer(student_data, source_data):
+def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     student_y = student_data["student_signal"]
     student_b = student_data["student_filter"]
     student_B = float(student_data["student_B"])
@@ -92,13 +92,10 @@ def lab_3_get_graphic_1(student_data, source_data):
 
 
 def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y):
-    # Ku_i = 10
-    # Ku_j = 10
-    res = {}
+    res = dict()
     res["y2"] = [[res_y2_1 for res_y2_1 in np.zeros(Ku_j)] for res_y2_2 in np.zeros(Ku_j)]
     res["s2"] = [[res_s2_1 for res_s2_1 in np.zeros(Ku_j)] for res_s2_2 in np.zeros(Ku_j)]
     correct_s = [correct_s_1 for correct_s_1 in np.zeros(Ku_j)]
-    # log.info(y)
     for j in np.arange(1, Ku_j + 1):
         pp = 2 * math.sqrt(N0)
         q = 0
@@ -179,7 +176,6 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
         "html": html
     }
     return correct_answer, student_data, graphic
-
 
 
 def lab_3_get_graphic_3(student_data, source_data):
