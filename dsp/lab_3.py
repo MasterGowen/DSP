@@ -107,6 +107,8 @@ def get_y2_s2(N0, s_st, b, K, y):
             s2 = signal.lfilter(b, 1, y2)
             res_s2[j-1][i-1] = s2.tolist()
             res_y2[j-1][i-1] = y2.tolist()
+            if j == 1 and i == 1:
+                log.info(s2)
             w = (np.array(s2) > np.array(pp)).astype(int)
             for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
                 w[x-1] = 0
