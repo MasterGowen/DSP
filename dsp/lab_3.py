@@ -111,7 +111,7 @@ def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y):
             for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
                 w[x-1] = 0
             q = q + np.double(sum(w) > 0)
-        correct_s[Ku_j-1] = float(q/Ku_i)
+        correct_s[j-1] = float(q/Ku_i)
     return res, correct_s
 
 
