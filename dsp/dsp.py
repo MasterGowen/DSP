@@ -255,7 +255,7 @@ class DSPXBlock(XBlock):
     def lab_3_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphic = lab_3_get_graphic_1(data, self.lab_source_data)
+            graphic = lab_3_get_graphic_1(data, self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphic": graphic})
         except:
             return Response('Error!', 500)
@@ -377,7 +377,7 @@ class DSPXBlock(XBlock):
             elif self.current_lab == "lab_2":
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_3":
-                self.lab_source_data = lab_3_get_source_data()
+                self.lab_source_data, self.correct_answer = lab_3_get_source_data(self.correct_answer)
                 state = dict()
                 state["Ku_j"] = 1
                 state["Ku_i"] = 1
