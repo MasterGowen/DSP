@@ -93,8 +93,8 @@ def lab_3_get_graphic_1(student_data, source_data):
 
 def get_y2_s2(N0, s_st, b, K, y):
     # res = {"y2":[], "s2":[]}
-    y2 = []
-    s2 = []
+    # y2 = []
+    # s2 = []
     Ku_i = 10
     Ku_j = 10
     res_y2 = [[x for x in np.zeros(10)] for y in np.zeros(10)]
@@ -103,15 +103,10 @@ def get_y2_s2(N0, s_st, b, K, y):
         pp = 2 * math.sqrt(N0)
         q = 0
         for i in np.arange(1, Ku_i + 1):
-            # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            # print(s_st[j-1])
             y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
-            # print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-            # print(y2)
             s2 = signal.lfilter(b, 1, y2)
             res_s2[j-1][i-1] = s2.tolist()
             res_y2[j-1][i-1] = y2.tolist()
-
             w = (np.array(s2) > np.array(pp)).astype(int)
             for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
                 w[x-1] = 0
@@ -138,6 +133,9 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
     there_is_signal_count = int(student_data["state"]["there_is_signal_count"])
     there_is_no_signal_count = int(student_data["state"]["there_is_no_signal_count"])
 
+    if student_data["state"]["y2"] is None or student_data["state"]["s2"] is None:
+        student_data["state"]["y2"], student_data["state"]["s2"] = get_y2_s2(N0, s_st, b, K, y)
+
     if is_signal == "there_is_signal":
         there_is_signal_count += 1
     elif is_signal == "there_is_no_signal":
@@ -150,6 +148,9 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
                                              "there_is_no_signal_count": there_is_no_signal_count}
 
     # correct_s = correct_answer["s"]
+    y2 = student_data["state"]["y2"][Ku_j-1][Ku_i-1]
+    s2 = student_data["state"]["s2"][Ku_j-1][Ku_i-1]
+
     if not reload:
         if Ku_i == Ku_i_max:
             if Ku_j == Ku_j_max:
@@ -162,16 +163,6 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
         else:
             Ku_i += 1
 
-    # res_s2 = []
-    # res_y2 = []
-    if student_data["state"]["y2"] is None or student_data["state"]["s2"] is None:
-        # student_data["state"]["y2_s2"]["res_s2"] = []
-        # student_data["state"]["y2_s2"]["res_y2"] = []
-        # log.info("FISRT!!!!!!!!!!!!")
-        student_data["state"]["y2"], student_data["state"]["s2"] = get_y2_s2(N0, s_st, b, K, y)
-
-    y2 = student_data["state"]["y2"][Ku_j-1][Ku_i-1]
-    s2 = student_data["state"]["s2"][Ku_j-1][Ku_i-1]
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i
