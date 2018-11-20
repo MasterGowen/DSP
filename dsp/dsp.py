@@ -371,7 +371,7 @@ class DSPXBlock(XBlock):
         return general_context
 
     def lab_context(self):
-        if not self.lab_source_data or self.lab_source_data["lab_id"] != self.current_lab:
+        if not self.lab_source_data or self.lab_source_data["lab_id"] != self.current_lab:  # второе условие на случай смены лабораторной
             self.student_state = {}
             self.attempts = 0
             self.score = None
@@ -388,8 +388,8 @@ class DSPXBlock(XBlock):
                 state["Ku_done"] = False
                 state["there_is_signal_count"] = 0
                 state["there_is_no_signal_count"] = 0
-                state["y2"] = None
-                state["s2"] = None
+                state["y2_s2"] = None
+                # state["s2"] = None
                 state["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
                 self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
                 self.student_state["state"] = state

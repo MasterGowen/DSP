@@ -91,41 +91,35 @@ def lab_3_get_graphic_1(student_data, source_data):
     return graphic
 
 
-def get_y2_s2(N0, s_st, b, K, y):
-    # res = {"y2":[], "s2":[]}
-    # y2 = []
-    # s2 = []
-    Ku_i = 10
-    Ku_j = 10
-    res_y2 = [[res_y2_1 for res_y2_1 in np.zeros(10)] for res_y2_2 in np.zeros(10)]
-    res_s2 = [[res_s2_1 for res_s2_1 in np.zeros(10)] for res_s2_2 in np.zeros(10)]
-    log.info(y)
+def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y):
+    # Ku_i = 10
+    # Ku_j = 10
+    res = {}
+    res["res_y2"] = [[res_y2_1 for res_y2_1 in np.zeros(Ku_j)] for res_y2_2 in np.zeros(Ku_j)]
+    res["res_s2"] = [[res_s2_1 for res_s2_1 in np.zeros(Ku_j)] for res_s2_2 in np.zeros(Ku_j)]
+    correct_s = [correct_s_1 for correct_s_1 in np.zeros(Ku_j)]
+    # log.info(y)
     for j in np.arange(1, Ku_j + 1):
         pp = 2 * math.sqrt(N0)
         q = 0
         for i in np.arange(1, Ku_i + 1):
             y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
-            if j == 1 and i == 1:
-                log.info(y)
             s2 = signal.lfilter(b, 1, y2)
-            res_s2[j-1][i-1] = s2.tolist()
-            res_y2[j-1][i-1] = y2.tolist()
-            # if j == 1 and i == 1:
-            #     log.info(s2)
+            res["res_s2"][j-1][i-1] = s2.tolist()
+            res["res_y2"][j-1][i-1] = y2.tolist()
             w = (np.array(s2) > np.array(pp)).astype(int)
             for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
                 w[x-1] = 0
             q = q + np.double(sum(w) > 0)
-        # if Ku_i == 10:
-        #     correct_answer["s"][Ku_j-1] = float(q/Ku_i)
-    return res_y2, res_s2
+        correct_s[Ku_j-1] = float(q/Ku_i)
+    return res, correct_s.toList()
 
 
 def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True", is_signal=""):
-    y2 = []
-    s2 = []
-    Ku_i_max = len(source_data["s"])
-    Ku_j_max = len(source_data["s"])
+
+    Ku_i_max = int(source_data["Ku"])
+    Ku_j_max = int(source_data["Ku"])
+
     b = np.array(student_data["answer"]["student_filter"])
     N0 = len(b)
     y = np.append(np.array(student_data["answer"]["student_signal"]), np.zeros(N0 * 2))
@@ -138,8 +132,8 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
     there_is_signal_count = int(student_data["state"]["there_is_signal_count"])
     there_is_no_signal_count = int(student_data["state"]["there_is_no_signal_count"])
 
-    if student_data["state"]["y2"] is None or student_data["state"]["s2"] is None:
-        student_data["state"]["y2"], student_data["state"]["s2"] = get_y2_s2(N0, s_st, b, K, y)
+    if student_data["state"]["y2_s2"] is None:
+        student_data["state"]["y2_s2"], correct_answer["s"] = get_y2_s2(Ku_j_max, Ku_i_max, N0, s_st, b, K, y)
 
     if is_signal == "there_is_signal":
         there_is_signal_count += 1
@@ -152,7 +146,6 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
         student_data["state"]["there_is_signal_states"][Ku_j - 1] = {"there_is_signal_count": there_is_signal_count,
                                              "there_is_no_signal_count": there_is_no_signal_count}
 
-    # correct_s = correct_answer["s"]
     y2 = student_data["state"]["y2"][Ku_j-1][Ku_i-1]
     s2 = student_data["state"]["s2"][Ku_j-1][Ku_i-1]
 
