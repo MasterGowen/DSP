@@ -112,7 +112,7 @@ def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y):
                 w[x-1] = 0
             q = q + np.double(sum(w) > 0)
         correct_s[Ku_j-1] = float(q/Ku_i)
-    return res, correct_s.toList()
+    return res, correct_s
 
 
 def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True", is_signal=""):
