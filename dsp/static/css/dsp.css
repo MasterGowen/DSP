@@ -224,7 +224,7 @@ div.dsp-notification .notification .icon {
     font-size: 0.8em;
     line-height: 1em;
     white-space: pre-wrap;
-    display: none;
+    /*display: none;*/
 }
 
 .dsp_footer.action button:hover {

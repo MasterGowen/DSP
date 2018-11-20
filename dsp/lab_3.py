@@ -43,9 +43,9 @@ def get_correct_signal(source_data):
     x = [1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1]
     K = len(x)
     N1 = source_data["N1"]
-    N0 = K * N1
-    x2 = np.matlib.repmat(x, N1, 1)
-    y = np.append(x2.flatten('F'))
+    # N0 = K * N1
+    y = np.repeat(np.array(x), N1, axis=0)
+    # y = np.append(x2.flatten('F'))
     return y, K
 
 
@@ -54,8 +54,8 @@ def get_correct_filter(source_data):
     K = len(x)
     N1 = source_data["N1"]
     N0 = K * N1
-    x2 = np.matlib.repmat(x, N1, 1)
-    y = np.append(x2.flatten('F'), np.zeros(N0 * 2))
+    x2 = np.repeat(np.array(x), N1, axis=0)
+    y = np.append(x2, np.zeros(N0 * 2))
     b = y[0:N0][::-1]
     return b
 
@@ -67,6 +67,10 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
 
     y_et, K = get_correct_signal(source_data)
     b_et = get_correct_filter(source_data)
+
+    log.info(y_et)
+    log.info(K)
+    log.info(b_et)
     pass
 
 
