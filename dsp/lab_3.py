@@ -97,8 +97,8 @@ def get_y2_s2(N0, s_st, b, K, y):
     # s2 = []
     Ku_i = 10
     Ku_j = 10
-    res_y2 = [[x for x in np.zeros(10)] for y in np.zeros(10)]
-    res_s2 = [[x for x in np.zeros(10)] for y in np.zeros(10)]
+    res_y2 = [[res_y2_1 for res_y2_1 in np.zeros(10)] for res_y2_2 in np.zeros(10)]
+    res_s2 = [[res_s2_1 for res_s2_1 in np.zeros(10)] for res_s2_2 in np.zeros(10)]
     log.info(y)
     for j in np.arange(1, Ku_j + 1):
         pp = 2 * math.sqrt(N0)
