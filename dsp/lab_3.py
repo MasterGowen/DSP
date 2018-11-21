@@ -33,18 +33,22 @@ def lab_3_get_source_data(correct_answer):
     K = len(signal_type["code"])
     N0 = K * N1
     S = int(np.floor(np.random.uniform(0, 1) * N0))
+    Ku = 10
     correct_answer["S"] = S
-
     context = dict()
     context["N1"] = N1
     context["s"] = s
     context["signal_type"] = signal_type
     context["lab_id"] = "lab_3"
-    context["Ku"] = 10
-    return context, correct_answer
+    context["Ku"] = Ku
+
+    y,b = get_correct_signal_filter(context)
+    y2_s2, correct_answer["s"] = get_y2_s2(Ku, Ku, N0, s, b, K, y)
+
+    return context, correct_answer, y2_s2
 
 
-def get_correct_signal_filter_K(source_data):
+def get_correct_signal_filter(source_data):
     if source_data["signal_type"]["name"] == "videopulse_Barker_13":
         x = [1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1]
     else:
@@ -69,7 +73,7 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     # y - сигнал
     # b - фильтр
 
-    y_et, b_et = get_correct_signal_filter_K(source_data)
+    y_et, b_et = get_correct_signal_filter(source_data)
     B_et = int(correct_answer["S"])
     s_et = correct_answer["s"]
 
@@ -101,14 +105,10 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
         result["correctness"]["B_correctness"] = False
     result["correctness"]["B_correct"] = float(B_et)
 
-    log.info("!!!!!!!!!!!!!!!!!!!!!!!!")
-    log.info(s_et)
-    log.info(student_s)
+    # log.info("!!!!!!!!!!!!!!!!!!!!!!!!")
+    # log.info(s_et)
+    # log.info(student_s)
     s_correctnes = arrays_is_equal_by_elements(s_et, student_s, tolerance=arr_tol)
-
-    # log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    # log.info(values_count_in_array(s_correctnes, value=True))
-
     s_score = 1
     score += np.round(s_score / float(len(s_correctnes)) * values_count_in_array(s_correctnes, value=True), 1)
 
@@ -186,8 +186,8 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
     there_is_signal_count = int(student_data["state"]["there_is_signal_count"])
     there_is_no_signal_count = int(student_data["state"]["there_is_no_signal_count"])
 
-    if student_data["state"]["y2_s2"] is None:
-        student_data["state"]["y2_s2"], correct_answer["s"] = get_y2_s2(Ku_j_max, Ku_i_max, N0, s_st, b, K, y, correct_answer)
+    # if student_data["state"]["y2_s2"] is None:
+        # student_data["state"]["y2_s2"], correct_answer["s"] = get_y2_s2(Ku_j_max, Ku_i_max, N0, s_st, b, K, y, correct_answer)
 
     if is_signal == "there_is_signal":
         there_is_signal_count += 1

@@ -293,9 +293,9 @@ class DSPXBlock(XBlock):
         self.student_state["state"]["Ku_done"] = False
         self.student_state["state"]["there_is_signal_count"] = 0
         self.student_state["state"]["there_is_no_signal_count"] = 0
-        self.student_state["y2_s2"] = None
+        # self.student_state["y2_s2"] = None
         self.student_state["state"]["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
-        self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
+        # self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
         _, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, True)
         return Response(json_body={"graphic": graphic, "student_state": self.student_state})
 
@@ -376,14 +376,14 @@ class DSPXBlock(XBlock):
             elif self.current_lab == "lab_2":
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_3":
-                self.lab_source_data, self.correct_answer = lab_3_get_source_data(self.correct_answer)
                 state = dict()
+                self.lab_source_data, self.correct_answer, state["y2_s2"] = lab_3_get_source_data(self.correct_answer)
                 state["Ku_j"] = 1
                 state["Ku_i"] = 1
                 state["Ku_done"] = False
                 state["there_is_signal_count"] = 0
                 state["there_is_no_signal_count"] = 0
-                state["y2_s2"] = None
+                 # = None
                 state["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
                 self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
                 self.student_state["state"] = state
