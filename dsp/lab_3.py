@@ -105,15 +105,15 @@ def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y, correct_answer):
     res["s2"] = [[res_s2_1 for res_s2_1 in np.zeros(Ku_j)] for res_s2_2 in np.zeros(Ku_j)]
     correct_s = [correct_s_1 for correct_s_1 in np.zeros(Ku_j)]
 
-    S = int(correct_answer["S"])
-    y1_et = np.roll(np.roll(y, S), (1) * S)  # или -1?
-    y1_et = y1_et + 0.5 * np.random.randn(1, 3 * N0)[0]  # надо ли это ???
+    # S = int(correct_answer["S"])
+    # y1_et = np.roll(np.roll(y, S), (1) * S)  # или -1?
+    # y1_et = y1_et + 0.5 * np.random.randn(1, 3 * N0)[0]  # надо ли это ???
 
     for j in np.arange(1, Ku_j + 1):
         pp = 2 * math.sqrt(N0)
         q = 0
         for i in np.arange(1, Ku_i + 1):
-            y2 = y1_et + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
+            y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
             s2 = signal.lfilter(b, 1, y2)
             res["s2"][j-1][i-1] = s2.tolist()
             res["y2"][j-1][i-1] = y2.tolist()
