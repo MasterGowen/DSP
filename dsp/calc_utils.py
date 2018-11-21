@@ -10,7 +10,7 @@ def arrays_is_equal_by_elements(x, y, tolerance=0.01):
     if len(x) != len(y):
         raise TypeError('arrays must be equal length')
     for idx, x_el in enumerate(x):
-        res.append(numbers_is_equal(x[idx], y[idx], tolerance=tolerance))
+        res.append(numbers_is_equal(float(x[idx]), float(y[idx]), tolerance=tolerance))
     return res
 
 
