@@ -106,6 +106,9 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     s_score = 1
     score += np.round(s_score / float(len(s_correctnes)) * values_count_in_array(s_correctnes, value=True), 1)
 
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    log.info(s_score)
+
     result["correctness"]["s_correctnes"] = s_correctnes
     result["correctness"]["s_correct"] = s_et
 
