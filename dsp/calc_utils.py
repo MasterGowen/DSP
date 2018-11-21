@@ -15,7 +15,7 @@ def arrays_is_equal_by_elements(x, y, tolerance=0.01):
 
 
 def values_count_in_array(x, value=None):
-    return len(np.where(x == value)[0])
+    return len(np.where(np.array(x) == value)[0])
 
 
 def numbers_is_equal(x, y, tolerance=0.5, rel=0.00005):

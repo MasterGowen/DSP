@@ -103,8 +103,9 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     result["correctness"]["B_correct"] = float(B_et)
 
     s_correctnes = arrays_is_equal_by_elements(s_et, student_s, tolerance=arr_tol)
+
     log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    log.info(type(s_correctnes[0]))
+    log.info(values_count_in_array(s_correctnes, value=True))
 
     s_score = 1
     score += np.round(s_score / float(len(s_correctnes)) * values_count_in_array(s_correctnes, value=True), 1)
