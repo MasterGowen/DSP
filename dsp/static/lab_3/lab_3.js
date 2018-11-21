@@ -12,16 +12,17 @@ function DSPXBlock(runtime, element, data) {
     function lab_3_reset_task() {
         var confirm_reset = confirm("Вы уверены, что хотите сбросить рассчитанные данные?");
         if (confirm_reset) {
+            disable($('#lab_3_reset_task', element));
             $.ajax({
                 type: "GET",
                 url: lab_3_reset_task_url,
-                // data: JSON.stringify(generateAnswer()),
                 success: function (result) {
-                    // console.log(result);
                     build_graphic_2(true);
+                    enable($('#lab_3_reset_task', element));
                 },
                 error: function (jqXHR, exception) {
-                    alert("При сбросе ответа возникла ошибка.")
+                    alert("При сбросе ответа возникла ошибка.");
+                    enable($('#lab_3_reset_task', element));
                 },
                 contentType: 'application/json; charset=utf-8'
             });

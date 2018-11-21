@@ -5,6 +5,19 @@ def arrays_is_equal(x, y, tolerance=0.01):
     return np.allclose(x, y, atol=tolerance)
 
 
+def arrays_is_equal_by_elements(x, y, tolerance=0.01):
+    res = []
+    if len(x) != len(y):
+        raise TypeError('arrays must be equal length')
+    for idx, x_el in enumerate(x):
+        res.append(numbers_is_equal(x_el, y[idx], tolerance=tolerance))
+    return res
+
+
+def values_count_in_array(x, value=None):
+    return len(np.where(x == value)[0])
+
+
 def numbers_is_equal(x, y, tolerance=0.5, rel=0.00005):
     if tolerance is rel is None:
         raise TypeError('cannot specify both absolute and relative errors are None')

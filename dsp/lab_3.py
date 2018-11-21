@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import mpld3
 import random
 
-from .calc_utils import arrays_is_equal, numbers_is_equal
+from .calc_utils import arrays_is_equal, numbers_is_equal, arrays_is_equal_by_elements, values_count_in_array
 from .display_utils import countdown_title
 
 log = logging.getLogger(__name__)
@@ -53,29 +53,65 @@ def get_correct_signal_filter_K(source_data):
     N1 = source_data["N1"]
     N0 = K * N1
     x2 = np.repeat(np.array(x), N1, axis=0)
+    # y_et_clean = y_et
     y_et = np.append(x2, np.zeros(N0 * 2))
     b_et = y_et[0:N0][::-1]
 
-    return y_et, b_et, K
+    return x2, b_et
 
 
 
 def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     student_y = student_data["student_signal"]
     student_b = student_data["student_filter"]
-    student_s = student_data["student_filter"]
+    student_s = student_data["student_s"]
     student_B = float(student_data["student_B"])
 
-    y_et, b_et, K = get_correct_signal_filter_K(source_data, correct_answer)
-    S_et = int(correct_answer["S"])
-    s_et = correct_answer["s"]
-    log.info(y_et)
-    log.info(b_et)
-    log.info(K)
-    log.info(S_et)
-    log.info(s_et)
+    # y - сигнал
+    # b - фильтр
 
-    pass
+    y_et, b_et = get_correct_signal_filter_K(source_data)
+    B_et = int(correct_answer["S"])
+    s_et = correct_answer["s"]
+
+    max_score = 4
+    score = 0
+    result = dict()
+    result["correctness"] = dict()
+    arr_tol = float(lab_settings["array_tolerance"])
+    num_tol = float(lab_settings["number_tolerance"])
+
+    if arrays_is_equal(y_et, student_y, tolerance=arr_tol):
+        result["correctness"]["signal_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["signal_correctness"] = False
+    result["correctness"]["signal_correct"] = y_et.tolist()
+
+    if arrays_is_equal(b_et, student_b, tolerance=arr_tol):
+        result["correctness"]["filter_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["filter_correctness"] = False
+    result["correctness"]["filter_correct"] = b_et.tolist()
+
+    if numbers_is_equal(B_et, student_B, tolerance=num_tol):
+        result["correctness"]["B_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["B_correctness"] = False
+    result["correctness"]["B_correct"] = float(B_et)
+
+    s_correctnes = arrays_is_equal_by_elements(s_et, student_s, tolerance=arr_tol)
+    s_score = 1
+    score += np.round(s_score / float(len(s_correctnes)) * values_count_in_array(s_correctnes, value=True), 1)
+
+    result["correctness"]["s_correctnes"] = s_correctnes
+    result["correctness"]["s_correct"] = s_et
+
+    result["score"] = float(score) / float(max_score)
+
+    return result
 
 
 def lab_3_get_graphic_1(student_data, source_data, correct_answer):
