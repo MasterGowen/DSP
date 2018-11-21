@@ -143,7 +143,7 @@ def lab_3_get_graphic_1(student_data, source_data, correct_answer):
     return graphic
 
 
-def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y, correct_answer):
+def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y):
     res = dict()
     res["y2"] = [[res_y2_1 for res_y2_1 in np.zeros(Ku_j)] for res_y2_2 in np.zeros(Ku_j)]
     res["s2"] = [[res_s2_1 for res_s2_1 in np.zeros(Ku_j)] for res_s2_2 in np.zeros(Ku_j)]
