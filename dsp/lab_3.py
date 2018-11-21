@@ -60,7 +60,6 @@ def get_correct_signal_filter_K(source_data):
     return x2, b_et
 
 
-
 def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     student_y = student_data["student_signal"]
     student_b = student_data["student_filter"]
@@ -102,10 +101,13 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
         result["correctness"]["B_correctness"] = False
     result["correctness"]["B_correct"] = float(B_et)
 
+    log.info("!!!!!!!!!!!!!!!!!!!!!!!!")
+    log.info(s_et)
+    log.info(student_s)
     s_correctnes = arrays_is_equal_by_elements(s_et, student_s, tolerance=arr_tol)
 
-    log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    log.info(values_count_in_array(s_correctnes, value=True))
+    # log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    # log.info(values_count_in_array(s_correctnes, value=True))
 
     s_score = 1
     score += np.round(s_score / float(len(s_correctnes)) * values_count_in_array(s_correctnes, value=True), 1)
