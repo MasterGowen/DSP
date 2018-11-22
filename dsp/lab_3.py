@@ -106,7 +106,11 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     s_score = 1
     score += np.round(s_score / float(len(s_correctnes)) * values_count_in_array(s_correctnes, value=True), 1)
 
-    result["correctness"]["s_correctnes"] = s_correctnes
+    # result["correctness"]["s_correctnes"] = s_correctnes
+
+    for idx, val in enumerate(s_correctnes):
+        result["correctness"]["input_student_s"+str(idx)] = s_correctnes[idx]
+
     result["correctness"]["s_correct"] = s_et
 
     result["score"] = float(score) / float(max_score)

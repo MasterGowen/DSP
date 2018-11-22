@@ -301,10 +301,10 @@ function DSPXBlock(runtime, element, data) {
         $(element).on('input', ".answer-input", function () {
             buttons_disable();
             clean_bottom_notification($('.dsp-notification', element));
-            // if (highlight_correct) {
-            //     $(this).removeClass("dsp-incorrect-input");
-            //     $(this).removeClass("dsp-correct-input");
-            // }
+            if (highlight_correct) {
+                $(this).removeClass("dsp-incorrect-input");
+                $(this).removeClass("dsp-correct-input");
+            }
         });
 
 
