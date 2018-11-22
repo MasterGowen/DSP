@@ -263,6 +263,7 @@ function DSPXBlock(runtime, element, data) {
             if (parseFloat(student_data.student_B) && student_data.student_s.every(elem => elem.toString().replace(/\s/g, "") != "")) {
                 if(data.answer_opportunity) {
                     // if(data.student)
+                    console.log(data.student_state.state.Ku_i, data.student_state.state.Ku_j);
                     if (data.student_state.state.Ku_i != 1 || data.student_state.state.Ku_j != 1){
                         enable($("#check_answer", element));
                     }
