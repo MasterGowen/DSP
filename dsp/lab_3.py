@@ -179,7 +179,7 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
     there_is_no_signal_count = int(student_data["state"]["there_is_no_signal_count"])
 
     if student_data["state"]["y2_s2"] is None:
-        student_data["state"]["y2_s2"], correct_answer["s"] = get_y2_s2(Ku_j_max, Ku_i_max, N0, s_st, b, K, y, correct_answer)
+        student_data["state"]["y2_s2"], correct_answer["s"] = get_y2_s2(Ku_j_max, Ku_i_max, N0, s_st, b, K, y)
 
     if is_signal == "there_is_signal":
         there_is_signal_count += 1
