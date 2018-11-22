@@ -112,6 +112,7 @@ function DSPXBlock(runtime, element, data) {
                 enable($('#calculate_graphic_2_there_is_signal', element));
                 enable($('#calculate_graphic_2_there_is_no_signal', element));
                 enable($('#calculate_graphic_2', element));
+                buttons_disable();
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_2', element));
