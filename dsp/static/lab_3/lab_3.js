@@ -13,16 +13,25 @@ function DSPXBlock(runtime, element, data) {
         var confirm_reset = confirm("Вы уверены, что хотите сбросить рассчитанные данные?");
         if (confirm_reset) {
             disable($('#lab_3_reset_task', element));
+            disable($('#calculate_graphic_2_there_is_signal', element));
+            disable($('#calculate_graphic_2_there_is_no_signal', element));
+            disable($('#calculate_graphic_2', element));
             $.ajax({
                 type: "GET",
                 url: lab_3_reset_task_url,
                 success: function (result) {
                     build_graphic_2(true);
                     enable($('#lab_3_reset_task', element));
+                    enable($('#calculate_graphic_2_there_is_signal', element));
+                    enable($('#calculate_graphic_2_there_is_no_signal', element));
+                    enable($('#calculate_graphic_2', element));
                 },
                 error: function (jqXHR, exception) {
                     alert("При сбросе ответа возникла ошибка.");
                     enable($('#lab_3_reset_task', element));
+                    enable($('#calculate_graphic_2_there_is_signal', element));
+                    enable($('#calculate_graphic_2_there_is_no_signal', element));
+                    enable($('#calculate_graphic_2', element));
                 },
                 contentType: 'application/json; charset=utf-8'
             });
@@ -90,6 +99,9 @@ function DSPXBlock(runtime, element, data) {
                     }
 
                 });
+
+                 data.student_state.state.Ku_j = result["student_state"]["state"]["Ku_j"];
+                 data.student_state.state.Ku_i = result["student_state"]["state"]["Ku_i"];
 
                  if (result["student_state"]["state"]["Ku_done"]){
                      $("#graphic-2-controls", element).css("display", "none");
@@ -250,7 +262,13 @@ function DSPXBlock(runtime, element, data) {
             enable($("#reset_task", element));
             if (parseFloat(student_data.student_B) && student_data.student_s.every(elem => elem.toString().replace(/\s/g, "") != "")) {
                 if(data.answer_opportunity) {
-                    enable($("#check_answer", element));
+                    // if(data.student)
+                    if (data.student_state.state.Ku_i != 1 || data.student_state.state.Ku_j != 1){
+                        enable($("#check_answer", element));
+                    }
+                    else {
+                        disable($("#check_answer", element));
+                    }
                 }
             }
             else {
