@@ -109,7 +109,7 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     # result["correctness"]["s_correctnes"] = s_correctnes
 
     for idx, val in enumerate(s_correctnes):
-        result["correctness"]["input_student_s"+str(idx)] = s_correctnes[idx]
+        result["correctness"]["s"+str(idx)+"_correctness"] = s_correctnes[idx]
 
     result["correctness"]["s_correct"] = s_et
 

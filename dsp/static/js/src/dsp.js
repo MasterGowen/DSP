@@ -292,16 +292,16 @@ function example_data_lab_3() {
     var s_9 = "1";
 
     $("#input_student_B").val(B);
-    $("#input_student_s_0").val(s_0);
-    $("#input_student_s_1").val(s_1);
-    $("#input_student_s_2").val(s_2);
-    $("#input_student_s_3").val(s_3);
-    $("#input_student_s_4").val(s_4);
-    $("#input_student_s_5").val(s_5);
-    $("#input_student_s_6").val(s_6);
-    $("#input_student_s_7").val(s_7);
-    $("#input_student_s_8").val(s_8);
-    $("#input_student_s_9").val(s_9);
+    $("#input_student_s0").val(s_0);
+    $("#input_student_s1").val(s_1);
+    $("#input_student_s2").val(s_2);
+    $("#input_student_s3").val(s_3);
+    $("#input_student_s4").val(s_4);
+    $("#input_student_s5").val(s_5);
+    $("#input_student_s6").val(s_6);
+    $("#input_student_s7").val(s_7);
+    $("#input_student_s8").val(s_8);
+    $("#input_student_s9").val(s_9);
     $("textarea#input_student_signal").val(signal);
     $("textarea#input_student_filter").val(filter);
 
