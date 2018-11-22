@@ -377,13 +377,13 @@ class DSPXBlock(XBlock):
                 self.lab_source_data = lab_1_get_source_data()
             elif self.current_lab == "lab_3":
                 state = dict()
-                self.lab_source_data, self.correct_answer, state["y2_s2"] = lab_3_get_source_data(self.correct_answer)
+                self.lab_source_data, self.correct_answer = lab_3_get_source_data(self.correct_answer)
                 state["Ku_j"] = 1
                 state["Ku_i"] = 1
                 state["Ku_done"] = False
                 state["there_is_signal_count"] = 0
                 state["there_is_no_signal_count"] = 0
-                 # = None
+                state["y2_s2"] = None
                 state["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
                 self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
                 self.student_state["state"] = state
