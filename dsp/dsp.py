@@ -342,7 +342,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_7_get_graphic_1(self, data, suffix=''):
     #     try:
-        graphics = lab_7_get_graphic_1(self.source_data, self.correct_answer)
+        graphics = lab_7_get_graphic_1(self.lab_source_data, self.correct_answer)
         return Response(json_body={"graphics": graphics})
         # except:
         #     return Response('Error!', 500)
