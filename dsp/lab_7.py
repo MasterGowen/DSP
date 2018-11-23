@@ -117,7 +117,7 @@ def lab_7_get_graphic_1(source_data, correct_answer):
     )
     return graphics
 
-def lab_7_get_graphic_2(student_data, source_data, correct_answer):
+def lab_7_get_graphic_2(student_data, source_data):
     pass
 
 

@@ -33,22 +33,52 @@ function DSPXBlock(runtime, element, data) {
 
 
 
+    function generateAnswer() {
+        var student_data = {};
+        student_data.student_Sm = parseTextSignal($("#input_student_Sm", element)).signal;
+        student_data.student_a = parseTextSignal($("#input_student_a", element)).signal;
+        student_data.student_b = parseTextSignal($("#input_student_b", element)).signal;
 
+        student_data.student_f0 = $("#input_student_f0", element).val();
+        student_data.student_fm = $("#input_student_fm", element).val();
+        student_data.student_m = $("#input_student_m", element).val();
+        student_data.student_soob = $("#input_student_soob", element).val();
+
+        return student_data;
+    }
+
+    function build_lab_state(data) {
+        $("textarea#input_student_Sm", element).val(data.answer.student_Sm);
+        $("textarea#input_student_a", element).val(data.answer.student_a);
+        $("textarea#input_student_b", element).val(data.answer.student_b);
+
+        $("#input_student_f0", element).val(data.answer.student_f0);
+        $("#input_student_fm", element).val(data.answer.student_fm);
+        $("#input_student_m", element).val(data.answer.student_m);
+        $("#input_student_soob", element).val(data.answer.student_soob);
+
+        if (data.answer.student_Sm.length > 0){
+            // build_graphic_2();
+        }
+        // if (data.answer.student_sl.length > 0 && data.answer.student_slc.length > 0) {
+        //     build_graphic_2();
+        // }
+    }
 
 
 
     $(function ($) {
         console.log(data);
         build_graphic_1();
-        // if (data.student_state.answer) {
-        //     build_lab_state(data["student_state"]);
-        //     $("textarea.array-input", element).each(function (i) {
-        //         process_array_input(this);
-        //     });
+        if (data.student_state.answer) {
+            build_lab_state(data["student_state"]);
+            $("textarea.array-input", element).each(function (i) {
+                process_array_input(this);
+            });
         //     if (data.student_state.correctness && highlight_correct) {
         //         highlight_correctness(data["student_state"]["correctness"]);
         //     }
-        // }
+        }
         // buttons_disable();
 
         $(element).on('input', ".answer-input", function () {
