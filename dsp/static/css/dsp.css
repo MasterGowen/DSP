@@ -84,17 +84,17 @@
     padding: 2px;
 }
 
-.numeric-input-container, string-input-container {
+.numeric-input-container, .string-input-container {
     padding: 4px 0px;
 }
 
-.numeric-input-container label, string-input-container label {
+.numeric-input-container label, .string-input-container label {
     display: inline-block;
     vertical-align: middle;
     margin-bottom: 0px !important;
 }
 
-.numeric-input-container input, string-input-container input {
+.numeric-input-container input, .string-input-container input {
     display: inline-block;
     vertical-align: middle;
 }

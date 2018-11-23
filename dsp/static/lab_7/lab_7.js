@@ -1,6 +1,6 @@
 
 /* Javascript for DSPXBlock. */
-function DSPXBlock(runtime, element) {
+function DSPXBlock(runtime, element, data) {
     var student_submit = runtime.handlerUrl(element, 'student_submit');
     var save_answer = runtime.handlerUrl(element, 'save_answer');
     var reset_task = runtime.handlerUrl(element, 'reset_task');
