@@ -19,7 +19,7 @@ from .display_utils import time_title
 log = logging.getLogger(__name__)
 
 
-def lab_5_get_source_data():
+def lab_7_get_source_data():
     rand_1 = 0.82038
     rand_2 = 0.413
     rand_3 = 0.04766
@@ -81,8 +81,10 @@ def lab_5_get_source_data():
 
     return context, correct_answer
 
+
 def lab_7_check_answer(student_data, source_data, lab_settings, correct_answer):
     pass
+
 
 def lab_7_get_graphic_1(student_data, source_data, correct_answer):
     pass
