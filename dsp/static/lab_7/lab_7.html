@@ -44,12 +44,12 @@
     <div class="task-wording">
         <p>Для заданной кодовой последовательности сформировать радиосигнал с {{shift_keying_type.title}} манипуляцией со следующими параметрами:</p>
         <ul>
-            <li><p>кодовая последовательность: {{code}}</p></li>
+            <li><p>кодовая последовательность: \( {{code}} \)</p></li>
             <li><p>несущее колебание – гармоническое в форме \(cos\);</p></li>
             <li><p>4 отсчёта на период колебания;</p> </li>
             <li><p>амплитуда – \(1\);</p></li>
             <li><p>число колебаний на элементарную посылку \( {{NePart2}} \);</p></li>
-            {% if shift_keying_type.name = "frequency_shift" %}
+            {% if shift_keying_type.name = "phase_shift" %}
                 <li><p>несущая частота \( {{f0Part2}} \) и \( {{f02Part2}} \).</p></li>
             {% else %}
                 <li><p>несущая частота \( {{f0Part2}} \).</p></li>
@@ -119,7 +119,7 @@
 
     <div class="string-input-container">
         <label for="input_student_soob">Введите закодированное сообщение (5 заглавных латинских букв):</label>
-        <input id="input_student_soob" class="string-input answer-input" />
+        <input id="input_student_soob" class="string-input answer-input" type="text" />
     </div>
 
 </div>
