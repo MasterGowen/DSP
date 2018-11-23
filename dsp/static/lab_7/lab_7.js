@@ -39,6 +39,7 @@ function DSPXBlock(runtime, element, data) {
 
     $(function ($) {
         console.log(data);
+        build_graphic_1();
         // if (data.student_state.answer) {
         //     build_lab_state(data["student_state"]);
         //     $("textarea.array-input", element).each(function (i) {
