@@ -12,6 +12,24 @@ function DSPXBlock(runtime, element, data) {
 
     var highlight_correct = true;
 
+    function build_graphic_1() {
+        show_graphic_load($('#graphic_1_1', element));
+        show_graphic_load($('#graphic_1_2', element));
+        $.ajax({
+            type: "GET",
+            url: get_graphic_1,
+            success: function (result) {
+                $("#graphic_1_1", element).html(result["graphics"][0]["html"]);
+                $("#graphic_1_2", element).html(result["graphics"][1]["html"]);
+            },
+            error: function (jqXHR, exception) {
+                show_graphic_error($('#graphic_1_1', element));
+                show_graphic_error($('#graphic_1_2', element));
+                log_ajax_error(jqXHR, exception);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
 
 
 

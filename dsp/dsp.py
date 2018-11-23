@@ -252,7 +252,6 @@ class DSPXBlock(XBlock):
             ex["traceback"] = output
             return Response(json.dumps(ex), status=500)
 
-
     @XBlock.json_handler
     def lab_1_get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
@@ -335,6 +334,15 @@ class DSPXBlock(XBlock):
         self.student_state["answer"] = data
         try:
             graphics = lab_5_get_graphic_2(data, self.lab_source_data)
+            return Response(json_body={"graphics": graphics})
+        except:
+            return Response('Error!', 500)
+
+
+    @XBlock.json_handler
+    def lab_7_get_graphic_1(self, data, suffix=''):
+        try:
+            graphics = lab_7_get_graphic_1(self.source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)

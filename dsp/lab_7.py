@@ -86,9 +86,36 @@ def lab_7_check_answer(student_data, source_data, lab_settings, correct_answer):
     pass
 
 
-def lab_7_get_graphic_1(student_data, source_data, correct_answer):
-    pass
+def lab_7_get_graphic_1(source_data, correct_answer):
+    graphics = []
+    N0 = source_data["N0"]
+    f0 = correct_answer["f0"]
+    fm = correct_answer["fm"]
+    m = correct_answer["m"]
 
+    d1 = (1 + m * np.cos(2 * math.pi * fm * np.arange(0, N0) / N0)) * (np.cos(2 * math.pi * f0 * np.arange(0, N0) / N0))
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(np.arange(N0), d1)
+
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_1_1",
+            "html": html
+        }
+    )
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.stem(np.arange(N0), np.abs(np.fft.fft(d1)), 'c')
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_1_2",
+            "html": html
+        }
+    )
+    return graphics
 
 def lab_7_get_graphic_2(student_data, source_data, correct_answer):
     pass
