@@ -341,11 +341,11 @@ class DSPXBlock(XBlock):
 
     @XBlock.json_handler
     def lab_7_get_graphic_1(self, data, suffix=''):
-        try:
-            graphics = lab_7_get_graphic_1(self.source_data, self.correct_answer)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+    #     try:
+        graphics = lab_7_get_graphic_1(self.source_data, self.correct_answer)
+        return Response(json_body={"graphics": graphics})
+        # except:
+        #     return Response('Error!', 500)
 
     @XBlock.json_handler
     def save_answer(self, data, suffix=''):
