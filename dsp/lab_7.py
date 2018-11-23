@@ -36,12 +36,12 @@ def lab_7_get_source_data():
     m = 0.2 + 0.8 * rand_3  # np.random.rand()
 
     code = (np.array(rand_4) > 0.5).astype(int)
-    f0Part2 = 5 + np.floor(5 * rand_5)
-    f02Part2 = 2 * (5 + np.floor(5 * rand_5))
-    NePart2 = 1 + np.floor(9 * rand_6)
+    f0Part2 = int(5 + np.floor(5 * rand_5))
+    f02Part2 = int(2 * (5 + np.floor(5 * rand_5)))
+    NePart2 = int(1 + np.floor(9 * rand_6))
 
-    f0Part3 = 5 + np.floor(5 * rand_7) # np.random.rand()
-    NePart3 = 1 + np.floor(9 * rand_8) # np.random.rand()
+    f0Part3 = 5 + np.floor(5 * rand_7)  # np.random.rand()
+    NePart3 = 1 + np.floor(9 * rand_8)  # np.random.rand()
 
     shift_keying_types = [{
             "name": "amplitude_shift",

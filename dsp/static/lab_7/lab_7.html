@@ -12,9 +12,9 @@
 </div>
 
 <div class="dsp_block">
-    <h3>1. Исследование спектра амплитудно-модулированного сигнала.</h3>
+    <h3>1. Исследование спектра амплитудно-модулированного сигнала</h3>
     <div class="task-wording">
-    <p>По представленным графикам однотонального АМ-сигнала и его спектра определить несущую частоту, частоту модуляции и коэффициент модуляции сигнала (частота дискретизации 1000 Гц).</p>
+    <p>По представленным графикам однотонального АМ-сигнала и его спектра определить несущую частоту, частоту модуляции и коэффициент модуляции сигнала (частота дискретизации \(1000 \ Гц \)).</p>
     </div>
     <div style="display: flex;">
         <div id="graphic_1_1" class="graphic-container">
@@ -40,26 +40,26 @@
 
 
 <div class="dsp_block">
-    <h3>2. Формирование радиосигнала с заданным видом манипуляции.</h3>
+    <h3>2. Формирование радиосигнала с заданным видом манипуляции</h3>
     <div class="task-wording">
         <p>Для заданной кодовой последовательности сформировать радиосигнал с {{shift_keying_type.title}} манипуляцией со следующими параметрами:</p>
         <ul>
-            <li><p>кодовая последовательность: {{signal_type.code}}</p></li>
-            <li><p>несущее колебание – гармоническое в форме cos;</p></li>
+            <li><p>кодовая последовательность: {{code}}</p></li>
+            <li><p>несущее колебание – гармоническое в форме \(cos\);</p></li>
             <li><p>4 отсчёта на период колебания;</p> </li>
-            <li><p>амплитуда – 1;</p></li>
-            <li><p>число колебаний на элементарную посылку {{NePart2}};</p></li>
+            <li><p>амплитуда – \(1\);</p></li>
+            <li><p>число колебаний на элементарную посылку \( {{NePart2}} \);</p></li>
             {% if shift_keying_type.name = "frequency_shift" %}
-                <li><p>несущая частота {{f0Part2}} и {{f02Part2}}.</p></li>
+                <li><p>несущая частота \( {{f0Part2}} \) и \( {{f02Part2}} \).</p></li>
             {% else %}
-                <li><p>несущая частота f0.</p></li>
+                <li><p>несущая частота \( {{f0Part2}} \).</p></li>
             {% endif %}
         </ul>
     </div>
 
     <p>Введите сигнал:</p>
     <div class="array-input-container">
-        <textarea id="input_student_Sm" data-array-type="сигнал" data-max-length="500"
+        <textarea id="input_student_Sm" data-array-type="сигнал" data-max-length="2000"
                   class="signal-input array-input answer-input"
                   style="height: 100px"
                   rows="4" cols="24"
@@ -68,7 +68,7 @@
     </div>
 
     <!-- disabled="disabled"-->
-    <button id="calculate_graphic_2" class="get-graphic-2-button">Построить график</button>
+    <button id="calculate_graphic_2" class="get-graphic-button">Построить график</button>
 
     <div style="display: flex;">
         <div id="graphic_2" class="graphic-container">
@@ -76,32 +76,79 @@
     </div>
 </div>
 
+<div class="dsp_block">
+    <h3>3. Фазовая демодуляция и декодирование</h3>
+    <div class="task-wording">
+    <p>Для фазоманипулированного сигнала с шумом сформировать цифровой фильтр нижних частот, обеспечивающий правильную демодуляцию сигнала, и произвести декодирование исходного сообщения из битового кода. Исходное сообщение представляет собой последовательность 5 заглавных латинских букв, кодированных в ASCII в 8-битной форме (старший бит всегда «0»).</p>
+    </div>
+    <div style="display: flex;">
+        <div id="graphic_3_1" class="graphic-container">
+        </div>
+        <div id="graphic_3_2" class="graphic-container">
+        </div>
+    </div>
 
-<!--<div class="dsp_footer action">-->
-    <!--<div class="submit-attempt-container">-->
-        <!--<button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span></button>-->
-        <!--<div class="submission-feedback">-->
-            <!--{% if max_attempts %}-->
-            <!--Использовано <span class="attempts">{{ attempts }}</span> из {{ max_attempts }} попыток-->
-            <!--{% endif %}-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="problem-action-buttons-wrapper">-->
-      <!--<span class="problem-action-button-wrapper" id="save_answer">-->
-          <!--<button type="button" class="save problem-action-btn btn-default btn-small" data-value="Сохранить">-->
-              <!--<span class="icon fa fa-floppy-o" aria-hidden="true"></span>-->
-              <!--<span aria-hidden="true">Сохранить</span>-->
-              <!--<span class="sr">Save your answer</span>-->
-          <!--</button>-->
-      <!--</span>-->
-        <!--{% if show_reset_button %}-->
-          <!--<span class="problem-action-button-wrapper" id="reset_task">-->
-              <!--<button type="button" class="reset problem-action-btn btn-default btn-small" data-value="Сбросить"><span class="icon fa fa-refresh" aria-hidden="true"></span><span aria-hidden="true">Сбросить</span><span class="sr">Reset your answer</span></button>-->
-          <!--</span>-->
-        <!--{% endif %}-->
-    <!--</div>-->
-<!--</div>-->
+    <p>Введите коэффициенты числителя (b) передаточной функции цифрового фильтра фазавого детектора:</p>
+    <div class="array-input-container">
+        <textarea id="input_student_b" data-array-type="фильтр" data-max-length="10"
+                  class="filter-input array-input answer-input"
+                  style="height: 50px"
+                  rows="3" cols="24"
+                  wrap="hard"></textarea>
+        <div class="validation-message"></div>
+    </div>
 
-<!--<div class="dsp-notification">-->
+    <p>Введите коэффициенты знаменателя (a) передаточной функции цифрового фильтра фазавого детектора:</p>
+    <div class="array-input-container">
+        <textarea id="input_student_a" data-array-type="фильтр" data-max-length="10"
+                  class="filter-input array-input answer-input"
+                  style="height: 50px"
+                  rows="3" cols="24"
+                  wrap="hard"></textarea>
+        <div class="validation-message"></div>
+    </div>
+    <!--disabled="disabled" -->
+    <button id="calculate_graphic_4" class="get-graphic-button">Построить графики</button>
 
-<!--</div>-->
+    <div style="display: flex;">
+        <div id="graphic_4_1" class="graphic-container">
+        </div>
+        <div id="graphic_4_2" class="graphic-container">
+        </div>
+    </div>
+
+    <div class="string-input-container">
+        <label for="input_student_soob">Введите закодированное сообщение (5 заглавных латинских букв):</label>
+        <input id="input_student_soob" class="string-input answer-input" />
+    </div>
+
+</div>
+
+<div class="dsp_footer action">
+    <div class="submit-attempt-container">
+        <button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span></button>
+        <div class="submission-feedback">
+            {% if max_attempts %}
+            Использовано <span class="attempts">{{ attempts }}</span> из {{ max_attempts }} попыток
+            {% endif %}
+        </div>
+    </div>
+    <div class="problem-action-buttons-wrapper">
+      <span class="problem-action-button-wrapper" id="save_answer">
+          <button type="button" class="save problem-action-btn btn-default btn-small" data-value="Сохранить">
+              <span class="icon fa fa-floppy-o" aria-hidden="true"></span>
+              <span aria-hidden="true">Сохранить</span>
+              <span class="sr">Save your answer</span>
+          </button>
+      </span>
+        {% if show_reset_button %}
+          <span class="problem-action-button-wrapper" id="reset_task">
+              <button type="button" class="reset problem-action-btn btn-default btn-small" data-value="Сбросить"><span class="icon fa fa-refresh" aria-hidden="true"></span><span aria-hidden="true">Сбросить</span><span class="sr">Reset your answer</span></button>
+          </span>
+        {% endif %}
+    </div>
+</div>
+
+<div class="dsp-notification">
+
+</div>

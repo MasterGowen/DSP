@@ -4,6 +4,11 @@
     font-weight: bold;
 }
 
+.dsp_block ul{
+    padding-left: 2em !important;
+    margin: 0.2em 0 !important;
+}
+
 .dsp_block p {
     margin: 0px 0px !important;
     font-weight: 300;
@@ -79,17 +84,17 @@
     padding: 2px;
 }
 
-.numeric-input-container {
+.numeric-input-container, string-input-container {
     padding: 4px 0px;
 }
 
-.numeric-input-container label {
+.numeric-input-container label, string-input-container label {
     display: inline-block;
     vertical-align: middle;
     margin-bottom: 0px !important;
 }
 
-.numeric-input-container input {
+.numeric-input-container input, string-input-container input {
     display: inline-block;
     vertical-align: middle;
 }
