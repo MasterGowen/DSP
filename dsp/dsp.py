@@ -29,6 +29,8 @@ from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_
 from lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
 from lab_5 import lab_5_get_source_data, lab_5_get_graphic_1, lab_5_get_graphic_2, lab_5_check_answer
 
+from lab_7 import lab_7_get_source_data, lab_7_get_graphic_1, lab_7_get_graphic_2, lab_7_get_graphic_3, lab_7_get_graphic_4, lab_7_check_answer
+
 log = logging.getLogger(__name__)
 
 
@@ -69,8 +71,13 @@ class DSPXBlock(XBlock):
             },
             {
                 "id": "lab_5",
-                "title": "Лабораторная 5 . Исследование рекурсивных цифровых фильтров",
+                "title": "Лабораторная 5. Исследование рекурсивных цифровых фильтров",
             },
+            {
+                "id": "lab_7",
+                "title": "Лабораторная 7. Цифровые модуляторы и демодуляторы",
+            },
+
         ]
 
     )
@@ -204,6 +211,10 @@ class DSPXBlock(XBlock):
                 result = lab_4_check_answer(data, self.lab_source_data, self.lab_settings)
             elif self.current_lab == "lab_5":
                 result = lab_5_check_answer(data, self.lab_source_data, self.lab_settings)
+            # elif self.current_lab == "lab_6":
+            #     result = lab_6_check_answer(data, self.lab_source_data, self.lab_settings)
+            elif self.current_lab == "lab_7":
+                result = lab_7_check_answer(data, self.lab_source_data, self.lab_settings)
             else:
                 raise Exception('Hiding bugs lol')
 
@@ -391,7 +402,10 @@ class DSPXBlock(XBlock):
                 self.lab_source_data = lab_4_get_source_data()
             elif self.current_lab == "lab_5":
                 self.lab_source_data = lab_5_get_source_data()
-
+            # elif self.current_lab == "lab_6":
+            #     self.lab_source_data = lab_6_get_source_data()
+            elif self.current_lab == "lab_7":
+                self.lab_source_data, self.correct_answer = lab_7_get_source_data()
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 
