@@ -122,7 +122,7 @@ def lab_3_get_graphic_1(student_data, source_data, correct_answer):
     y = np.append(student_data["student_signal"], np.zeros(N0 * 2))
 
     S = int(correct_answer["S"])
-    y1_et = np.roll(np.roll(y, S), (1) * S)  # или -1?
+    y1_et = np.roll(y, (1) * S)
     ys1_et = y1_et + 0.5 * np.random.randn(1, 3 * N0)[0]
 
     z = signal.lfilter(b, 1, ys1_et)
