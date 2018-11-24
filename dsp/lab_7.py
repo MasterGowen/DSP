@@ -101,7 +101,7 @@ def lab_7_check_answer(student_data, source_data, lab_settings, correct_answer):
 
 def lab_7_get_graphic_1(source_data, correct_answer):
     graphics = []
-    # N0 = source_data["N0"]
+    N0 = source_data["N0"]
     # f0 = correct_answer["f0"]
     # fm = correct_answer["fm"]
     d1 = correct_answer["d1"]
