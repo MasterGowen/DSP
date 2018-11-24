@@ -130,8 +130,40 @@ def lab_7_get_graphic_2(student_data):
     return graphic
 
 
-def lab_7_get_graphic_3(student_data, source_data, correct_answer):
-    pass
+def lab_7_get_graphic_3(source_data, correct_answer):
+    graphics = []
+    f0 = source_data["f0Part3"]
+    Ne = source_data["NePart3"]
+    soob = correct_answer["soob"]
+    code = ''.join("0" + format(ord(x), 'b') for x in soob)  # разобраться с ноликом в начале
+    L = len(code)
+    N1 = int(4 * f0 * Ne)
+    S1 = np.repeat(np.array([ord(x) for x in code]), np.int(N1), axis=0) - 48
+    S1p = (2 * (S1 - 0.5)) * np.cos(2 * math.pi * f0 * np.arange(0, L * N1) / N1) + (0.5 * np.random.randn(np.int(N1 * L)))
+    S10 = np.cos(2 * math.pi * f0 * np.arange(0, L * N1) / N1)
+    SD = S1p * S10
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(np.arange(0, N1*8), S1p[0:np.int(N1*8)])
+
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_3_1",
+            "html": html
+        }
+    )
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(np.arange(0, N1 * 8), SD[0:np.int(N1*8)])
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_3_2",
+            "html": html
+        }
+    )
+    return graphics
 
 
 def lab_7_get_graphic_4(student_data, source_data, correct_answer):
