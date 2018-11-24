@@ -39,7 +39,7 @@ function DSPXBlock(runtime, element, data) {
             url: get_graphic_2,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
-                $("#graphic_2", element).html(result["graphic"]["html"]);
+                $("#graphic_2", element).html(result["graphics"]["html"]);
                 enable($('#calculate_graphic_2', element));
             },
             error: function (jqXHR, exception) {
