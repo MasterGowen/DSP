@@ -180,7 +180,7 @@ def lab_7_get_graphic_4(student_data, correct_answer):
 
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.plot(np.arange(0, np.int(N1*8)), z[0:np.int(N1*8)])
-    ax.stem(np.arange(N1/2, N1*8, N1), np.take(z, np.arange(np.int(N1/2), np.int(N1*8), np.int(N1))), 'r')
+    ax.stem(np.arange(N1/2, N1*8, N1), np.take(z, np.arange(np.int(N1/2), np.int(N1*8), np.int(N1))), 'r', linewidth=3.0)
 
     html = mpld3.fig_to_d3(fig)
     graphics.append(
