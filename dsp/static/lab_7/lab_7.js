@@ -31,6 +31,31 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
+    function build_graphic_2() {
+        show_graphic_load($('#graphic_2', element));
+        disable($('#calculate_graphic_2', element));
+        $.ajax({
+            type: "POST",
+            url: get_graphic_2,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $("#graphic_1", element).html(result["graphic"]["html"]);
+                enable($('#calculate_graphic_2', element));
+            },
+            error: function (jqXHR, exception) {
+                show_graphic_error($('#graphic_2', element));
+                log_ajax_error(jqXHR, exception);
+                enable($('#calculate_graphic_2', element));
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
+
+    $('#calculate_graphic_2', element).click(function (event) {
+        build_graphic_2();
+    });
+
+
 
 
     function generateAnswer() {
@@ -44,6 +69,7 @@ function DSPXBlock(runtime, element, data) {
         student_data.student_m = $("#input_student_m", element).val();
         student_data.student_soob = $("#input_student_soob", element).val();
 
+        console.log(student_data);
         return student_data;
     }
 

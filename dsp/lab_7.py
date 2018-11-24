@@ -117,8 +117,17 @@ def lab_7_get_graphic_1(source_data, correct_answer):
     )
     return graphics
 
-def lab_7_get_graphic_2(student_data, source_data):
-    pass
+
+def lab_7_get_graphic_2(student_data):
+    student_sm = student_data["student_Sm"]
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(student_sm, linewidth=2.0)
+    html = mpld3.fig_to_d3(fig)
+    graphic = {
+        "id": "graphic_2",
+        "html": html
+    }
+    return graphic
 
 
 def lab_7_get_graphic_3(student_data, source_data, correct_answer):

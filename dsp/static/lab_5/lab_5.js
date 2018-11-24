@@ -30,7 +30,6 @@ function DSPXBlock(runtime, element, data) {
             contentType: 'application/json; charset=utf-8'
         });
     }
-
     function build_graphic_2() {
         disable($('#calculate_graphic_2', element));
         show_graphic_load($('#graphic_3', element));
