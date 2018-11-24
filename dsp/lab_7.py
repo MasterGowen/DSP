@@ -20,20 +20,20 @@ log = logging.getLogger(__name__)
 
 
 def lab_7_get_source_data():
-    rand_1 = 0.82038
-    rand_2 = 0.413
-    rand_3 = 0.04766
-    rand_4 = [0.33308, 0.81950, 0.68199, 0.52076, 0.90551, 0.28840, 0.63247, 0.11402, 0.88244, 0.82465]
-    rand_5 = 0.28217  # np.random.rand()
-    rand_6 = 0.78565  # np.random.rand()
-    rand_7 = 0.45263
-    rand_8 = 0.87775
+    rand_1 = np.random.rand()  # 0.82038
+    rand_2 = np.random.rand()  # 0.413
+    rand_3 = np.random.rand()  # 0.04766
+    rand_4 = np.random.rand(10)  # [0.33308, 0.81950, 0.68199, 0.52076, 0.90551, 0.28840, 0.63247, 0.11402, 0.88244, 0.82465]
+    rand_5 = np.random.rand()  # 0.28217
+    rand_6 = np.random.rand()  # 0.78565
+    rand_7 = np.random.rand()  # 0.45263
+    rand_8 = np.random.rand()  # 0.87775
 
     N0 = 1000
 
-    f0 = 200 + np.floor(250 * rand_1)  # np.random.rand()
-    fm = np.floor(50 * rand_2)  # np.random.rand()
-    m = 0.2 + 0.8 * rand_3  # np.random.rand()
+    f0 = 200 + np.floor(250 * rand_1)
+    fm = np.floor(50 * rand_2)
+    m = 0.2 + 0.8 * rand_3
 
     code = (np.array(rand_4) > 0.5).astype(int)
     f0Part2 = int(5 + np.floor(5 * rand_5))
@@ -41,8 +41,8 @@ def lab_7_get_source_data():
     NePart2 = int(1 + np.floor(9 * rand_6))
 
     soob = ''.join([s for s in random.sample(string.ascii_uppercase, 5)])
-    f0Part3 = 5 + np.floor(5 * rand_7)  # np.random.rand()
-    NePart3 = 1 + np.floor(9 * rand_8)  # np.random.rand()
+    f0Part3 = 5 + np.floor(5 * rand_7)
+    NePart3 = 1 + np.floor(9 * rand_8)
 
     code_tmp = ''.join("0" + format(ord(x), 'b') for x in soob)  # разобраться с ноликом в начале
     L_tmp = len(code_tmp)
