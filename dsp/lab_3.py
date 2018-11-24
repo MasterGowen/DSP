@@ -111,7 +111,7 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
 
     result["correctness"]["s_correct"] = s_et
 
-    result["score"] = float(score) / float(max_score)
+    result["score"] = np.round(float(score) / float(max_score), 2)
 
     return result
 
