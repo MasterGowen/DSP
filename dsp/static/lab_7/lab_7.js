@@ -101,6 +101,35 @@ function DSPXBlock(runtime, element, data) {
         build_graphic_4();
     });
 
+    $('#check_answer', element).click(function (event) {
+        disable($('#check_answer'), element);
+        $.ajax({
+            type: "POST",
+            url: student_submit,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $(element).find('me-span.points').html(result.score);
+                $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
+                $('.points', element).text(result.score + ' из ' + data.maximum_score);
+                if (highlight_correct) highlight_correctness(result.correctness);
+                is_success_bottom_notification(result.is_success, result.score, result.maximum_score, $('.dsp-notification', element));
+
+                $('.attempts', element).text(result.attempts);
+                if (result.max_attempts && result.max_attempts <= result.attempts) {
+                    data.answer_opportunity = false;
+                }
+                else{
+                    enable($('#check_answer'), element);
+                }
+            },
+            error: function (jqXHR){
+                check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
+                enable($('#check_answer'), element);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    });
+
     $('#reset_task', element).click(function (event) {
         disable($('#reset_task button'), element);
         var confirm_reset = confirm("Вы уверены, что хотите сбросить задание? При сбросе задания набранные баллы и ответ не сохраняются.");
@@ -171,25 +200,6 @@ function DSPXBlock(runtime, element, data) {
         else{
             disable($("#check_answer", element));
         }
-
-        // if (student_data.student_s.length > 0 && student_data.student_s1.length > 0 && student_data.student_sl.length > 0 && student_data.student_slc.length > 0){
-        //     if (parseFloat(student_data.student_fn) && parseFloat(student_data.student_Np)){
-        //         if (parseFloat(student_data.student_K1) && parseFloat(student_data.student_K2) && parseFloat(student_data.student_K3) && parseFloat(student_data.student_K4)){
-        //             if(data.answer_opportunity) {
-        //                 enable($("#check_answer", element));
-        //             }
-        //         }
-        //         else{
-        //             disable($("#check_answer", element));
-        //         }
-        //     }
-        //     else{
-        //         disable($("#check_answer", element));
-        //      }
-        // }
-        // else{
-        //     disable($("#check_answer", element));
-        // }
     }
 
     function generateAnswer() {

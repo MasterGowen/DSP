@@ -92,8 +92,82 @@ def lab_7_get_source_data():
     return context, correct_answer
 
 
+def get_correct_sm(source_data):
+    shift_keying_type = source_data["shift_keying_type"]
+    f0 = int(source_data["f0Part2"])
+    Ne = int(source_data["NePart2"])
+    N1 = 4 * f0 * Ne
+    S1 = np.repeat(np.array(code), np.int(N1), axis=0)
+
+    if shift_keying_type["name"] == "amplitude_shift":
+        Sm = S1 * np.cos(2 * math.pi * f0 * np.arange(0, 10 * N1) / N1)
+    elif shift_keying_type["name"] == "frequency_shift":
+        Sm = (S1 * np.cos(2 * math.pi * f0 * np.arange(0, 10 * N1) / N1)) + ((1 - S1) * np.cos(4 * math.pi * f0 * np.arange(0, 10 * N1) / N1))
+    else:  # phase_shift
+        Sm = (2 * (S1 - 0.5)) * np.cos(2 * math.pi * f0 * np.arange(0, 10 * N1) / N1)
+
+    return Sm
+
+
 def lab_7_check_answer(student_data, source_data, lab_settings, correct_answer):
-    pass
+    student_f0 = float(student_data["student_f0"])
+    student_fm = float(student_data["student_fm"])
+    student_m = float(student_data["student_m"])
+    student_Sm = float(student_data["student_Sm"])
+    student_soob = student_data["student_soob"]
+
+    f0 = correct_answer["f0"]
+    fm = correct_answer["fm"]
+    m = correct_answer["m"]
+    Sm = get_correct_sm(source_data)
+    soob = correct_answer["soob"]
+
+
+    max_score = 100
+    score = 0
+    result = dict()
+    result["correctness"] = dict()
+    arr_tol = float(lab_settings["array_tolerance"])
+    num_tol = float(lab_settings["number_tolerance"])
+
+    if numbers_is_equal(f0, student_f0, tolerance=num_tol):
+        result["correctness"]["f0_correctness"] = True
+        score += 5
+    else:
+        result["correctness"]["f0_correctness"] = False
+    result["correctness"]["f0_correct"] = f0
+
+    if numbers_is_equal(fm, student_fm, tolerance=num_tol):
+        result["correctness"]["fm_correctness"] = True
+        score += 5
+    else:
+        result["correctness"]["fm_correctness"] = False
+    result["correctness"]["fm_correct"] = fm
+
+    if numbers_is_equal(m, student_m, tolerance=num_tol):
+        result["correctness"]["m_correctness"] = True
+        score += 5
+    else:
+        result["correctness"]["m_correctness"] = False
+    result["correctness"]["m_correct"] = f0
+
+    if arrays_is_equal(Sm, student_Sm, tolerance=arr_tol):
+        result["correctness"]["Sm_correctness"] = True
+        score += 30
+    else:
+        result["correctness"]["Sm_correctness"] = False
+    result["correctness"]["Sm_correct"] = Sm.tolist()
+
+    if soob == student_soob:
+        result["correctness"]["soob_correctness"] = True
+        score += 55
+    else:
+        result["correctness"]["soob_correctness"] = False
+    result["correctness"]["soob_correct"] = soob
+
+    result["score"] = np.round(float(score) / float(max_score), 2)
+
+    return result
 
 
 def lab_7_get_graphic_1(source_data, correct_answer):

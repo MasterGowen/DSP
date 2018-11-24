@@ -214,7 +214,7 @@ class DSPXBlock(XBlock):
             # elif self.current_lab == "lab_6":
             #     result = lab_6_check_answer(data, self.lab_source_data, self.lab_settings)
             elif self.current_lab == "lab_7":
-                result = lab_7_check_answer(data, self.lab_source_data, self.lab_settings)
+                result = lab_7_check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
             else:
                 raise Exception('Hiding bugs lol')
 
