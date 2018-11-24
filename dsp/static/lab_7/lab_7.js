@@ -74,6 +74,29 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
+    function build_graphic_4() {
+        show_graphic_load($('#graphic_4_1', element));
+        show_graphic_load($('#graphic_4_2', element));
+        $.ajax({
+            type: "POST",
+            url: get_graphic_4,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                $("#graphic_4_1", element).html(result["graphics"][0]["html"]);
+                $("#graphic_4_2", element).html(result["graphics"][1]["html"]);
+            },
+            error: function (jqXHR, exception) {
+                show_graphic_error($('#graphic_4_1', element));
+                show_graphic_error($('#graphic_4_2', element));
+                log_ajax_error(jqXHR, exception);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
+
+    $('#calculate_graphic_4', element).click(function (event) {
+        build_graphic_4();
+    });
 
     function generateAnswer() {
         var student_data = {};
@@ -103,9 +126,9 @@ function DSPXBlock(runtime, element, data) {
         if (data.answer.student_Sm.length > 0){
             build_graphic_2();
         }
-        // if (data.answer.student_sl.length > 0 && data.answer.student_slc.length > 0) {
-        //     build_graphic_2();
-        // }
+        if (data.answer.student_a.length > 0 && data.answer.student_b.length > 0) {
+            build_graphic_4();
+        }
     }
 
 
