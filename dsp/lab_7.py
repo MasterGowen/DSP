@@ -96,6 +96,7 @@ def get_correct_sm(source_data):
     shift_keying_type = source_data["shift_keying_type"]
     f0 = int(source_data["f0Part2"])
     Ne = int(source_data["NePart2"])
+    code = np.array(source_data["code"])
     N1 = 4 * f0 * Ne
     S1 = np.repeat(np.array(code), np.int(N1), axis=0)
 
