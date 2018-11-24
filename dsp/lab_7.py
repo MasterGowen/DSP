@@ -149,7 +149,7 @@ def lab_7_check_answer(student_data, source_data, lab_settings, correct_answer):
         score += 5
     else:
         result["correctness"]["m_correctness"] = False
-    result["correctness"]["m_correct"] = f0
+    result["correctness"]["m_correct"] = m
 
     if arrays_is_equal(Sm, student_Sm, tolerance=arr_tol):
         result["correctness"]["Sm_correctness"] = True

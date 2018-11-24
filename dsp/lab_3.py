@@ -74,7 +74,7 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     B_et = int(correct_answer["S"])
     s_et = correct_answer["s"]
 
-    max_score = 4
+    max_score = 100
     score = 0
     result = dict()
     result["correctness"] = dict()
@@ -83,27 +83,27 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
 
     if arrays_is_equal(y_et, student_y, tolerance=arr_tol):
         result["correctness"]["signal_correctness"] = True
-        score += 1
+        score += 20
     else:
         result["correctness"]["signal_correctness"] = False
     result["correctness"]["signal_correct"] = y_et.tolist()
 
     if arrays_is_equal(b_et, student_b, tolerance=arr_tol):
         result["correctness"]["filter_correctness"] = True
-        score += 1
+        score += 20
     else:
         result["correctness"]["filter_correctness"] = False
     result["correctness"]["filter_correct"] = b_et.tolist()
 
     if numbers_is_equal(B_et, student_B, tolerance=num_tol):
         result["correctness"]["B_correctness"] = True
-        score += 1
+        score += 20
     else:
         result["correctness"]["B_correctness"] = False
     result["correctness"]["B_correct"] = float(B_et)
 
     s_correctnes = arrays_is_equal_by_elements(s_et, student_s, tolerance=num_tol)
-    s_score = 1
+    s_score = 40
     score += np.round(s_score / float(len(s_correctnes)) * values_count_in_array(s_correctnes, value=True), 1)
 
     for idx, val in enumerate(s_correctnes):
