@@ -40,8 +40,17 @@ def lab_7_get_source_data():
     f02Part2 = int(2 * (5 + np.floor(5 * rand_5)))
     NePart2 = int(1 + np.floor(9 * rand_6))
 
+    soob = ''.join([s for s in random.sample(string.ascii_uppercase, 5)])
     f0Part3 = 5 + np.floor(5 * rand_7)  # np.random.rand()
     NePart3 = 1 + np.floor(9 * rand_8)  # np.random.rand()
+
+    code_tmp = ''.join("0" + format(ord(x), 'b') for x in soob)  # разобраться с ноликом в начале
+    L_tmp = len(code_tmp)
+    N1 = int(4 * f0Part3 * NePart3)
+    S1 = np.repeat(np.array([ord(x) for x in code_tmp]), np.int(N1), axis=0) - 48
+    S1p = (2 * (S1 - 0.5)) * np.cos(2 * math.pi * f0Part3 * np.arange(0, L_tmp * N1) / N1) + (0.5 * np.random.randn(np.int(N1 * L_tmp)))
+    S10 = np.cos(2 * math.pi * f0Part3 * np.arange(0, L_tmp * N1) / N1)
+    SD = S1p * S10
 
     shift_keying_types = [{
             "name": "amplitude_shift",
@@ -58,13 +67,14 @@ def lab_7_get_source_data():
     ]
     shift_keying_type = random.choice(shift_keying_types)
 
-    soob = ''.join([s for s in random.sample(string.ascii_uppercase, 5)])
-
     correct_answer = dict()
     correct_answer["f0"] = f0
     correct_answer["fm"] = fm
     correct_answer["m"] = m
     correct_answer["soob"] = soob
+    correct_answer["S1p"] = S1p.tolist()
+    correct_answer["SD"] = SD.tolist()
+    correct_answer["N1"] = N1
 
     context = dict()
     context["N0"] = N0
@@ -132,16 +142,9 @@ def lab_7_get_graphic_2(student_data):
 
 def lab_7_get_graphic_3(source_data, correct_answer):
     graphics = []
-    f0 = source_data["f0Part3"]
-    Ne = source_data["NePart3"]
-    soob = correct_answer["soob"]
-    code = ''.join("0" + format(ord(x), 'b') for x in soob)  # разобраться с ноликом в начале
-    L = len(code)
-    N1 = int(4 * f0 * Ne)
-    S1 = np.repeat(np.array([ord(x) for x in code]), np.int(N1), axis=0) - 48
-    S1p = (2 * (S1 - 0.5)) * np.cos(2 * math.pi * f0 * np.arange(0, L * N1) / N1) + (0.5 * np.random.randn(np.int(N1 * L)))
-    S10 = np.cos(2 * math.pi * f0 * np.arange(0, L * N1) / N1)
-    SD = S1p * S10
+    N1 = int(correct_answer["N1"])
+    S1p = correct_answer["S1p"]
+    SD = correct_answer["SD"]
 
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.plot(np.arange(0, N1*8), S1p[0:np.int(N1*8)])
@@ -166,5 +169,24 @@ def lab_7_get_graphic_3(source_data, correct_answer):
     return graphics
 
 
-def lab_7_get_graphic_4(student_data, source_data, correct_answer):
-    pass
+def lab_7_get_graphic_4(student_data, correct_answer):
+    graphics = []
+    b_st = np.array(student_data["student_b"])
+    a_st = np.array(student_data["student_a"])
+    SD = np.array(correct_answer["SD"])
+    N1 = int(correct_answer["N1"])
+
+    z = signal.lfilter(b_st, a_st, SD)
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.plot(np.arange(0, np.int(N1*8)), z[0:np.int(N1*8)])
+    ax.stem(np.arange(N1/2, N1*8, N1), np.take(z, np.arange(np.int(N1/2), np.int(N1*8), np.int(N1))), 'r')
+
+    html = mpld3.fig_to_d3(fig)
+    graphics.append(
+        {
+            "id": "graphic_4_1",
+            "html": html,
+        }
+    )
+    return
