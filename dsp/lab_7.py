@@ -113,7 +113,7 @@ def lab_7_check_answer(student_data, source_data, lab_settings, correct_answer):
     student_f0 = float(student_data["student_f0"])
     student_fm = float(student_data["student_fm"])
     student_m = float(student_data["student_m"])
-    student_Sm = float(student_data["student_Sm"])
+    student_Sm = student_data["student_Sm"]
     student_soob = student_data["student_soob"]
 
     f0 = correct_answer["f0"]
@@ -121,7 +121,6 @@ def lab_7_check_answer(student_data, source_data, lab_settings, correct_answer):
     m = correct_answer["m"]
     Sm = get_correct_sm(source_data)
     soob = correct_answer["soob"]
-
 
     max_score = 100
     score = 0
