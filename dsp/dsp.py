@@ -362,7 +362,7 @@ class DSPXBlock(XBlock):
             return Response('Error!', 500)
 
     @XBlock.json_handler
-    def lab_7_get_graphic_2(self, data, suffix=''):
+    def lab_7_get_graphic_4(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
             graphics = lab_7_get_graphic_4(data, self.correct_answer)
