@@ -77,6 +77,7 @@ function DSPXBlock(runtime, element, data) {
     function build_graphic_4() {
         show_graphic_load($('#graphic_4_1', element));
         // show_graphic_load($('#graphic_4_2', element));
+        disable($('#calculate_graphic_2', element));
         $.ajax({
             type: "POST",
             url: get_graphic_4,
@@ -84,10 +85,12 @@ function DSPXBlock(runtime, element, data) {
             success: function (result) {
                 $("#graphic_4_1", element).html(result["graphics"][0]["html"]);
                 // $("#graphic_4_2", element).html(result["graphics"][1]["html"]);
+                enable($('#calculate_graphic_2', element));
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_4_1', element));
                 // show_graphic_error($('#graphic_4_2', element));
+                enable($('#calculate_graphic_2', element));
                 log_ajax_error(jqXHR, exception);
             },
             contentType: 'application/json; charset=utf-8'
@@ -98,6 +101,97 @@ function DSPXBlock(runtime, element, data) {
         build_graphic_4();
     });
 
+    $('#reset_task', element).click(function (event) {
+        disable($('#reset_task button'), element);
+        var confirm_reset = confirm("Вы уверены, что хотите сбросить задание? При сбросе задания набранные баллы и ответ не сохраняются.");
+        if (confirm_reset) {
+            $.ajax({
+                type: "GET",
+                url: reset_task,
+                success: function (result) {
+                    // actions_bottom_notification("save", $('.dsp-notification', element));
+                    enable($('#reset_task button'), element);
+                    window.location.reload(true);
+                },
+                error: function (jqXHR) {
+                    error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
+                    enable($('#reset_task button'), element);
+                },
+                contentType: 'application/json; charset=utf-8'
+            });
+        }
+    });
+
+    $('#save_answer', element).click(function (event) {
+        disable($('#save_answer button'), element);
+        $.ajax({
+            type: "POST",
+            url: save_answer,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                actions_bottom_notification("save", $('.dsp-notification', element));
+                enable($('#save_answer button'), element);
+            },
+            error: function (jqXHR){
+                error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
+                enable($('#save_answer button'), element);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    });
+
+    function buttons_disable() {
+        var student_data = generateAnswer();
+        if (student_data.student_Sm.length > 0) {
+            enable($("#calculate_graphic_2", element));
+        }
+        else {
+            disable($("#calculate_graphic_2", element));
+        }
+        if (student_data.student_a.length > 0 && student_data.student_b.length > 0) {
+            enable($("#calculate_graphic_4", element));
+        }
+        else{
+            disable($("#calculate_graphic_4", element));
+        }
+
+        if (parseFloat(student_data.student_f0) && parseFloat(student_data.student_fm) && parseFloat(student_data.student_m)){
+            if(student_data.student_a.length > 0 && student_data.student_b.length > 0 && student_data.student_Sm.length > 0){
+                if(student_data.student_soob.length > 0){
+                    enable($("#check_answer", element));
+                }
+                else{
+                    disable($("#check_answer", element));
+                }
+            }
+            else {
+                 disable($("#check_answer", element));
+            }
+        }
+        else{
+            disable($("#check_answer", element));
+        }
+
+        // if (student_data.student_s.length > 0 && student_data.student_s1.length > 0 && student_data.student_sl.length > 0 && student_data.student_slc.length > 0){
+        //     if (parseFloat(student_data.student_fn) && parseFloat(student_data.student_Np)){
+        //         if (parseFloat(student_data.student_K1) && parseFloat(student_data.student_K2) && parseFloat(student_data.student_K3) && parseFloat(student_data.student_K4)){
+        //             if(data.answer_opportunity) {
+        //                 enable($("#check_answer", element));
+        //             }
+        //         }
+        //         else{
+        //             disable($("#check_answer", element));
+        //         }
+        //     }
+        //     else{
+        //         disable($("#check_answer", element));
+        //      }
+        // }
+        // else{
+        //     disable($("#check_answer", element));
+        // }
+    }
+
     function generateAnswer() {
         var student_data = {};
         student_data.student_Sm = parseTextSignal($("#input_student_Sm", element)).signal;
@@ -107,7 +201,7 @@ function DSPXBlock(runtime, element, data) {
         student_data.student_f0 = $("#input_student_f0", element).val();
         student_data.student_fm = $("#input_student_fm", element).val();
         student_data.student_m = $("#input_student_m", element).val();
-        student_data.student_soob = $("#input_student_soob", element).val();
+        student_data.student_soob = $("#input_student_soob", element).val().split(' ').join('');
 
         console.log(student_data);
         return student_data;
@@ -146,10 +240,10 @@ function DSPXBlock(runtime, element, data) {
         //         highlight_correctness(data["student_state"]["correctness"]);
         //     }
         }
-        // buttons_disable();
+        buttons_disable();
 
         $(element).on('input', ".answer-input", function () {
-            // buttons_disable();
+            buttons_disable();
             clean_bottom_notification($('.dsp-notification', element));
             if (highlight_correct) {
                 $(this).removeClass("dsp-incorrect-input");
