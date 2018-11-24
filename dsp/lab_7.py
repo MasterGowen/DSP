@@ -34,8 +34,6 @@ def lab_7_get_source_data():
     f0 = 200 + np.floor(250 * rand_1)  # np.random.rand()
     fm = np.floor(50 * rand_2)  # np.random.rand()
     m = 0.2 + 0.8 * rand_3  # np.random.rand()
-    d1 = (1 + m * np.cos(2 * math.pi * fm * np.arange(0, N0) / N0)) * (np.cos(2 * math.pi * f0 * np.arange(0, N0) / N0))
-    fft_d1 = np.abs(np.fft.fft(d1))
 
     code = (np.array(rand_4) > 0.5).astype(int)
     f0Part2 = int(5 + np.floor(5 * rand_5))
@@ -73,9 +71,6 @@ def lab_7_get_source_data():
     correct_answer["f0"] = f0
     correct_answer["fm"] = fm
     correct_answer["m"] = m
-    correct_answer["d1"] = d1.tolist()
-    correct_answer["fft_d1"] = fft_d1.tolist()
-
     correct_answer["soob"] = soob
     correct_answer["S1p"] = S1p.tolist()
     correct_answer["SD"] = SD.tolist()
@@ -104,10 +99,11 @@ def lab_7_check_answer(student_data, source_data, lab_settings, correct_answer):
 def lab_7_get_graphic_1(source_data, correct_answer):
     graphics = []
     N0 = source_data["N0"]
-    # f0 = correct_answer["f0"]
-    # fm = correct_answer["fm"]
-    d1 = correct_answer["d1"]
-    fft_d1 = correct_answer["fft_d1"]
+    f0 = correct_answer["f0"]
+    fm = correct_answer["fm"]
+    m = correct_answer["m"]
+
+    d1 = (1 + m * np.cos(2 * math.pi * fm * np.arange(0, N0) / N0)) * (np.cos(2 * math.pi * f0 * np.arange(0, N0) / N0))
 
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.plot(np.arange(N0), d1)
@@ -121,7 +117,7 @@ def lab_7_get_graphic_1(source_data, correct_answer):
     )
 
     fig, ax = plt.subplots(figsize=(6, 6))
-    ax.stem(np.arange(N0), fft_d1, 'c')
+    ax.stem(np.arange(N0), np.abs(np.fft.fft(d1)), 'c')
     html = mpld3.fig_to_d3(fig)
     graphics.append(
         {
