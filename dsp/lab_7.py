@@ -189,4 +189,4 @@ def lab_7_get_graphic_4(student_data, correct_answer):
             "html": html,
         }
     )
-    return
+    return graphics

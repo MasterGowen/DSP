@@ -76,18 +76,18 @@ function DSPXBlock(runtime, element, data) {
 
     function build_graphic_4() {
         show_graphic_load($('#graphic_4_1', element));
-        show_graphic_load($('#graphic_4_2', element));
+        // show_graphic_load($('#graphic_4_2', element));
         $.ajax({
             type: "POST",
             url: get_graphic_4,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_4_1", element).html(result["graphics"][0]["html"]);
-                $("#graphic_4_2", element).html(result["graphics"][1]["html"]);
+                // $("#graphic_4_2", element).html(result["graphics"][1]["html"]);
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_4_1', element));
-                show_graphic_error($('#graphic_4_2', element));
+                // show_graphic_error($('#graphic_4_2', element));
                 log_ajax_error(jqXHR, exception);
             },
             contentType: 'application/json; charset=utf-8'
