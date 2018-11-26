@@ -127,16 +127,19 @@ function DSPXBlock(runtime, element, data) {
 
     function build_graphic_3() {
         show_graphic_load($('#graphic_3', element));
+        disable($('#graphic_3'), element);
         $.ajax({
             type: "POST",
             url: get_graphic_3,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
                 $("#graphic_3", element).html(result["graphic"]["html"]);
+                enable($('#graphic_3'), element);
             },
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_3', element));
                 log_ajax_error(jqXHR, exception);
+                enable($('#graphic_3'), element);
             },
             contentType: 'application/json; charset=utf-8'
         });
