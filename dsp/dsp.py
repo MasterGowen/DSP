@@ -13,6 +13,9 @@ from xblock.fragment import Fragment
 from webob.response import Response
 from django.http import JsonResponse
 
+from submissions import api as submissions_api
+from submissions.models import StudentItem as SubmissionsStudent
+
 from xmodule.util.duedate import get_extended_due_date
 
 from .utils import (
@@ -183,6 +186,11 @@ class DSPXBlock(XBlock):
         The primary view of the DSPXBlock, shown to students
         when viewing courses.
         """
+
+        score = submissions_api.get_score(self.get_student_item_dict())
+        log.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+        log.info(score)
+
         context = self.lab_context()
 
         fragment = self.load_lab_static(self.current_lab, context)
