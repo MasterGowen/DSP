@@ -182,14 +182,6 @@ class DSPXBlock(XBlock):
         return data.decode("utf8")
 
     def student_view(self, context=None):
-        """
-        The primary view of the DSPXBlock, shown to students
-        when viewing courses.
-        """
-
-        score = submissions_api.get_score(self.get_student_item_dict())
-        log.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-        log.info(score)
 
         context = self.lab_context()
 
