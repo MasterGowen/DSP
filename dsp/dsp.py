@@ -35,7 +35,7 @@ log = logging.getLogger(__name__)
 
 
 class DSPXBlock(XBlock):
-    has_score = True
+    # has_score = True
 
     display_name = String(
         display_name='Display Name',
@@ -139,6 +139,13 @@ class DSPXBlock(XBlock):
         help='Правильный ответ',
     )
 
+    @property
+    def has_score(self):
+        """Are we a scored type (read: a problem). Yes.
+        For LMS Progress page/grades download purposes, we're always going to
+        have a score, even if it's just 0 at the start.
+        """
+        return True
 
     def is_course_staff(self):
         """
