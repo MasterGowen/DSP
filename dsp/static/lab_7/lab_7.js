@@ -1,5 +1,3 @@
-
-/* Javascript for DSPXBlock. */
 function DSPXBlock(runtime, element, data) {
     var student_submit = runtime.handlerUrl(element, 'student_submit');
     var save_answer = runtime.handlerUrl(element, 'save_answer');
@@ -8,7 +6,6 @@ function DSPXBlock(runtime, element, data) {
     var get_graphic_2 = runtime.handlerUrl(element, 'lab_7_get_graphic_2');
     var get_graphic_3 = runtime.handlerUrl(element, 'lab_7_get_graphic_3');
     var get_graphic_4 = runtime.handlerUrl(element, 'lab_7_get_graphic_4');
-
 
     var highlight_correct = true;
 
@@ -213,7 +210,6 @@ function DSPXBlock(runtime, element, data) {
         student_data.student_m = $("#input_student_m", element).val();
         student_data.student_soob = $("#input_student_soob", element).val().split(' ').join('');
 
-        console.log(student_data);
         return student_data;
     }
 
