@@ -2,7 +2,12 @@ import numpy as np
 
 
 def arrays_is_equal(x, y, tolerance=0.01):
-    return np.allclose(x, y, atol=tolerance)
+    try:
+        result = np.allclose(x, y, atol=tolerance)
+    except:
+        result = False
+    finally:
+        return result
 
 
 def arrays_is_equal_by_elements(x, y, tolerance=0.01):
