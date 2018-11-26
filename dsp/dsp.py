@@ -35,14 +35,8 @@ log = logging.getLogger(__name__)
 
 
 class DSPXBlock(XBlock):
-    """
-    TO-DO: document what your XBlock does.
-    """
+    has_score = True
 
-    # Fields are defined on the class.  You can access them in your code as
-    # self.<fieldname>.
-
-    # TO-DO: delete count, and define your own fields.
     display_name = String(
         display_name='Display Name',
         default="DSPxblock",
@@ -181,7 +175,6 @@ class DSPXBlock(XBlock):
         data = pkg_resources.resource_string(__name__, path)
         return data.decode("utf8")
 
-    # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
         """
         The primary view of the DSPXBlock, shown to students
@@ -195,7 +188,7 @@ class DSPXBlock(XBlock):
 
     @XBlock.json_handler
     def student_submit(self, data, suffix=''):
-        # TO-DO: проверка возможности ответа
+
         self.student_state["answer"] = data
         result = {}
         try:
@@ -228,7 +221,6 @@ class DSPXBlock(XBlock):
                 self.student_state["is_success"] = "error"
             else:
                 self.student_state["is_success"] = "partially"
-
 
             self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
             self.student_state["maximum_score"] = self.maximum_score
