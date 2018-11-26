@@ -4,10 +4,10 @@
     <div class="dsp-problem-progress">
         {% if score == 0 or score %}
         <me-span class="weight"> Набрано баллов:
-            <me-span class="points">{{score|floatformat:"0" }} из {{maximum_score|floatformat:"0" }}</me-span>
+            <me-span class="points">{{score|floatformat:"0" }} из {{weight|floatformat:"0" }}</me-span>
         </me-span>
         {% else %}
-        <me-span class="weight">(Максимальное кoличество баллов: {{maximum_score|floatformat:"0" }})</me-span>
+        <me-span class="weight">(Максимальное кoличество баллов: {{weight|floatformat:"0" }})</me-span>
         {% endif %}
     </div>
 </div>

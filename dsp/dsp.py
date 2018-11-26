@@ -93,7 +93,7 @@ class DSPXBlock(XBlock):
         scope=Scope.user_state
     )
 
-    maximum_score = Integer(
+    weight = Integer(
         display_name=u"Максимальное количество баллов",
         help=(u"Максимальное количество баллов",
               u"которое может получить студент."),
@@ -214,7 +214,7 @@ class DSPXBlock(XBlock):
             else:
                 raise Exception('Hiding bugs lol')
 
-            self.score = round(self.maximum_score * result["score"], 1)
+            self.score = round(self.weight * result["score"], 1)
             self.student_state["score"] = self.score
             self.student_state["correctness"] = result["correctness"]
 
@@ -225,8 +225,8 @@ class DSPXBlock(XBlock):
             else:
                 self.student_state["is_success"] = "partially"
 
-            self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.maximum_score))
-            self.student_state["maximum_score"] = self.maximum_score
+            self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.weight))
+            self.student_state["weight"] = self.weight
             self.student_state["max_attempts"] = self.max_attempts
             self.attempts += 1
             self.student_state["attempts"] = self.attempts
@@ -386,7 +386,7 @@ class DSPXBlock(XBlock):
         general_context = {
             "current_lab": self.current_lab,
             "display_name": self.display_name,
-            "maximum_score": self.maximum_score,
+            "weight": self.weight,
             "score": self.score,
             "max_attempts": self.max_attempts,
             "attempts": self.attempts,
@@ -454,7 +454,7 @@ class DSPXBlock(XBlock):
             "display_name": self.display_name,
             "current_lab": self.current_lab,
             "lab_list": self.lab_list,
-            "maximum_score": self.maximum_score,
+            "weight": self.weight,
             "max_attempts": self.max_attempts,
             "number_tolerance": self.lab_settings["number_tolerance"],
             "array_tolerance": self.lab_settings["array_tolerance"],
@@ -485,7 +485,7 @@ class DSPXBlock(XBlock):
     def studio_submit(self, data, suffix=''):
         self.display_name = data.get('display_name')
         self.current_lab = data.get('current_lab')
-        self.maximum_score = int(float(data.get('maximum_score')))
+        self.weight = int(float(data.get('weight')))
         try:
             self.max_attempts = int(round(float(data.get('max_attempts'))))
             if self.max_attempts == 0:

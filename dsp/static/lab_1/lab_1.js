@@ -57,9 +57,9 @@ function DSPXBlock(runtime, element, data) {
             success: function (result) {
                 $(element).find('me-span.points').html(result.score);
                 $(element).find('.weight').html('Набрано баллов: <me-span class="points"></span>');
-                $('.points', element).text(result.score + ' из ' + data.maximum_score);
+                $('.points', element).text(result.score + ' из ' + data.weight);
                 if (highlight_correct) highlight_correctness(result.correctness);
-                is_success_bottom_notification(result.is_success, result.score, result.maximum_score, $('.dsp-notification', element));
+                is_success_bottom_notification(result.is_success, result.score, result.weight, $('.dsp-notification', element));
                 $('.attempts', element).text(result.attempts);
                 if (result.max_attempts && result.max_attempts <= result.attempts) {
                     data.answer_opportunity = false;
