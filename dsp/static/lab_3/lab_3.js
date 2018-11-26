@@ -307,12 +307,11 @@ function DSPXBlock(runtime, element, data) {
                 $(this).removeClass("dsp-correct-input");
             }
         });
-
-
+        
         $("textarea.array-input", element).each(function (i) {
-            $(this).change(function () {
-                process_array_input(this);
-            });
+            this.addEventListener('input', function (e) {
+             process_array_input(this);
+            }, false);
         });
 
         $("input.s-input", element).each(function (i) {
