@@ -39,7 +39,7 @@ log = logging.getLogger(__name__)
 
 class DSPXBlock(XBlock):
     # has_score = True
-
+    graded = True
     has_score = True
     icon_class = 'problem'
 
