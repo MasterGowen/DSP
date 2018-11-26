@@ -225,7 +225,7 @@ class DSPXBlock(XBlock):
             else:
                 self.student_state["is_success"] = "partially"
 
-            self.runtime.publish(self, 'grade', dict(value=self.score, max_value=self.weight))
+            self.runtime.publish(self, 'grade', {'value': float(self.score), 'max_value':float(self.weight)})
             self.student_state["weight"] = self.weight
             self.student_state["max_attempts"] = self.max_attempts
             self.attempts += 1
