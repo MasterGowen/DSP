@@ -300,6 +300,6 @@ div.dsp-notification .notification .icon {
 }
 
 
-.container>div {
+.container>div, .header-global.slim {
     background: #ffffff !important;
 }
