@@ -298,3 +298,8 @@ div.dsp-notification .notification .icon {
     align-items: center;
     flex-wrap: wrap;
 }
+
+
+.container>div {
+    background: #ffffff !important;
+}
