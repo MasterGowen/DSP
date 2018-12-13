@@ -221,6 +221,8 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
     # ax.plot(np.arange(len(y)), np.full((len(y), 1), 0.707 * max(s2)), 'r')
     ax.plot(np.arange(len(y)), np.ones((len(y), 1)) * (0.707 * 130), 'r')
 
+    ax.plot(np.arange(len(y)), np.ones((len(y), 1)) * (2 * math.sqrt(130)), 'b')
+
     html = mpld3.fig_to_d3(fig)
     graphic = {
         "id": "graphic_2",
