@@ -156,7 +156,9 @@ def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y):
             res["s2"][j-1][i-1] = s2.tolist()
             res["y2"][j-1][i-1] = y2.tolist()
             w = (np.array(s2) > np.array(pp)).astype(int)
-            for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
+
+            # for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
+            for x in np.arange(math.floor(N0 - 10) - 1, math.floor(N0 + 10) + 3):
                 w[x-1] = 0
             q = q + np.double(sum(w) > 0)
         correct_s[j-1] = float(q/Ku_i)
