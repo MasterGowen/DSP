@@ -1,10 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-шаблон второй лаборатории
-</body>
-</html>
+<div class="dsp_header">
+    <h3 class="hd hd-3 problem-header">{{display_name}}</h3>
+    <div class="dsp-problem-progress">
+        {% if score == 0 or score %}
+        <me-span class="weight"> Набрано баллов:
+            <me-span class="points">{{score|floatformat:"0" }} из {{weight|floatformat:"0" }}</me-span>
+        </me-span>
+        {% else %}
+        <me-span class="weight">(Максимальное кoличество баллов: {{weight|floatformat:"0" }})</me-span>
+        {% endif %}
+    </div>
+</div>
+
+<div class="dsp_block">
+    <h3>1. Исследовать спектр гармонического колебания с частотой, кратной частоте дискретизации</h3>
+    <div class="task-wording">
+    <p></p>
+    </div>
+    <div style="display: flex;">
+        <div id="graphic_1_1" class="graphic-container">
+        </div>
+        <div id="graphic_1_2" class="graphic-container">
+        </div>
+    </div>
+
+    <div class="numeric-input-container">
+        <label for="input_K_1">Введите долю частоты дискретизации:</label>
+        <input id="input_K_1" class="numeric-input answer-input" type=number step=any/>
+    </div>
+    <div class="numeric-input-container">
+        <label for="input_ns_0">Введите частоту пика спектральной плотности (1):</label>
+        <input id="input_ns_0" class="numeric-input answer-input" type=number step=any/>
+    </div>
+    <div class="numeric-input-container">
+        <label for="input_ns_1">Введите частоту пика спектральной плотности (2):</label>
+        <input id="input_ns_1" class="numeric-input answer-input" type=number step=any/>
+    </div>
+
+</div>
+
+
+<div class="dsp_footer action">
+    <div class="submit-attempt-container">
+        <button type="button" class="submit btn-brand" disabled="disabled" id="check_answer"><span class="submit-label">Проверить</span></button>
+        <div class="submission-feedback">
+            {% if max_attempts %}
+            Использовано <span class="attempts">{{ attempts }}</span> из {{ max_attempts }} попыток
+            {% endif %}
+        </div>
+    </div>
+    <div class="problem-action-buttons-wrapper">
+      <span class="problem-action-button-wrapper" id="save_answer">
+          <button type="button" class="save problem-action-btn btn-default btn-small" data-value="Сохранить">
+              <span class="icon fa fa-floppy-o" aria-hidden="true"></span>
+              <span aria-hidden="true">Сохранить</span>
+              <span class="sr">Save your answer</span>
+          </button>
+      </span>
+        {% if show_reset_button %}
+          <span class="problem-action-button-wrapper" id="reset_task">
+              <button type="button" class="reset problem-action-btn btn-default btn-small" data-value="Сбросить"><span class="icon fa fa-refresh" aria-hidden="true"></span><span aria-hidden="true">Сбросить</span><span class="sr">Reset your answer</span></button>
+          </span>
+        {% endif %}
+    </div>
+</div>
+
+<div class="dsp-notification">
+
+</div>
