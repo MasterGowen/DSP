@@ -40,7 +40,7 @@ def lab_2_get_source_data():
     correct_answer = dict()
     correct_answer["K_1"] = K_1
     correct_answer["K_2"] = K_2
-    correct_answer["f"] = f
+    correct_answer["f"] = f.tolist()
     context = dict()
     context["N3"] = N3
     # context["N3"] = N3
