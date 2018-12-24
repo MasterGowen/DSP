@@ -140,7 +140,9 @@ function DSPXBlock(runtime, element, data) {
         if (parseFloat(student_data.student_K1) && parseFloat(student_data.student_ns0) && parseFloat(student_data.student_ns1)) {
             if (parseFloat(student_data.student_K2)){
                 if (student_data.student_f.length > 0) {
-                    enable($("#check_answer", element));
+                    if(data.answer_opportunity) {
+                        enable($("#check_answer", element));
+                    }
                 } else {
                     disable($("#check_answer", element));
                 }

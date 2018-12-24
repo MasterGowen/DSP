@@ -422,7 +422,7 @@ class DSPXBlock(XBlock):
         return general_context
 
     def lab_context(self):
-        if not self.lab_source_data or self.lab_source_data["lab_id"] != self.current_lab:  # второе условие на случай смены лабораторной
+        if not self.lab_source_data or self.lab_source_data["lab_id"] != self.current_lab:
             self.student_state = {}
             self.attempts = 0
             self.score = None
