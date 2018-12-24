@@ -63,7 +63,7 @@ def lab_2_check_answer(student_data, source_data, lab_settings, correct_answer):
     correct_K_2 = float(correct_answer["K_2"])
     correct_f = np.array(correct_answer["f"])
 
-    max_score = 10
+    max_score = 5
     score = 0
     result = dict()
     result["correctness"] = dict()
