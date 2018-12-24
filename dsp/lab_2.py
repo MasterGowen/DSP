@@ -75,7 +75,7 @@ def lab_2_get_graphics_1(source_data, correct_answer):
     return graphics
 
 
-def lab_2_get_graphics_2():
+def lab_2_get_graphics_2(source_data, correct_answer):
     graphics = []
 
     K = int(correct_answer["K_2"])
