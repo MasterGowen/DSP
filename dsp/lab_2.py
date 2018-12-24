@@ -22,12 +22,12 @@ def lab_2_get_source_data():
     K_1 = 4  # random.choice([2, 4, 8])
     K_2 = (N3/2-1) * 0.53413  # * np.random.rand()
 
-    rand_number_1 = 0.9  # round(np.random.uniform(0,1,1)[0], 5)
+    rand_number_1 = 0.9  # np.random.rand()
     Nk = 2 + math.floor(8 * rand_number_1)
 
     rand_array = [0.19555953593700792, 0.82765677859013131, 0.62288302263001183, 0.35987965025942981,
                   0.4051999223051288, 0.089630611785237457, 0.36642628173153158, 0.55466526262884241,
-                  0.75511140802148402]  # rand_array = [x for x in np.random.uniform(0, 1, Nk)]  # [50*x for x in np.random.uniform(0, 1, Nk)]
+                  0.75511140802148402]  # rand_array = np.random.rand(Nk)
     f = np.sort([50 * x for x in rand_array])
     df = np.diff(f)
     df_tmp = np.append(df, np.repeat(999, len(f) - len(df)))
@@ -43,7 +43,6 @@ def lab_2_get_source_data():
     correct_answer["f"] = f.tolist()
     context = dict()
     context["N3"] = N3
-    # context["N3"] = N3
 
     context["lab_id"] = "lab_2"
 
