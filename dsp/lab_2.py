@@ -49,8 +49,65 @@ def lab_2_get_source_data():
     return context, correct_answer
 
 
-def lab_2_check_answer():
-    pass
+def lab_2_check_answer(student_data, source_data, lab_settings, correct_answer):
+    student_K_1 = float(student_data["student_K_1"])
+    student_ns_0 = float(student_data["student_ns_0"])
+    student_ns_1 = float(student_data["student_ns_1"])
+    student_K_2 = float(student_data["student_K_2"])
+    student_f = student_data["student_f"]
+
+    N3 = int(source_data["N3"])
+    correct_K_1 = int(correct_answer["K_1"])
+    correct_ns_0 = N3 / K_1
+    correct_ns_1 = N3 - N3 / K_1
+    correct_K_2 = float(correct_answer["K_2"])
+    correct_f = np.array(correct_answer["f"])
+
+    max_score = 10
+    score = 0
+    result = dict()
+    result["correctness"] = dict()
+    arr_tol = float(lab_settings["array_tolerance"])
+    num_tol = float(lab_settings["number_tolerance"])
+
+    if numbers_is_equal(correct_K_1, student_K_1, tolerance=num_tol):
+        result["correctness"]["K_1_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["K_1_correctness"] = False
+    result["correctness"]["K_1_correct"] = float(correct_K_1)
+
+    if numbers_is_equal(correct_ns_0, student_ns_0, tolerance=num_tol):
+        result["correctness"]["ns_0_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["ns_0_correctness"] = False
+    result["correctness"]["ns_0_correct"] = float(correct_ns_0)
+
+    if numbers_is_equal(correct_ns_1, student_ns_1, tolerance=num_tol):
+        result["correctness"]["ns_1_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["ns_1_correctness"] = False
+    result["correctness"]["ns_1_correct"] = float(correct_ns_1)
+
+    if numbers_is_equal(correct_K_2, student_K_2, tolerance=num_tol):
+        result["correctness"]["K_2_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["K_2_correctness"] = False
+    result["correctness"]["K_2_correct"] = float(correct_K_2)
+
+    if arrays_is_equal(correct_f, student_f, tolerance=arr_tol):
+        result["correctness"]["f_correctness"] = True
+        score += 1
+    else:
+        result["correctness"]["f_correctness"] = False
+    result["correctness"]["f_correct"] = f.tolist()
+
+    result["score"] = np.round(float(score) / float(max_score), 2)
+
+    return result
 
 
 def lab_2_get_graphics_1(source_data, correct_answer):
