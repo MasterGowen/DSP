@@ -50,10 +50,10 @@ def lab_2_get_source_data():
 
 
 def lab_2_check_answer(student_data, source_data, lab_settings, correct_answer):
-    student_K_1 = float(student_data["student_K_1"])
-    student_ns_0 = float(student_data["student_ns_0"])
-    student_ns_1 = float(student_data["student_ns_1"])
-    student_K_2 = float(student_data["student_K_2"])
+    student_K_1 = float(student_data["student_K1"])
+    student_ns_0 = float(student_data["student_ns0"])
+    student_ns_1 = float(student_data["student_ns1"])
+    student_K_2 = float(student_data["student_K2"])
     student_f = student_data["student_f"]
 
     N3 = int(source_data["N3"])

@@ -154,10 +154,10 @@ function DSPXBlock(runtime, element, data) {
 
     function generateAnswer() {
         var student_data = {};
-        student_data.student_K_1 = $("#input_student_K_1", element).val();
-        student_data.student_ns_0 = $("#input_student_ns_0", element).val();
-        student_data.student_ns_1 = $("#input_student_ns_1", element).val();
-        student_data.student_K_2 = $("#input_student_K_2", element).val();
+        student_data.student_K1 = $("#input_student_K1", element).val();
+        student_data.student_ns0 = $("#input_student_ns0", element).val();
+        student_data.student_ns1 = $("#input_student_ns1", element).val();
+        student_data.student_K2 = $("#input_student_K2", element).val();
 
         student_data.student_f = parseTextSignal($("#input_student_f", element)).signal;
 
@@ -165,10 +165,10 @@ function DSPXBlock(runtime, element, data) {
     }
 
     function build_lab_state(data) {
-        $("#input_student_K_1", element).val(data.answer.student_K_1);
-        $("#input_student_ns_0", element).val(data.answer.student_ns_0);
-        $("#input_student_ns_1", element).val(data.answer.student_ns_1);
-        $("#input_student_K_2", element).val(data.answer.student_K_2);
+        $("#input_student_K1", element).val(data.answer.student_K1);
+        $("#input_student_ns0", element).val(data.answer.student_ns0);
+        $("#input_student_ns1", element).val(data.answer.student_ns1);
+        $("#input_student_K2", element).val(data.answer.student_K2);
         $("textarea#input_student_f", element).val(data.answer.student_f);
     }
 
