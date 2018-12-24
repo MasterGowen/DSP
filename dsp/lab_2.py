@@ -37,7 +37,8 @@ def lab_2_get_source_data():
     # context["N3"] = N3
     return context, correct_answer
 
-# def la
+def lab_2_check_answer():
+    pass
 
 
 def lab_2_get_graphics_1(source_data, correct_answer):
