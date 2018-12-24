@@ -58,8 +58,8 @@ def lab_2_check_answer(student_data, source_data, lab_settings, correct_answer):
 
     N3 = int(source_data["N3"])
     correct_K_1 = int(correct_answer["K_1"])
-    correct_ns_0 = N3 / K_1
-    correct_ns_1 = N3 - N3 / K_1
+    correct_ns_0 = N3 / correct_K_1
+    correct_ns_1 = N3 - N3 / correct_K_1
     correct_K_2 = float(correct_answer["K_2"])
     correct_f = np.array(correct_answer["f"])
 
