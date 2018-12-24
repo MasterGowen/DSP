@@ -61,6 +61,7 @@ def lab_2_get_graphics_1(source_data, correct_answer):
 
     fig, ax = plt.subplots(figsize=(6, 6))
     d3 = [math.cos((math.pi * x) / 2) for x in np.arange(N3)]
+    # d3 = [math.cos((math.pi * x) / (K / 2)) for x in np.arange(N3)]
     ax.plot(np.arange(N3), d3, 'y', linewidth=2.0)
     html = mpld3.fig_to_d3(fig)
     graphics.append(
