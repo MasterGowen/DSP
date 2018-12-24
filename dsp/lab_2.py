@@ -35,7 +35,11 @@ def lab_2_get_source_data():
     context = dict()
     context["N3"] = N3
     # context["N3"] = N3
+
+    context["lab_id"] = "lab_2"
+
     return context, correct_answer
+
 
 def lab_2_check_answer():
     pass
