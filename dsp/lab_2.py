@@ -91,7 +91,7 @@ def lab_2_check_answer(student_data, source_data, lab_settings, correct_answer):
         result["correctness"]["ns1_correctness"] = False
     result["correctness"]["ns1_correct"] = float(correct_ns_1)
 
-    if numbers_is_equal(correct_K_2, student_K_2, tolerance=num_tol):
+    if numbers_is_equal(correct_K_2, student_K_2, tolerance=0.5):  # допуск задан принудительно, его не не менять
         result["correctness"]["K2_correctness"] = True
         score += 1
     else:
