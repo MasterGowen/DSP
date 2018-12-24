@@ -1,7 +1,7 @@
 function DSPXBlock(runtime, element, data) {
     // var student_submit = runtime.handlerUrl(element, 'student_submit');
-    // var save_answer = runtime.handlerUrl(element, 'save_answer');
-    // var reset_task = runtime.handlerUrl(element, 'reset_task');
+    var save_answer = runtime.handlerUrl(element, 'save_answer');
+    var reset_task = runtime.handlerUrl(element, 'reset_task');
     var get_graphics_1 = runtime.handlerUrl(element, 'lab_2_get_graphics_1');
     // var get_graphic_2 = runtime.handlerUrl(element, 'lab_7_get_graphic_2');
     // var get_graphic_3 = runtime.handlerUrl(element, 'lab_7_get_graphic_3');
@@ -58,44 +58,44 @@ function DSPXBlock(runtime, element, data) {
     //     });
     // });
 
-    // $('#reset_task', element).click(function (event) {
-    //     disable($('#reset_task button'), element);
-    //     var confirm_reset = confirm("Вы уверены, что хотите сбросить задание? При сбросе задания набранные баллы и ответ не сохраняются.");
-    //     if (confirm_reset) {
-    //         $.ajax({
-    //             type: "GET",
-    //             url: reset_task,
-    //             success: function (result) {
-    //                 // actions_bottom_notification("save", $('.dsp-notification', element));
-    //                 enable($('#reset_task button'), element);
-    //                 window.location.reload(true);
-    //             },
-    //             error: function (jqXHR) {
-    //                 error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
-    //                 enable($('#reset_task button'), element);
-    //             },
-    //             contentType: 'application/json; charset=utf-8'
-    //         });
-    //     }
-    // });
+    $('#reset_task', element).click(function (event) {
+        disable($('#reset_task button'), element);
+        var confirm_reset = confirm("Вы уверены, что хотите сбросить задание? При сбросе задания набранные баллы и ответ не сохраняются.");
+        if (confirm_reset) {
+            $.ajax({
+                type: "GET",
+                url: reset_task,
+                success: function (result) {
+                    // actions_bottom_notification("save", $('.dsp-notification', element));
+                    enable($('#reset_task button'), element);
+                    window.location.reload(true);
+                },
+                error: function (jqXHR) {
+                    error_bottom_notification(jqXHR, "При сбросе задания произошла ошибка", $('.dsp-notification', element));
+                    enable($('#reset_task button'), element);
+                },
+                contentType: 'application/json; charset=utf-8'
+            });
+        }
+    });
 
-    // $('#save_answer', element).click(function (event) {
-    //     disable($('#save_answer button'), element);
-    //     $.ajax({
-    //         type: "POST",
-    //         url: save_answer,
-    //         data: JSON.stringify(generateAnswer()),
-    //         success: function (result) {
-    //             actions_bottom_notification("save", $('.dsp-notification', element));
-    //             enable($('#save_answer button'), element);
-    //         },
-    //         error: function (jqXHR){
-    //             error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
-    //             enable($('#save_answer button'), element);
-    //         },
-    //         contentType: 'application/json; charset=utf-8'
-    //     });
-    // });
+    $('#save_answer', element).click(function (event) {
+        disable($('#save_answer button'), element);
+        $.ajax({
+            type: "POST",
+            url: save_answer,
+            data: JSON.stringify(generateAnswer()),
+            success: function (result) {
+                actions_bottom_notification("save", $('.dsp-notification', element));
+                enable($('#save_answer button'), element);
+            },
+            error: function (jqXHR){
+                error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
+                enable($('#save_answer button'), element);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    });
 
     function buttons_disable() {
         var student_data = generateAnswer();
