@@ -103,7 +103,7 @@ def lab_2_check_answer(student_data, source_data, lab_settings, correct_answer):
         score += 1
     else:
         result["correctness"]["f_correctness"] = False
-    result["correctness"]["f_correct"] = f.tolist()
+    result["correctness"]["f_correct"] = correct_f.tolist()
 
     result["score"] = np.round(float(score) / float(max_score), 2)
 
