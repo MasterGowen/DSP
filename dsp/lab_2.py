@@ -78,7 +78,7 @@ def lab_2_get_graphics_1(source_data, correct_answer):
 def lab_2_get_graphics_2(source_data, correct_answer):
     graphics = []
 
-    K = int(correct_answer["K_2"])
+    K = float(correct_answer["K_2"])
     N3 = int(source_data["N3"])
 
     fig, ax = plt.subplots(figsize=(6, 6))
