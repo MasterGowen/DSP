@@ -27,7 +27,7 @@ from .utils import (
 from .calc_utils import merge_two_dicts
 
 from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
-
+from lab_2 import lab_2_get_source_data, lab_2_get_graphics_1, lab_2_get_graphics_2, lab_2_get_graphics_3, lab_2_check_answer
 from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, lab_3_check_answer
 from lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
 from lab_5 import lab_5_get_source_data, lab_5_get_graphic_1, lab_5_get_graphic_2, lab_5_check_answer
@@ -255,6 +255,30 @@ class DSPXBlock(XBlock):
         except:
             return Response('Error!', 500)
 
+    @XBlock.handler
+    def lab_2_get_graphic_1(self, data, suffix=''):
+        try:
+            graphics = lab_2_get_graphic_1(self.lab_source_data, self.correct_answer)
+            return Response(json_body={"graphics": graphics})
+        except:
+            return Response('Error!', 500)
+
+    @XBlock.handler
+    def lab_2_get_graphic_2(self, data, suffix=''):
+        try:
+            graphics = lab_2_get_graphic_2(self.lab_source_data, self.correct_answer)
+            return Response(json_body={"graphics": graphics})
+        except:
+            return Response('Error!', 500)
+
+    @XBlock.handler
+    def lab_2_get_graphic_3(self, data, suffix=''):
+        try:
+            graphics = lab_2_get_graphic_3(self.lab_source_data, self.correct_answer)
+            return Response(json_body={"graphics": graphics})
+        except:
+            return Response('Error!', 500)
+
     @XBlock.json_handler
     def lab_3_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
@@ -405,8 +429,8 @@ class DSPXBlock(XBlock):
 
             if self.current_lab == "lab_1":
                 self.lab_source_data = lab_1_get_source_data()
-            # elif self.current_lab == "lab_2":
-            #     self.lab_source_data = lab_2_get_source_data()
+            elif self.current_lab == "lab_2":
+                self.lab_source_data, self.correct_answer = lab_2_get_source_data()
             elif self.current_lab == "lab_3":
                 state = dict()
                 self.lab_source_data, self.correct_answer = lab_3_get_source_data(self.correct_answer)
