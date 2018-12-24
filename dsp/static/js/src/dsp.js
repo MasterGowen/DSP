@@ -276,10 +276,13 @@ function example_data_lab_2() {
     var K_1 = "4";
     var ns_0 = "32";
     var ns_1 = "96";
+    var K_2 = "33.650";
 
     $("#input_student_K_1").val(K_1);
     $("#input_student_ns_0").val(ns_0);
     $("#input_student_ns_1").val(ns_1);
+    $("#input_student_K_2").val(K_2);
+
 }
 
 function example_data_lab_3() {
