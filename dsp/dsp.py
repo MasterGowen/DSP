@@ -265,11 +265,11 @@ class DSPXBlock(XBlock):
 
     @XBlock.handler
     def lab_2_get_graphics_2(self, data, suffix=''):
-        # try:
-        graphics = lab_2_get_graphics_2(self.lab_source_data, self.correct_answer)
-        return Response(json_body={"graphics": graphics})
-        # except:
-        #     return Response('Error!', 500)
+        try:
+            graphics = lab_2_get_graphics_2(self.lab_source_data, self.correct_answer)
+            return Response(json_body={"graphics": graphics})
+        except:
+            return Response('Error!', 500)
 
     @XBlock.handler
     def lab_2_get_graphics_3(self, data, suffix=''):
