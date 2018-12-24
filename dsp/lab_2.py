@@ -19,10 +19,10 @@ log = logging.getLogger(__name__)
 
 def lab_2_get_source_data():
     N3 = 128
-    K_1 = 8  # random.choice([2, 4, 8])
+    K_1 = 2  # random.choice([2, 4, 8])
     K_2 = (N3/2-1) * 0.362175  # * np.random.rand()
 
-    rand_number_1 = 0.9  # np.random.rand()
+    rand_number_1 = 0.6  # np.random.rand()
     Nk = 2 + math.floor(8 * rand_number_1)
 
     rand_array = [0.438179,   0.406272,  0.760758,   0.427553,   0.746484,  0.333041]  # rand_array = np.random.rand(Nk)
