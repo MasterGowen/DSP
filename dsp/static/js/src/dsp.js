@@ -279,10 +279,10 @@ function example_data_lab_2() {
     var K_2 = "33.650";
     var f = "4.4815    9.7780   20.2600   27.7333   31.1442   37.7556   41.3828";
 
-    $("#input_student_K_1").val(K_1);
-    $("#input_student_ns_0").val(ns_0);
-    $("#input_student_ns_1").val(ns_1);
-    $("#input_student_K_2").val(K_2);
+    $("#input_student_K1").val(K_1);
+    $("#input_student_ns0").val(ns_0);
+    $("#input_student_ns1").val(ns_1);
+    $("#input_student_K2").val(K_2);
     $("textarea#input_student_f").val(f);
 }
 
