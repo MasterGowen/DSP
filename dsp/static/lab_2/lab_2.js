@@ -137,8 +137,8 @@ function DSPXBlock(runtime, element, data) {
     function buttons_disable() {
         var student_data = generateAnswer();
 
-        if (parseFloat(student_data.student_K_1) && parseFloat(student_data.student_ns_0) && parseFloat(student_data.student_ns_1)) {
-            if (parseFloat(student_data.student_K_2)){
+        if (parseFloat(student_data.student_K1) && parseFloat(student_data.student_ns0) && parseFloat(student_data.student_ns1)) {
+            if (parseFloat(student_data.student_K2)){
                 if (student_data.student_f.length > 0) {
                     enable($("#check_answer", element));
                 } else {
