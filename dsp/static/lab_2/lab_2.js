@@ -3,9 +3,7 @@ function DSPXBlock(runtime, element, data) {
     var save_answer = runtime.handlerUrl(element, 'save_answer');
     var reset_task = runtime.handlerUrl(element, 'reset_task');
     var get_graphics_1 = runtime.handlerUrl(element, 'lab_2_get_graphics_1');
-    // var get_graphic_2 = runtime.handlerUrl(element, 'lab_7_get_graphic_2');
-    // var get_graphic_3 = runtime.handlerUrl(element, 'lab_7_get_graphic_3');
-    // var get_graphic_4 = runtime.handlerUrl(element, 'lab_7_get_graphic_4');
+    var get_graphics_2 = runtime.handlerUrl(element, 'lab_2_get_graphics_2');
 
     var highlight_correct = true;
 
@@ -22,6 +20,25 @@ function DSPXBlock(runtime, element, data) {
             error: function (jqXHR, exception) {
                 show_graphic_error($('#graphic_1_1', element));
                 show_graphic_error($('#graphic_1_2', element));
+                log_ajax_error(jqXHR, exception);
+            },
+            contentType: 'application/json; charset=utf-8'
+        });
+    }
+
+    function build_graphics_2() {
+        show_graphic_load($('#graphic_2_1', element));
+        show_graphic_load($('#graphic_2_2', element));
+        $.ajax({
+            type: "GET",
+            url: get_graphics_2,
+            success: function (result) {
+                $("#graphic_2_1", element).html(result["graphics"][0]["html"]);
+                $("#graphic_2_2", element).html(result["graphics"][1]["html"]);
+            },
+            error: function (jqXHR, exception) {
+                show_graphic_error($('#graphic_2_1', element));
+                show_graphic_error($('#graphic_2_2', element));
                 log_ajax_error(jqXHR, exception);
             },
             contentType: 'application/json; charset=utf-8'
@@ -101,7 +118,11 @@ function DSPXBlock(runtime, element, data) {
         var student_data = generateAnswer();
 
         if (parseFloat(student_data.student_K_1) && parseFloat(student_data.student_ns_0) && parseFloat(student_data.student_ns_1)) {
-            enable($("#check_answer", element));
+            if (parseFloat(student_data.student_K_2){
+                enable($("#check_answer", element));
+            } else {
+                disable($("#check_answer", element));
+            }
         } else{
             disable($("#check_answer", element));
         }
@@ -133,6 +154,7 @@ function DSPXBlock(runtime, element, data) {
         student_data.student_K_1 = $("#input_student_K_1", element).val();
         student_data.student_ns_0 = $("#input_student_ns_0", element).val();
         student_data.student_ns_1 = $("#input_student_ns_1", element).val();
+        student_data.student_K_2 = $("#input_student_K_2", element).val();
 
         return student_data;
     }
@@ -141,6 +163,7 @@ function DSPXBlock(runtime, element, data) {
         $("#input_student_K_1", element).val(data.answer.student_K_1);
         $("#input_student_ns_0", element).val(data.answer.student_ns_0);
         $("#input_student_ns_1", element).val(data.answer.student_ns_1);
+        $("#input_student_K_2", element).val(data.answer.student_K_2);
 
         // $("textarea#input_student_b", element).val(data.answer.student_b);
         //
@@ -156,7 +179,7 @@ function DSPXBlock(runtime, element, data) {
     $(function ($) {
         console.log(data);
         build_graphics_1();
-        // build_graphic_2();
+        build_graphics_2();
         // build_graphic_3();
         if (data.student_state.answer) {
             build_lab_state(data["student_state"]);
