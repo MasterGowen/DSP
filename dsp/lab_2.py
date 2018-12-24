@@ -71,32 +71,32 @@ def lab_2_check_answer(student_data, source_data, lab_settings, correct_answer):
     num_tol = float(lab_settings["number_tolerance"])
 
     if numbers_is_equal(correct_K_1, student_K_1, tolerance=num_tol):
-        result["correctness"]["K_1_correctness"] = True
+        result["correctness"]["K1_correctness"] = True
         score += 1
     else:
-        result["correctness"]["K_1_correctness"] = False
-    result["correctness"]["K_1_correct"] = float(correct_K_1)
+        result["correctness"]["K1_correctness"] = False
+    result["correctness"]["K1_correct"] = float(correct_K_1)
 
     if numbers_is_equal(correct_ns_0, student_ns_0, tolerance=num_tol):
-        result["correctness"]["ns_0_correctness"] = True
+        result["correctness"]["ns0_correctness"] = True
         score += 1
     else:
-        result["correctness"]["ns_0_correctness"] = False
-    result["correctness"]["ns_0_correct"] = float(correct_ns_0)
+        result["correctness"]["ns0_correctness"] = False
+    result["correctness"]["ns0_correct"] = float(correct_ns_0)
 
     if numbers_is_equal(correct_ns_1, student_ns_1, tolerance=num_tol):
-        result["correctness"]["ns_1_correctness"] = True
+        result["correctness"]["ns1_correctness"] = True
         score += 1
     else:
-        result["correctness"]["ns_1_correctness"] = False
-    result["correctness"]["ns_1_correct"] = float(correct_ns_1)
+        result["correctness"]["ns1_correctness"] = False
+    result["correctness"]["ns1_correct"] = float(correct_ns_1)
 
     if numbers_is_equal(correct_K_2, student_K_2, tolerance=num_tol):
-        result["correctness"]["K_2_correctness"] = True
+        result["correctness"]["K2_correctness"] = True
         score += 1
     else:
-        result["correctness"]["K_2_correctness"] = False
-    result["correctness"]["K_2_correct"] = float(correct_K_2)
+        result["correctness"]["K2_correctness"] = False
+    result["correctness"]["K2_correct"] = float(correct_K_2)
 
     if arrays_is_equal(correct_f, student_f, tolerance=arr_tol):
         result["correctness"]["f_correctness"] = True
