@@ -97,70 +97,59 @@ function DSPXBlock(runtime, element, data) {
     //     });
     // });
 
-    // function buttons_disable() {
-    //     var student_data = generateAnswer();
-    //     if (student_data.student_Sm.length > 0) {
-    //         enable($("#calculate_graphic_2", element));
-    //     }
-    //     else {
-    //         disable($("#calculate_graphic_2", element));
-    //     }
-    //     if (student_data.student_a.length > 0 && student_data.student_b.length > 0) {
-    //         enable($("#calculate_graphic_4", element));
-    //     }
-    //     else{
-    //         disable($("#calculate_graphic_4", element));
-    //     }
-    //
-    //     if (parseFloat(student_data.student_f0) && parseFloat(student_data.student_fm) && parseFloat(student_data.student_m)){
-    //         if(student_data.student_a.length > 0 && student_data.student_b.length > 0 && student_data.student_Sm.length > 0){
-    //             if(student_data.student_soob.length > 0){
-    //                 enable($("#check_answer", element));
-    //             }
-    //             else{
-    //                 disable($("#check_answer", element));
-    //             }
-    //         }
-    //         else {
-    //              disable($("#check_answer", element));
-    //         }
-    //     }
-    //     else{
-    //         disable($("#check_answer", element));
-    //     }
-    // }
+    function buttons_disable() {
+        var student_data = generateAnswer();
 
-    // function generateAnswer() {
-    //     var student_data = {};
-    //     student_data.student_Sm = parseTextSignal($("#input_student_Sm", element)).signal;
-    //     student_data.student_a = parseTextSignal($("#input_student_a", element)).signal;
-    //     student_data.student_b = parseTextSignal($("#input_student_b", element)).signal;
-    //
-    //     student_data.student_f0 = $("#input_student_f0", element).val();
-    //     student_data.student_fm = $("#input_student_fm", element).val();
-    //     student_data.student_m = $("#input_student_m", element).val();
-    //     student_data.student_soob = $("#input_student_soob", element).val().split(' ').join('');
-    //
-    //     return student_data;
-    // }
+        if (parseFloat(student_data.student_K_1) && parseFloat(student_data.student_ns_0) && parseFloat(student_data.student_ns_1)) {
+            enable($("#check_answer", element));
+        } else{
+            disable($("#check_answer", element));
+        }
 
-    // function build_lab_state(data) {
-    //     $("textarea#input_student_Sm", element).val(data.answer.student_Sm);
-    //     $("textarea#input_student_a", element).val(data.answer.student_a);
-    //     $("textarea#input_student_b", element).val(data.answer.student_b);
-    //
-    //     $("#input_student_f0", element).val(data.answer.student_f0);
-    //     $("#input_student_fm", element).val(data.answer.student_fm);
-    //     $("#input_student_m", element).val(data.answer.student_m);
-    //     $("#input_student_soob", element).val(data.answer.student_soob);
-    //
-    //     if (data.answer.student_Sm.length > 0){
-    //         build_graphic_2();
-    //     }
-    //     if (data.answer.student_a.length > 0 && data.answer.student_b.length > 0) {
-    //         build_graphic_4();
-    //     }
-    // }
+        // if (parseFloat(student_data.student_f0) && parseFloat(student_data.student_fm) && parseFloat(student_data.student_m)){
+        //     if(student_data.student_a.length > 0 && student_data.student_b.length > 0 && student_data.student_Sm.length > 0){
+        //         if(student_data.student_soob.length > 0){
+        //             enable($("#check_answer", element));
+        //         }
+        //         else{
+        //             disable($("#check_answer", element));
+        //         }
+        //     }
+        //     else {
+        //          disable($("#check_answer", element));
+        //     }
+        // }
+        // else{
+        //     disable($("#check_answer", element));
+        // }
+    }
+
+    function generateAnswer() {
+        var student_data = {};
+        // student_data.student_Sm = parseTextSignal($("#input_student_Sm", element)).signal;
+        // student_data.student_a = parseTextSignal($("#input_student_a", element)).signal;
+        // student_data.student_b = parseTextSignal($("#input_student_b", element)).signal;
+
+        student_data.student_K_1 = $("#input_student_K_1", element).val();
+        student_data.student_ns_0 = $("#input_student_ns_0", element).val();
+        student_data.student_ns_1 = $("#input_student_ns_1", element).val();
+
+        return student_data;
+    }
+
+    function build_lab_state(data) {
+        $("#input_student_K_1", element).val(data.answer.student_K_1);
+        $("#input_student_ns_0", element).val(data.answer.student_ns_0);
+        $("#input_student_ns_1", element).val(data.answer.student_ns_1);
+
+        // $("textarea#input_student_b", element).val(data.answer.student_b);
+        //
+        // $("#input_student_f0", element).val(data.answer.student_f0);
+        // $("#input_student_fm", element).val(data.answer.student_fm);
+        // $("#input_student_m", element).val(data.answer.student_m);
+        // $("#input_student_soob", element).val(data.answer.student_soob);
+
+    }
 
 
 
@@ -169,16 +158,16 @@ function DSPXBlock(runtime, element, data) {
         build_graphics_1();
         // build_graphic_2();
         // build_graphic_3();
-        // if (data.student_state.answer) {
-        //     build_lab_state(data["student_state"]);
+        if (data.student_state.answer) {
+            build_lab_state(data["student_state"]);
         //     $("textarea.array-input", element).each(function (i) {
         //         process_array_input(this);
         //     });
         //     if (data.student_state.correctness && highlight_correct) {
         //         highlight_correctness(data["student_state"]["correctness"]);
         //     }
-        // }
-        // buttons_disable();
+        }
+        buttons_disable();
 
         $(element).on('input', ".answer-input", function () {
             // buttons_disable();

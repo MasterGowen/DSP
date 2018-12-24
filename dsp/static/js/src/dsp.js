@@ -273,7 +273,9 @@ function example_data_lab_1() {
 }
 
 function example_data_lab_2() {
-    return;
+    var K_1 = "4";
+    var ns_0 = "32";
+    var ns_1 = "96";
 }
 
 function example_data_lab_3() {
