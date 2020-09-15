@@ -24,15 +24,15 @@ from .utils import (
     load_resource
 )
 
-from .calc_utils import merge_two_dicts
+from dsp.calc_utils import merge_two_dicts
 
-from lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
-from lab_2 import lab_2_get_source_data, lab_2_get_graphics_1, lab_2_get_graphics_2, lab_2_get_graphics_3, lab_2_check_answer
-from lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, lab_3_check_answer
-from lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
-from lab_5 import lab_5_get_source_data, lab_5_get_graphic_1, lab_5_get_graphic_2, lab_5_check_answer
+from dsp.lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
+from dsp.lab_2 import lab_2_get_source_data, lab_2_get_graphics_1, lab_2_get_graphics_2, lab_2_get_graphics_3, lab_2_check_answer
+from dsp.lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, lab_3_check_answer
+from dsp.lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
+from dsp.lab_5 import lab_5_get_source_data, lab_5_get_graphic_1, lab_5_get_graphic_2, lab_5_check_answer
 
-from lab_7 import lab_7_get_source_data, lab_7_get_graphic_1, lab_7_get_graphic_2, lab_7_get_graphic_3, lab_7_get_graphic_4, lab_7_check_answer
+from dsp.lab_7 import lab_7_get_source_data, lab_7_get_graphic_1, lab_7_get_graphic_2, lab_7_get_graphic_3, lab_7_get_graphic_4, lab_7_check_answer
 
 log = logging.getLogger(__name__)
 
