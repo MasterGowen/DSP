@@ -35,7 +35,7 @@ setup(
     ],
     entry_points={
         'xblock.v1': [
-            'dsp = dsp:DSPXBlock',
+            'dsp = dsp.dsp:DSPXBlock',
         ]
     },
     package_data=package_data("dsp", ["static", "public"]),
