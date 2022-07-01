@@ -22,9 +22,9 @@
                 <li class="field comp-setting-entry metadata_entry">
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label" for="display_name">Лабораторная:</label>
-                        <select class="select-lab" name="lab_scenario" selected="{{current_lab}}">
+                        <select class="select-lab" name="lab_scenario" selected="{{ current_lab }}">
                             {% for lab in lab_list %}
-                            <option {% if current_lab== lab.id %} selected="selected" {% endif %} value="{{lab.id}}">
+                            <option {% if current_lab == lab.id %} selected="selected" {% endif %} value="{{ lab.id }}">
                                 {{lab.title}}
                             </option>
                             {% endfor %}
@@ -45,7 +45,7 @@
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label" for="max_attempts">Максимальное количество попыток:</label>
                         <input class="setting-input setting-input-number" name="max_attempts" id="max_attempts"
-                               value="{{max_attempts}}" type="number" min="1" step="1"/>
+                               value="{{ max_attempts }}" type="number" min="1" step="1"/>
                     </div>
                     <span class="tip setting-help">Определяет, сколько раз можно давать ответ на задание. Если значение не установлено, предоставляется неограниченное количество попыток.</span>
                 </li>
@@ -73,7 +73,7 @@
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label" for="array_tolerance">Допуск проверки массивов:</label>
                         <input class="input setting-input" name="array_tolerance" id="array_tolerance"
-                               value="{{array_tolerance|stringformat:'f'}}" type="number" min="0" max="100" step="0.01"/>
+                               value="{{ array_tolerance|stringformat:'f' }}" type="number" min="0" max="100" step="0.01"/>
                     </div>
                     <span class="tip setting-help">Значение, определяющее погрешность для каждого элемента массива при проверке. Значение допуска по умолчанию = 0.01</span>
                 </li>
@@ -82,7 +82,7 @@
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label" for="number_tolerance">Допуск проверки числовых ответов:</label>
                         <input class="input setting-input" name="number_tolerance" id="number_tolerance"
-                               value="{{number_tolerance|stringformat:'f'}}" type="number" min="0" max="100" step="0.01"/>
+                               value="{{ number_tolerance|stringformat:'f' }}" type="number" min="0" max="100" step="0.01"/>
                     </div>
                     <span class="tip setting-help">Значение, определяющее погрешность числовых ответов при проверке. Значение допуска по умолчанию = 0.5</span>
                 </li>
