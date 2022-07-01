@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 def countdown_title(number):
     last_numeral = float(str(number)[-1])

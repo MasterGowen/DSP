@@ -114,12 +114,11 @@ function DSPXBlock(runtime, element, data) {
                 $('.attempts', element).text(result.attempts);
                 if (result.max_attempts && result.max_attempts <= result.attempts) {
                     data.answer_opportunity = false;
-                }
-                else{
+                } else {
                     enable($('#check_answer'), element);
                 }
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
@@ -158,7 +157,7 @@ function DSPXBlock(runtime, element, data) {
                 actions_bottom_notification("save", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
@@ -170,33 +169,28 @@ function DSPXBlock(runtime, element, data) {
         var student_data = generateAnswer();
         if (student_data.student_Sm.length > 0) {
             enable($("#calculate_graphic_2", element));
-        }
-        else {
+        } else {
             disable($("#calculate_graphic_2", element));
         }
         if (student_data.student_a.length > 0 && student_data.student_b.length > 0) {
             enable($("#calculate_graphic_4", element));
-        }
-        else{
+        } else {
             disable($("#calculate_graphic_4", element));
         }
 
-        if (parseFloat(student_data.student_f0) && parseFloat(student_data.student_fm) && parseFloat(student_data.student_m)){
-            if(student_data.student_a.length > 0 && student_data.student_b.length > 0 && student_data.student_Sm.length > 0){
-                if(student_data.student_soob.length > 0){
-                    if(data.answer_opportunity) {
+        if (parseFloat(student_data.student_f0) && parseFloat(student_data.student_fm) && parseFloat(student_data.student_m)) {
+            if (student_data.student_a.length > 0 && student_data.student_b.length > 0 && student_data.student_Sm.length > 0) {
+                if (student_data.student_soob.length > 0) {
+                    if (data.answer_opportunity) {
                         enable($("#check_answer", element));
                     }
-                }
-                else{
+                } else {
                     disable($("#check_answer", element));
                 }
+            } else {
+                disable($("#check_answer", element));
             }
-            else {
-                 disable($("#check_answer", element));
-            }
-        }
-        else{
+        } else {
             disable($("#check_answer", element));
         }
     }
@@ -225,14 +219,13 @@ function DSPXBlock(runtime, element, data) {
         $("#input_student_m", element).val(data.answer.student_m);
         $("#input_student_soob", element).val(data.answer.student_soob);
 
-        if (data.answer.student_Sm.length > 0){
+        if (data.answer.student_Sm.length > 0) {
             build_graphic_2();
         }
         if (data.answer.student_a.length > 0 && data.answer.student_b.length > 0) {
             build_graphic_4();
         }
     }
-
 
 
     $(function ($) {
@@ -261,13 +254,11 @@ function DSPXBlock(runtime, element, data) {
 
         $("textarea.array-input", element).each(function (i) {
             this.addEventListener('input', function (e) {
-             process_array_input(this);
+                process_array_input(this);
             }, false);
         });
 
     });
-
-
 
 
 }

@@ -8,7 +8,7 @@ function DSPXBlock(runtime, element, data) {
     var lab_3_reset_task_url = runtime.handlerUrl(element, 'lab_3_reset_task');
     var reset_task = runtime.handlerUrl(element, 'reset_task');
     var highlight_correct = true;
-    
+
     function lab_3_reset_task() {
         var confirm_reset = confirm("Вы уверены, что хотите сбросить рассчитанные данные?");
         if (confirm_reset) {
@@ -58,7 +58,7 @@ function DSPXBlock(runtime, element, data) {
         });
     }
 
-    function build_graphic_2(reload, there_is_signal="") {
+    function build_graphic_2(reload, there_is_signal = "") {
         show_graphic_load($('#graphic_2', element));
         disable($('#calculate_graphic_2_there_is_signal', element));
         disable($('#calculate_graphic_2_there_is_no_signal', element));
@@ -68,10 +68,10 @@ function DSPXBlock(runtime, element, data) {
         if (reload) {
             params.push("reload=true");
         }
-        if (there_is_signal !== ""){
-            params.push("is_signal="+there_is_signal)
+        if (there_is_signal !== "") {
+            params.push("is_signal=" + there_is_signal)
         }
-        if (params.length > 0){
+        if (params.length > 0) {
             params_str = "?" + params.join("&")
         }
         $.ajax({
@@ -79,36 +79,34 @@ function DSPXBlock(runtime, element, data) {
             url: get_graphic_2 + params_str,
             data: JSON.stringify(generateAnswer()),
             success: function (result) {
-                 $(".graphic-2-not-first-build", element).css("display", "block");
+                $(".graphic-2-not-first-build", element).css("display", "block");
 
-                 $("#graphic_2", element).html(result["graphic"]["html"]);
-                 $("#current_Ku_i", element).html(result["student_state"]["state"]["Ku_i"]);
-                 $("#current_Ku_j", element).html(result["student_state"]["state"]["Ku_j"]);
+                $("#graphic_2", element).html(result["graphic"]["html"]);
+                $("#current_Ku_i", element).html(result["student_state"]["state"]["Ku_i"]);
+                $("#current_Ku_j", element).html(result["student_state"]["state"]["Ku_j"]);
 
-                 $("#there-is-no-signal-count", element).html(result["student_state"]["state"]["there_is_no_signal_count"]);
-                 $("#there-is-signal-count", element).html(result["student_state"]["state"]["there_is_signal_count"]);
+                $("#there-is-no-signal-count", element).html(result["student_state"]["state"]["there_is_no_signal_count"]);
+                $("#there-is-signal-count", element).html(result["student_state"]["state"]["there_is_signal_count"]);
 
-                 result["student_state"]["state"]["there_is_signal_states"].forEach(function(state_value, idx) {
-                    if (state_value.there_is_signal_count !== undefined ) {
+                result["student_state"]["state"]["there_is_signal_states"].forEach(function (state_value, idx) {
+                    if (state_value.there_is_signal_count !== undefined) {
                         $("#input_student_s .label-signal-count", element)[idx].innerHTML = state_value.there_is_signal_count;
                         $("#input_student_s .label-no-signal-count", element)[idx].innerHTML = state_value.there_is_no_signal_count;
-                    }
-                    else {
+                    } else {
                         $("#input_student_s .label-signal-count", element)[idx].innerHTML = 0;
                         $("#input_student_s .label-no-signal-count", element)[idx].innerHTML = 0;
                     }
 
                 });
 
-                 data.student_state.state.Ku_j = result["student_state"]["state"]["Ku_j"];
-                 data.student_state.state.Ku_i = result["student_state"]["state"]["Ku_i"];
+                data.student_state.state.Ku_j = result["student_state"]["state"]["Ku_j"];
+                data.student_state.state.Ku_i = result["student_state"]["state"]["Ku_i"];
 
-                 if (result["student_state"]["state"]["Ku_done"]){
-                     $("#graphic-2-controls", element).css("display", "none");
-                 }
-                 else{
-                     $("#graphic-2-controls", element).css("display", "block");
-                 }
+                if (result["student_state"]["state"]["Ku_done"]) {
+                    $("#graphic-2-controls", element).css("display", "none");
+                } else {
+                    $("#graphic-2-controls", element).css("display", "block");
+                }
                 enable($('#calculate_graphic_2_there_is_signal', element));
                 enable($('#calculate_graphic_2_there_is_no_signal', element));
                 enable($('#calculate_graphic_2', element));
@@ -156,7 +154,7 @@ function DSPXBlock(runtime, element, data) {
                 actions_bottom_notification("save", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
@@ -179,12 +177,11 @@ function DSPXBlock(runtime, element, data) {
                 $('.attempts', element).text(result.attempts);
                 if (result.max_attempts && result.max_attempts <= result.attempts) {
                     data.answer_opportunity = false;
-                }
-                else{
+                } else {
                     enable($('#check_answer'), element);
                 }
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
@@ -240,7 +237,7 @@ function DSPXBlock(runtime, element, data) {
         student_data.student_signal = parseTextSignal($("#input_student_signal", element)).signal;
         student_data.student_filter = parseTextSignal($("#input_student_filter", element)).signal;
         student_data.student_B = $("#input_student_B", element).val();
-        $("input.s-input", element).each(function(){
+        $("input.s-input", element).each(function () {
             student_data.student_s.push($(this).val());
         });
         return student_data;
@@ -250,7 +247,7 @@ function DSPXBlock(runtime, element, data) {
         $("textarea#input_student_signal", element).val(data.answer.student_signal);
         $("textarea#input_student_filter", element).val(data.answer.student_filter);
         $("#input_student_B", element).val(data.answer.student_B);
-        data.answer.student_s.forEach(function(s_value, idx) {
+        data.answer.student_s.forEach(function (s_value, idx) {
             $("input.s-input", element)[idx].value = s_value;
         });
         build_graphic_1();
@@ -265,20 +262,17 @@ function DSPXBlock(runtime, element, data) {
             enable($("#calculate_graphic_2", element));
             enable($("#reset_task", element));
             if (parseFloat(student_data.student_B) && student_data.student_s.every(elem => elem.toString().replace(/\s/g, "") != "")) {
-                if(data.answer_opportunity) {
-                    if (data.student_state.state.Ku_i != 1 || data.student_state.state.Ku_j != 1){
+                if (data.answer_opportunity) {
+                    if (data.student_state.state.Ku_i != 1 || data.student_state.state.Ku_j != 1) {
                         enable($("#check_answer", element));
-                    }
-                    else {
+                    } else {
                         disable($("#check_answer", element));
                     }
                 }
+            } else {
+                disable($("#check_answer", element));
             }
-            else {
-                disable( $("#check_answer", element));
-            }
-        }
-        else {
+        } else {
             disable($("#calculate_graphic_1", element));
             disable($("#calculate_graphic_2", element));
             disable($("#reset_task", element));
@@ -307,10 +301,10 @@ function DSPXBlock(runtime, element, data) {
                 $(this).removeClass("dsp-correct-input");
             }
         });
-        
+
         $("textarea.array-input", element).each(function (i) {
             this.addEventListener('input', function (e) {
-             process_array_input(this);
+                process_array_input(this);
             }, false);
         });
 

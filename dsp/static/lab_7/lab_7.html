@@ -14,7 +14,7 @@
 <div class="dsp_block">
     <h3>1. Исследование спектра амплитудно-модулированного сигнала</h3>
     <div class="task-wording">
-    <p>По представленным графикам однотонального АМ-сигнала и его спектра определить несущую частоту, частоту модуляции и коэффициент модуляции сигнала (частота дискретизации \(1000 \ Гц \)).</p>
+        <p>По представленным графикам однотонального АМ-сигнала и его спектра определить несущую частоту, частоту модуляции и коэффициент модуляции сигнала (частота дискретизации \(1000 \ Гц \)).</p>
     </div>
     <div style="display: flex;">
         <div id="graphic_1_1" class="graphic-container">
@@ -46,13 +46,13 @@
         <ul>
             <li><p>кодовая последовательность: <em style="font-weight: 500!important;"> {{code}} </em></p></li>
             <li><p>несущее колебание – гармоническое в форме \(cos\);</p></li>
-            <li><p>4 отсчёта на период колебания;</p> </li>
+            <li><p>4 отсчёта на период колебания;</p></li>
             <li><p>амплитуда – \(1\);</p></li>
             <li><p>число колебаний на элементарную посылку \( {{NePart2}} \);</p></li>
             {% if shift_keying_type.name = "phase_shift" %}
-                <li><p>несущая частота \( {{f0Part2}} \) и \( {{f02Part2}} \).</p></li>
+            <li><p>несущая частота \( {{f0Part2}} \) и \( {{f02Part2}} \).</p></li>
             {% else %}
-                <li><p>несущая частота \( {{f0Part2}} \).</p></li>
+            <li><p>несущая частота \( {{f0Part2}} \).</p></li>
             {% endif %}
         </ul>
     </div>
@@ -77,7 +77,8 @@
 <div class="dsp_block">
     <h3>3. Фазовая демодуляция и декодирование</h3>
     <div class="task-wording">
-    <p>Для фазоманипулированного сигнала с шумом сформировать цифровой фильтр нижних частот, обеспечивающий правильную демодуляцию сигнала, и произвести декодирование исходного сообщения из битового кода. Исходное сообщение представляет собой последовательность 5 заглавных латинских букв, кодированных в ASCII в 8-битной форме (старший бит всегда «0»).</p>
+        <p>Для фазоманипулированного сигнала с шумом сформировать цифровой фильтр нижних частот, обеспечивающий правильную демодуляцию сигнала, и произвести декодирование исходного сообщения из битового кода. Исходное сообщение представляет собой последовательность 5 заглавных латинских букв,
+            кодированных в ASCII в 8-битной форме (старший бит всегда «0»).</p>
     </div>
     <div style="display: flex;">
         <div id="graphic_3_1" class="graphic-container">
@@ -117,7 +118,7 @@
 
     <div class="string-input-container">
         <label for="input_student_soob">Введите закодированное сообщение (5 заглавных латинских букв):</label>
-        <input id="input_student_soob" class="string-input answer-input" type="text" />
+        <input id="input_student_soob" class="string-input answer-input" type="text"/>
     </div>
 
 </div>
@@ -140,7 +141,7 @@
           </button>
       </span>
         {% if show_reset_button %}
-          <span class="problem-action-button-wrapper" id="reset_task">
+        <span class="problem-action-button-wrapper" id="reset_task">
               <button type="button" class="reset problem-action-btn btn-default btn-small" data-value="Сбросить"><span class="icon fa fa-refresh" aria-hidden="true"></span><span aria-hidden="true">Сбросить</span><span class="sr">Reset your answer</span></button>
           </span>
         {% endif %}

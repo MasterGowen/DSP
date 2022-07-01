@@ -14,11 +14,11 @@
 <div class="dsp_block">
     <h3>Блок формирования сигналов</h3>
     <div class="task-wording">
-    <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type.title}}</span></p>
+        <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type.title}}</span></p>
     </div>
-        <!--<ul>
-        <li>{{signal_type.title}}</li>
-    </ul>-->
+    <!--<ul>
+    <li>{{signal_type.title}}</li>
+</ul>-->
     <p>Введите сигнал:</p>
     <div class="array-input-container">
         <textarea id="input_student_signal" data-array-type="сигнал" data-max-length="500"
@@ -32,7 +32,7 @@
 <div class="dsp_block">
     <h3>Блок формирования фильтров</h3>
     <div class="task-wording">
-    <p>Сформировать модель БИХ-фильтра I порядка: <span class="signal-filter-wording">{{filter_type.title}}</span></p>
+        <p>Сформировать модель БИХ-фильтра I порядка: <span class="signal-filter-wording">{{filter_type.title}}</span></p>
     </div>
     <div class="numeric-input-container">
         <label for="input_student_b">Введите коэффициент числителя передаточной функции (b):</label>
@@ -69,15 +69,15 @@
     </div>
 
     <div id="input_student_filterstable" class="radio-input-container">
-    <fieldset>
-        <legend>Выбор устойчивости фильтра:</legend>
-        <div style="padding-left: 10px;">
-            <input type="radio" id="stable" class="answer-input" name="input_student_filterstable" value="stable" checked>
-            <label for="stable">фильтр устойчив</label><br/>
-            <input type="radio" id="unstable" class="answer-input" name="input_student_filterstable" value="unstable">
-            <label for="unstable">фильтр неустойчив</label><br/>
-        </div>
-    </fieldset>
+        <fieldset>
+            <legend>Выбор устойчивости фильтра:</legend>
+            <div style="padding-left: 10px;">
+                <input type="radio" id="stable" class="answer-input" name="input_student_filterstable" value="stable" checked>
+                <label for="stable">фильтр устойчив</label><br/>
+                <input type="radio" id="unstable" class="answer-input" name="input_student_filterstable" value="unstable">
+                <label for="unstable">фильтр неустойчив</label><br/>
+            </div>
+        </fieldset>
     </div>
 
 </div>
@@ -100,7 +100,7 @@
           </button>
       </span>
         {% if show_reset_button %}
-          <span class="problem-action-button-wrapper" id="reset_task">
+        <span class="problem-action-button-wrapper" id="reset_task">
               <button type="button" class="reset problem-action-btn btn-default btn-small" data-value="Сбросить"><span class="icon fa fa-refresh" aria-hidden="true"></span><span aria-hidden="true">Сбросить</span><span class="sr">Reset your answer</span></button>
           </span>
         {% endif %}

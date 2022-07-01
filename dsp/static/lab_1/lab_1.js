@@ -40,7 +40,7 @@ function DSPXBlock(runtime, element, data) {
                 actions_bottom_notification("save", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
@@ -63,12 +63,11 @@ function DSPXBlock(runtime, element, data) {
                 $('.attempts', element).text(result.attempts);
                 if (result.max_attempts && result.max_attempts <= result.attempts) {
                     data.answer_opportunity = false;
-                }
-                else{
+                } else {
                     enable($('#check_answer'), element);
                 }
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
@@ -133,15 +132,13 @@ function DSPXBlock(runtime, element, data) {
         if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_a)) {
             enable($("#calculate_graphics", element));
             if (parseFloat(student_data.student_p) && parseFloat(student_data.student_ubl)) {
-                if(data.answer_opportunity) {
+                if (data.answer_opportunity) {
                     enable($("#check_answer", element));
                 }
-            }
-            else {
+            } else {
                 disable($("#check_answer", element));
             }
-        }
-        else {
+        } else {
             disable($("#calculate_graphics", element));
             disable($("#check_answer", element));
         }
@@ -169,7 +166,7 @@ function DSPXBlock(runtime, element, data) {
         });
         $("textarea.array-input", element).each(function (i) {
             this.addEventListener('input', function (e) {
-             process_array_input(this);
+                process_array_input(this);
             }, false);
         });
 

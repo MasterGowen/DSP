@@ -15,13 +15,13 @@
     margin: 5px 0px;
 }
 
-#graphic-2-controls{
+#graphic-2-controls {
     margin: 0 auto;
     text-align: center;
     width: 300px;
 }
 
-#graphic_2{
+#graphic_2 {
     height: 480px;
 }
 
@@ -53,7 +53,7 @@
     width: 380px;
 }
 
-#input_student_s td{
+#input_student_s td {
     vertical-align: middle;
     text-align: center;
     padding: 4px;
@@ -61,8 +61,8 @@
     border: 1px solid #00000024;
 }
 
-.dsp-main-task-3{
-    display:flex;
+.dsp-main-task-3 {
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px 0px;

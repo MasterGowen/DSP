@@ -4,7 +4,7 @@
     font-weight: bold;
 }
 
-.dsp_block ul{
+.dsp_block ul {
     padding-left: 2em !important;
     margin: 0.2em 0 !important;
 }
@@ -300,6 +300,6 @@ div.dsp-notification .notification .icon {
 }
 
 
-.container>div, .header-global.slim {
+.container > div, .header-global.slim {
     background: #ffffff !important;
 }

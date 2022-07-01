@@ -15,8 +15,7 @@ function parseTextSignal(input) {
             return parseFloat(item)
         });
         return {"signal": signal, "signal_valid": signal_valid};
-    }
-    else {
+    } else {
         signal_valid = false;
         return {"signal": [], "signal_valid": signal_valid};
     }
@@ -29,13 +28,11 @@ function process_array_input(input) {
     if (parse_array.signal_valid) {
         if (parse_array.signal.length > 0) {
             message = "<span>Введенный " + $(input).data('arrayType') + " (" + parse_array.signal.length + " " + counting_title(parse_array.signal.length) + "):</span> <br /> <p class='signal-highlight'>" + parse_array.signal.join(" ") + "</p>";
-        }
-        else {
+        } else {
             message = "<span class='error-text'>Введите " + $(input).data('arrayType') + "!</span>";
         }
-    }
-    else {
-        message = "<span class='error-text'>Ошибка ввода!" + " Введенный " + $(input).data('arrayType') + " должен иметь максимальную длину " + (max_array_length - 1) + " " +  counting_title(max_array_length - 1) + ".</span>";
+    } else {
+        message = "<span class='error-text'>Ошибка ввода!" + " Введенный " + $(input).data('arrayType') + " должен иметь максимальную длину " + (max_array_length - 1) + " " + counting_title(max_array_length - 1) + ".</span>";
 
     }
     $(input).parent().find(".validation-message").html(message)
@@ -43,12 +40,11 @@ function process_array_input(input) {
 
 function highlight_correctness(state) {
     Object.keys(state).forEach(function (item) {
-        if (item.split("_")[item.split("_").length-1] == "correctness") {
+        if (item.split("_")[item.split("_").length - 1] == "correctness") {
             if (state[item] == true) {
                 $("#input_student_" + item.split("_")[0]).removeClass("dsp-incorrect-input");
                 $("#input_student_" + item.split("_")[0]).addClass("dsp-correct-input");
-            }
-            else {
+            } else {
                 $("#input_student_" + item.split("_")[0]).removeClass("dsp-correct-input");
                 $("#input_student_" + item.split("_")[0]).addClass("dsp-incorrect-input");
             }
@@ -57,11 +53,11 @@ function highlight_correctness(state) {
     })
 }
 
-function disable(element){
+function disable(element) {
     $(element).attr("disabled", "disabled");
 }
 
-function enable(element){
+function enable(element) {
     $(element).removeAttr("disabled");
 }
 
@@ -103,20 +99,17 @@ function log_ajax_error(jqXHR, exception) {
 
 function counting_title(number) {
     last_numeral = number.toString()[number.toString().length - 1];
-    if ([11, 12, 13, 14].includes(number)){
+    if ([11, 12, 13, 14].includes(number)) {
         return "отсчётов";
     }
 
     if (["0", "5", "6", "7", "8", "9"].includes(last_numeral)) {
         return "отсчётов";
-    }
-    else if (["2", "3", "4"].includes(last_numeral)) {
+    } else if (["2", "3", "4"].includes(last_numeral)) {
         return "отсчёта";
-    }
-    else if (["1"].includes(last_numeral)) {
+    } else if (["1"].includes(last_numeral)) {
         return "отсчёт";
-    }
-    else {
+    } else {
         return "отсчётов";
     }
 }
@@ -125,8 +118,7 @@ function time_title(number) {
     last_numeral = number.toString()[number.toString().length - 1];
     if (["2", "3", "4"].includes(last_numeral)) {
         return "раза";
-    }
-    else {
+    } else {
         return "раз";
     }
 }
@@ -136,29 +128,27 @@ function is_success_bottom_notification(is_success, score, maximum_score, parent
     var icon_classlist = "";
     var notification_message_text = "";
 
-    if (is_success === "success"){
+    if (is_success === "success") {
         notification_element_classlist = "notification success notification-submit";
         icon_classlist = "icon fa fa-check";
         notification_message_text = "Задание выполнено верно (" + score + "/" + maximum_score + " баллов) "
-    }
-    else if (is_success === "partially"){
+    } else if (is_success === "partially") {
         notification_element_classlist = "notification success notification-submit";
         icon_classlist = "icon fa fa-asterisk";
         notification_message_text = "Задание выполнено частично верно (" + score + "/" + maximum_score + " баллов) "
-    }
-    else{
+    } else {
         notification_element_classlist = "notification error notification-submit";
         icon_classlist = "icon fa fa-close";
         notification_message_text = "Задание выполнено неверно (" + score + "/" + maximum_score + " баллов) "
     }
 
-    var notification_element =  $('<div/>', {
+    var notification_element = $('<div/>', {
         class: notification_element_classlist,
     });
-    var icon_element =  $('<span/>', {
+    var icon_element = $('<span/>', {
         class: icon_classlist,
     });
-    var notification_message_element =  $('<span/>', {
+    var notification_message_element = $('<span/>', {
         class: "notification-message",
         text: notification_message_text,
     });
@@ -173,24 +163,23 @@ function actions_bottom_notification(action, parent_element) {
     var icon_classlist = "";
     var notification_message_text = "";
 
-    if (action === "save"){
+    if (action === "save") {
         notification_element_classlist = "notification warning notification-save";
         icon_classlist = "icon fa fa-save";
         notification_message_text = "Ваши ответы сохранены, но не оценены. Нажмите 'Отправить', чтобы получить оценку.";
-    }
-    else{
+    } else {
         notification_element_classlist = "notification warning notification-save";
         icon_classlist = "icon fa fa-save";
         notification_message_text = "Ваши ответы сохранены, но не оценены. Нажмите 'Отправить', чтобы получить оценку.";
     }
 
-    var notification_element =  $('<div/>', {
+    var notification_element = $('<div/>', {
         class: notification_element_classlist,
     });
-    var icon_element =  $('<span/>', {
+    var icon_element = $('<span/>', {
         class: icon_classlist,
     });
-    var notification_message_element =  $('<span/>', {
+    var notification_message_element = $('<span/>', {
         class: "notification-message",
         text: notification_message_text,
     });
@@ -204,8 +193,8 @@ function check_error_bottom_notification(jqXHR, parent_element) {
     var notification_element_classlist = "notification warning notification-gentle-alert";
     var icon_classlist = "icon fa fa-exclamation-circle";
     var notification_message_text = "При проверке задания возникла ошибка. Проверьте корректность введенных данных.";
-    if (jqXHR.responseJSON.exception){
-        notification_message_text += "\nОшибка: "+ jqXHR.responseJSON.exception;
+    if (jqXHR.responseJSON.exception) {
+        notification_message_text += "\nОшибка: " + jqXHR.responseJSON.exception;
     }
     var notification_element = $('<div/>', {
         class: notification_element_classlist,
@@ -215,14 +204,14 @@ function check_error_bottom_notification(jqXHR, parent_element) {
     });
     var notification_message_element = $('<span/>', {
         class: "notification-message",
-        html: "<strong>"+notification_message_text+"</strong>",
+        html: "<strong>" + notification_message_text + "</strong>",
     });
 
     notification_element.append(icon_element);
-    if (jqXHR.responseJSON.traceback){
+    if (jqXHR.responseJSON.traceback) {
         var notification_message_traceback_element = $('<span/>', {
             class: "dsp-notification-traceback",
-            text: "\n"+jqXHR.responseJSON.traceback,
+            text: "\n" + jqXHR.responseJSON.traceback,
         });
         notification_message_element.append(notification_message_traceback_element)
     }
@@ -248,7 +237,6 @@ function error_bottom_notification(jqXHR, notification_message_text, parent_elem
     notification_element.append(notification_message_element);
     $(parent_element).html(notification_element)
 }
-
 
 
 function clean_bottom_notification(parent_element) {

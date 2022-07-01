@@ -107,7 +107,7 @@ def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
     score += np.round(s_score / float(len(s_correctnes)) * values_count_in_array(s_correctnes, value=True), 1)
 
     for idx, val in enumerate(s_correctnes):
-        result["correctness"]["s"+str(idx)+"_correctness"] = s_correctnes[idx]
+        result["correctness"]["s" + str(idx) + "_correctness"] = s_correctnes[idx]
 
     result["correctness"]["s_correct"] = s_et
 
@@ -153,20 +153,19 @@ def get_y2_s2(Ku_j, Ku_i, N0, s_st, b, K, y):
         for i in np.arange(1, Ku_i + 1):
             y2 = y + s_st[j - 1] * np.random.randn(1, 3 * N0)[0]
             s2 = signal.lfilter(b, 1, y2)
-            res["s2"][j-1][i-1] = s2.tolist()
-            res["y2"][j-1][i-1] = y2.tolist()
+            res["s2"][j - 1][i - 1] = s2.tolist()
+            res["y2"][j - 1][i - 1] = y2.tolist()
             w = (np.array(s2) > np.array(pp)).astype(int)
 
             # for x in np.arange(math.floor(N0-float(K)/2)-1, math.floor(N0+float(K)/2)+3):
             for x in np.arange(math.floor(N0 - 10) - 1, math.floor(N0 + 10) + 3):
-                w[x-1] = 0
+                w[x - 1] = 0
             q = q + np.double(sum(w) > 0)
-        correct_s[j-1] = float(q/Ku_i)
+        correct_s[j - 1] = float(q / Ku_i)
     return res, correct_s
 
 
 def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True", is_signal=""):
-
     Ku_i_max = int(source_data["Ku"])
     Ku_j_max = int(source_data["Ku"])
 
@@ -194,10 +193,10 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
 
     if not student_data["state"]["Ku_done"]:
         student_data["state"]["there_is_signal_states"][Ku_j - 1] = {"there_is_signal_count": there_is_signal_count,
-                                             "there_is_no_signal_count": there_is_no_signal_count}
+                                                                     "there_is_no_signal_count": there_is_no_signal_count}
 
-    y2 = student_data["state"]["y2_s2"]["y2"][Ku_j-1][Ku_i-1]
-    s2 = student_data["state"]["y2_s2"]["s2"][Ku_j-1][Ku_i-1]
+    y2 = student_data["state"]["y2_s2"]["y2"][Ku_j - 1][Ku_i - 1]
+    s2 = student_data["state"]["y2_s2"]["s2"][Ku_j - 1][Ku_i - 1]
 
     if not reload:
         if Ku_i == Ku_i_max:
@@ -210,7 +209,6 @@ def lab_3_get_graphic_2(correct_answer, student_data, source_data, reload="True"
             there_is_no_signal_count = 0
         else:
             Ku_i += 1
-
 
     student_data["state"]["Ku_j"] = Ku_j
     student_data["state"]["Ku_i"] = Ku_i

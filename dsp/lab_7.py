@@ -53,9 +53,9 @@ def lab_7_get_source_data():
     SD = S1p * S10
 
     shift_keying_types = [{
-            "name": "amplitude_shift",
-            "title": "амплитудной"
-        },
+        "name": "amplitude_shift",
+        "title": "амплитудной"
+    },
         {
             "name": "frequency_shift",
             "title": "частотной"
@@ -221,7 +221,7 @@ def lab_7_get_graphic_3(source_data, correct_answer):
     SD = correct_answer["SD"]
 
     fig, ax = plt.subplots(figsize=(6, 6))
-    ax.plot(np.arange(0, N1*8), S1p[0:np.int(N1*8)])
+    ax.plot(np.arange(0, N1 * 8), S1p[0:np.int(N1 * 8)])
 
     html = mpld3.fig_to_d3(fig)
     graphics.append(
@@ -232,7 +232,7 @@ def lab_7_get_graphic_3(source_data, correct_answer):
     )
 
     fig, ax = plt.subplots(figsize=(6, 6))
-    ax.plot(np.arange(0, N1 * 8), SD[0:np.int(N1*8)])
+    ax.plot(np.arange(0, N1 * 8), SD[0:np.int(N1 * 8)])
     html = mpld3.fig_to_d3(fig)
     graphics.append(
         {
@@ -253,8 +253,8 @@ def lab_7_get_graphic_4(student_data, correct_answer):
     z = signal.lfilter(b_st, a_st, SD)
 
     fig, ax = plt.subplots(figsize=(6, 6))
-    ax.plot(np.arange(0, np.int(N1*8)), z[0:np.int(N1*8)])
-    ax.stem(np.arange(N1/2, N1*8, N1), np.take(z, np.arange(np.int(N1/2), np.int(N1*8), np.int(N1))), 'r', linewidth=3.0)
+    ax.plot(np.arange(0, np.int(N1 * 8)), z[0:np.int(N1 * 8)])
+    ax.stem(np.arange(N1 / 2, N1 * 8, N1), np.take(z, np.arange(np.int(N1 / 2), np.int(N1 * 8), np.int(N1))), 'r', linewidth=3.0)
 
     html = mpld3.fig_to_d3(fig)
     graphics.append(

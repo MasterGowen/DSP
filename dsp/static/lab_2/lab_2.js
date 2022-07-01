@@ -82,12 +82,11 @@ function DSPXBlock(runtime, element, data) {
                 $('.attempts', element).text(result.attempts);
                 if (result.max_attempts && result.max_attempts <= result.attempts) {
                     data.answer_opportunity = false;
-                }
-                else{
+                } else {
                     enable($('#check_answer'), element);
                 }
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
@@ -126,7 +125,7 @@ function DSPXBlock(runtime, element, data) {
                 actions_bottom_notification("save", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
@@ -138,9 +137,9 @@ function DSPXBlock(runtime, element, data) {
         var student_data = generateAnswer();
 
         if (parseFloat(student_data.student_K1) && parseFloat(student_data.student_ns0) && parseFloat(student_data.student_ns1)) {
-            if (parseFloat(student_data.student_K2)){
+            if (parseFloat(student_data.student_K2)) {
                 if (student_data.student_f.length > 0) {
-                    if(data.answer_opportunity) {
+                    if (data.answer_opportunity) {
                         enable($("#check_answer", element));
                     }
                 } else {
@@ -149,7 +148,7 @@ function DSPXBlock(runtime, element, data) {
             } else {
                 disable($("#check_answer", element));
             }
-        } else{
+        } else {
             disable($("#check_answer", element));
         }
     }
@@ -201,13 +200,11 @@ function DSPXBlock(runtime, element, data) {
 
         $("textarea.array-input", element).each(function (i) {
             this.addEventListener('input', function (e) {
-             process_array_input(this);
+                process_array_input(this);
             }, false);
         });
 
     });
-
-
 
 
 }

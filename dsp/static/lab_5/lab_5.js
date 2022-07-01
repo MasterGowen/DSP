@@ -30,6 +30,7 @@ function DSPXBlock(runtime, element, data) {
             contentType: 'application/json; charset=utf-8'
         });
     }
+
     function build_graphic_2() {
         disable($('#calculate_graphic_2', element));
         show_graphic_load($('#graphic_3', element));
@@ -69,7 +70,7 @@ function DSPXBlock(runtime, element, data) {
                 actions_bottom_notification("save", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 error_bottom_notification(jqXHR, "При сохранении ответа произошла ошибка", $('.dsp-notification', element));
                 enable($('#save_answer button'), element);
             },
@@ -94,12 +95,11 @@ function DSPXBlock(runtime, element, data) {
                 $('.attempts', element).text(result.attempts);
                 if (result.max_attempts && result.max_attempts <= result.attempts) {
                     data.answer_opportunity = false;
-                }
-                else{
+                } else {
                     enable($('#check_answer'), element);
                 }
             },
-            error: function (jqXHR){
+            error: function (jqXHR) {
                 check_error_bottom_notification(jqXHR, $('.dsp-notification', element));
                 enable($('#check_answer'), element);
             },
@@ -168,7 +168,7 @@ function DSPXBlock(runtime, element, data) {
         $("#input_student_K2", element).val(data.answer.student_K2);
         $("#input_student_K3", element).val(data.answer.student_K3);
         $("#input_student_K4", element).val(data.answer.student_K4);
-        if (data.answer.student_s.length > 0 && data.answer.student_s1.length > 0){
+        if (data.answer.student_s.length > 0 && data.answer.student_s1.length > 0) {
             build_graphic_1();
         }
         if (data.answer.student_sl.length > 0 && data.answer.student_slc.length > 0) {
@@ -180,58 +180,55 @@ function DSPXBlock(runtime, element, data) {
         var student_data = generateAnswer();
         if (student_data.student_s.length > 0 && student_data.student_s1.length > 0) {
             enable($("#calculate_graphic_1", element));
-        }
-        else {
+        } else {
             disable($("#calculate_graphic_1", element));
         }
         if (student_data.student_sl.length > 0 && student_data.student_slc.length > 0) {
             enable($("#calculate_graphic_2", element));
-        }
-        else{
+        } else {
             disable($("#calculate_graphic_2", element));
         }
-        if (student_data.student_s.length > 0 && student_data.student_s1.length > 0 && student_data.student_sl.length > 0 && student_data.student_slc.length > 0){
-            if (parseFloat(student_data.student_fn) && parseFloat(student_data.student_Np)){
-                if (parseFloat(student_data.student_K1) && parseFloat(student_data.student_K2) && parseFloat(student_data.student_K3) && parseFloat(student_data.student_K4)){
-                    if(data.answer_opportunity) {
+        if (student_data.student_s.length > 0 && student_data.student_s1.length > 0 && student_data.student_sl.length > 0 && student_data.student_slc.length > 0) {
+            if (parseFloat(student_data.student_fn) && parseFloat(student_data.student_Np)) {
+                if (parseFloat(student_data.student_K1) && parseFloat(student_data.student_K2) && parseFloat(student_data.student_K3) && parseFloat(student_data.student_K4)) {
+                    if (data.answer_opportunity) {
                         enable($("#check_answer", element));
                     }
-                }
-                else{
+                } else {
                     disable($("#check_answer", element));
                 }
-            }
-            else{
+            } else {
                 disable($("#check_answer", element));
-             }
-        }
-        else{
+            }
+        } else {
             disable($("#check_answer", element));
         }
     }
 
-    function clearSelection()
-    {
-     if (window.getSelection) {window.getSelection().removeAllRanges();}
-     else if (document.selection) {document.selection.empty();}
+    function clearSelection() {
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        } else if (document.selection) {
+            document.selection.empty();
+        }
     }
 
     $('.copy_to_clipboard', element).click(function (event) {
-        var id = this.id.split("_")[this.id.split("_").length-1];
-        var textarea = $('#display_signal_'+id, element);
+        var id = this.id.split("_")[this.id.split("_").length - 1];
+        var textarea = $('#display_signal_' + id, element);
         textarea.select();
         document.execCommand("copy");
-        var tooltip = $('#copy_to_clipboard_'+id+" .copy-to-clipboard-tooltiptext", element)[0];
+        var tooltip = $('#copy_to_clipboard_' + id + " .copy-to-clipboard-tooltiptext", element)[0];
         tooltip.innerHTML = "Сигнал скопирован в буфер обмена!";
         $(textarea).blur();
         clearSelection();
     });
 
-     $('.copy_to_clipboard', element).mouseout(function() {
-        var id = this.id.split("_")[this.id.split("_").length-1];
-        var tooltip = $('#copy_to_clipboard_'+id+" .copy-to-clipboard-tooltiptext", element)[0];
+    $('.copy_to_clipboard', element).mouseout(function () {
+        var id = this.id.split("_")[this.id.split("_").length - 1];
+        var tooltip = $('#copy_to_clipboard_' + id + " .copy-to-clipboard-tooltiptext", element)[0];
         tooltip.innerHTML = "Скопировать сигнал в буфер обмена";
-      });
+    });
 
 
     $(function ($) {
@@ -258,7 +255,7 @@ function DSPXBlock(runtime, element, data) {
 
         $("textarea.array-input", element).each(function (i) {
             this.addEventListener('input', function (e) {
-             process_array_input(this);
+                process_array_input(this);
             }, false);
         });
 

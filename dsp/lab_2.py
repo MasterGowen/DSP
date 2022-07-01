@@ -20,12 +20,12 @@ log = logging.getLogger(__name__)
 def lab_2_get_source_data():
     N3 = 128
     K_1 = 2  # random.choice([2, 4, 8])
-    K_2 = (N3/2-1) * 0.362175  # * np.random.rand()
+    K_2 = (N3 / 2 - 1) * 0.362175  # * np.random.rand()
 
     rand_number_1 = 0.6  # np.random.rand()
     Nk = 2 + math.floor(8 * rand_number_1)
 
-    rand_array = [0.438179,   0.406272,  0.760758,   0.427553,   0.746484,  0.333041]  # rand_array = np.random.rand(Nk)
+    rand_array = [0.438179, 0.406272, 0.760758, 0.427553, 0.746484, 0.333041]  # rand_array = np.random.rand(Nk)
     f = np.sort([50 * x for x in rand_array])
     df = np.diff(f)
     df_tmp = np.append(df, np.repeat(999, len(f) - len(df)))

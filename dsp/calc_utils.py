@@ -1,13 +1,12 @@
+# -*- coding: utf-8 -*-
 import numpy as np
 
 
 def arrays_is_equal(x, y, tolerance=0.01):
     try:
-        result = np.allclose(x, y, atol=tolerance)
+        return np.allclose(x, y, atol=tolerance)
     except:
-        result = False
-    finally:
-        return result
+        return False
 
 
 def arrays_is_equal_by_elements(x, y, tolerance=0.01):
@@ -34,6 +33,6 @@ def numbers_is_equal(x, y, tolerance=0.5, rel=0.00005):
 
 
 def merge_two_dicts(x, y):
-    z = x.copy()   # start with x's keys and values
-    z.update(y)    # modifies z with y's keys and values & returns None
+    z = x.copy()  # start with x's keys and values
+    z.update(y)  # modifies z with y's keys and values & returns None
     return z

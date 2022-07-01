@@ -1,4 +1,3 @@
-
 /* Javascript for DSPXBlock. */
 function DSPXBlock(runtime, element) {
     $(function ($) {

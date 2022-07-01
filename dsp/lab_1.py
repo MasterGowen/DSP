@@ -92,7 +92,7 @@ def get_correct_signal(source_data):
     if source_data["signal_type"]["name"] == "delta_func":
         signal = np.append(np.ones(1), np.zeros(N0 - 1))
     elif source_data["signal_type"]["name"] == "rectangular_videopulse":
-        tmp = math.floor(N0/Q)
+        tmp = math.floor(N0 / Q)
         signal = np.append(np.ones(tmp), np.zeros(N0 - tmp))
     elif source_data["signal_type"]["name"] == "rectangular_radiopulse_f4":
         tmp = math.floor(N0 / Q)
@@ -121,7 +121,6 @@ def get_correct_filter(source_data):
 
 
 def lab_1_check_answer(student_data, source_data, lab_settings):
-
     student_d = student_data["student_signal"]
     student_b = student_data["student_filter"]
     student_a = float(student_data["student_a"])

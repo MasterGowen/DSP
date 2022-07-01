@@ -144,7 +144,6 @@ class DSPXBlock(XBlock):
         help=u'Правильный ответ',
     )
 
-
     def is_course_staff(self):
         """
         Проверка, является ли пользователь автором курса.
@@ -158,13 +157,13 @@ class DSPXBlock(XBlock):
         return self.xmodule_runtime.get_user_role() == 'instructor'
 
     def past_due(self):
-            """
-            Проверка, истекла ли дата для выполнения задания.
-            """
-            due = get_extended_due_date(self)
-            if due is not None:
-                if _now() > due:
-                    return False
+        """
+        Проверка, истекла ли дата для выполнения задания.
+        """
+        due = get_extended_due_date(self)
+        if due is not None:
+            if _now() > due:
+                return False
 
     def answer_opportunity(self):
         """
@@ -495,7 +494,7 @@ class DSPXBlock(XBlock):
             "static/css/dsp_studio.css",
         )
 
-        load_resources(js_urls, css_urls, fragment)
+        load_resources(self, js_urls, css_urls, fragment)
 
         fragment.initialize_js('DSPXBlock')
         return fragment

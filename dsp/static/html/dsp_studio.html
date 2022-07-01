@@ -24,7 +24,7 @@
                         <label class="label setting-label" for="display_name">Лабораторная:</label>
                         <select class="select-lab" name="lab_scenario" selected="{{current_lab}}">
                             {% for lab in lab_list %}
-                            <option {% if current_lab == lab.id %} selected="selected" {% endif %} value="{{lab.id}}">
+                            <option {% if current_lab== lab.id %} selected="selected" {% endif %} value="{{lab.id}}">
                                 {{lab.title}}
                             </option>
                             {% endfor %}
@@ -55,15 +55,15 @@
                         <label class="label setting-label" for="metadata-option-entry_94">Показать кнопку сброса</label>
                         <select class="input setting-input" id="metadata-option-entry_94" name="show_reset_button">
                             {% if show_reset_button %}
-                                <option value="true" selected="selected">Да</option>
-                                <option value="false" >Нет</option>
+                            <option value="true" selected="selected">Да</option>
+                            <option value="false">Нет</option>
                             {% else %}
-                                <option value="true" >Да</option>
-                                <option value="false"  selected="selected">Нет</option>
+                            <option value="true">Да</option>
+                            <option value="false" selected="selected">Нет</option>
                             {% endif %}
                         </select>
                     </div>
-                <span class="tip setting-help">Определяет, показывать ли кнопку «Сбросить», с помощью которой пользователь может сбросить свой ответ.</span>
+                    <span class="tip setting-help">Определяет, показывать ли кнопку «Сбросить», с помощью которой пользователь может сбросить свой ответ.</span>
                 </li>
 
             </div>

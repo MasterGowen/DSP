@@ -3,6 +3,8 @@
 import os
 
 from setuptools import setup
+
+
 # from Cython.Build import cythonize
 
 def package_data(pkg, roots):
@@ -23,20 +25,21 @@ def package_data(pkg, roots):
 
 setup(
     name='dsp-xblock',
-    # ext_modules = cythonize(["*.pyx"]),
     version='0.1',
-    description='digital signal processing XBlock',   # TODO: write a better description.
-    license='UNKNOWN',          # TODO: choose a license: 'AGPL v3' and 'Apache 2.0' are popular.
+    description='digital signal processing XBlock',  # TODO: write a better description.
+    license='UNKNOWN',  # TODO: choose a license: 'AGPL v3' and 'Apache 2.0' are popular.
     packages=[
         'dsp',
     ],
     install_requires=[
         'XBlock',
+        'matplotlib==1.5.3',
+        'mpld3==0.3'
     ],
     entry_points={
         'xblock.v1': [
-            'dsp = dsp.dsp:DSPXBlock',
+            'dsp = dsp:DSPXBlock',
         ]
     },
-    package_data=package_data("dsp", ["static", "public"]),
+    package_data=package_data("dsp", ["static", "templatetags", "translations"]),
 )

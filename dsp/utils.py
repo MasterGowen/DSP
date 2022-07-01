@@ -1,25 +1,27 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os
 import pkg_resources
 
 from django.template import Context, Template
 from django.template.loader import get_template
 from django.utils.encoding import smart_text
+
+
 # from django.utils.numberformat import format
 
 
 def load_resource(resource_path):
-        """
-        Gets the content of a resource
-        """
-        try:
-            resource_content = pkg_resources.resource_string(__name__, resource_path)
-            return smart_text(resource_content)
-        except EnvironmentError:
-            pass
+    """
+    Gets the content of a resource
+    """
+    try:
+        resource_content = pkg_resources.resource_string(__name__, resource_path)
+        return smart_text(resource_content)
+    except EnvironmentError:
+        pass
 
 
-def load_resources(js_urls, css_urls, fragment):
+def load_resources(self, js_urls, css_urls, fragment):
     """
     Загрузка локальных статических ресурсов.
     """
@@ -41,6 +43,7 @@ def load_resources(js_urls, css_urls, fragment):
         else:
             pass
 
+
 def render_template(template_path, context=None):
     """
     Evaluate a template by resource path, applying the provided context.
@@ -51,4 +54,3 @@ def render_template(template_path, context=None):
     template_str = load_resource(template_path)
     template = Template(template_str)
     return template.render(Context(context))
-

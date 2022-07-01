@@ -14,7 +14,7 @@
 <div class="dsp_block">
     <h3>Блок формирования сигналов</h3>
     <div class="task-wording">
-    <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type.title}}</span></p>
+        <p>Вам необходимо сформировать следующий сигнал: <span class="signal-filter-wording">{{signal_type.title}}</span></p>
     </div>
     <p>Введите сигнал:</p>
     <div class="array-input-container">
@@ -29,7 +29,7 @@
 <div class="dsp_block">
     <h3>Блок формирования фильтров</h3>
     <div class="task-wording">
-    <p>Сформировать согласованный фильтр для сигнала: </p>
+        <p>Сформировать согласованный фильтр для сигнала: </p>
     </div>
     <p>Введите фильтр:</p>
     <div class="array-input-container">
@@ -60,7 +60,7 @@
     <h3>Блок построения графика 2</h3>
     <div>Случайные значения с.к.о. шума: [
         {% for value in s %}
-            {{ value }}
+        {{ value }}
         {% endfor %}
         ]
     </div>
@@ -68,65 +68,69 @@
     <div>
         <div id="graphic_2" class="graphic-container" style=""></div>
         <div>
-                <div id="graphic-2-controls">
-                        <div style="margin: 0 auto;" class="graphic-2-first-build">
-                            <button id="calculate_graphic_2" style="" class="get-graphic-2-button">Построить график</button>
-                        </div>
-                        <div class="graphic-2-not-first-build" style="display: none;">
-                            <p style="text-align: center;">Построен график для i = <label id="current_Ku_i">{{ student_state.state.Ku_i }}</label> и j = <label id="current_Ku_j">{{ student_state.state.Ku_j }}</label></p>
-                            <div style="display: flex;">
-                                <div style="width: 50%;">
-                                    <button id="calculate_graphic_2_there_is_signal" class="get-graphic-2-button">Сигнал есть</button>
-                                    <div id="there-is-signal-count"></div>
-                                </div>
-                                <div style="width: 50%;">
-                                    <button id="calculate_graphic_2_there_is_no_signal" class="get-graphic-2-button">Сигнала нет</button>
-                                    <div id="there-is-no-signal-count"></div>
-                                </div>
-                            </div>
-                        </div>
+            <div id="graphic-2-controls">
+                <div style="margin: 0 auto;" class="graphic-2-first-build">
+                    <button id="calculate_graphic_2" style="" class="get-graphic-2-button">Построить график</button>
                 </div>
+                <div class="graphic-2-not-first-build" style="display: none;">
+                    <p style="text-align: center;">Построен график для i = <label id="current_Ku_i">{{ student_state.state.Ku_i }}</label> и j = <label id="current_Ku_j">{{ student_state.state.Ku_j }}</label></p>
+                    <div style="display: flex;">
+                        <div style="width: 50%;">
+                            <button id="calculate_graphic_2_there_is_signal" class="get-graphic-2-button">Сигнал есть</button>
+                            <div id="there-is-signal-count"></div>
+                        </div>
+                        <div style="width: 50%;">
+                            <button id="calculate_graphic_2_there_is_no_signal" class="get-graphic-2-button">Сигнала нет</button>
+                            <div id="there-is-no-signal-count"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="dsp-main-task-3">
 
             <div id="input_student_s">
-             <table>
-                 <tr><td>Введите вероятность правильного обнаружения:</td><td>Сигнал есть</td><td>Сигнала нет</td></tr>
-                {% for s_value in s %}
+                <table>
+                    <tr>
+                        <td>Введите вероятность правильного обнаружения:</td>
+                        <td>Сигнал есть</td>
+                        <td>Сигнала нет</td>
+                    </tr>
+                    {% for s_value in s %}
                     <!--<div class="numeric-input-container-3">-->
-                <tr>
-                    <td><label for="input_student_s{{ forloop.counter0 }}">\( \sigma = {{ s_value }} \):</label>
-                    <input id="input_student_s{{ forloop.counter0 }}" style="padding: 4px 6px 2px;" class="numeric-input answer-input s-input" type=number step=any/></td>
+                    <tr>
+                        <td><label for="input_student_s{{ forloop.counter0 }}">\( \sigma = {{ s_value }} \):</label>
+                            <input id="input_student_s{{ forloop.counter0 }}" style="padding: 4px 6px 2px;" class="numeric-input answer-input s-input" type=number step=any/></td>
 
                         {% for lol in student_state.state.there_is_signal_states %}
-                            {% if forloop.counter0 == forloop.parentloop.counter0 %}
-                                    {% if lol.there_is_signal_count or lol.there_is_no_signal_count %}
-                                        <td><label class="label-signal-count">{{ lol.there_is_signal_count }}</label></td>
-                                        <td><label class="label-no-signal-count">{{ lol.there_is_no_signal_count }}</label></td>
+                        {% if forloop.counter0 == forloop.parentloop.counter0 %}
+                        {% if lol.there_is_signal_count or lol.there_is_no_signal_count %}
+                        <td><label class="label-signal-count">{{ lol.there_is_signal_count }}</label></td>
+                        <td><label class="label-no-signal-count">{{ lol.there_is_no_signal_count }}</label></td>
 
-                                    {% else %}
-                                        <td><label class="label-signal-count">0</label></td>
-                                        <td><label class="label-no-signal-count">0</label></td>
-                                    {% endif %}
+                        {% else %}
+                        <td><label class="label-signal-count">0</label></td>
+                        <td><label class="label-no-signal-count">0</label></td>
+                        {% endif %}
 
-                            {% endif %}
+                        {% endif %}
                         {% endfor %}
                     </tr>
                     <!--</div>-->
-             {% endfor %}
-                 <tr>
-                    <td style="border: none;"></td>
-                    <td colspan="2" style="border: none;">
-                        <button id="lab_3_reset_task" style="font-size: 0.7em;">Сбросить ответ</button>
-                    </td>
-                </tr>
-             </table>
+                    {% endfor %}
+                    <tr>
+                        <td style="border: none;"></td>
+                        <td colspan="2" style="border: none;">
+                            <button id="lab_3_reset_task" style="font-size: 0.7em;">Сбросить ответ</button>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
-        <div style="width: 482px;height: 482px;margin: 0px 5px;">
-            <div id="graphic_3" class="graphic-3-container"></div>
-        </div>
+            <div style="width: 482px;height: 482px;margin: 0px 5px;">
+                <div id="graphic_3" class="graphic-3-container"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -149,7 +153,7 @@
           </button>
       </span>
         {% if show_reset_button %}
-          <span class="problem-action-button-wrapper" id="reset_task">
+        <span class="problem-action-button-wrapper" id="reset_task">
               <button type="button" class="reset problem-action-btn btn-default btn-small" data-value="Сбросить"><span class="icon fa fa-refresh" aria-hidden="true"></span><span aria-hidden="true">Сбросить</span><span class="sr">Reset your answer</span></button>
           </span>
         {% endif %}
