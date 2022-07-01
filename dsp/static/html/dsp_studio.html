@@ -1,34 +1,28 @@
 <div class="dsp_studio">
     <div class="wrapper-comp-settings editor-with-buttons is-active" id="settings-tab">
 
-        <ul class="list-input settings-list">
-
-            <!--  <div id="main-settings">
-
-           <div class="main-settings-content">
-
-          </div>
-
-            </div>-->
-            <div id="scenario-settings">
+        <div id="scenario-settings">
+            <ul class="list-input settings-list">
                 <li class="field comp-setting-entry metadata_entry">
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label" for="display_name">Название:</label>
                         <input class="input setting-input" name="display_name" id="display_name"
-                               value="{{display_name}}" type="text"/>
+                               value="{{ display_name }}" type="text"/>
                     </div>
                     <span class="tip setting-help">Название задание. Отображается заголовком вверху задания.</span>
                 </li>
                 <li class="field comp-setting-entry metadata_entry">
                     <div class="wrapper-comp-setting">
-                        <label class="label setting-label" for="display_name">Лабораторная:</label>
-                        <select class="select-lab" name="lab_scenario" selected="{{ current_lab }}">
-                            {% for lab in lab_list %}
-                            <option {% if current_lab == lab.id %} selected="selected" {% endif %} value="{{ lab.id }}">
-                                {{lab.title}}
-                            </option>
-                            {% endfor %}
-                        </select>
+                        <label class="label setting-label" for="display_name">Лабораторная:
+                            <select class="select-lab" name="lab_scenario" selected="{{ current_lab }}">
+                                {% for lab in lab_list %}
+                                    <option {% if current_lab == lab.id %} selected="selected" {% endif %} value="{{ lab.id }}">
+                                        {{ lab.title }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </label>
+
                     </div>
                     <span class="tip setting-help">Выбор сценария используемой лабораторной работы.</span>
                 </li>
@@ -36,9 +30,9 @@
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label" for="weight">Максимальное количество баллов:</label>
                         <input class="input setting-input setting-input-number" name="weight" id="weight"
-                               value="{{weight}}" type="number" min="0" max="100" step="1"/>
+                               value="{{ weight }}" type="number" min="0" max="100" step="1"/>
                     </div>
-                    <span class="tip setting-help">Определяет количество баллов за задание. Если значение не указано, задание будет оцениваться в десять баллов.</span>
+                    <span class="tip setting-help">Определяет количество баллов за задание. Если значение не указано, задание будет оцениваться в <strong>10 баллов</strong>.</span>
                 </li>
 
                 <li class="field comp-setting-entry metadata_entry">
@@ -55,27 +49,28 @@
                         <label class="label setting-label" for="metadata-option-entry_94">Показать кнопку сброса</label>
                         <select class="input setting-input" id="metadata-option-entry_94" name="show_reset_button">
                             {% if show_reset_button %}
-                            <option value="true" selected="selected">Да</option>
-                            <option value="false">Нет</option>
+                                <option value="true" selected="selected">Да</option>
+                                <option value="false">Нет</option>
                             {% else %}
-                            <option value="true">Да</option>
-                            <option value="false" selected="selected">Нет</option>
+                                <option value="true">Да</option>
+                                <option value="false" selected="selected">Нет</option>
                             {% endif %}
                         </select>
                     </div>
                     <span class="tip setting-help">Определяет, показывать ли кнопку «Сбросить», с помощью которой пользователь может сбросить свой ответ.</span>
                 </li>
+            </ul>
 
-            </div>
-            <div id="advanced-settings" hidden="true">
-
+        </div>
+        <div id="advanced-settings" hidden>
+            <ul class="list-input settings-list">
                 <li class="field comp-setting-entry metadata_entry">
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label" for="array_tolerance">Допуск проверки массивов:</label>
                         <input class="input setting-input" name="array_tolerance" id="array_tolerance"
                                value="{{ array_tolerance|stringformat:'f' }}" type="number" min="0" max="100" step="0.01"/>
                     </div>
-                    <span class="tip setting-help">Значение, определяющее погрешность для каждого элемента массива при проверке. Значение допуска по умолчанию = 0.01</span>
+                    <span class="tip setting-help">Значение, определяющее погрешность для каждого элемента массива при проверке. Значение допуска по умолчанию = 0,01</span>
                 </li>
 
                 <li class="field comp-setting-entry metadata_entry">
@@ -84,11 +79,11 @@
                         <input class="input setting-input" name="number_tolerance" id="number_tolerance"
                                value="{{ number_tolerance|stringformat:'f' }}" type="number" min="0" max="100" step="0.01"/>
                     </div>
-                    <span class="tip setting-help">Значение, определяющее погрешность числовых ответов при проверке. Значение допуска по умолчанию = 0.5</span>
+                    <span class="tip setting-help">Значение, определяющее погрешность числовых ответов при проверке. Значение допуска по умолчанию = 0,5</span>
                 </li>
+            </ul>
+        </div>
 
-            </div>
-        </ul>
         <div class="xblock-actions">
             <ul>
                 <li class="action-item">

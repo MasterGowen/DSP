@@ -5,8 +5,6 @@ import os
 from setuptools import setup
 
 
-# from Cython.Build import cythonize
-
 def package_data(pkg, roots):
     """Generic function to find package_data.
 
@@ -28,6 +26,7 @@ setup(
     version='0.1.1',
     description='digital signal processing XBlock',  # TODO: write a better description.
     license='UNKNOWN',  # TODO: choose a license: 'AGPL v3' and 'Apache 2.0' are popular.
+    url='https://github.com/MasterGowen/DSP',
     packages=[
         'dsp',
     ],
@@ -42,4 +41,17 @@ setup(
         ]
     },
     package_data=package_data("dsp", ["static", "templatetags", "translations"]),
+    classifiers=[
+        # https://pypi.python.org/pypi?%3Aaction=list_classifiers
+        'Intended Audience :: Developers',
+        'Intended Audience :: Education',
+        'Intended Audience :: Information Technology',
+        'License :: Free For Educational Use',
+        'Operating System :: OS Independent',
+        'Programming Language :: JavaScript',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Topic :: Education',
+        'Topic :: Education :: Computer Aided Instruction (CAI)'
+    ],
 )

@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
-import os
 import pkg_resources
 
 from django.template import Context, Template
-from django.template.loader import get_template
 from django.utils.encoding import smart_text
-
-
-# from django.utils.numberformat import format
 
 
 def load_resource(resource_path):
@@ -31,8 +26,6 @@ def load_resources(self, js_urls, css_urls, fragment):
             fragment.add_javascript_url(self.runtime.local_resource_url(self, js_url))
         elif js_url.startswith('static/'):
             fragment.add_javascript(load_resource(js_url))
-        else:
-            pass
 
     for css_url in css_urls:
 
@@ -40,8 +33,6 @@ def load_resources(self, js_urls, css_urls, fragment):
             fragment.add_css_url(self.runtime.local_resource_url(self, css_url))
         elif css_url.startswith('static/'):
             fragment.add_css(load_resource(css_url))
-        else:
-            pass
 
 
 def render_template(template_path, context=None):
