@@ -13,7 +13,7 @@
                 </li>
                 <li class="field comp-setting-entry metadata_entry">
                     <div class="wrapper-comp-setting">
-                        <label class="label setting-label" for="display_name">Лабораторная:
+                        <label class="label setting-label" for="display_name">Лабораторная:</label>
                             <select class="select-lab" name="lab_scenario" selected="{{ current_lab }}">
                                 {% for lab in lab_list %}
                                     <option {% if current_lab == lab.id %} selected="selected" {% endif %} value="{{ lab.id }}">
@@ -21,8 +21,6 @@
                                     </option>
                                 {% endfor %}
                             </select>
-                        </label>
-
                     </div>
                     <span class="tip setting-help">Выбор сценария используемой лабораторной работы.</span>
                 </li>

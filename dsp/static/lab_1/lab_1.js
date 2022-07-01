@@ -1,10 +1,10 @@
 function DSPXBlock(runtime, element, data) {
 
-    var student_submit = runtime.handlerUrl(element, 'student_submit');
-    var save_answer = runtime.handlerUrl(element, 'save_answer');
-    var get_graphics = runtime.handlerUrl(element, 'lab_1_get_graphics');
-    var reset_task = runtime.handlerUrl(element, 'reset_task');
-    var highlight_correct = true;
+    let student_submit = runtime.handlerUrl(element, 'student_submit'),
+        save_answer = runtime.handlerUrl(element, 'save_answer'),
+        get_graphics = runtime.handlerUrl(element, 'lab_1_get_graphics'),
+        reset_task = runtime.handlerUrl(element, 'reset_task'),
+        highlight_correct = true;
 
     function build_graphics() {
         disable($('#calculate_graphics', element));
@@ -102,7 +102,7 @@ function DSPXBlock(runtime, element, data) {
     });
 
     function generateAnswer() {
-        var student_data = {
+        let student_data = {
             "student_signal": [],
             "student_filter": [],
             "student_a": "",
@@ -128,7 +128,7 @@ function DSPXBlock(runtime, element, data) {
     }
 
     function buttons_disable() {
-        var student_data = generateAnswer();
+        let student_data = generateAnswer();
         if (student_data.student_filter.length > 0 && student_data.student_signal.length > 0 && parseFloat(student_data.student_a)) {
             enable($("#calculate_graphics", element));
             if (parseFloat(student_data.student_p) && parseFloat(student_data.student_ubl)) {
