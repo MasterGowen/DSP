@@ -2,10 +2,11 @@
 import datetime
 import json
 import logging
-import sys
-import traceback
 import os
 import re
+import sys
+import traceback
+
 import pkg_resources
 import pytz
 from webob.response import Response
@@ -15,24 +16,17 @@ from xblock.fragment import Fragment
 from xmodule.util.duedate import get_extended_due_date
 
 from .calc_utils import merge_two_dicts
-
-# from .lab_1 import get_source_data, lab_1_get_graphics, check_answer
-# from .lab_2 import get_source_data, lab_2_get_graphics_1, lab_2_get_graphics_2, lab_2_get_graphics_3, check_answer
-# from .lab_3 import get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, check_answer
-# from .lab_4 import get_source_data, lab_4_get_graphics, check_answer
-# from .lab_5 import get_source_data, lab_5_get_graphic_1, lab_5_get_graphic_2, check_answer
-# from .lab_7 import get_source_data, lab_7_get_graphic_1, lab_7_get_graphic_2, lab_7_get_graphic_3, lab_7_get_graphic_4, check_answer
 from .utils import (
     render_template,
     load_resources
 )
 
-for module in os.listdir(os.path.dirname(__file__)):
-    if re.match(r"lab_\d+.py", module):
-        globals()[os.path.splitext(module)[0]] = __import__('dsp.' + module[:-3], fromlist=[None])
-del module
-
 log = logging.getLogger(__name__)
+
+for module in os.listdir(os.path.dirname(__file__)):
+    if re.match(r'lab_\d+.py', module):
+        globals()[os.path.splitext(module)[0]] = __import__("dsp." + module[:-3], fromlist=[None])
+del module
 
 
 class DSPXBlock(XBlock):
@@ -42,7 +36,7 @@ class DSPXBlock(XBlock):
 
     display_name = String(
         display_name=u'Отображаемое название',
-        default=u"Лабораторная работа",
+        default=u'Лабораторная работа',
         scope=Scope.settings
     )
 
@@ -50,75 +44,55 @@ class DSPXBlock(XBlock):
         display_name=u'Список лабораторных работ',
         scope=Scope.settings,
         default=[
-            {
-                "id": "lab_1",
-                "title": u"Лабораторная 1. Исследование цифровых фильтров с конечной импульсной характеристикой",
-            },
-            {
-                "id": "lab_2",
-                "title": u"Лабораторная 2. Цифровой спектральный анализ",
-            },
-            {
-                "id": "lab_3",
-                "title": u"Лабораторная 3. Цифровой согласованный фильтр",
-            },
-            {
-                "id": "lab_4",
-                "title": u"Лабораторная 4. Исследование рекурсивных цифровых фильтров",
-            },
-            {
-                "id": "lab_5",
-                "title": u"Лабораторная 5. Исследование рекурсивных цифровых фильтров",
-            },
-            {
-                "id": "lab_7",
-                "title": u"Лабораторная 7. Цифровые модуляторы и демодуляторы",
-            },
-
+            {'id': 'lab_1', 'title': u'Лабораторная 1. Исследование цифровых фильтров с конечной импульсной характеристикой'},
+            {'id': 'lab_2', 'title': u'Лабораторная 2. Цифровой спектральный анализ'},
+            {'id': 'lab_3', 'title': u'Лабораторная 3. Цифровой согласованный фильтр'},
+            {'id': 'lab_4', 'title': u'Лабораторная 4. Исследование рекурсивных цифровых фильтров'},
+            {'id': 'lab_5', 'title': u'Лабораторная 5. Исследование рекурсивных цифровых фильтров'},
+            {'id': 'lab_7', 'title': u'Лабораторная 7. Цифровые модуляторы и демодуляторы'}
         ]
-
     )
 
     max_attempts = Integer(
-        display_name=u"Максимальное количество попыток",
-        help=u"",
+        display_name=u'Максимальное количество попыток',
+        help=u'',
         default=None,
         scope=Scope.settings
     )
 
     attempts = Integer(
-        display_name=u"Количество использованных попыток",
-        help=u"",
+        display_name=u'Количество использованных попыток',
+        help=u'',
         default=0,
         scope=Scope.user_state
     )
 
     weight = Integer(
-        display_name=u"Максимальное количество баллов",
-        help=(u"Максимальное количество баллов",
-              u"которое может получить студент."),
+        display_name=u'Максимальное количество баллов',
+        help=(u'Максимальное количество баллов',
+              u'которое может получить студент.'),
         default=10,
         scope=Scope.settings
     )
 
     score = Float(
-        display_name=u"Текущее количество баллов студента",
+        display_name=u'Текущее количество баллов студента',
         default=None,
         scope=Scope.user_state
     )
 
     current_lab = String(
-        display_name=u"ID текущей лаборатории",
-        help=u"ID текущей лаборатории",
-        default="lab_1",
+        display_name=u'ID текущей лаборатории',
+        help=u'ID текущей лаборатории',
+        default='lab_1',
         scope=Scope.settings
     )
 
     lab_settings = JSONField(
         default={
-            "array_tolerance": 0.01,
-            "number_tolerance": 0.5,
-            "show_reset_button": False,
+            'array_tolerance': 0.01,
+            'number_tolerance': 0.5,
+            'show_reset_button': False,
         },
         scope=Scope.settings,
         help=u'Настройки лабораторной работы',
@@ -159,18 +133,16 @@ class DSPXBlock(XBlock):
         Проверка, истекла ли дата для выполнения задания.
         """
         due = get_extended_due_date(self)
-        if due is not None:
-            if _now() > due:
-                return False
+        if due is not None and _now() > due:
+            return False
 
     def answer_opportunity(self):
         """
         Возможность ответа (если количество сделанное попыток меньше заданного).
         """
-        if self.max_attempts is not None and self.max_attempts <= self.attempts:
-            return False
-        else:
+        if self.max_attempts and self.max_attempts > self.attempts:
             return True
+        return False
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -178,322 +150,216 @@ class DSPXBlock(XBlock):
         return data.decode("utf8")
 
     def student_view(self, context=None):
-
         context = self.lab_context()
-
         fragment = self.load_lab_static(self.current_lab, context)
         fragment.initialize_js('DSPXBlock', context)
         return fragment
 
     @XBlock.json_handler
     def student_submit(self, data, suffix=''):
-
-        self.student_state["answer"] = data
-        result = {}
+        self.student_state['answer'] = data
         try:
             if not self.answer_opportunity():
                 raise Exception('Maximum number of attempts exceeded')
-            # if self.current_lab == "lab_1":
-            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings)
-            # elif self.current_lab == "lab_2":
+
             result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
-            # elif self.current_lab == "lab_3":
-            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
-            # elif self.current_lab == "lab_4":
-            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings)
-            # elif self.current_lab == "lab_5":
-            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings)
-            # # elif self.current_lab == "lab_6":
-            # #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings)
-            # elif self.current_lab == "lab_7":
-            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
-            # else:
-            #     raise Exception('Hiding bugs lol')
+            rs = result['score']
 
-            self.score = round(self.weight * result["score"], 1)
-            self.student_state["score"] = self.score
-            self.student_state["correctness"] = result["correctness"]
-
-            if result["score"] == 1:
-                self.student_state["is_success"] = "success"
-            elif result["score"] == 0:
-                self.student_state["is_success"] = "error"
-            else:
-                self.student_state["is_success"] = "partially"
+            self.score = round(self.weight * rs, 1)
+            self.student_state['score'] = self.score
+            self.student_state['correctness'] = result['correctness']
+            self.student_state['is_success'] = 'success' if rs == 1 else 'error' if rs == 0 else 'partially'
 
             self.runtime.publish(self, 'grade', {'value': float(self.score), 'max_value': float(self.weight)})
-            self.student_state["weight"] = self.weight
-            self.student_state["max_attempts"] = self.max_attempts
+            self.student_state['weight'] = self.weight
+            self.student_state['max_attempts'] = self.max_attempts
             self.attempts += 1
-            self.student_state["attempts"] = self.attempts
+            self.student_state['attempts'] = self.attempts
             return Response(json_body=self.student_state)
 
         except Exception as e:
             ex = dict()
-            ex["exception"] = str(e)
+            ex['exception'] = str(e)
             # возможно, трейсбэк следует показывать только сотрудникам
             # if self.is_course_staff() is True or self.is_instructor() is True:
             trace = traceback.extract_tb(sys.exc_info()[2])
-            output = "Traceback is:\n"
+            output = 'Traceback is:\n'
             for (file, linenumber, affected, line) in trace:
-                output += "> Error at function {}\n".format(affected)
-                output += "  At: {}:{}\n".format(file, linenumber)
-                output += "  Source: {}\n".format(line)
-            output += "> Exception: {}\n".format(e)
-            ex["traceback"] = output
+                output += '> Error at function {}\n'.format(affected)
+                output += '  At: {}:{}\n'.format(file, linenumber)
+                output += '  Source: {}\n'.format(line)
+            output += '> Exception: {}\n'.format(e)
+            ex['traceback'] = output
             return Response(json.dumps(ex), status=500)
 
     @XBlock.json_handler
     def lab_1_get_graphics(self, data, suffix=''):
-        self.student_state["answer"] = data
-        try:
-            graphics = globals()[self.current_lab].lab_1_get_graphic(data, self.lab_source_data)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        self.student_state['answer'] = data
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_1_get_graphics(data, self.lab_source_data)})
 
     @XBlock.handler
     def lab_2_get_graphics_1(self, data, suffix=''):
-        try:
-            graphics = globals()[self.current_lab].lab_2_get_graphic_1(self.lab_source_data, self.correct_answer)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_2_get_graphics_1(self.lab_source_data, self.correct_answer)})
 
     @XBlock.handler
     def lab_2_get_graphics_2(self, data, suffix=''):
-        try:
-            graphics = globals()[self.current_lab].lab_2_get_graphic_2(self.lab_source_data, self.correct_answer)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_2_get_graphics_2(self.lab_source_data, self.correct_answer)})
 
     @XBlock.handler
     def lab_2_get_graphics_3(self, data, suffix=''):
-        try:
-            graphics = globals()[self.current_lab].lab_2_get_graphic_3(self.lab_source_data, self.correct_answer)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_2_get_graphics_3(self.lab_source_data, self.correct_answer)})
 
     @XBlock.json_handler
     def lab_3_get_graphic_1(self, data, suffix=''):
-        self.student_state["answer"] = data
-        try:
-            graphic = globals()[self.current_lab].lab_3_get_graphic_1(data, self.lab_source_data, self.correct_answer)
-            return Response(json_body={"graphic": graphic})
-        except:
-            return Response('Error!', 500)
+        self.student_state['answer'] = data
+        return Response(json_body={'graphic': globals()[self.current_lab].lab_3_get_graphic_1(data, self.lab_source_data, self.correct_answer)})
 
     @XBlock.handler
     def lab_3_get_graphic_2(self, request, suffix=''):
-        self.student_state["answer"] = json.loads(request.body)
-        reload = False
-        is_signal = ""
-        try:
-            if 'reload' in request.GET:
-                reload = True
-            if 'is_signal' in request.GET:
-                is_signal = request.GET["is_signal"]
-            self.correct_answer, self.student_state, graphic = globals()[self.current_lab].lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
-            return Response(json_body={"graphic": graphic, "student_state": self.student_state, "correct_answer": self.correct_answer})
-        except:
-            return Response('Error!', 500)
+        self.student_state['answer'] = json.loads(request.body)
+        reload = 'reload' in request.GET
+        is_signal = request.GET.get('is_signal', '')
+        self.correct_answer, self.student_state, graphic = globals()[self.current_lab].lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
+        return Response(json_body={'graphic': graphic, 'student_state': self.student_state, 'correct_answer': self.correct_answer})
 
     @XBlock.json_handler
     def lab_3_get_graphic_3(self, data, suffix=''):
-        self.student_state["answer"] = data
-        try:
-            graphic = globals()[self.current_lab].lab_3_get_graphic_3(data, self.lab_source_data)
-            return Response(json_body={"graphic": graphic})
-        except:
-            return Response('Error!', 500)
+        self.student_state['answer'] = data
+        return Response(json_body={'graphic': globals()[self.current_lab].lab_3_get_graphic_3(data, self.lab_source_data)})
 
     @XBlock.handler
     def lab_3_reset_task(self, data, suffix=''):
-        self.student_state["state"]["Ku_j"] = 1
-        self.student_state["state"]["Ku_i"] = 1
-        self.student_state["state"]["Ku_done"] = False
-        self.student_state["state"]["there_is_signal_count"] = 0
-        self.student_state["state"]["there_is_no_signal_count"] = 0
-        self.student_state["state"]["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
+        state = {
+            'Ku_j': 1,
+            'Ku_i': 1,
+            'Ku_done': False,
+            'there_is_signal_count': 0,
+            'there_is_no_signal_count': 0,
+            'there_is_signal_states': [{}] * len(self.lab_source_data['s'])
+        }
+        self.student_state['state'].update(state)
         _, self.student_state, graphic = globals()[self.current_lab].lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, True)
-        return Response(json_body={"graphic": graphic, "student_state": self.student_state})
+        return Response(json_body={'graphic': graphic, 'student_state': self.student_state})
 
     @XBlock.json_handler
     def lab_4_get_graphics(self, data, suffix=''):
-        self.student_state["answer"] = data
-        try:
-            graphics = globals()[self.current_lab].lab_4_get_graphic(data, self.lab_source_data)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        self.student_state['answer'] = data
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_4_get_graphics(data, self.lab_source_data)})
 
     @XBlock.json_handler
     def lab_5_get_graphic_1(self, data, suffix=''):
-        self.student_state["answer"] = data
-        try:
-            graphics = globals()[self.current_lab].lab_5_get_graphic_1(data, self.lab_source_data)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        self.student_state['answer'] = data
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_5_get_graphic_1(data, self.lab_source_data)})
 
     @XBlock.json_handler
     def lab_5_get_graphic_2(self, data, suffix=''):
-        self.student_state["answer"] = data
-        try:
-            graphics = globals()[self.current_lab].lab_5_get_graphic_2(data, self.lab_source_data)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        self.student_state['answer'] = data
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_5_get_graphic_2(data, self.lab_source_data)})
 
     @XBlock.handler
     def lab_7_get_graphic_1(self, data, suffix=''):
-        # try:
-        graphics = globals()[self.current_lab].lab_7_get_graphic_1(self.lab_source_data, self.correct_answer)
-        return Response(json_body={"graphics": graphics})
-        # except:
-        #     return Response('Error!', 500)
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_7_get_graphic_1(self.lab_source_data, self.correct_answer)})
 
     @XBlock.json_handler
     def lab_7_get_graphic_2(self, data, suffix=''):
-        self.student_state["answer"] = data
-        try:
-            graphics = globals()[self.current_lab].lab_7_get_graphic_2(data)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        self.student_state['answer'] = data
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_7_get_graphic_2(data)})
 
     @XBlock.handler
     def lab_7_get_graphic_3(self, data, suffix=''):
-        try:
-            graphics = globals()[self.current_lab].lab_7_get_graphic_3(self.lab_source_data, self.correct_answer)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_7_get_graphic_3(self.lab_source_data, self.correct_answer)})
 
     @XBlock.json_handler
     def lab_7_get_graphic_4(self, data, suffix=''):
-        self.student_state["answer"] = data
-        try:
-            graphics = globals()[self.current_lab].lab_7_get_graphics_4(data, self.correct_answer)
-            return Response(json_body={"graphics": graphics})
-        except:
-            return Response('Error!', 500)
+        self.student_state['answer'] = data
+        return Response(json_body={'graphics': globals()[self.current_lab].lab_7_get_graphics_4(data, self.correct_answer)})
 
     @XBlock.json_handler
     def save_answer(self, data, suffix=''):
-        self.student_state["answer"] = data
-        return Response(json_body={"success": "success"})
+        self.student_state['answer'] = data
+        return Response(json_body={'success': 'success'})
 
     @XBlock.handler
     def reset_task(self, data, suffix=''):
-        if self.lab_settings["show_reset_button"]:
+        if self.lab_settings['show_reset_button']:
             self.attempts = 0
             self.score = None
             self.correct_answer = {}
             self.student_state = {}
             self.lab_source_data = {}
-            return Response(json_body={"success": "success"})
+            json_body = {'success': 'success'}
         else:
-            return Response('Error!', 500)
+            json_body = {'success': False}
+        return Response(json_body)
 
     def get_general_context(self):
-        general_context = {
-            "current_lab": self.current_lab,
-            "display_name": self.display_name,
-            "weight": self.weight,
-            "score": self.score,
-            "max_attempts": self.max_attempts,
-            "attempts": self.attempts,
-            "student_state": self.student_state,
-            "show_reset_button": self.lab_settings["show_reset_button"],
+        return {
+            'current_lab': self.current_lab,
+            'display_name': self.display_name,
+            'weight': self.weight,
+            'score': self.score,
+            'max_attempts': self.max_attempts,
+            'attempts': self.attempts,
+            'student_state': self.student_state,
+            'show_reset_button': self.lab_settings['show_reset_button'],
+            'answer_opportunity': self.answer_opportunity(),
+            'is_course_staff': self.is_course_staff() or self.is_instructor()
         }
 
-        if self.answer_opportunity():
-            general_context["answer_opportunity"] = True
-
-        if self.is_course_staff() is True or self.is_instructor() is True:
-            general_context['is_course_staff'] = True
-
-        return general_context
-
     def lab_context(self):
-        if not self.lab_source_data or self.lab_source_data["lab_id"] != self.current_lab:
+        if not self.lab_source_data or self.lab_source_data['lab_id'] != self.current_lab:
             self.student_state = {}
             self.attempts = 0
             self.score = None
 
-            if self.current_lab == "lab_1":
+            if self.current_lab in ('lab_1', 'lab_4', 'lab_5'):  # 'lab_6'
                 self.lab_source_data = globals()[self.current_lab].get_source_data()
-            elif self.current_lab == "lab_2":
+
+            elif self.current_lab in ('lab_2', 'lab_7'):
                 self.lab_source_data, self.correct_answer = globals()[self.current_lab].get_source_data()
-            elif self.current_lab == "lab_3":
-                state = dict()
+
+            elif self.current_lab == 'lab_3':
                 self.lab_source_data, self.correct_answer = globals()[self.current_lab].get_source_data(self.correct_answer)
-                state["Ku_j"] = 1
-                state["Ku_i"] = 1
-                state["Ku_done"] = False
-                state["there_is_signal_count"] = 0
-                state["there_is_no_signal_count"] = 0
-                state["y2_s2"] = None
-                state["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
-                self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
-                self.student_state["state"] = state
-            elif self.current_lab == "lab_4":
-                self.lab_source_data = globals()[self.current_lab].get_source_data()
-            elif self.current_lab == "lab_5":
-                self.lab_source_data = globals()[self.current_lab].get_source_data()
-            # elif self.current_lab == "lab_6":
-            #     self.lab_source_data = globals()[self.current_lab].get_source_data()
-            elif self.current_lab == "lab_7":
-                self.lab_source_data, self.correct_answer = globals()[self.current_lab].get_source_data()
+                self.correct_answer['s'] = [None] * len(self.lab_source_data['s'])
+                self.student_state['state'] = {
+                    'Ku_j': 1,
+                    'Ku_i': 1,
+                    'Ku_done': False,
+                    'there_is_signal_count': 0,
+                    'there_is_no_signal_count': 0,
+                    'y2_s2': None,
+                    'there_is_signal_states': [{}] * len(self.lab_source_data['s'])
+                }
+
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 
     def load_lab_static(self, lab_id, context):
         frag = Fragment()
-        frag.add_content(
-            render_template(
-                "static/{}/{}.html".format(lab_id, lab_id),
-                context
-            )
-        )
-        frag.add_css(self.resource_string("static/{}/{}.css".format(lab_id, lab_id)))
-        frag.add_css(self.resource_string("static/css/dsp.css"))
-        frag.add_javascript(self.resource_string("static/{}/{}.js".format(lab_id, lab_id)))
-        frag.add_javascript(self.resource_string("static/js/src/dsp.js"))
+        frag.add_content(render_template('static/{}/{}.html'.format(lab_id, lab_id), context))
+        frag.add_css(self.resource_string('static/{}/{}.css'.format(lab_id, lab_id)))
+        frag.add_css(self.resource_string('static/css/dsp.css'))
+        frag.add_javascript(self.resource_string('static/{}/{}.js'.format(lab_id, lab_id)))
+        frag.add_javascript(self.resource_string('static/js/src/dsp.js'))
         return frag
 
     def studio_view(self, context=None):
         context = {
-            "display_name": self.display_name,
-            "current_lab": self.current_lab,
-            "lab_list": self.lab_list,
-            "weight": self.weight,
-            "max_attempts": self.max_attempts,
-            "number_tolerance": self.lab_settings["number_tolerance"],
-            "array_tolerance": self.lab_settings["array_tolerance"],
-            "show_reset_button": self.lab_settings["show_reset_button"],
+            'display_name': self.display_name,
+            'current_lab': self.current_lab,
+            'lab_list': self.lab_list,
+            'weight': self.weight,
+            'max_attempts': self.max_attempts,
+            'number_tolerance': self.lab_settings['number_tolerance'],
+            'array_tolerance': self.lab_settings['array_tolerance'],
+            'show_reset_button': self.lab_settings['show_reset_button'],
         }
         fragment = Fragment()
-        fragment.add_content(
-            render_template(
-                "static/html/dsp_studio.html",
-                context
-            )
-        )
-
-        js_urls = (
-            "static/js/src/dsp_studio.js",
-        )
-
-        css_urls = (
-            "static/css/dsp_studio.css",
-        )
+        fragment.add_content(render_template('static/html/dsp_studio.html', context))
+        js_urls = ('static/js/src/dsp_studio.js',)
+        css_urls = ('static/css/dsp_studio.css',)
 
         load_resources(self, js_urls, css_urls, fragment)
-
         fragment.initialize_js('DSPXBlock')
         return fragment
 
@@ -508,9 +374,9 @@ class DSPXBlock(XBlock):
                 raise Exception('Zero attempts is not allowed')
         except:
             self.max_attempts = None
-        self.lab_settings["array_tolerance"] = float(data.get('array_tolerance'))
-        self.lab_settings["number_tolerance"] = float(data.get('number_tolerance'))
-        self.lab_settings["show_reset_button"] = True if data.get('show_reset_button') == 'true' else False
+        self.lab_settings['array_tolerance'] = float(data.get('array_tolerance'))
+        self.lab_settings['number_tolerance'] = float(data.get('number_tolerance'))
+        self.lab_settings['show_reset_button'] = True if data.get('show_reset_button') == 'true' else False
 
         return {'result': 'success'}
 
@@ -535,7 +401,4 @@ class DSPXBlock(XBlock):
 
 
 def _now():
-    """
-    Получение текущих даты и времени.
-    """
     return datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
