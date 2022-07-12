@@ -418,6 +418,7 @@ class DSPXBlock(XBlock):
         return general_context
 
     def lab_context(self):
+        log.warning('GLOBALS\n\n %s', str(globals()))
         if not self.lab_source_data or self.lab_source_data["lab_id"] != self.current_lab:
             self.student_state = {}
             self.attempts = 0
