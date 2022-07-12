@@ -4,7 +4,8 @@ import json
 import logging
 import sys
 import traceback
-
+import os
+import re
 import pkg_resources
 import pytz
 from webob.response import Response
@@ -14,16 +15,21 @@ from xblock.fragment import Fragment
 from xmodule.util.duedate import get_extended_due_date
 
 from .calc_utils import merge_two_dicts
-from .lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
-from .lab_2 import lab_2_get_source_data, lab_2_get_graphics_1, lab_2_get_graphics_2, lab_2_get_graphics_3, lab_2_check_answer
-from .lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, lab_3_check_answer
-from .lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
-from .lab_5 import lab_5_get_source_data, lab_5_get_graphic_1, lab_5_get_graphic_2, lab_5_check_answer
-from .lab_7 import lab_7_get_source_data, lab_7_get_graphic_1, lab_7_get_graphic_2, lab_7_get_graphic_3, lab_7_get_graphic_4, lab_7_check_answer
+# from .lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
+# from .lab_2 import lab_2_get_source_data, lab_2_get_graphics_1, lab_2_get_graphics_2, lab_2_get_graphics_3, lab_2_check_answer
+# from .lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, lab_3_check_answer
+# from .lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
+# from .lab_5 import lab_5_get_source_data, lab_5_get_graphic_1, lab_5_get_graphic_2, lab_5_check_answer
+# from .lab_7 import lab_7_get_source_data, lab_7_get_graphic_1, lab_7_get_graphic_2, lab_7_get_graphic_3, lab_7_get_graphic_4, lab_7_check_answer
 from .utils import (
     render_template,
     load_resources
 )
+
+for module in os.listdir(os.path.dirname(__file__)):
+    if re.match(r"lab_\d+.py", module):
+        __import__(module[:-3], locals(), globals())
+del module
 
 log = logging.getLogger(__name__)
 
@@ -187,19 +193,19 @@ class DSPXBlock(XBlock):
             if not self.answer_opportunity():
                 raise Exception('Maximum number of attempts exceeded')
             if self.current_lab == "lab_1":
-                result = lab_1_check_answer(data, self.lab_source_data, self.lab_settings)
+                result = getattr(globals()[self.current_lab], 'lab_1_check_answer')(data, self.lab_source_data, self.lab_settings)
             elif self.current_lab == "lab_2":
-                result = lab_2_check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
+                result = getattr(globals()[self.current_lab], 'lab_2_check_answer')(data, self.lab_source_data, self.lab_settings, self.correct_answer)
             elif self.current_lab == "lab_3":
-                result = lab_3_check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
+                result = getattr(globals()[self.current_lab], 'lab_3_check_answer')(data, self.lab_source_data, self.lab_settings, self.correct_answer)
             elif self.current_lab == "lab_4":
-                result = lab_4_check_answer(data, self.lab_source_data, self.lab_settings)
+                result = getattr(globals()[self.current_lab], 'lab_4_check_answer')(data, self.lab_source_data, self.lab_settings)
             elif self.current_lab == "lab_5":
-                result = lab_5_check_answer(data, self.lab_source_data, self.lab_settings)
+                result = getattr(globals()[self.current_lab], 'lab_5_check_answer')(data, self.lab_source_data, self.lab_settings)
             # elif self.current_lab == "lab_6":
-            #     result = lab_6_check_answer(data, self.lab_source_data, self.lab_settings)
+            #     result = getattr(globals()[self.current_lab], 'lab_6_check_answer')(data, self.lab_source_data, self.lab_settings)
             elif self.current_lab == "lab_7":
-                result = lab_7_check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
+                result = getattr(globals()[self.current_lab], 'lab_7_check_answer')(data, self.lab_source_data, self.lab_settings, self.correct_answer)
             else:
                 raise Exception('Hiding bugs lol')
 
@@ -240,7 +246,7 @@ class DSPXBlock(XBlock):
     def lab_1_get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = lab_1_get_graphics(data, self.lab_source_data)
+            graphics = getattr(globals()[self.current_lab], 'lab_1_get_graphics')(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -248,7 +254,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_2_get_graphics_1(self, data, suffix=''):
         try:
-            graphics = lab_2_get_graphics_1(self.lab_source_data, self.correct_answer)
+            graphics = getattr(globals()[self.current_lab], 'lab_2_get_graphics_1')(self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -256,7 +262,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_2_get_graphics_2(self, data, suffix=''):
         try:
-            graphics = lab_2_get_graphics_2(self.lab_source_data, self.correct_answer)
+            graphics = getattr(globals()[self.current_lab], 'lab_2_get_graphics_2')(self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -264,7 +270,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_2_get_graphics_3(self, data, suffix=''):
         try:
-            graphics = lab_2_get_graphics_3(self.lab_source_data, self.correct_answer)
+            graphics = getattr(globals()[self.current_lab], 'lab_2_get_graphics_3')(self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -273,7 +279,7 @@ class DSPXBlock(XBlock):
     def lab_3_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphic = lab_3_get_graphic_1(data, self.lab_source_data, self.correct_answer)
+            graphic = getattr(globals()[self.current_lab], 'lab_3_get_graphics_1')(data, self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphic": graphic})
         except:
             return Response('Error!', 500)
@@ -288,7 +294,7 @@ class DSPXBlock(XBlock):
                 reload = True
             if 'is_signal' in request.GET:
                 is_signal = request.GET["is_signal"]
-            self.correct_answer, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
+            self.correct_answer, self.student_state, graphic = getattr(globals()[self.current_lab], 'lab_3_get_graphics_2')(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
             return Response(json_body={"graphic": graphic, "student_state": self.student_state, "correct_answer": self.correct_answer})
         except:
             return Response('Error!', 500)
@@ -297,7 +303,7 @@ class DSPXBlock(XBlock):
     def lab_3_get_graphic_3(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphic = lab_3_get_graphic_3(data, self.lab_source_data)
+            graphic = getattr(globals()[self.current_lab], 'lab_3_get_graphics_3')(data, self.lab_source_data)
             return Response(json_body={"graphic": graphic})
         except:
             return Response('Error!', 500)
@@ -310,14 +316,14 @@ class DSPXBlock(XBlock):
         self.student_state["state"]["there_is_signal_count"] = 0
         self.student_state["state"]["there_is_no_signal_count"] = 0
         self.student_state["state"]["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
-        _, self.student_state, graphic = lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, True)
+        _, self.student_state, graphic = getattr(globals()[self.current_lab], 'lab_3_get_graphics_2')(self.correct_answer, self.student_state, self.lab_source_data, True)
         return Response(json_body={"graphic": graphic, "student_state": self.student_state})
 
     @XBlock.json_handler
     def lab_4_get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = lab_4_get_graphics(data, self.lab_source_data)
+            graphics = getattr(globals()[self.current_lab], 'lab_4_get_graphics')(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -326,7 +332,7 @@ class DSPXBlock(XBlock):
     def lab_5_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = lab_5_get_graphic_1(data, self.lab_source_data)
+            graphics = getattr(globals()[self.current_lab], 'lab_5_get_graphics_1')(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -335,7 +341,7 @@ class DSPXBlock(XBlock):
     def lab_5_get_graphic_2(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = lab_5_get_graphic_2(data, self.lab_source_data)
+            graphics = getattr(globals()[self.current_lab], 'lab_5_get_graphics_2')(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -343,7 +349,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_7_get_graphic_1(self, data, suffix=''):
         try:
-            graphics = lab_7_get_graphic_1(self.lab_source_data, self.correct_answer)
+            graphics = getattr(globals()[self.current_lab], 'lab_7_get_graphics_1')(self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -352,7 +358,7 @@ class DSPXBlock(XBlock):
     def lab_7_get_graphic_2(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = lab_7_get_graphic_2(data)
+            graphics = getattr(globals()[self.current_lab], 'lab_7_get_graphics_2')(data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -360,7 +366,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_7_get_graphic_3(self, data, suffix=''):
         try:
-            graphics = lab_7_get_graphic_3(self.lab_source_data, self.correct_answer)
+            graphics = getattr(globals()[self.current_lab], 'lab_7_get_graphics_3')(self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -369,7 +375,7 @@ class DSPXBlock(XBlock):
     def lab_7_get_graphic_4(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = lab_7_get_graphic_4(data, self.correct_answer)
+            graphics = getattr(globals()[self.current_lab], 'lab_7_get_graphics_4')(data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -418,12 +424,12 @@ class DSPXBlock(XBlock):
             self.score = None
 
             if self.current_lab == "lab_1":
-                self.lab_source_data = lab_1_get_source_data()
+                self.lab_source_data =  getattr(self.current_lab, "lab_1_get_source_data")()
             elif self.current_lab == "lab_2":
-                self.lab_source_data, self.correct_answer = lab_2_get_source_data()
+                self.lab_source_data, self.correct_answer = getattr(self.current_lab, "lab_2_get_source_data")()
             elif self.current_lab == "lab_3":
                 state = dict()
-                self.lab_source_data, self.correct_answer = lab_3_get_source_data(self.correct_answer)
+                self.lab_source_data, self.correct_answer = getattr(self.current_lab, "lab_3_get_source_data")(self.correct_answer)
                 state["Ku_j"] = 1
                 state["Ku_i"] = 1
                 state["Ku_done"] = False
@@ -434,13 +440,13 @@ class DSPXBlock(XBlock):
                 self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
                 self.student_state["state"] = state
             elif self.current_lab == "lab_4":
-                self.lab_source_data = lab_4_get_source_data()
+                self.lab_source_data = getattr(self.current_lab, "lab_4_get_source_data")()
             elif self.current_lab == "lab_5":
-                self.lab_source_data = lab_5_get_source_data()
+                self.lab_source_data = getattr(self.current_lab, "lab_5_get_source_data")()
             # elif self.current_lab == "lab_6":
-            #     self.lab_source_data = lab_6_get_source_data()
+            #     self.lab_source_data = getattr(self.current_lab, "lab_6_get_source_data")()
             elif self.current_lab == "lab_7":
-                self.lab_source_data, self.correct_answer = lab_7_get_source_data()
+                self.lab_source_data, self.correct_answer = getattr(self.current_lab, "lab_7_get_source_data")()
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 
@@ -513,6 +519,7 @@ class DSPXBlock(XBlock):
     def workbench_scenarios():
         """A canned scenario for display in the workbench."""
         return [
+
             ("DSPXBlock",
              """<dsp/>
              """),
