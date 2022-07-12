@@ -16,12 +16,12 @@ from xmodule.util.duedate import get_extended_due_date
 
 from .calc_utils import merge_two_dicts
 
-# from .lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
-# from .lab_2 import lab_2_get_source_data, lab_2_get_graphics_1, lab_2_get_graphics_2, lab_2_get_graphics_3, lab_2_check_answer
-# from .lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, lab_3_check_answer
-# from .lab_4 import lab_4_get_source_data, lab_4_get_graphics, lab_4_check_answer
-# from .lab_5 import lab_5_get_source_data, lab_5_get_graphic_1, lab_5_get_graphic_2, lab_5_check_answer
-# from .lab_7 import lab_7_get_source_data, lab_7_get_graphic_1, lab_7_get_graphic_2, lab_7_get_graphic_3, lab_7_get_graphic_4, lab_7_check_answer
+# from .lab_1 import get_source_data, lab_1_get_graphics, check_answer
+# from .lab_2 import get_source_data, lab_2_get_graphics_1, lab_2_get_graphics_2, lab_2_get_graphics_3, check_answer
+# from .lab_3 import get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, check_answer
+# from .lab_4 import get_source_data, lab_4_get_graphics, check_answer
+# from .lab_5 import get_source_data, lab_5_get_graphic_1, lab_5_get_graphic_2, check_answer
+# from .lab_7 import get_source_data, lab_7_get_graphic_1, lab_7_get_graphic_2, lab_7_get_graphic_3, lab_7_get_graphic_4, check_answer
 from .utils import (
     render_template,
     load_resources
@@ -193,22 +193,22 @@ class DSPXBlock(XBlock):
         try:
             if not self.answer_opportunity():
                 raise Exception('Maximum number of attempts exceeded')
-            if self.current_lab == "lab_1":
-                result = getattr(globals()[self.current_lab], 'lab_1_check_answer')(data, self.lab_source_data, self.lab_settings)
-            elif self.current_lab == "lab_2":
-                result = getattr(globals()[self.current_lab], 'lab_2_check_answer')(data, self.lab_source_data, self.lab_settings, self.correct_answer)
-            elif self.current_lab == "lab_3":
-                result = getattr(globals()[self.current_lab], 'lab_3_check_answer')(data, self.lab_source_data, self.lab_settings, self.correct_answer)
-            elif self.current_lab == "lab_4":
-                result = getattr(globals()[self.current_lab], 'lab_4_check_answer')(data, self.lab_source_data, self.lab_settings)
-            elif self.current_lab == "lab_5":
-                result = getattr(globals()[self.current_lab], 'lab_5_check_answer')(data, self.lab_source_data, self.lab_settings)
-            # elif self.current_lab == "lab_6":
-            #     result = getattr(globals()[self.current_lab], 'lab_6_check_answer')(data, self.lab_source_data, self.lab_settings)
-            elif self.current_lab == "lab_7":
-                result = getattr(globals()[self.current_lab], 'lab_7_check_answer')(data, self.lab_source_data, self.lab_settings, self.correct_answer)
-            else:
-                raise Exception('Hiding bugs lol')
+            # if self.current_lab == "lab_1":
+            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings)
+            # elif self.current_lab == "lab_2":
+            result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
+            # elif self.current_lab == "lab_3":
+            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
+            # elif self.current_lab == "lab_4":
+            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings)
+            # elif self.current_lab == "lab_5":
+            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings)
+            # # elif self.current_lab == "lab_6":
+            # #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings)
+            # elif self.current_lab == "lab_7":
+            #     result = globals()[self.current_lab].check_answer(data, self.lab_source_data, self.lab_settings, self.correct_answer)
+            # else:
+            #     raise Exception('Hiding bugs lol')
 
             self.score = round(self.weight * result["score"], 1)
             self.student_state["score"] = self.score
@@ -425,12 +425,12 @@ class DSPXBlock(XBlock):
             self.score = None
 
             if self.current_lab == "lab_1":
-                self.lab_source_data = getattr(globals()[self.current_lab], "lab_1_get_source_data")()
+                self.lab_source_data = globals()[self.current_lab].get_source_data()
             elif self.current_lab == "lab_2":
-                self.lab_source_data, self.correct_answer = getattr(globals()[self.current_lab], "lab_2_get_source_data")()
+                self.lab_source_data, self.correct_answer = globals()[self.current_lab].get_source_data()
             elif self.current_lab == "lab_3":
                 state = dict()
-                self.lab_source_data, self.correct_answer = getattr(globals()[self.current_lab], "lab_3_get_source_data")(self.correct_answer)
+                self.lab_source_data, self.correct_answer = globals()[self.current_lab].get_source_data(self.correct_answer)
                 state["Ku_j"] = 1
                 state["Ku_i"] = 1
                 state["Ku_done"] = False
@@ -441,14 +441,13 @@ class DSPXBlock(XBlock):
                 self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
                 self.student_state["state"] = state
             elif self.current_lab == "lab_4":
-                self.lab_source_data = getattr(globals()[self.current_lab], "lab_4_get_source_data")()
+                self.lab_source_data = globals()[self.current_lab].get_source_data()
             elif self.current_lab == "lab_5":
-                self.lab_source_data = getattr(globals()[self.current_lab], "lab_5_get_source_data")()
+                self.lab_source_data = globals()[self.current_lab].get_source_data()
             # elif self.current_lab == "lab_6":
-            #     self.lab_source_data = getattr(globals()[self.current_lab], "lab_6_get_source_data")()
+            #     self.lab_source_data = getattr(globals()[self.current_lab], "get_source_data")()
             elif self.current_lab == "lab_7":
-                log.warning("LAB_7 dir \n\n\n\n\n %s", str(dir(globals()[self.current_lab])))
-                self.lab_source_data, self.correct_answer = globals()[self.current_lab].lab_7_get_source_data()
+                self.lab_source_data, self.correct_answer = globals()[self.current_lab].get_source_data()
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 

@@ -17,7 +17,7 @@ from .display_utils import countdown_title
 log = logging.getLogger(__name__)
 
 
-def lab_3_get_source_data(correct_answer):
+def get_source_data(correct_answer):
     N1 = 10
     signal_types = [
         {
@@ -61,7 +61,7 @@ def get_correct_signal_filter(source_data):
     return x2, b_et
 
 
-def lab_3_check_answer(student_data, source_data, lab_settings, correct_answer):
+def check_answer(student_data, source_data, lab_settings, correct_answer, *args, **kwargs):
     student_y = student_data["student_signal"]
     student_b = student_data["student_filter"]
     student_s = student_data["student_s"]

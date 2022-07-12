@@ -17,7 +17,7 @@ from .display_utils import countdown_title
 log = logging.getLogger(__name__)
 
 
-def lab_4_get_source_data():
+def get_source_data():
     N0 = 100  # random.randint(10, 200)  # должно делится на 4 б/о
     a1 = random.choice([random.randint(1, 10), np.round(np.random.uniform(0.01, 1), decimals=2)])
     signal_types = [
@@ -92,7 +92,7 @@ def get_correct_filter(source_data):
     return filter
 
 
-def lab_4_check_answer(student_data, source_data, lab_settings):
+def check_answer(student_data, source_data, lab_settings, *args, **kwargs):
     student_b = float(student_data["student_b"])
     student_d = student_data["student_signal"]
     student_a = student_data["student_filter"]

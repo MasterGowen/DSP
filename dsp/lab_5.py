@@ -18,7 +18,7 @@ from .display_utils import time_title
 log = logging.getLogger(__name__)
 
 
-def lab_5_get_source_data():
+def get_source_data():
     fd = 100
     f0 = 23  # np.floor(50*np.random.uniform(0, 1)) 5...48
     K1 = 4  # random.choice([2, 3, 4, 5])  #
@@ -93,7 +93,7 @@ def get_correct_signals_2(source_data):
     return sl, slc
 
 
-def lab_5_check_answer(student_data, source_data, lab_settings):
+def check_answer(student_data, source_data, lab_settings, *args, **kwargs):
     student_s = student_data["student_s"]
     student_s1 = student_data["student_s1"]
     student_fn = float(student_data["student_fn"])

@@ -19,7 +19,7 @@ from .display_utils import time_title
 log = logging.getLogger(__name__)
 
 
-def lab_7_get_source_data():
+def get_source_data():
     rand_1 = np.random.rand()  # 0.82038
     rand_2 = np.random.rand()  # 0.413
     rand_3 = np.random.rand()  # 0.04766
@@ -110,7 +110,7 @@ def get_correct_sm(source_data):
     return Sm
 
 
-def lab_7_check_answer(student_data, source_data, lab_settings, correct_answer):
+def check_answer(student_data, source_data, lab_settings, correct_answer, *args, **kwargs):
     student_f0 = float(student_data["student_f0"])
     student_fm = float(student_data["student_fm"])
     student_m = float(student_data["student_m"])

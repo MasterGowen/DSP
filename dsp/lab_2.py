@@ -17,7 +17,7 @@ from .display_utils import countdown_title
 log = logging.getLogger(__name__)
 
 
-def lab_2_get_source_data():
+def get_source_data():
     N3 = 128
     K_1 = 2  # random.choice([2, 4, 8])
     K_2 = (N3 / 2 - 1) * 0.362175  # * np.random.rand()
@@ -47,7 +47,7 @@ def lab_2_get_source_data():
     return context, correct_answer
 
 
-def lab_2_check_answer(student_data, source_data, lab_settings, correct_answer):
+def check_answer(student_data, source_data, lab_settings, correct_answer, *args, **kwargs):
     student_K_1 = float(student_data["student_K1"])
     student_ns_0 = float(student_data["student_ns0"])
     student_ns_1 = float(student_data["student_ns1"])
