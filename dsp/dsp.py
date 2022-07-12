@@ -419,7 +419,6 @@ class DSPXBlock(XBlock):
         return general_context
 
     def lab_context(self):
-        log.warning('GLOBALS\n\n %s', str(globals()))
         if not self.lab_source_data or self.lab_source_data["lab_id"] != self.current_lab:
             self.student_state = {}
             self.attempts = 0
@@ -448,6 +447,7 @@ class DSPXBlock(XBlock):
             # elif self.current_lab == "lab_6":
             #     self.lab_source_data = getattr(globals()[self.current_lab], "lab_6_get_source_data")()
             elif self.current_lab == "lab_7":
+                log.warning("LAB_7 dir \n\n\n\n\n %s", str(dir(globals()[self.current_lab])))
                 self.lab_source_data, self.correct_answer = globals()[self.current_lab].lab_7_get_source_data()
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
