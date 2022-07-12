@@ -424,12 +424,12 @@ class DSPXBlock(XBlock):
             self.score = None
 
             if self.current_lab == "lab_1":
-                self.lab_source_data =  getattr(self.current_lab, "lab_1_get_source_data")()
+                self.lab_source_data =  getattr(globals()[self.current_lab], "lab_1_get_source_data")()
             elif self.current_lab == "lab_2":
-                self.lab_source_data, self.correct_answer = getattr(self.current_lab, "lab_2_get_source_data")()
+                self.lab_source_data, self.correct_answer = getattr(globals()[self.current_lab], "lab_2_get_source_data")()
             elif self.current_lab == "lab_3":
                 state = dict()
-                self.lab_source_data, self.correct_answer = getattr(self.current_lab, "lab_3_get_source_data")(self.correct_answer)
+                self.lab_source_data, self.correct_answer = getattr(globals()[self.current_lab], "lab_3_get_source_data")(self.correct_answer)
                 state["Ku_j"] = 1
                 state["Ku_i"] = 1
                 state["Ku_done"] = False
@@ -440,13 +440,13 @@ class DSPXBlock(XBlock):
                 self.correct_answer["s"] = [None] * len(self.lab_source_data["s"])
                 self.student_state["state"] = state
             elif self.current_lab == "lab_4":
-                self.lab_source_data = getattr(self.current_lab, "lab_4_get_source_data")()
+                self.lab_source_data = getattr(globals()[self.current_lab], "lab_4_get_source_data")()
             elif self.current_lab == "lab_5":
-                self.lab_source_data = getattr(self.current_lab, "lab_5_get_source_data")()
+                self.lab_source_data = getattr(globals()[self.current_lab], "lab_5_get_source_data")()
             # elif self.current_lab == "lab_6":
-            #     self.lab_source_data = getattr(self.current_lab, "lab_6_get_source_data")()
+            #     self.lab_source_data = getattr(globals()[self.current_lab], "lab_6_get_source_data")()
             elif self.current_lab == "lab_7":
-                self.lab_source_data, self.correct_answer = getattr(self.current_lab, "lab_7_get_source_data")()
+                self.lab_source_data, self.correct_answer = getattr(globals()[self.current_lab], "lab_7_get_source_data")()
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
         return context
 
