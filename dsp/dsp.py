@@ -156,7 +156,7 @@ class DSPXBlock(XBlock):
         return fragment
 
     @XBlock.json_handler
-    def student_submit(self, data, suffix=''):
+    def student_submit(self, data):
         self.student_state['answer'] = data
         try:
             if not self.answer_opportunity():
@@ -168,7 +168,10 @@ class DSPXBlock(XBlock):
             self.score = round(self.weight * rs, 1)
             self.student_state['score'] = self.score
             self.student_state['correctness'] = result['correctness']
-            self.student_state['is_success'] = 'success' if rs == 1 else 'error' if rs == 0 else 'partially'
+            if rs == 1:
+                self.student_state['is_success'] = 'success'
+            else:
+                self.student_state['is_success'] = 'error' if rs == 0 else 'partially'
 
             self.runtime.publish(self, 'grade', {'value': float(self.score), 'max_value': float(self.weight)})
             self.student_state['weight'] = self.weight
@@ -193,29 +196,29 @@ class DSPXBlock(XBlock):
             return Response(json.dumps(ex), status=500)
 
     @XBlock.json_handler
-    def lab_1_get_graphics(self, data, suffix=''):
+    def lab_1_get_graphics(self, data):
         self.student_state['answer'] = data
         return Response(json_body={'graphics': globals()[self.current_lab].lab_1_get_graphics(data, self.lab_source_data)})
 
     @XBlock.handler
-    def lab_2_get_graphics_1(self, data, suffix=''):
+    def lab_2_get_graphics_1(self):
         return Response(json_body={'graphics': globals()[self.current_lab].lab_2_get_graphics_1(self.lab_source_data, self.correct_answer)})
 
     @XBlock.handler
-    def lab_2_get_graphics_2(self, data, suffix=''):
+    def lab_2_get_graphics_2(self):
         return Response(json_body={'graphics': globals()[self.current_lab].lab_2_get_graphics_2(self.lab_source_data, self.correct_answer)})
 
     @XBlock.handler
-    def lab_2_get_graphics_3(self, data, suffix=''):
+    def lab_2_get_graphics_3(self):
         return Response(json_body={'graphics': globals()[self.current_lab].lab_2_get_graphics_3(self.lab_source_data, self.correct_answer)})
 
     @XBlock.json_handler
-    def lab_3_get_graphic_1(self, data, suffix=''):
+    def lab_3_get_graphic_1(self, data):
         self.student_state['answer'] = data
         return Response(json_body={'graphic': globals()[self.current_lab].lab_3_get_graphic_1(data, self.lab_source_data, self.correct_answer)})
 
     @XBlock.handler
-    def lab_3_get_graphic_2(self, request, suffix=''):
+    def lab_3_get_graphic_2(self, request):
         self.student_state['answer'] = json.loads(request.body)
         reload = 'reload' in request.GET
         is_signal = request.GET.get('is_signal', '')
@@ -223,12 +226,12 @@ class DSPXBlock(XBlock):
         return Response(json_body={'graphic': graphic, 'student_state': self.student_state, 'correct_answer': self.correct_answer})
 
     @XBlock.json_handler
-    def lab_3_get_graphic_3(self, data, suffix=''):
+    def lab_3_get_graphic_3(self, data):
         self.student_state['answer'] = data
         return Response(json_body={'graphic': globals()[self.current_lab].lab_3_get_graphic_3(data, self.lab_source_data)})
 
     @XBlock.handler
-    def lab_3_reset_task(self, data, suffix=''):
+    def lab_3_reset_task(self, data):
         state = {
             'Ku_j': 1,
             'Ku_i': 1,
@@ -242,45 +245,45 @@ class DSPXBlock(XBlock):
         return Response(json_body={'graphic': graphic, 'student_state': self.student_state})
 
     @XBlock.json_handler
-    def lab_4_get_graphics(self, data, suffix=''):
+    def lab_4_get_graphics(self, data):
         self.student_state['answer'] = data
         return Response(json_body={'graphics': globals()[self.current_lab].lab_4_get_graphics(data, self.lab_source_data)})
 
     @XBlock.json_handler
-    def lab_5_get_graphic_1(self, data, suffix=''):
+    def lab_5_get_graphic_1(self, data):
         self.student_state['answer'] = data
         return Response(json_body={'graphics': globals()[self.current_lab].lab_5_get_graphic_1(data, self.lab_source_data)})
 
     @XBlock.json_handler
-    def lab_5_get_graphic_2(self, data, suffix=''):
+    def lab_5_get_graphic_2(self, data):
         self.student_state['answer'] = data
         return Response(json_body={'graphics': globals()[self.current_lab].lab_5_get_graphic_2(data, self.lab_source_data)})
 
     @XBlock.handler
-    def lab_7_get_graphic_1(self, data, suffix=''):
+    def lab_7_get_graphic_1(self, data):
         return Response(json_body={'graphics': globals()[self.current_lab].lab_7_get_graphic_1(self.lab_source_data, self.correct_answer)})
 
     @XBlock.json_handler
-    def lab_7_get_graphic_2(self, data, suffix=''):
+    def lab_7_get_graphic_2(self, data):
         self.student_state['answer'] = data
         return Response(json_body={'graphics': globals()[self.current_lab].lab_7_get_graphic_2(data)})
 
     @XBlock.handler
-    def lab_7_get_graphic_3(self, data, suffix=''):
+    def lab_7_get_graphic_3(self, data):
         return Response(json_body={'graphics': globals()[self.current_lab].lab_7_get_graphic_3(self.lab_source_data, self.correct_answer)})
 
     @XBlock.json_handler
-    def lab_7_get_graphic_4(self, data, suffix=''):
+    def lab_7_get_graphic_4(self, data):
         self.student_state['answer'] = data
         return Response(json_body={'graphics': globals()[self.current_lab].lab_7_get_graphics_4(data, self.correct_answer)})
 
     @XBlock.json_handler
-    def save_answer(self, data, suffix=''):
+    def save_answer(self, data):
         self.student_state['answer'] = data
         return Response(json_body={'success': 'success'})
 
     @XBlock.handler
-    def reset_task(self, data, suffix=''):
+    def reset_task(self):
         if self.lab_settings['show_reset_button']:
             self.attempts = 0
             self.score = None
@@ -364,7 +367,7 @@ class DSPXBlock(XBlock):
         return fragment
 
     @XBlock.json_handler
-    def studio_submit(self, data, suffix=''):
+    def studio_submit(self, data):
         self.display_name = data.get('display_name')
         self.current_lab = data.get('current_lab')
         self.weight = int(float(data.get('weight')))
