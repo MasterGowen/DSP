@@ -28,7 +28,7 @@ from .utils import (
 
 for module in os.listdir(os.path.dirname(__file__)):
     if re.match(r"lab_\d+.py", module):
-        __import__(module[:-3], locals(), globals())
+        globals()[os.path.splitext(module)[0]] = __import__(module[:-3])
 del module
 
 log = logging.getLogger(__name__)
