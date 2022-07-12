@@ -247,7 +247,7 @@ class DSPXBlock(XBlock):
     def lab_1_get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_1_get_graphics')(data, self.lab_source_data)
+            graphics = globals()[self.current_lab].lab_1_get_graphic(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -255,7 +255,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_2_get_graphics_1(self, data, suffix=''):
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_2_get_graphics_1')(self.lab_source_data, self.correct_answer)
+            graphics = globals()[self.current_lab].lab_2_get_graphic_1(self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -263,7 +263,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_2_get_graphics_2(self, data, suffix=''):
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_2_get_graphics_2')(self.lab_source_data, self.correct_answer)
+            graphics = globals()[self.current_lab].lab_2_get_graphic_2(self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -271,7 +271,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_2_get_graphics_3(self, data, suffix=''):
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_2_get_graphics_3')(self.lab_source_data, self.correct_answer)
+            graphics = globals()[self.current_lab].lab_2_get_graphic_3(self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -280,7 +280,7 @@ class DSPXBlock(XBlock):
     def lab_3_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphic = getattr(globals()[self.current_lab], 'lab_3_get_graphics_1')(data, self.lab_source_data, self.correct_answer)
+            graphic = globals()[self.current_lab].lab_3_get_graphic_1(data, self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphic": graphic})
         except:
             return Response('Error!', 500)
@@ -295,7 +295,7 @@ class DSPXBlock(XBlock):
                 reload = True
             if 'is_signal' in request.GET:
                 is_signal = request.GET["is_signal"]
-            self.correct_answer, self.student_state, graphic = getattr(globals()[self.current_lab], 'lab_3_get_graphics_2')(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
+            self.correct_answer, self.student_state, graphic = globals()[self.current_lab].lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, reload, is_signal)
             return Response(json_body={"graphic": graphic, "student_state": self.student_state, "correct_answer": self.correct_answer})
         except:
             return Response('Error!', 500)
@@ -304,7 +304,7 @@ class DSPXBlock(XBlock):
     def lab_3_get_graphic_3(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphic = getattr(globals()[self.current_lab], 'lab_3_get_graphics_3')(data, self.lab_source_data)
+            graphic = globals()[self.current_lab].lab_3_get_graphic_3(data, self.lab_source_data)
             return Response(json_body={"graphic": graphic})
         except:
             return Response('Error!', 500)
@@ -317,14 +317,14 @@ class DSPXBlock(XBlock):
         self.student_state["state"]["there_is_signal_count"] = 0
         self.student_state["state"]["there_is_no_signal_count"] = 0
         self.student_state["state"]["there_is_signal_states"] = [{}] * len(self.lab_source_data["s"])
-        _, self.student_state, graphic = getattr(globals()[self.current_lab], 'lab_3_get_graphics_2')(self.correct_answer, self.student_state, self.lab_source_data, True)
+        _, self.student_state, graphic = globals()[self.current_lab].lab_3_get_graphic_2(self.correct_answer, self.student_state, self.lab_source_data, True)
         return Response(json_body={"graphic": graphic, "student_state": self.student_state})
 
     @XBlock.json_handler
     def lab_4_get_graphics(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_4_get_graphics')(data, self.lab_source_data)
+            graphics = globals()[self.current_lab].lab_4_get_graphic(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -333,7 +333,7 @@ class DSPXBlock(XBlock):
     def lab_5_get_graphic_1(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_5_get_graphics_1')(data, self.lab_source_data)
+            graphics = globals()[self.current_lab].lab_5_get_graphic_1(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -342,7 +342,7 @@ class DSPXBlock(XBlock):
     def lab_5_get_graphic_2(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_5_get_graphics_2')(data, self.lab_source_data)
+            graphics = globals()[self.current_lab].lab_5_get_graphic_2(data, self.lab_source_data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -350,7 +350,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_7_get_graphic_1(self, data, suffix=''):
         # try:
-        graphics = globals()[self.current_lab].lab_7_get_graphics_1(self.lab_source_data, self.correct_answer)
+        graphics = globals()[self.current_lab].lab_7_get_graphic_1(self.lab_source_data, self.correct_answer)
         return Response(json_body={"graphics": graphics})
         # except:
         #     return Response('Error!', 500)
@@ -359,7 +359,7 @@ class DSPXBlock(XBlock):
     def lab_7_get_graphic_2(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_7_get_graphics_2')(data)
+            graphics = globals()[self.current_lab].lab_7_get_graphic_2(data)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -367,7 +367,7 @@ class DSPXBlock(XBlock):
     @XBlock.handler
     def lab_7_get_graphic_3(self, data, suffix=''):
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_7_get_graphics_3')(self.lab_source_data, self.correct_answer)
+            graphics = globals()[self.current_lab].lab_7_get_graphic_3(self.lab_source_data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -376,7 +376,7 @@ class DSPXBlock(XBlock):
     def lab_7_get_graphic_4(self, data, suffix=''):
         self.student_state["answer"] = data
         try:
-            graphics = getattr(globals()[self.current_lab], 'lab_7_get_graphics_4')(data, self.correct_answer)
+            graphics = globals()[self.current_lab].lab_7_get_graphics_4(data, self.correct_answer)
             return Response(json_body={"graphics": graphics})
         except:
             return Response('Error!', 500)
@@ -445,7 +445,7 @@ class DSPXBlock(XBlock):
             elif self.current_lab == "lab_5":
                 self.lab_source_data = globals()[self.current_lab].get_source_data()
             # elif self.current_lab == "lab_6":
-            #     self.lab_source_data = getattr(globals()[self.current_lab], "get_source_data")()
+            #     self.lab_source_data = globals()[self.current_lab].get_source_data()
             elif self.current_lab == "lab_7":
                 self.lab_source_data, self.correct_answer = globals()[self.current_lab].get_source_data()
         context = merge_two_dicts(self.get_general_context(), self.lab_source_data)
