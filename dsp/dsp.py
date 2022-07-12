@@ -29,7 +29,7 @@ from .utils import (
 
 for module in os.listdir(os.path.dirname(__file__)):
     if re.match(r"lab_\d+.py", module):
-        globals()[os.path.splitext(module)[0]] = __import__('dsp.' + module[:-3])
+        globals()[os.path.splitext(module)[0]] = __import__('dsp.' + module[:-3], fromlist=[None])
 del module
 
 log = logging.getLogger(__name__)
