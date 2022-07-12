@@ -15,6 +15,7 @@ from xblock.fragment import Fragment
 from xmodule.util.duedate import get_extended_due_date
 
 from .calc_utils import merge_two_dicts
+
 # from .lab_1 import lab_1_get_source_data, lab_1_get_graphics, lab_1_check_answer
 # from .lab_2 import lab_2_get_source_data, lab_2_get_graphics_1, lab_2_get_graphics_2, lab_2_get_graphics_3, lab_2_check_answer
 # from .lab_3 import lab_3_get_source_data, lab_3_get_graphic_1, lab_3_get_graphic_2, lab_3_get_graphic_3, lab_3_check_answer
@@ -28,7 +29,7 @@ from .utils import (
 
 for module in os.listdir(os.path.dirname(__file__)):
     if re.match(r"lab_\d+.py", module):
-        globals()[os.path.splitext(module)[0]] = __import__(module[:-3])
+        globals()[os.path.splitext(module)[0]] = __import__('dsp.' + module[:-3])
 del module
 
 log = logging.getLogger(__name__)
@@ -425,7 +426,7 @@ class DSPXBlock(XBlock):
             self.score = None
 
             if self.current_lab == "lab_1":
-                self.lab_source_data =  getattr(globals()[self.current_lab], "lab_1_get_source_data")()
+                self.lab_source_data = getattr(globals()[self.current_lab], "lab_1_get_source_data")()
             elif self.current_lab == "lab_2":
                 self.lab_source_data, self.correct_answer = getattr(globals()[self.current_lab], "lab_2_get_source_data")()
             elif self.current_lab == "lab_3":
